@@ -4,32 +4,23 @@ import {
   receiveBalance
 } from './actions'
 
-export function errorAfterFiveSeconds() {
-  return dispatch => {
+const asyncWeb3GetBalance = () => {
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
-      // This function is able to dispatch other action creators
-      dispatch(failureBalance(true));
-    }, 5000);
-  };
+      resolve(42)
+    }, 2000)
+  })
 }
 
-export function balanceFetchData() {
+export const balanceFetchData = () => {
   return dispatch => {
-    dispatch(requestBalance(true));
+    dispatch(requestBalance(true))
 
-    // TODO
     asyncWeb3GetBalance()
       .then(response => {
-        if (!response.ok) {
-            throw Error(response.statusText);
-        }
-
-        dispatch(requestBalance(false));
-
-        return response;
+        dispatch(requestBalance(false))
+        dispatch(receiveBalance(response))
       })
-      .then(response => response.json())
-      .then(balance => dispatch(receiveBalance(balance)))
-      .catch(() => dispatch(failureBalance(true)));
-  };
+      .catch(() => dispatch(failureBalance(true)))
+  }
 }

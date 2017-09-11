@@ -13,7 +13,8 @@
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
-    "react-scripts": "1.0.13"
+    "react-scripts": "1.0.13",
+    "standard": "^10.0.3"
   },
   "scripts": {
     "start-js": "react-scripts start",
@@ -22,7 +23,19 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive"
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
+    "lint": "./node_modules/.bin/standard",
+    "lint-fix": "./node_modules/.bin/standard --fix"
+  },
+  "standard": {
+    "ignore": [
+      "build/*"
+    ],
+    "env": [
+       "jest",
+       "es6",
+       "browser"
+     ]
   },
   "proxy": ""
 }

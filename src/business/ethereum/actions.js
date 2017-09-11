@@ -1,24 +1,24 @@
-export const REQUEST_BALANCE = 'REQUEST_BALANCE',
-             FAILURE_BALANCE = 'FAILURE_BALANCE',
-             RECEIVE_BALANCE = 'RECEIVE_BALANCE'
+export const REQUEST_BALANCE = 'REQUEST_BALANCE'
+export const FAILURE_BALANCE = 'FAILURE_BALANCE'
+export const RECEIVE_BALANCE = 'RECEIVE_BALANCE'
 
-export function requestBalance(isFetching) {
+export const requestBalance = isFetching => {
   return {
     type: REQUEST_BALANCE,
-    isFetching,
-  };
+    isFetching
+  }
 }
 
-export function failureBalance(hasErrored) {
+export const failureBalance = hasErrored => {
   return {
     type: FAILURE_BALANCE,
-    hasErrored,
-  };
+    hasErrored
+  }
 }
 
-export function receiveBalance(balance) {
+export const receiveBalance = balance => {
   return {
     type: RECEIVE_BALANCE,
-    balance,
-  };
+    balance
+  }
 }
