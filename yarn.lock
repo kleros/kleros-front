@@ -1565,6 +1565,14 @@ block-stream@*:
   dependencies:
     inherits "~2.0.0"
 
+blockies-identicon@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/blockies-identicon/-/blockies-identicon-0.1.0.tgz#d0b2fd221a18f09c9adc606de8c1adb73ac50638"
+
+blockies@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/blockies/-/blockies-0.0.2.tgz#22ad58da4f6b382bc79bf4386c5820c70047e4ed"
+
 bluebird@^3.4.7:
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.0.tgz#791420d7f551eea2897453a8a77653f96606d67c"

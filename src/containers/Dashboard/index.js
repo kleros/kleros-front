@@ -4,6 +4,8 @@ import { withRouter } from 'react-router-dom'
 import { balanceFetchData } from '../../business/ethereum/action-creators'
 import Layout from '../../components/Layout'
 import Sidebar from '../../components/Sidebar'
+import ShortProfile from '../../components/ShortProfile'
+import Identicon from '../Identicon'
 import './Dashboard.css'
 
 class Dashboard extends Component {
@@ -20,9 +22,15 @@ class Dashboard extends Component {
       return <p>Loading…</p>
     }
 
+
+
     return (
       <Layout>
-        <Sidebar />
+        <Sidebar>
+          <ShortProfile>
+            <Identicon />
+          </ShortProfile>
+        </Sidebar>
         <div className='Dashboard'>
           <h1>Dashboard</h1>
           <p>{this.props.balance}</p>
