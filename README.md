@@ -7,6 +7,7 @@
 * [Getting start](#getting-started)
   * [Install dependancies](#install-dependancies)
   * [Run application](#install-dependancies)
+  * [Linter](#linter)
 * [Storybook](#storybook)
 
 
@@ -35,3 +36,10 @@ yarn run storybook
 ```
 
 Go to http://localhost:9009/.
+
+### Linter
+
+```
+yarn run lint # check lint
+yarn run lint-fix # fix lint
+```
