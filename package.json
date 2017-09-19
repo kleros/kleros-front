@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@storybook/storybook-deployer": "^2.0.0",
     "blockies": "^0.0.2",
     "blockies-identicon": "^0.1.0",
     "global": "^4.3.2",
@@ -34,7 +35,8 @@
     "lint": "./node_modules/.bin/standard",
     "lint-fix": "./node_modules/.bin/standard --fix",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "deploy-storybook": "storybook-to-ghpages"
   },
   "standard": {
     "ignore": [
