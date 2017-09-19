@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { balanceFetchData } from './business/ethereum/action-creators'
-import logo from './logo.svg'
-import './App.scss'
+import { withRouter } from 'react-router-dom'
+import { balanceFetchData } from '../../business/ethereum/action-creators'
+import Layout from '../../components/Layout'
+import Sidebar from '../../components/Sidebar'
+import './Dashboard.css'
 
-class App extends Component {
+
+class Dashboard extends Component {
   componentDidMount () {
     this.props.getBalance()
   }
@@ -19,11 +22,13 @@ class App extends Component {
     }
 
     return (
-      <div className='App'>
-        <h1>Balance</h1>
-        {this.props.balance}
-        <img src={logo} className='App-logo' alt='logo' />
-      </div>
+      <Layout>
+        <Sidebar />
+        <div className='Dashboard'>
+          <h1>Dashboard</h1>
+          <p>{this.props.balance}</p>
+        </div>
+      </Layout>
     )
   }
 }
@@ -42,4 +47,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Dashboard))
