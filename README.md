@@ -9,6 +9,8 @@
   * [Run application](#install-dependancies)
   * [Linter](#linter)
 * [Storybook](#storybook)
+  * [Local](#local)
+  * [Remote](#remote)
 
 
 ## Getting started
@@ -31,11 +33,22 @@ Go to http://localhost:3000.
 
 We use [Storybook](https://storybook.js.org/).
 
+#### Local
+
 ```
 yarn run storybook
 ```
 
 Go to http://localhost:9009/.
+
+#### Remote
+
+Update Storybook:
+```
+yarn run deploy-storybook
+```
+
+Go to https://kleros.io/kleros-front
 
 ### Linter
 
