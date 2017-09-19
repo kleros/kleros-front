@@ -7,7 +7,7 @@ const ShortProfile = ({
   ...rest
 }) => (
   <div className={`ShortProfile-container ${className}`}>
-  { children }
+    { children }
   </div>
 )
 

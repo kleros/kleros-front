@@ -7,7 +7,7 @@ import {
   HashRouter as Router,
   Route,
   Switch,
-  Redirect,
+  Redirect
 } from 'react-router-dom'
 
 const store = generateStore()
@@ -16,8 +16,8 @@ const App = () => (
   <Provider store={store}>
     <Router>
       <Switch>
-        <Route exact path="/" component={Dashboard}/>
-        <Redirect from="*" to="/" />
+        <Route exact path='/' component={Dashboard} />
+        <Redirect from='*' to='/' />
       </Switch>
     </Router>
   </Provider>

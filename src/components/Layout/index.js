@@ -7,7 +7,7 @@ const Layout = ({
   ...rest
 }) => (
   <div className={`Layout-container ${className}`}>
-  { children }
+    { children }
   </div>
 )
 

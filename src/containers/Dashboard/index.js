@@ -6,7 +6,6 @@ import Layout from '../../components/Layout'
 import Sidebar from '../../components/Sidebar'
 import './Dashboard.css'
 
-
 class Dashboard extends Component {
   componentDidMount () {
     this.props.getBalance()

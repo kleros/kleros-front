@@ -7,7 +7,7 @@ const Sidebar = ({
   ...rest
 }) => (
   <div className={`Sidebar-container ${className}`}>
-  { children }
+    { children }
   </div>
 )
 

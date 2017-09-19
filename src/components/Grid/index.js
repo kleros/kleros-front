@@ -7,7 +7,7 @@ const Grid = ({
   ...rest
 }) => (
   <div className={`Grid-container ${className}`}>
-  { children }
+    { children }
   </div>
 )
 
