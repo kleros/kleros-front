@@ -28,6 +28,8 @@ Go to http://localhost:3000.
 
 ### Storybook
 
+We use [Storybook](https://storybook.js.org/).
+
 ```
 yarn run storybook
 ```
