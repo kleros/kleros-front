@@ -22,14 +22,10 @@ class Dashboard extends Component {
       return <p>Loading…</p>
     }
 
-
-
     return (
       <Layout>
         <Sidebar>
-          <ShortProfile>
-            <Identicon />
-          </ShortProfile>
+          <ShortProfile icon={ <Identicon className='dark' balancePNK={42} /> } />
         </Sidebar>
         <div className='Dashboard'>
           <h1>Dashboard</h1>

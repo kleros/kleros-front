@@ -3,6 +3,8 @@ import Dashboard from '../containers/Dashboard'
 import { Provider } from 'react-redux'
 import generateStore from './generateStore'
 import registerServiceWorker from './registerServiceWorker'
+import './index.css'
+
 import {
   HashRouter as Router,
   Route,

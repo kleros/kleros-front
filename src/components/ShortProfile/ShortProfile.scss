@@ -1,2 +1,34 @@
 .ShortProfile-container {
+  display: flex;
+  flex-direction: row;
+  width: 180px;
+  .icon {
+
+  }
+  .description {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 10px;
+    .username {
+      font-weight: bold;
+      padding: 2px;
+    }
+    .balancePNK {
+      font-size: 0.9rem;
+      padding: 2px;
+    }
+  }
+}
+
+.dark {
+  background: #000;
+  .description {
+    .username {
+      color: #fff;
+    }
+    .balancePNK {
+      color: #fff;
+    }
+  }
 }
