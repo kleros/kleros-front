@@ -11,6 +11,7 @@
 * [Storybook](#storybook)
   * [Local](#local)
   * [Remote](#remote)
+* [Invision](#invision)
 
 
 ## Getting started
@@ -56,3 +57,8 @@ Go to https://kleros.io/kleros-front
 yarn run lint # check lint
 yarn run lint-fix # fix lint
 ```
+
+## Invision
+
+See https://projects.invisionapp.com/share/SRDBNEDE7#/screens/252043260/ .
+
