@@ -58,7 +58,6 @@ table {
 
 /* fonts */
 
-
 @mixin fontFace($family,$src,$style: normal,$weight: normal) {
 	@font-face {
 		font-family: $family;

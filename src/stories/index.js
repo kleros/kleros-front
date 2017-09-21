@@ -34,3 +34,12 @@ storiesOf('ShortProfile', module)
       balancePNK={242}
       icon={<Identicon />} />
   )
+  .add(
+    'with black background, icon, username, balance and active notification',
+    () => <ShortProfile
+      backgroundColor='dark'
+      username='John'
+      balancePNK={242}
+      notificationIsActive={true}
+      icon={<Identicon />} />
+  )
