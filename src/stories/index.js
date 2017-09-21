@@ -22,7 +22,7 @@ storiesOf('ShortProfile', module)
   .add(
     'with icon, username and balance',
     () => <ShortProfile
-      username='Vitalik'
+      username='John'
       balancePNK={42}
       icon={<Identicon />} />
   )

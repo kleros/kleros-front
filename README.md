@@ -4,15 +4,14 @@
 
 ## Table of Contents
 
-* [Getting start](#getting-started)
+* [Getting started](#getting-started)
   * [Install dependancies](#install-dependancies)
   * [Run application](#install-dependancies)
-  * [Linter](#linter)
 * [Storybook](#storybook)
   * [Local](#local)
   * [Remote](#remote)
+* [Linter](#linter)
 * [Invision](#invision)
-
 
 ## Getting started
 
@@ -30,11 +29,11 @@ yarn start
 
 Go to http://localhost:3000.
 
-### Storybook
+## Storybook
 
 We use [Storybook](https://storybook.js.org/).
 
-#### Local
+### Local
 
 ```
 yarn run storybook
@@ -42,7 +41,7 @@ yarn run storybook
 
 Go to http://localhost:9009/.
 
-#### Remote
+### Remote
 
 Update Storybook:
 ```
@@ -51,7 +50,7 @@ yarn run deploy-storybook
 
 Go to https://kleros.io/kleros-front
 
-### Linter
+## Linter
 
 ```
 yarn run lint # check lint
@@ -61,4 +60,3 @@ yarn run lint-fix # fix lint
 ## Invision
 
 Go [there](https://projects.invisionapp.com/share/SRDBNEDE7#/screens/252442857) .
-
