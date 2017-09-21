@@ -5,7 +5,7 @@ import './Identicon.css'
 class Identicon extends Component {
   render () {
     const imgURL = Blockies.create({
-      seed: this.props.address || '0xfb6916095ca1df60bb79ce92ce3ea74c37c5d359',
+      seed: this.props.seed || '0xfb6916095ca1df60bb79ce92ce3ea74c37c5d359',
       scale: this.props.scale || 5,
       size: this.props.size || 10,
     }).toDataURL()

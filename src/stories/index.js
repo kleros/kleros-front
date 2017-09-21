@@ -5,6 +5,7 @@ import { action } from '@storybook/addon-actions'
 import { linkTo } from '@storybook/addon-links'
 
 import ShortProfile from '../components/ShortProfile'
+import Sidebar from '../components/Sidebar'
 
 import Identicon from '../containers/Identicon'
 
@@ -43,3 +44,19 @@ storiesOf('ShortProfile', module)
       notificationIsActive={true}
       icon={<Identicon />} />
   )
+
+  storiesOf('Sidebar', module)
+    .add(
+      'default',
+      () =>
+        <Sidebar identicon=
+          {
+            <ShortProfile
+              backgroundColor='dark'
+              username='John'
+              balancePNK={242}
+              notificationIsActive={true}
+              icon={<Identicon seed='0xA1E4380A3B1f749673E270229993eE55F35663b4' />} />
+          }
+        />
+    )

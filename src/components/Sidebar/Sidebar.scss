@@ -1,2 +1,14 @@
 .Sidebar-container {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  background-color: #273142;
+  .identicon {
+
+  }
+  .divider {
+  	height: 1px;
+  	width: 100%;
+  	background-color: #3e4a5c;
+  }
 }

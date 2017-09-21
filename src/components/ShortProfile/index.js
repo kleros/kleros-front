@@ -1,6 +1,6 @@
 import React from 'react'
 import './ShortProfile.css'
-import notification from './notification.svg'
+import notification from '../../assets/icons/notification.svg'
 
 const ShortProfile = ({
   className,

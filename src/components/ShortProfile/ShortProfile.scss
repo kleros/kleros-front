@@ -3,6 +3,8 @@
   flex-direction: row;
   align-items: center;
   width: 230px;
+  padding: 18px;
+  padding-right: 10px;
   .icon {
   }
   .description {
@@ -24,7 +26,6 @@
   }
   .notification {
     position: relative;
-    padding-right: 20px;
   }
   .notificationIsActive {
     position: absolute;
