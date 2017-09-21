@@ -10,18 +10,20 @@
     justify-content: center;
     padding-left: 10px;
     .username {
+      font-size: 16px;
       font-weight: bold;
       padding: 2px;
     }
     .balancePNK {
-      font-size: 0.9rem;
       padding: 2px;
+      font-size: 14px;
+      opacity: 0.66;
     }
   }
 }
 
 .dark {
-  background: #000;
+  background-color: #273142;
   .description {
     .username {
       color: #fff;

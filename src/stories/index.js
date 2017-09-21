@@ -30,7 +30,7 @@ storiesOf('ShortProfile', module)
     'with black background, icon, username and balance',
     () => <ShortProfile
       backgroundColor='dark'
-      username='Vitalik'
-      balancePNK={42}
+      username='John'
+      balancePNK={242}
       icon={<Identicon />} />
   )
