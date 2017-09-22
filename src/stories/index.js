@@ -5,11 +5,21 @@ import { action } from '@storybook/addon-actions'
 import { linkTo } from '@storybook/addon-links'
 
 import ShortProfile from '../components/ShortProfile'
+import ItemMenuSidebar from '../components/ItemMenuSidebar'
 import Sidebar from '../components/Sidebar'
 
 import Identicon from '../containers/Identicon'
+import Icon from '../containers/Icon'
 
 import '../bootstrap/index.css'
+
+storiesOf('Icon', module)
+  .add(
+    'Icon with name=Disputes, theme=dark',
+    () => <Icon
+      name='Disputes'
+      theme='dark' />
+  )
 
 storiesOf('Identicon', module)
   .add('default (50x50)', () => <Identicon />)
@@ -28,7 +38,7 @@ storiesOf('ShortProfile', module)
       icon={<Identicon />} />
   )
   .add(
-    'with black background, icon, username and balance',
+    'with dark background, icon, username and balance',
     () => <ShortProfile
       backgroundColor='dark'
       username='John'
@@ -36,13 +46,26 @@ storiesOf('ShortProfile', module)
       icon={<Identicon />} />
   )
   .add(
-    'with black background, icon, username, balance and active notification',
+    'with dark background, icon, username, balance and active notification',
     () => <ShortProfile
       backgroundColor='dark'
       username='John'
       balancePNK={242}
       notificationIsActive={true}
       icon={<Identicon />} />
+  )
+
+storiesOf('ItemMenuSidebar', module)
+  .add(
+    'default',
+    () => <ItemMenuSidebar />
+  )
+  .add(
+    'with dark background, icon and title',
+    () => <ItemMenuSidebar
+      backgroundColor='dark'
+      name='Disputes'
+      title='Disputes' />
   )
 
   storiesOf('Sidebar', module)

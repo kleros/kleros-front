@@ -1,5 +1,8 @@
 import React from 'react'
+import Icon from '../../containers/Icon'
+
 import './ShortProfile.css'
+
 import notification from '../../assets/icons/notification.svg'
 
 const ShortProfile = ({
@@ -25,7 +28,7 @@ const ShortProfile = ({
       </div>
     </div>
     <div className='notification'>
-       <img src={notification} alt='notification' />
+       <Icon name='notification' />
        {notificationIsActive && <div className='notificationIsActive' /> }
     </div>
     { children }

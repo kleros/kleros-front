@@ -6,6 +6,7 @@ import Layout from '../../components/Layout'
 import Sidebar from '../../components/Sidebar'
 import ShortProfile from '../../components/ShortProfile'
 import Identicon from '../Identicon'
+import Icon from '../Icon'
 import './Dashboard.css'
 
 class Dashboard extends Component {
