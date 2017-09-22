@@ -19,7 +19,7 @@ class Icon extends Component {
 
   render () {
     if (this.state.isLoading) {
-      return (<div className='loading'>...</div>)
+      return (<div>Icon loading...</div>)
     }
 
     return (
