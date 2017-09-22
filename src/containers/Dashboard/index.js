@@ -27,23 +27,22 @@ class Dashboard extends Component {
     // TODO move to Layout component
     // TODO add item constants
     const items = [
-        'Disputes',
-        'Contracts',
-        'Jury',
-        'Decisions',
-        'Settings'
+      'Disputes',
+      'Contracts',
+      'Jury',
+      'Decisions',
+      'Settings'
     ]
 
     return (
       <Layout>
-        <Sidebar identicon=
-          {
-            <ShortProfile
-              backgroundColor='dark'
-              username='John'
-              balancePNK={242}
-              notificationIsActive={true}
-              icon={<Identicon seed='0xA1E4380A3B1f749673E270229993eE55F35663b4' />} />
+        <Sidebar identicon={
+          <ShortProfile
+            backgroundColor='dark'
+            username='John'
+            balancePNK={242}
+            notificationIsActive
+            icon={<Identicon seed='0xA1E4380A3B1f749673E270229993eE55F35663b4' />} />
           }
         >
           <MenuSidebar items={items} />

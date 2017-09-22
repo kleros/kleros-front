@@ -52,7 +52,7 @@ storiesOf('ShortProfile', module)
       backgroundColor='dark'
       username='John'
       balancePNK={242}
-      notificationIsActive={true}
+      notificationIsActive
       icon={<Identicon />} />
   )
 
@@ -69,7 +69,7 @@ storiesOf('ItemMenuSidebar', module)
       title='Disputes' />
   )
 
-  storiesOf('MenuSidebar', module)
+storiesOf('MenuSidebar', module)
     .add(
       'default',
       () => <MenuSidebar />
@@ -80,18 +80,17 @@ storiesOf('ItemMenuSidebar', module)
         items={['Disputes', 'Contracts']} />
     )
 
-  storiesOf('Sidebar', module)
+storiesOf('Sidebar', module)
     .add(
       'with items=Disputes, Contracts',
       () =>
-        <Sidebar identicon=
-          {
-            <ShortProfile
-              backgroundColor='dark'
-              username='John'
-              balancePNK={242}
-              notificationIsActive={true}
-              icon={<Identicon seed='0xA1E4380A3B1f749673E270229993eE55F35663b4' />} />
+        <Sidebar identicon={
+          <ShortProfile
+            backgroundColor='dark'
+            username='John'
+            balancePNK={242}
+            notificationIsActive
+            icon={<Identicon seed='0xA1E4380A3B1f749673E270229993eE55F35663b4' />} />
           }
         >
           <MenuSidebar

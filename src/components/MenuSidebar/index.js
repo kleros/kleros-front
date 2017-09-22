@@ -6,7 +6,7 @@ import './MenuSidebar.css'
 
 const MenuSidebar = ({
   className,
-  items=[],
+  items = [],
   theme,
   children,
   ...rest

@@ -28,8 +28,8 @@ const ShortProfile = ({
       </div>
     </div>
     <div className='notification'>
-       <Icon name='notification' />
-       {notificationIsActive && <div className='notificationIsActive' /> }
+      <Icon name='notification' />
+      {notificationIsActive && <div className='notificationIsActive' /> }
     </div>
     { children }
   </div>
