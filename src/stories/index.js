@@ -82,7 +82,7 @@ storiesOf('ItemMenuSidebar', module)
 
   storiesOf('Sidebar', module)
     .add(
-      'default',
+      'with items=Disputes, Contracts',
       () =>
         <Sidebar identicon=
           {
@@ -93,5 +93,8 @@ storiesOf('ItemMenuSidebar', module)
               notificationIsActive={true}
               icon={<Identicon seed='0xA1E4380A3B1f749673E270229993eE55F35663b4' />} />
           }
-        />
+        >
+          <MenuSidebar
+            items={['Disputes', 'Contracts']} />
+        </Sidebar>
     )
