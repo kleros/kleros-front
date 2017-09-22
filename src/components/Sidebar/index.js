@@ -13,6 +13,7 @@ const Sidebar = ({
     </div>
     <div className='divider' />
     { children }
+    <div className='emptybar' />
   </div>
 )
 
