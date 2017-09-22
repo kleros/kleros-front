@@ -1,0 +1,22 @@
+.MenuSidebar-container {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  background-color: #273142;
+  color: #fff;
+  .item {
+    .divider {
+      box-sizing: border-box;
+      margin: 0 10%;
+      height: 1px;
+      background-color: #3e4a5c;
+    }
+  }
+}
+
+.dark {
+  background-color: #273142;
+  .title {
+    color: #fff;
+  }
+}

@@ -6,6 +6,7 @@ import { linkTo } from '@storybook/addon-links'
 
 import ShortProfile from '../components/ShortProfile'
 import ItemMenuSidebar from '../components/ItemMenuSidebar'
+import MenuSidebar from '../components/MenuSidebar'
 import Sidebar from '../components/Sidebar'
 
 import Identicon from '../containers/Identicon'
@@ -67,6 +68,17 @@ storiesOf('ItemMenuSidebar', module)
       name='Disputes'
       title='Disputes' />
   )
+
+  storiesOf('MenuSidebar', module)
+    .add(
+      'default',
+      () => <MenuSidebar />
+    )
+    .add(
+      'with items=Disputes,Contracts',
+      () => <MenuSidebar
+        items={['Disputes', 'Contracts']} />
+    )
 
   storiesOf('Sidebar', module)
     .add(

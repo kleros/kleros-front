@@ -1,15 +1,15 @@
 .ItemMenuSidebar-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
   background-color: #273142;
   color: #fff;
+  padding: 15px 0 15px 34px;
   .icon {
 
   }
   .name {
-
+    padding-left: 20px;
   }
 }
 
