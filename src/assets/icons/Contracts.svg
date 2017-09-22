@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="20px" viewBox="0 0 14 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Contracts</title>
+    <desc>Kleros</desc>
+    <defs></defs>
+    <g id="desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ICONS" transform="translate(-29.000000, -145.000000)" stroke="#FFFFFF">
+            <g id="contracts" transform="translate(30.000000, 146.000000)">
+                <polygon id="Stroke-1" points="11.625 0.375 11.625 17.625 10.2195 16.875 8.817 17.625 7.41225 16.875 6.006 17.625 4.602 16.875 3.19425 17.625 1.785 16.875 0.375 17.625 0.375 0.375 1.7805 1.125 3.183 0.375 4.58775 1.125 5.994 0.375 7.398 1.125 8.80575 0.375 10.215 1.125"></polygon>
+                <path d="M2.625,4.125 L6.375,4.125" id="Stroke-3"></path>
+                <path d="M2.625,7.125 L9.375,7.125" id="Stroke-4"></path>
+                <path d="M2.625,9.375 L9.375,9.375" id="Stroke-5"></path>
+                <path d="M2.625,11.625 L9.375,11.625" id="Stroke-6"></path>
+                <path d="M2.625,13.875 L7.125,13.875" id="Stroke-7"></path>
+                <path d="M8.625,13.875 L9.375,13.875" id="Stroke-8"></path>
+            </g>
+        </g>
+    </g>
+</svg>
