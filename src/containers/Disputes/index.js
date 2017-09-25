@@ -23,7 +23,7 @@ class Disputes extends Component {
       <div className='Disputes-container'>
         <SearchBar />
         <div className='content'>
-          <h1>Disputes</h1>
+          <h1>Open Disputes</h1>
           <p>{this.props.balance}</p>
         </div>
       </div>

@@ -3,7 +3,12 @@
   flex-direction: column;
   flex-grow: 1;
   .content {
-    padding: 50px;
-    background-color: #f4f7f9;
+    padding: 37px 50px;;
+  }
+  h1 {
+  	color: #1B2431;
+  	font-size: 24px;
+  	line-height: 29px;
+    margin-bottom: 22px;
   }
 }
