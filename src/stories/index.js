@@ -12,6 +12,7 @@ import Sidebar from '../components/Sidebar'
 
 import Identicon from '../containers/Identicon'
 import Icon from '../containers/Icon'
+import SearchBar from '../containers/SearchBar'
 
 import '../bootstrap/index.css'
 
@@ -102,3 +103,12 @@ storiesOf('Sidebar', module)
           items={['Disputes', 'Contracts', 'Jury']} />
       </Sidebar>
   )
+
+  /***************** SearchBar *****************/
+
+  storiesOf('SearchBar', module)
+    .add(
+      'default',
+      () =>
+        <SearchBar />
+    )

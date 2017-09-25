@@ -1,0 +1,15 @@
+.SearchBar-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 20px 0 20px 50px;
+  border-bottom: 1px solid #e9edee;
+  background-color: #fff;
+  .icon {
+    padding-right: 15px;
+  }
+}
+
+.dark {
+  background-color: #273142;
+}

@@ -1,5 +1,9 @@
-.Disputes-content {
+.Disputes-container {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  .content {
+    padding: 50px;
+    background-color: #f4f7f9;
+  }
 }

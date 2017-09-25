@@ -1,3 +1,21 @@
 .Input-container {
-
+  .search {
+    border: none;
+    color: gray;
+    font-size: 20px;
+  }
+  .search {
+  	height: 18px;
+  	width: 79px;
+  	opacity: 0.34;
+  	color: #78909c;
+  	font-size: 15px;
+  	line-height: 18px;
+    width: 200px;
+    position: relative;
+    top: -3px;
+  }
+  .search:focus {
+    outline-style: none;
+  }
 }

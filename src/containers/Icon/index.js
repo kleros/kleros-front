@@ -3,7 +3,6 @@ import _ from 'lodash'
 import './Icon.css'
 
 class Icon extends Component {
-
   state = {
     isLoading: true,
     iconPicturePath: '/',
