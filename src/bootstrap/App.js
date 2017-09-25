@@ -1,8 +1,10 @@
 import React from 'react'
-import Dashboard from '../containers/Dashboard'
+import Disputes from '../containers/Disputes'
+import Contracts from '../containers/Contracts'
 import { Provider } from 'react-redux'
 import generateStore from './generateStore'
 import registerServiceWorker from './registerServiceWorker'
+import Layout from '../components/Layout'
 import './index.css'
 
 import {
@@ -18,8 +20,11 @@ const App = () => (
   <Provider store={store}>
     <Router>
       <Switch>
-        <Route exact path='/' component={Dashboard} />
-        <Redirect from='*' to='/' />
+        <Layout>
+        <Route exact path='/disputes' component={Disputes} />
+        <Route exact path='/contracts' component={Contracts} />
+        <Redirect from='*' to='/disputes' />
+        </Layout>
       </Switch>
     </Router>
   </Provider>

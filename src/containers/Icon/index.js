@@ -5,15 +5,18 @@ import './Icon.css'
 class Icon extends Component {
 
   state = {
-    isLoading: true
+    isLoading: true,
+    iconPicturePath: '/',
   }
 
-  componentWillMount = async () => {
+  componentDidMount = async () => {
     let iconPicturePath = await import(`../../assets/icons/${this.props.name}.svg`)
 
     if (!_.isUndefined(iconPicturePath)) {
-      this.setState({iconPicturePath: iconPicturePath})
-      this.setState({isLoading: false})
+      this.setState({
+        iconPicturePath,
+        isLoading: false
+      })
     }
   }
 

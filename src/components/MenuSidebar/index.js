@@ -15,7 +15,6 @@ const MenuSidebar = ({
     {items.map(item =>
       <div key={item} className='item'>
         <ItemMenuSidebar name={item} />
-        <div className='divider' />
       </div>
     )}
     { children }

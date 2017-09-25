@@ -2,15 +2,25 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: #273142;
   color: #fff;
-  padding: 15px 0 15px 34px;
+  height: 50px;
+  text-decoration: none;
   .icon {
+    padding: 15px 0 15px 27px;
 
   }
   .name {
     padding-left: 20px;
+    padding: 15px 0 15px 34px;
   }
+}
+
+.ItemMenuSidebar-container:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.activeDiv {
+  background: #fff;
 }
 
 .dark {
