@@ -1,0 +1,1 @@
+webpackJsonp([2],{940:function(module,exports,__webpack_require__){module.exports=__webpack_require__.p+"static/media/Jury.b8ff69a6.svg"}});
