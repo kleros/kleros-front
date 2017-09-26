@@ -1,6 +1,6 @@
 import React from 'react'
 
-import ItemMenuSidebar from '../ItemMenuSidebar'
+import ItemMenuSidebar from './ItemMenuSidebar'
 
 import './MenuSidebar.css'
 

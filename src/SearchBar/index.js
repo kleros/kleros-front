@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
-import Input from '../../components/Input'
+import Input from '../Input'
 import './SearchBar.css'
-import icon from '../../assets/icons/search_icon.svg'
+import icon from '../assets/icons/search_icon.svg'
 
 class SearchBar extends Component {
   state = {

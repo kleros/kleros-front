@@ -1,5 +1,6 @@
 import React from 'react'
-import Icon from '../../containers/Icon'
+import Icon from '../../Icon'
+import Identicon from '../../Identicon'
 
 import './ShortProfile.css'
 
@@ -7,21 +8,20 @@ import notification from '../../assets/icons/notification.svg'
 
 const ShortProfile = ({
   className,
-  icon,
-  username,
+  address,
   balancePNK = 0,
   notificationIsActive = false,
   children,
-  backgroundColor,
+  theme,
   ...rest
 }) => (
-  <div className={`ShortProfile-container ${className} ${backgroundColor}`}>
+  <div className={`ShortProfile-container ${className} ${theme}`}>
     <div className='icon'>
-      { icon }
+      <Identicon seed={address} />
     </div>
     <div className='description'>
-      <div className='username'>
-        { username }
+      <div className='address'>
+        { address }
       </div>
       <div className='balancePNK'>
         { balancePNK } PNK

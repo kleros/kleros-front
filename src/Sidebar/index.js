@@ -1,19 +1,22 @@
 import React from 'react'
+import ShortProfile from './ShortProfile'
+import MenuSidebar from './MenuSidebar'
 import './Sidebar.css'
 
 const Sidebar = ({
   className,
-  identicon,
+  address,
+  balancePNK=0,
+  items=[],
   children,
   ...rest
 }) => (
   <div className={`Sidebar-container ${className}`}>
-    <div className='identicon'>
-      { identicon }
-    </div>
+    <ShortProfile seed={address} balancePNK={balancePNK} />
     <div className='divider' />
-    { children }
+      <MenuSidebar items={items} />
     <div className='emptybar' />
+    {children}
   </div>
 )
 

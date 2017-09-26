@@ -2,8 +2,8 @@ import React from 'react'
 import Sidebar from '../Sidebar'
 import ShortProfile from '../ShortProfile'
 import MenuSidebar from '../MenuSidebar'
-import Identicon from '../../containers/Identicon'
-import Icon from '../../containers/Icon'
+import Identicon from '../Identicon'
+import Icon from '../Icon'
 import './Layout.css'
 
 const Layout = ({

@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import Icon from '../../containers/Icon'
+import Icon from '../../../Icon'
 import './ItemMenuSidebar.css'
 
 const ItemMenuSidebar = ({
