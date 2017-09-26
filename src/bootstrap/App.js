@@ -1,10 +1,10 @@
 import React from 'react'
-import Disputes from '../containers/Disputes'
-import Contracts from '../containers/Contracts'
+import Disputes from '../Disputes'
+import Contracts from '../Contracts'
 import { Provider } from 'react-redux'
 import generateStore from './generateStore'
 import registerServiceWorker from './registerServiceWorker'
-import Layout from '../components/Layout'
+import Layout from '../Layout'
 import './index.css'
 
 import {

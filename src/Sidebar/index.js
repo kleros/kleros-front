@@ -12,7 +12,7 @@ const Sidebar = ({
   ...rest
 }) => (
   <div className={`Sidebar-container ${className}`}>
-    <ShortProfile seed={address} balancePNK={balancePNK} />
+    <ShortProfile address={address} balancePNK={balancePNK} />
     <div className='divider' />
       <MenuSidebar items={items} />
     <div className='emptybar' />
