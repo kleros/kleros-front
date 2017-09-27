@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { balanceFetchData } from '../business/ethereum/action-creators'
 import SearchBar from '../SearchBar'
+import Grid from '../Grid'
 import './Disputes.css'
 
 class Disputes extends Component {
@@ -24,7 +25,8 @@ class Disputes extends Component {
         <SearchBar />
         <div className='content'>
           <h1>Open Disputes</h1>
-          <p>{this.props.balance}</p>
+          <Grid />
+          <p><br/>{this.props.balance}</p>
         </div>
       </div>
     )

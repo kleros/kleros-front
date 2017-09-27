@@ -1,2 +1,45 @@
 .Grid-container {
+  .grid {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    .header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      background-color: #eaeef0;
+      border: 1px solid #eaeef0;
+      border-radius: 4px;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+      padding: 12px 40px;
+      .header-item {
+        color: #7f8fa4;
+        font-weight: 600;
+        width: 11vw;
+      }
+    }
+    .grid-content {
+      display: flex;
+      flex-direction: column;
+      background-color: #fff;
+      .items {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        border: #fff 1px solid;
+        padding: 12px 40px;
+        .item {
+          font-size: 0.9rem;
+          width: 11vw;
+        }
+      }
+      .items:first-child {
+        border-top: none;
+      }
+      .items:last-child {
+        border-bottom: 1px #d8d8d8;
+      }
+    }
+  }
 }
