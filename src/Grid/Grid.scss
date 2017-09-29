@@ -25,13 +25,19 @@
       background-color: #fff;
       .items {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: space-between;
         border: #fff 1px solid;
         padding: 12px 40px;
-        .item {
-          font-size: 0.9rem;
-          width: 11vw;
+        .items-row {
+          display: flex;
+          flex-direction: row;
+          .item-project {
+            display: flex;
+            flex-direction: column;
+          }
+          .item {
+          }
         }
       }
       .items:first-child {
