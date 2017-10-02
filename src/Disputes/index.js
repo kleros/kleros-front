@@ -39,11 +39,13 @@ class Disputes extends Component {
   }
 
   render () {
-    if (this.props.hasErrored) {
+    const { hasErrored, isFetching, balance } = this.props
+
+    if (hasErrored) {
       return <p>Sorry! There was an error loading the balance</p>
     }
 
-    if (this.props.isFetching) {
+    if (isFetching) {
       return <p>Loading…</p>
     }
 
@@ -61,8 +63,8 @@ class Disputes extends Component {
         <div className='content'>
           <h1>Open Disputes</h1>
           <Grid itemTitles={ itemsTitle } items={ this.state.disputes }/>
-          <p><br/>{this.props.balance}</p>
-          <p><br/>{this.state.address}</p>
+          <p><br/>{ balance }</p>
+          <p><br/>{ this.state.address }</p>
         </div>
       </div>
     )
