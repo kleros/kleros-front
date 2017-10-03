@@ -4,14 +4,14 @@ import { withRouter } from 'react-router-dom'
 import 'babel-polyfill'
 import {Kleros} from 'kleros-api'
 import { balanceFetchData } from '../business/ethereum/action-creators'
-import SearchBar from '../SearchBar'
+import GridContent from './GridContent'
 import Grid from '../Grid'
+import SearchBar from '../SearchBar'
 import './Disputes.css'
 
 class Disputes extends Component {
   state = {
     address: 0x0,
-    disputes: []
   }
 
   componentDidMount () {
@@ -20,34 +20,11 @@ class Disputes extends Component {
 
   async componentWillMount () {
     // FIXME move to bootstrap/initWeb3.js
-    // FIXME add constant http://localhost:8545
-    // FIXME use metamask
-    let web3 = await window.web3
-
-    let provider = await web3.currentProvider
-
-    let address = await web3.eth.accounts[0]
-
-    let KlerosInstance = await new Kleros(provider)
-
-    let court = await KlerosInstance.court
-
-    let disputes = await court.getDisputes()
-
-    this.setState({ disputes })
-    this.setState({ address })
+    // let address = web3.eth.accounts[0]
   }
 
   render () {
-    const { hasErrored, isFetching, balance } = this.props
-
-    if (hasErrored) {
-      return <p>Sorry! There was an error loading the balance</p>
-    }
-
-    if (isFetching) {
-      return <p>Loading…</p>
-    }
+    const { balance } = this.props
 
     const itemsTitle = [
       'Project',
@@ -62,9 +39,10 @@ class Disputes extends Component {
         <SearchBar />
         <div className='content'>
           <h1>Open Disputes</h1>
-          <Grid itemTitles={ itemsTitle } items={ this.state.disputes }/>
+          <Grid itemTitles={ itemsTitle }>
+            <GridContent />
+          </Grid>
           <p><br/>{ balance }</p>
-          <p><br/>{ this.state.address }</p>
         </div>
       </div>
     )
@@ -73,9 +51,7 @@ class Disputes extends Component {
 
 const mapStateToProps = state => {
   return {
-    balance: state.balance,
-    hasErrored: state.failureBalance,
-    isFetching: state.requestBalance
+    balance: state.balance.balance
   }
 }
 
