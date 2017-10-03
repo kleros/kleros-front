@@ -17,17 +17,14 @@ export const errorAfterFiveSeconds = () => {
 }
 
 export const getDisputes = () => async dispatch => {
-  dispatch(requestDisputes(true))
-
   try {
     // FIXME https://github.com/MetaMask/faq/blob/master/detecting_metamask.md#web3-deprecation
 
     // Use the browser's ethereum provider
+    // FIXME bug when already runned
     let web3 = await getWeb3()
 
     let provider = web3.provider
-
-    let address = web3.eth.accounts[0]
 
     let KlerosInstance = await new Kleros(provider)
 
@@ -35,14 +32,17 @@ export const getDisputes = () => async dispatch => {
 
     let disputes = await court.getDisputes()
 
+    dispatch(requestDisputes(true))
 
     // FIXME simulate get disputes from Ethereum
     setTimeout(async () => {
-      await dispatch(requestDisputes(false))
+      console.log('ewfwe')
       await dispatch(receiveDisputes(disputes))
+      await dispatch(requestDisputes(false))
     }, 2000)
   } catch (err) {
     // FIXME send an error user-friendly
+    console.log(err)
     throw err
   }
 }

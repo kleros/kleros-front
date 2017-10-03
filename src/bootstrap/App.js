@@ -23,7 +23,6 @@ const App = () => (
         <Layout>
         <Route exact path='/disputes' component={Disputes} />
         <Route exact path='/contracts' component={Contracts} />
-        <Redirect from='*' to='/disputes' />
         </Layout>
       </Switch>
     </Router>

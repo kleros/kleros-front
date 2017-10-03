@@ -10,11 +10,11 @@ class Contracts extends Component {
   }
 
   render () {
-    if (this.props.hasErrored) {
+    if (this.props.balance.hasErrored) {
       return <p>Sorry! There was an error loading the balance</p>
     }
 
-    if (this.props.isFetching) {
+    if (this.props.balance.isFetching) {
       return <p>Loading…</p>
     }
 
@@ -29,9 +29,9 @@ class Contracts extends Component {
 
 const mapStateToProps = state => {
   return {
-    balance: state.balance,
-    hasErrored: state.failureBalance,
-    isFetching: state.requestBalance
+    balance: state.balance.balance,
+    hasErrored: state.balance.failureBalance,
+    isFetching: state.balance.requestBalance
   }
 }
 
