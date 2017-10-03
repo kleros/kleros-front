@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import 'babel-polyfill'
 import {Kleros} from 'kleros-api'
 import { balanceFetchData } from '../business/ethereum/action-creators'
 import GridContent from './GridContent'

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { getDisputes } from '../../business/disputes/action-creators'
 import { Kleros } from 'kleros-api'
+import 'babel-polyfill'
 import './GridContent.css'
 
 class GridContent extends Component {
@@ -18,14 +19,21 @@ class GridContent extends Component {
       return <p>Sorry! There was an error loading the balance</p>
     }
 
-    if (isFetching)
+    if (isFetching){
       return (
-        <div className='GridContent-container'>
-          <div className='items'>
-            Loading...
+          <div className='GridContent-container'>
+            <div className='items'>
+              <div className='linear-background-100'>
+              </div>
+              <div className='linear-background-90'>
+              </div>
+              <div className='linear-background-90'>
+              </div>
+            </div>
           </div>
-        </div>
-    )
+      )
+    }
+
 
     return (
       <div className='GridContent-container'>
