@@ -8,17 +8,17 @@ import Input from '../../Input'
 import './Form.css'
 
 const Form = props => {
-  const {handleSubmit, pristine, reset, submitting, error, hasErrored} = props
+  const {formContract, handleSubmit, pristine, reset, submitting, error, hasErrored} = props
 
   const contracts = ['Freelance', 'Buying goods', 'Services']
 
   return (
     <form onSubmit={handleSubmit} className='Form-container'>
       <div>
-        <label htmlFor='contract'>Select contract</label>
+        <label htmlFor='contractName'>Select contract</label>
       </div>
       <div>
-        <Field name='contract' component='select' id='contract' className='input-text-contract'>
+        <Field name='contractName' component='select' id='contractName' className='input-text-contract'>
           <option value=''>Select a contract</option>
           {contracts.map(contract => (
             <option value={contract} key={contract}>
@@ -27,6 +27,47 @@ const Form = props => {
           ))}
         </Field>
       </div>
+      {
+        _.has(formContract, 'values.contractName')
+        &&
+        <div className='params'>
+          <Field
+            name='arbitrator'
+            component={Input}
+            type='text'
+            required
+            innerClassName='input-text-contract-param'
+            placeholder='Arbitrator' />
+          <Field
+            name='hashContract'
+            component={Input}
+            type='text'
+            required
+            innerClassName='input-text-contract-param'
+            placeholder='Hash contract' />
+          <Field
+            name='timeout'
+            component={Input}
+            type='text'
+            required
+            innerClassName='input-text-contract-param'
+            placeholder='Timeout' />
+          <Field
+            name='partyB'
+            component={Input}
+            type='text'
+            required
+            innerClassName='input-text-contract-param'
+            placeholder='Party B' />
+          <Field
+            name='arbitratorExtraData'
+            component={Input}
+            type='text'
+            required
+            innerClassName='input-text-contract-param'
+            placeholder='Arbitrator extra data' />
+        </div>
+      }
       <div>
         <label htmlFor='email'>Email</label>
         <div className='subLabel'>Add if you want to receive infos about the contract.</div>
@@ -65,7 +106,7 @@ const FORM_NAME = 'contract'
 
 const mapStateToProps = state => {
   return {
-
+    formContract: state.form.contract
   }
 }
 
