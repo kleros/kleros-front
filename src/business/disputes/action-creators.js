@@ -36,13 +36,11 @@ export const getDisputes = () => async dispatch => {
 
     // FIXME simulate get disputes from Ethereum
     setTimeout(async () => {
-      console.log('ewfwe')
       await dispatch(receiveDisputes(disputes))
       await dispatch(requestDisputes(false))
     }, 2000)
   } catch (err) {
     // FIXME send an error user-friendly
-    console.log(err)
     throw err
   }
 }

@@ -1,7 +1,7 @@
 import {
   REQUEST_DISPUTES,
   FAILURE_DISPUTES,
-  RECEIVE_DISPUTES,
+  RECEIVE_DISPUTES
 } from './actions'
 
 export function requestDisputes (state = false, action) {

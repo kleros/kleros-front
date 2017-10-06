@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { balanceFetchData } from '../business/ethereum/action-creators'
+import Form from './Form'
 import './Contracts.css'
 
 class Contracts extends Component {
@@ -20,8 +21,10 @@ class Contracts extends Component {
 
     return (
       <div className='Contracts-content'>
-        <h1>Contracts</h1>
-        <p>{this.props.balance}</p>
+        <div className='content'>
+          <h1>Contracts</h1>
+          <Form />
+        </div>
       </div>
     )
   }

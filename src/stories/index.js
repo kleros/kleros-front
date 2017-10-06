@@ -16,7 +16,7 @@ import SearchBar from '../SearchBar'
 
 import '../bootstrap/index.css'
 
-/***************** Icon *****************/
+/** *************** Icon *****************/
 
 storiesOf('Icon', module)
   .add(
@@ -26,7 +26,7 @@ storiesOf('Icon', module)
       theme='dark' />
   )
 
-/***************** Identicon *****************/
+/** *************** Identicon *****************/
 
 storiesOf('Identicon', module)
   .add('default (50x50)', () => <Identicon />)
@@ -35,7 +35,7 @@ storiesOf('Identicon', module)
     () => <Identicon size={8} scale={3} width={24} height={24} />
   )
 
-/***************** ShortProfile *****************/
+/** *************** ShortProfile *****************/
 
 storiesOf('ShortProfile', module)
   .add('default', () => <ShortProfile />)
@@ -64,12 +64,12 @@ storiesOf('ShortProfile', module)
       icon={<Identicon />} />
   )
 
-/***************** ItemMenuSidebar *****************/
+/** *************** ItemMenuSidebar *****************/
 
 storiesOf('ItemMenuSidebar', module)
   .addDecorator(StoryRouter())
 
-/***************** MenuSidebar *****************/
+/** *************** MenuSidebar *****************/
 
 storiesOf('MenuSidebar', module)
   .addDecorator(StoryRouter())
@@ -83,7 +83,7 @@ storiesOf('MenuSidebar', module)
       items={['Disputes', 'Contracts']} />
   )
 
-/***************** Sidebar *****************/
+/** *************** Sidebar *****************/
 
 storiesOf('Sidebar', module)
   .addDecorator(StoryRouter())
@@ -96,9 +96,9 @@ storiesOf('Sidebar', module)
         items={['Disputes', 'Contracts', 'Jury']} />
   )
 
-  /***************** SearchBar *****************/
+  /** *************** SearchBar *****************/
 
-  storiesOf('SearchBar', module)
+storiesOf('SearchBar', module)
     .add(
       'default',
       () =>

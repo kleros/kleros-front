@@ -8,7 +8,7 @@ const Input = ({
   type,
   placeholder,
   children,
-  meta={touched:false,error:false},
+  meta = {touched: false, error: false},
   ...rest
 }) => (
   <div className={`Input-container ${className}`}>

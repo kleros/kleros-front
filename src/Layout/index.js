@@ -15,8 +15,8 @@ const Layout = ({
       'Decisions',
       'Settings'
     ]}
-    address='John'
-    balancePNK={242}
+      address='John'
+      balancePNK={242}
     />
     { children }
   </div>

@@ -41,7 +41,6 @@ class Disputes extends Component {
           <Grid itemTitles={ itemsTitle }>
             <GridContent />
           </Grid>
-          <p><br/>{ balance }</p>
         </div>
       </div>
     )
