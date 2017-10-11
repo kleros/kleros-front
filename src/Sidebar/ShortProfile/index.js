@@ -7,6 +7,8 @@ import './ShortProfile.css'
 =======
 import notification from '../../assets/icons/notification.svg'
 
+const TRUNCATED_DIGITS = 10;
+
 function truncateAddress(address, digits) {
   if (address.length <= digits)
     return address;
@@ -30,7 +32,7 @@ const ShortProfile = ({
     </div>
     <div className='description'>
       <div className='address'>
-        { truncateAddress(address,10) }
+        { truncateAddress(address, TRUNCATED_DIGITS) }
       </div>
       <div className='balancePNK'>
         { balancePNK } PNK
