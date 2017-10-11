@@ -42,7 +42,7 @@ storiesOf('ShortProfile', module)
   .add(
     'with icon, username and balance',
     () => <ShortProfile
-      address='John'
+      address='0x5DF9B87991262F6BA471F09758CDE1c0FC1De734'
       balancePNK={242}
       icon={<Identicon />} />
   )
@@ -50,7 +50,7 @@ storiesOf('ShortProfile', module)
     'with dark background, icon, address and balance',
     () => <ShortProfile
       theme='dark'
-      address='John'
+      address='0x5DF9B87991262F6BA471F09758CDE1c0FC1De734'
       balancePNK={242}
       icon={<Identicon />} />
   )
@@ -58,7 +58,7 @@ storiesOf('ShortProfile', module)
     'with dark background, icon, address, balance and active notification',
     () => <ShortProfile
       theme='dark'
-      address='John'
+      address='0x5DF9B87991262F6BA471F09758CDE1c0FC1De734'
       balancePNK={242}
       notificationIsActive
       icon={<Identicon />} />
