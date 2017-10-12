@@ -2,13 +2,8 @@ import React, { Component } from 'react'
 import './TruncatedTextBox.css'
 
 class TruncatedTextBox extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      text: props.text,
-      truncatedCharacters: props.truncatedCharacters,
-      truncated: true
-    }
+  state = {
+    truncated: true
   }
 
   showMore() {
@@ -20,12 +15,12 @@ class TruncatedTextBox extends Component {
   }
 
   render() {
-    const words = this.state.text.split(" ")
+    const words = this.props.text.split(" ")
     // if there is no need to truncate return as is
-    if (words.length <= this.state.truncatedCharacters) {
+    if (words.length <= this.props.truncatedCharacters) {
       return (
         <div className="truncatedTextBox">
-          this.state.text
+          this.props.text
         </div>
       )
     }
@@ -34,7 +29,7 @@ class TruncatedTextBox extends Component {
     let actionDiv
 
     if (this.state.truncated) {
-      for (let i=0; i<this.state.truncatedCharacters; i++) {
+      for (let i=0; i<this.props.truncatedCharacters; i++) {
         displayText += words[i] + " "
       }
       displayText += "..."
@@ -42,7 +37,7 @@ class TruncatedTextBox extends Component {
         <div className="actionDiv" onClick={this.showMore.bind(this)}>Show More</div>
       )
     } else {
-      displayText = this.state.text
+      displayText = this.props.text
       actionDiv = (
         <div className="actionDiv" onClick={this.showLess.bind(this)}>Show Less</div>
       )
@@ -58,4 +53,4 @@ class TruncatedTextBox extends Component {
   }
 }
 
-export default TruncatedTextBox;
+export default TruncatedTextBox
