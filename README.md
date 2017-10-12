@@ -59,4 +59,4 @@ yarn run lint-fix # fix lint
 
 ## Invision
 
-Go [there](https://projects.invisionapp.com/share/SRDBNEDE7#/screens/252442857) .
+Go [there](https://projects.invisionapp.com/share/SRDBNEDE7#/screens/252442857).
