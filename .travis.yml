@@ -4,12 +4,3 @@ node_js:
 cache:
   directories:
   - node_modules
-script:
-  - yarn build
-  - yarn test
-deploy:
-  provider: pages
-  skip_cleanup: true
-  local_dir: build
-  on:
-    branch: master
