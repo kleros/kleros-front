@@ -1,10 +1,7 @@
 import React from 'react'
 import Icon from '../../Icon'
 import Identicon from '../../Identicon'
-
 import './ShortProfile.css'
-
-import notification from '../../assets/icons/notification.svg'
 
 const ShortProfile = ({
   className,

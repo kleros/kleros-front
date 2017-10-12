@@ -12,8 +12,8 @@ class Identicon extends Component {
 
     const style = {
       backgroundImage: `url(${imgURL})`,
-      width: this.props.width && `${this.props.width}px` || '50px',
-      height: this.props.height && `${this.props.height}px` || '50px',
+      width: (this.props.width && `${this.props.width}px`) || '50px',
+      height: (this.props.height && `${this.props.height}px`) || '50px',
       borderRadius: this.props.borderRadius || '3px',
       display: 'inline-block'
     }

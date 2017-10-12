@@ -1,4 +1,9 @@
 import React from 'react'
+import {
+  HashRouter as Router,
+  Route,
+  Switch
+} from 'react-router-dom'
 import Disputes from '../Disputes'
 import Contracts from '../Contracts'
 import { Provider } from 'react-redux'
@@ -7,22 +12,15 @@ import registerServiceWorker from './registerServiceWorker'
 import Layout from '../Layout'
 import './index.css'
 
-import {
-  HashRouter as Router,
-  Route,
-  Switch,
-  Redirect
-} from 'react-router-dom'
-
 const store = generateStore()
 
 const App = () => (
-  <Provider store={store}>
+  <Provider store={ store }>
     <Router>
       <Switch>
         <Layout>
-          <Route exact path='/disputes' component={Disputes} />
-          <Route exact path='/contracts' component={Contracts} />
+          <Route exact path='/Disputes' component={ Disputes } />
+          <Route exact path='/Contracts' component={ Contracts } />
         </Layout>
       </Switch>
     </Router>

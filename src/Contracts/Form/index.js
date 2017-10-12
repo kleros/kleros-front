@@ -1,14 +1,13 @@
 import React from 'react'
 import _ from 'lodash'
-import { Field, reduxForm, SubmissionError } from 'redux-form'
+import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { Redirect } from 'react-router-dom'
 import Input from '../../Input'
 import './Form.css'
 
 const Form = props => {
-  const {formContract, handleSubmit, pristine, reset, submitting, error, hasErrored} = props
+  const {formContract, handleSubmit, submitting, error, hasErrored} = props
 
   const contracts = ['Freelance', 'Buying goods', 'Services']
 

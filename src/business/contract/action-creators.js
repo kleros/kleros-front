@@ -1,8 +1,9 @@
+import _ from 'lodash'
 import { Kleros } from 'kleros-api'
 import {
-  requestDisputes,
-  failureDisputes,
-  receiveDisputes
+  fetchPostContract,
+  failureContract,
+  postSuccessContract
 } from './actions'
 import { getWeb3 } from '../../helpers/getWeb3'
 
@@ -15,7 +16,7 @@ export const errorAfterFiveSeconds = () => {
   }
 }
 
-export const getDisputes = () => async dispatch => {
+export const postContract = () => async dispatch => {
   try {
     let web3 = await getWeb3()
 
@@ -25,14 +26,10 @@ export const getDisputes = () => async dispatch => {
 
     let court = await KlerosInstance.court
 
-    let disputes = await court.getDisputes()
-
-    dispatch(requestDisputes(true))
-
     // FIXME simulate get disputes from Ethereum
     setTimeout(async () => {
-      await dispatch(receiveDisputes(disputes))
-      await dispatch(requestDisputes(false))
+      // await dispatch(receiveDisputes(disputes))
+      // await dispatch(requestDisputes(false))
     }, 2000)
   } catch (err) {
     // FIXME send an error user-friendly

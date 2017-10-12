@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import {Kleros} from 'kleros-api'
 import { balanceFetchData } from '../business/ethereum/action-creators'
 import GridContent from './GridContent'
 import Grid from '../Grid'
@@ -23,8 +22,6 @@ class Disputes extends Component {
   }
 
   render () {
-    const { balance } = this.props
-
     const itemsTitle = [
       'Project',
       'Deadline',
@@ -49,7 +46,6 @@ class Disputes extends Component {
 
 const mapStateToProps = state => {
   return {
-    balance: state.balance.balance
   }
 }
 

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import _ from 'lodash'
 import Input from '../Input'
 import './SearchBar.css'
 import icon from '../assets/icons/search_icon.svg'
