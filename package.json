@@ -1,7 +1,9 @@
 {
   "name": "kleros",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.0.1",
+  "author": "Kleros",
+  "license": "MIT",
+  "private": false,
   "dependencies": {
     "@storybook/storybook-deployer": "^2.0.0",
     "babel-polyfill": "^6.26.0",
