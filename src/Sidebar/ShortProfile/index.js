@@ -5,7 +5,7 @@ import './ShortProfile.css'
 
 const ShortProfile = ({
   className,
-  address,
+  address = 0x0,
   balancePNK = 0,
   notificationIsActive = false,
   children,
@@ -14,7 +14,7 @@ const ShortProfile = ({
 }) => (
   <div className={`ShortProfile-container ${className} ${theme}`}>
     <div className='icon'>
-      <Identicon seed={address} />
+      <Identicon seed={ address } />
     </div>
     <div className='description'>
       <div className='address'>
@@ -26,7 +26,7 @@ const ShortProfile = ({
     </div>
     <div className='notification'>
       <Icon name='notification' />
-      {notificationIsActive && <div className='notificationIsActive' /> }
+      { notificationIsActive && <div className='notificationIsActive' /> }
     </div>
     { children }
   </div>

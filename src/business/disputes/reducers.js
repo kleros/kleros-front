@@ -4,7 +4,7 @@ import {
   RECEIVE_DISPUTES
 } from './actions'
 
-export function requestDisputes (state = false, action) {
+export function requestDisputes (state = true, action) {
   switch (action.type) {
     case REQUEST_DISPUTES:
       return action.isFetching

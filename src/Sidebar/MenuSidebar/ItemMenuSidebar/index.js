@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import _ from 'lodash'
 import Icon from '../../../Icon'
 import './ItemMenuSidebar.css'
 
@@ -12,19 +13,19 @@ const ItemMenuSidebar = ({
 }) => (
   <div>
     <NavLink
-      to={`/${name}`}
+      to={ `/${name}` }
       className={
         `ItemMenuSidebar-container
         ${className}
         ${theme}`}
-      activeStyle={{background: 'rgba(255,255,255,0.1)'}}
+      activeStyle={ { background: 'rgba(255,255,255,0.1)' } }
     >
-      <div className={`activeDiv ${active}`} />
+      <div className={ `activeDiv ${active}` } />
       <div className='icon'>
-        <Icon name={name} />
+        <Icon name={ name } />
       </div>
       <div className='name'>
-        { name }
+        { _.capitalize(name) }
       </div>
     </NavLink>
   </div>

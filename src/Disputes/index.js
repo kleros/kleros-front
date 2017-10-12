@@ -12,13 +12,8 @@ class Disputes extends Component {
     address: 0x0,
   }
 
-  componentDidMount () {
+  componentWillMount () {
     this.props.getBalance()
-  }
-
-  async componentWillMount () {
-    // FIXME move to bootstrap/initWeb3.js
-    // let address = web3.eth.accounts[0]
   }
 
   render () {
@@ -35,7 +30,7 @@ class Disputes extends Component {
         <SearchBar />
         <div className='content'>
           <h1>Open Disputes</h1>
-          <Grid itemTitles={ itemsTitle }>
+          <Grid itemTitles={itemsTitle}>
             <GridContent />
           </Grid>
         </div>

@@ -8,15 +8,15 @@ const Layout = ({
   ...rest
 }) => (
   <div className={`Layout-container ${className}`}>
-    <Sidebar items={[
-      'Disputes',
-      'Contracts',
-      'Jury',
-      'Decisions',
-      'Settings'
-    ]}
-      address='John'
-      balancePNK={242}
+    <Sidebar items={ [
+      'disputes',
+      'contracts',
+      'jury',
+      'decisions',
+      'settings'
+    ] }
+      address={ '0xA1E4380A3B1f749673E270229993eE55F35663b4' }
+      balancePNK={ 242 }
     />
     { children }
   </div>

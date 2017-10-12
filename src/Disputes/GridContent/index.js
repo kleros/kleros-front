@@ -6,12 +6,12 @@ import { getDisputes } from '../../business/disputes/action-creators'
 import './GridContent.css'
 
 class GridContent extends Component {
-  componentDidMount () {
+  componentWillMount = () => {
     this.props.getDataDisputes()
   }
 
   render () {
-    const {hasErrored, isFetching, disputes} = this.props
+    const { hasErrored, isFetching, disputes } = this.props
 
     if (hasErrored) {
       return <p>Sorry! There was an error loading the balance</p>
@@ -35,13 +35,13 @@ class GridContent extends Component {
           { disputes.map(dispute =>
             <div key={dispute.caseId} className='items-row'>
               <div className='item-project'>
-                <div className='item'>{dispute.title}</div>
-                <div className='item'>{dispute.category}</div>
+                <div className='item'>{ dispute.title }</div>
+                <div className='item'>{ dispute.category }</div>
               </div>
-              <div className='item'>{dispute.deadline}</div>
-              <div className='item'>{dispute.caseId}</div>
-              <div className='item'>{dispute.status}</div>
-              <div className='item'>{dispute.evidence}</div>
+              <div className='item'>{ dispute.deadline }</div>
+              <div className='item'>{ dispute.caseId }</div>
+              <div className='item'>{ dispute.status }</div>
+              <div className='item'>{ dispute.evidence }</div>
             </div>
         ) }
         </div>

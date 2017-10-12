@@ -7,20 +7,26 @@ import {
 import Disputes from '../Disputes'
 import Contracts from '../Contracts'
 import { Provider } from 'react-redux'
-import generateStore from './generateStore'
 import registerServiceWorker from './registerServiceWorker'
+import store from './store'
 import Layout from '../Layout'
 import './index.css'
 
-const store = generateStore()
-
 const App = () => (
-  <Provider store={store}>
+  <Provider store={ store }>
     <Router>
       <Switch>
         <Layout>
-          <Route exact path='/Disputes' component={Disputes} />
-          <Route exact path='/Contracts' component={Contracts} />
+          <Route
+            exact
+            path='/disputes'
+            component={ Disputes }
+          />
+          <Route
+            exact
+            path='/contracts'
+            component={ Contracts }
+          />
         </Layout>
       </Switch>
     </Router>

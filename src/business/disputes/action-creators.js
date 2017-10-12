@@ -16,26 +16,23 @@ export const errorAfterFiveSeconds = () => {
 }
 
 export const getDisputes = () => async dispatch => {
+  dispatch(requestDisputes(true))
+
   try {
     let web3 = await getWeb3()
 
-    let provider = web3.provider
+    const provider = web3.provider
 
-    let KlerosInstance = await new Kleros(provider)
+    let KlerosInstance = new Kleros(provider)
 
-    let court = await KlerosInstance.court
+    let court = KlerosInstance.court
 
-    let disputes = await court.getDisputes()
+    const disputes = await court.getDisputes()
 
-    dispatch(requestDisputes(true))
-
-    // FIXME simulate get disputes from Ethereum
-    setTimeout(async () => {
-      await dispatch(receiveDisputes(disputes))
-      await dispatch(requestDisputes(false))
-    }, 2000)
-  } catch (err) {
-    // FIXME send an error user-friendly
-    throw err
+    await dispatch(receiveDisputes(disputes))
+    await dispatch(requestDisputes(false))
+  } catch (e) {
+    // FIXME display a user-friendly error
+    throw e
   }
 }
