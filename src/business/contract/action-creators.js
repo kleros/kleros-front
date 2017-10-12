@@ -26,7 +26,6 @@ export const postContract = () => async dispatch => {
 
     let court = await KlerosInstance.court
 
-    // FIXME simulate get disputes from Ethereum
     setTimeout(async () => {
       // await dispatch(receiveDisputes(disputes))
       // await dispatch(requestDisputes(false))

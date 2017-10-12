@@ -11,7 +11,7 @@ class GridContent extends Component {
   }
 
   render () {
-    const { hasErrored, isFetching, disputes } = this.props
+    const {hasErrored, isFetching, disputes} = this.props
 
     if (hasErrored) {
       return <p>Sorry! There was an error loading the balance</p>
