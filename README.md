@@ -2,6 +2,8 @@
 
 [![Join the chat at https://gitter.im/kleros/kleros-front](https://badges.gitter.im/kleros/kleros-front.svg)](https://gitter.im/kleros/kleros-front?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+[![Build Status](https://travis-ci.org/kleros/kleros-front.svg?branch=master)](https://travis-ci.org/kleros/kleros-front)
+
 [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
 
 ## Table of Contents
