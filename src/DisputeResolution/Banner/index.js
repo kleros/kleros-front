@@ -11,6 +11,7 @@ const DisputeResolutionBanner = (props) => {
           { props.title }
         </div>
       </div>
+      <div className="divider"></div>
     </div>
   )
 }

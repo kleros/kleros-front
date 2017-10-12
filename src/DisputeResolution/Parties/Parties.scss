@@ -1,0 +1,23 @@
+.parties {
+  background-color: white;
+  padding: 33px 50px;
+  .party {
+    margin-top: 25px;
+    .party-icon {
+      display: inline-block;
+      margin-right: 11px;
+    	height: 30px;
+    	width: 30px;
+    	border-radius: 2px;
+    	background-color: #50BCE3;
+      vertical-align: middle;
+    }
+    .party-name {
+      display: inline-flex;
+    	font-family: "Proxima Nova";
+    	font-size: 16px;
+    	font-weight: 600;
+      line-height: normal;
+    }
+  }
+}
