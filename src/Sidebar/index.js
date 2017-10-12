@@ -11,10 +11,10 @@ const Sidebar = ({
   children,
   ...rest
 }) => (
-  <div className={ `Sidebar-container ${className}` }>
-    <ShortProfile address={ address } balancePNK={ balancePNK } />
+  <div className={`Sidebar-container ${className}`}>
+    <ShortProfile address={address} balancePNK={balancePNK} />
     <div className='divider' />
-    <MenuSidebar items={ items } />
+    <MenuSidebar items={items} />
     <div className='emptybar' />
     { children }
   </div>

@@ -27,8 +27,7 @@ const Form = props => {
         </Field>
       </div>
       {
-        _.has(formContract, 'values.contractName')
-        &&
+        _.has(formContract, 'values.contractName') &&
         <div className='params'>
           <Field
             name='arbitrator'

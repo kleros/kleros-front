@@ -11,10 +11,10 @@ const MenuSidebar = ({
   children,
   ...rest
 }) => (
-  <div className={ `MenuSidebar-container ${className} ${theme}` }>
+  <div className={`MenuSidebar-container ${className} ${theme}`}>
     { items.map(item =>
-      <div key={ item } className='item'>
-        <ItemMenuSidebar name={ item } />
+      <div key={item} className='item'>
+        <ItemMenuSidebar name={item} />
       </div>
     ) }
     { children }

@@ -15,12 +15,12 @@ import './index.css'
 const store = generateStore()
 
 const App = () => (
-  <Provider store={ store }>
+  <Provider store={store}>
     <Router>
       <Switch>
         <Layout>
-          <Route exact path='/Disputes' component={ Disputes } />
-          <Route exact path='/Contracts' component={ Contracts } />
+          <Route exact path='/Disputes' component={Disputes} />
+          <Route exact path='/Contracts' component={Contracts} />
         </Layout>
       </Switch>
     </Router>
