@@ -13,24 +13,22 @@ const Form = (props) => {
     <form onSubmit={handleSubmit} className='Form-container'>
       {
         resolutionOptions.map(option => (
-          <div>
+          <div className="radio-input-container" key={option.value}>
             <div className="input-container">
-              <Field
-                key={option.value}
-                name={option.value}
-                id={option.value}
-                className='input-dispute-resolution'
-                component={(props) => {
-                  return (
-                    <div className="resolution-option">
-                      <input name="dispute-resolution-option" type="radio" value={option.value} />
-                      <div className="option-information">
-                        <h2>{option.name}</h2>
-                        <p>{option.description}</p>
-                      </div>
-                    </div>
-                  )
-              }}/>
+              <div className="resolution-option">
+                <Field
+                  name='decision'
+                  required
+                  id={option.value}
+                  type='radio'
+                  className='input-dispute-resolution'
+                  value={option.value}
+                  component={ Input }/>
+                <div className="option-information">
+                  <h2>{option.name}</h2>
+                  <p>{option.description}</p>
+                </div>
+              </div>
             </div>
             <div className="divider"></div>
           </div>
@@ -80,14 +78,6 @@ const mapStateToProps = state => {
 }
 
 const validate = values => {
-  console.log(values)
-  // const errors = {}
-  //
-  // if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-  //   errors.email = 'Email invalide'
-  // }
-  //
-  // return errors
   return {}
 }
 
