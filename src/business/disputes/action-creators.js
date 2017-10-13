@@ -36,3 +36,20 @@ export const getDisputes = () => async dispatch => {
     throw e
   }
 }
+
+export const submitDisputeResolution = (values) => async dispatch => {
+  console.log(values)
+  try {
+    let web3 = await getWeb3()
+
+    const provider = web3.provider
+
+    let KlerosInstance = new Kleros(provider)
+
+    let court = KlerosInstance.court
+    // TODO submit decision to contract //
+  } catch (e) {
+    // FIXME display a user-friendly error //
+    throw e
+  }
+}

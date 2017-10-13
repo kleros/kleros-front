@@ -4,6 +4,7 @@ import Banner from './Banner'
 import Parties from './Parties'
 import Information from './Information'
 import Evidence from './Evidence'
+import Decision from './Decision'
 import "./DisputeResolution.css"
 
 // FIXME this is a hardcoded dispute for testing purposes
@@ -36,7 +37,29 @@ const dispute = {
     name: "Website Designs",
     description: "short description",
     downloadLink: "",
-  }]
+  },
+  {
+    name: "Testimony",
+    description: "short description",
+    downloadLink: "",
+  }],
+  resolutionOptions: [
+    {
+      name: "Reimburse Giselle",
+      description: "This option transfers funds to Giselle.",
+      value: "reimburse"
+    },
+    {
+      name: "Give Miguel one extra week to finish the website",
+      description: "This option blocks new disputes for one week and removes this option from further dispute.",
+      value: "extend"
+    },
+    {
+      name: "Pay Miguel",
+      description: "This option transfers funds to Miguel address.",
+      value: "pay"
+    },
+  ]
 }
 
 const DisputeResolution = () => {
@@ -50,6 +73,8 @@ const DisputeResolution = () => {
       <Information text={dispute.description} truncatedCharacters={50} arbitrationFee={dispute.arbitrationFee} timeRemaining={dispute.timeRemaining} />
       <div className="divider"></div>
       <Evidence evidence={dispute.evidence} />
+      <div className="divider"></div>
+      <Decision resolutionOptions={dispute.resolutionOptions} />
     </div>
   )
 }

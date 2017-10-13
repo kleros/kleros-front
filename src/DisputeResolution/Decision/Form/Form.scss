@@ -1,0 +1,65 @@
+.Form-container {
+  .input-container {
+    padding: 25px 0px;
+  }
+  .resolution-option {
+    display: inline-flex;
+    input[type="radio"] {
+    	height: 25px;
+    	width: 25px;
+    	border: 1px solid #E6ECEF;
+    	border-radius: 3px;
+    	background-color: #FFFFFF;
+      margin-right: 13px;
+    }
+    .option-information {
+      h2 {
+        text-transform: none;
+        margin-bottom: 4px;
+        font-family: "Proxima Nova";
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 19px;
+      }
+      p {
+        opacity: 0.58;
+        font-family: "Proxima Nova";
+        font-size: 14px;
+        line-height: 17px;
+      }
+    }
+  }
+  .description-container {
+    h2 {
+      margin-bottom: 0;
+      padding: 45px 0px;
+    }
+  }
+  .upload-container {
+    input[type="file"] {
+      display: none;
+    }
+    .upload-button {
+    	box-sizing: border-box;
+    	border: 1px dashed rgba(119,144,157,0.5);
+    	border-radius: 6px;
+    	background-color: rgba(246,246,246,0.13);
+      text-align: center;
+      cursor: pointer;
+    	font-family: "Proxima Nova";
+    	font-size: 16px;
+    	line-height: 19px;
+      padding: 32px;
+    }
+  }
+  .button-container {
+    button {
+    	height: 60px;
+    	width: 350px;
+    	border-radius: 4px;
+    	background: linear-gradient(0deg, #0059AB 0%, #0468C4 100%);
+    	box-shadow: 0 1px 0 0 #024E95;
+    }
+    margin-top: 34px;
+  }
+}

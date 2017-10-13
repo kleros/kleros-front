@@ -1,1 +1,2 @@
 export const TRUNCATED_DIGITS = 10
+export const EVIDENCE_TABLE_TRUNCATED_ENTRIES = 5

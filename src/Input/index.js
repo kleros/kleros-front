@@ -24,6 +24,16 @@ const Input = ({
               {...input}
             />
           )
+        case 'file':
+          return (
+            <input
+              type="file"
+              className={innerClassName}
+              placeholder={placeholder}
+              {...rest}
+              {...input}
+            />
+          )
         default :
           return (
             <input

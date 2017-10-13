@@ -30,7 +30,7 @@ const App = () => (
           />
           <Route
             exact
-            path='/disputes/resolution'
+            path='/disputes/:disputeId'
             component={ DisputeResolution }
           />
         </Layout>
