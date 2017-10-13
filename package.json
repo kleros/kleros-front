@@ -11,7 +11,7 @@
     "blockies-identicon": "^0.1.0",
     "ethjs": "^0.2.8",
     "global": "^4.3.2",
-    "kleros-api": "^0.0.4",
+    "kleros-api": "^0.0.7",
     "node-sass-chokidar": "^0.0.3",
     "npm-run-all": "^4.1.1",
     "react": "^15.6.1",
@@ -23,7 +23,7 @@
     "redux-form": "^7.0.4",
     "redux-thunk": "^2.2.0",
     "storybook-router": "^0.2.9",
-    "web3": "^1.0.0-beta.22"
+    "web3": "^0.20.1"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.6",

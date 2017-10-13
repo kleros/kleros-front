@@ -5002,9 +5002,9 @@ klaw@^1.0.0:
   optionalDependencies:
     graceful-fs "^4.1.9"
 
-kleros-api@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/kleros-api/-/kleros-api-0.0.4.tgz#c2f44a17f2c84efabeb85f0d3031c9378f91f1a3"
+kleros-api@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/kleros-api/-/kleros-api-0.0.7.tgz#f0bfcc4849f59e76c1d02d6f49753dbb95160e1c"
   dependencies:
     babel-preset-env "^1.6.0"
     babel-preset-react "^6.24.1"
@@ -5013,9 +5013,14 @@ kleros-api@^0.0.4:
     global "^4.3.2"
     jest "^20.0.4"
     kleros "^0.0.1"
+    kleros-interaction "^0.0.6"
     lodash "^4.17.4"
     truffle-contract "^2.0.5"
     web3 "^0.20.1"
+
+kleros-interaction@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/kleros-interaction/-/kleros-interaction-0.0.6.tgz#4f51eb117bd64c87e4c151293c657486499716b0"
 
 kleros@^0.0.1:
   version "0.0.1"
@@ -8278,10 +8283,6 @@ web3@^0.20.1:
     utf8 "^2.1.1"
     xhr2 "*"
     xmlhttprequest "*"
-
-web3@^1.0.0-beta.22:
-  version "1.0.0-beta2"
-  resolved "https://registry.yarnpkg.com/web3/-/web3-1.0.0-beta2.tgz#bde93e2b88c431673f25d81298221a1ec2b1a9ef"
 
 webidl-conversions@^3.0.0:
   version "3.0.1"

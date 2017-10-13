@@ -2,11 +2,11 @@ import { combineReducers } from 'redux'
 import {
   fetchPostContract,
   failureContract,
-  hashtx
+  address
 } from './reducers'
 
 export default combineReducers({
   fetchPostContract,
   failureContract,
-  hashtx
+  address
 })

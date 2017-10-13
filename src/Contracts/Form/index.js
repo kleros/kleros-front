@@ -1,8 +1,9 @@
 import React from 'react'
 import _ from 'lodash'
-import { Field, reduxForm } from 'redux-form'
+import { SubmissionError, Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import { deployContract } from '../../business/contract/action-creators'
 import Input from '../../Input'
 import './Form.css'
 
@@ -31,35 +32,35 @@ const Form = props => {
         <div className='params'>
           <Field
             name='arbitrator'
-            component={Input}
+            component={ Input }
             type='text'
             required
             innerClassName='input-text-contract-param'
             placeholder='Arbitrator' />
           <Field
             name='hashContract'
-            component={Input}
+            component={ Input }
             type='text'
             required
             innerClassName='input-text-contract-param'
             placeholder='Hash contract' />
           <Field
             name='timeout'
-            component={Input}
+            component={ Input }
             type='text'
             required
             innerClassName='input-text-contract-param'
             placeholder='Timeout' />
           <Field
             name='partyB'
-            component={Input}
+            component={ Input }
             type='text'
             required
             innerClassName='input-text-contract-param'
             placeholder='Party B' />
           <Field
             name='arbitratorExtraData'
-            component={Input}
+            component={ Input }
             type='text'
             required
             innerClassName='input-text-contract-param'
@@ -71,7 +72,7 @@ const Form = props => {
         <div className='subLabel'>Add if you want to receive infos about the contract.</div>
         <Field
           name='email'
-          component={Input}
+          component={ Input }
           type='email'
           required
           id='email'
@@ -82,20 +83,20 @@ const Form = props => {
         <label htmlFor='description'>Description</label>
         <Field
           name='description'
-          component={Input}
+          component={ Input }
           type='textarea'
           required
           innerClassName='input-textarea-contract'
           id='description'
           placeholder='Description' />
       </div>
-      {error && <div><strong>{error}</strong></div>}
+      { error && <div><strong>{ error }</strong></div> }
       <div>
-        <button type='submit' disabled={submitting || error} className='submit'>
+        <button type='submit' disabled={ submitting || error } className='submit'>
           Submit contract
         </button>
       </div>
-      {hasErrored && <div>Error contract</div>}
+      { hasErrored && <div>Error contract</div> }
     </form>
   )
 }
@@ -121,12 +122,12 @@ const validate = values => {
 export default withRouter(connect(mapStateToProps, null)(
   reduxForm({
     form: FORM_NAME,
-    validate
-    // onSubmit(values, dispatch) {
-    //   return dispatch(contractFetchData(values))
-    //     .catch(error => {
-    //       if (error)
-    //         throw new SubmissionError({ _error: 'submission' })
-    //     })
-    // }
+    validate,
+    onSubmit(values, dispatch) {
+      return dispatch(deployContract(values))
+        .catch(error => {
+          if (error)
+            throw new SubmissionError({ _error: 'submission' })
+        })
+    }
   })(Form)))

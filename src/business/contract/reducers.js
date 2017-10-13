@@ -1,10 +1,10 @@
 import {
   FETCH_POST_CONTRACT,
   FAILURE_CONTRACT,
-  RECEIVE_DISPUTES
+  RECEIVE_ADDRESS
 } from './actions'
 
-export function requestDisputes (state = false, action) {
+export function fetchPostContract (state = false, action) {
   switch (action.type) {
     case FETCH_POST_CONTRACT:
       return action.isFetching
@@ -13,7 +13,7 @@ export function requestDisputes (state = false, action) {
   }
 }
 
-export function failureDisputes (state = false, action) {
+export function failureContract (state = false, action) {
   switch (action.type) {
     case FAILURE_CONTRACT:
       return action.hasErrored
@@ -22,10 +22,10 @@ export function failureDisputes (state = false, action) {
   }
 }
 
-export function disputes (state = 0x0, action) {
+export function address (state = 0x0, action) {
   switch (action.type) {
-    case RECEIVE_DISPUTES:
-      return action.disputes
+    case RECEIVE_ADDRESS:
+      return action.address
     default:
       return state
   }

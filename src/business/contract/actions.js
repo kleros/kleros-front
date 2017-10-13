@@ -1,6 +1,6 @@
 export const FETCH_POST_CONTRACT = 'REQUEST_DISPUTES'
 export const FAILURE_CONTRACT = 'FAILURE_CONTRACT'
-export const RECEIVE_DISPUTES = 'RECEIVE_DISPUTES'
+export const RECEIVE_ADDRESS = 'RECEIVE_ADDRESS'
 
 export function fetchPostContract (isFetching = false) {
   return {
@@ -16,9 +16,9 @@ export function failureContract (hasErrored = false) {
   }
 }
 
-export function postSuccessContract (hashTx = 0x0) {
+export function postSuccessContract (address = 0x0) {
   return {
-    type: RECEIVE_DISPUTES,
-    hashTx
+    type: RECEIVE_ADDRESS,
+    address
   }
 }

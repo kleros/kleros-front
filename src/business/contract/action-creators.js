@@ -1,35 +1,53 @@
-import _ from 'lodash'
 import { Kleros } from 'kleros-api'
 import {
   fetchPostContract,
   failureContract,
   postSuccessContract
 } from './actions'
-import { getWeb3 } from '../../helpers/getWeb3'
+import Web3 from 'web3'
 
 export const errorAfterFiveSeconds = () => {
   return dispatch => {
     setTimeout(() => {
       // This function is able to dispatch other action creators
-      dispatch(failureDisputes(true))
+      dispatch(failureContract(true))
     }, 5000)
   }
 }
 
-export const postContract = () => async dispatch => {
+export const deployContract = (
+  account = undefined,
+  value = 0,
+  arbitrator,
+  hashContract = 0x6aa0bb2779ab006be0739900654a89f1f8a2d7373ed38490a7cbab9c9392e1ff,
+  timeout = 100,
+  partyB,
+  arbitratorExtraData = ''
+) => async dispatch => {
+  await dispatch(fetchPostContract(true))
   try {
-    let web3 = await getWeb3()
-
-    let provider = web3.provider
+    const provider = await new Web3.providers.HttpProvider('http://localhost:8545')
 
     let KlerosInstance = await new Kleros(provider)
 
-    let court = await KlerosInstance.court
+    // FIXME deploy a central court //
 
-    setTimeout(async () => {
-      // await dispatch(receiveDisputes(disputes))
-      // await dispatch(requestDisputes(false))
-    }, 2000)
+    let centralCourt = await KlerosInstance.centralCourt
+
+    let centralCourtDeployed = await centralCourt.deploy()
+
+    // End deploy a central court //
+
+    let arbitrableTransaction = await KlerosInstance.arbitrableTransaction
+
+    let contractArbitrable = await arbitrableTransaction.deploy(
+      undefined,
+      undefined,
+      centralCourtDeployed.address
+    )
+
+    await dispatch(postSuccessContract(contractArbitrable.address))
+    await dispatch(fetchPostContract(false))
   } catch (err) {
     // FIXME send an error user-friendly
     throw err
