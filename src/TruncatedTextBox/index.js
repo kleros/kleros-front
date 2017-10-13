@@ -34,12 +34,12 @@ class TruncatedTextBox extends Component {
       }
       displayText += "..."
       actionDiv = (
-        <div className="actionDiv" onClick={this.showMore.bind(this)}>Show More</div>
+        <div className="actionDiv" onClick={this.showMore.bind(this)}>Show More &or;</div>
       )
     } else {
       displayText = this.props.text
       actionDiv = (
-        <div className="actionDiv" onClick={this.showLess.bind(this)}>Show Less</div>
+        <div className="actionDiv" onClick={this.showLess.bind(this)}>Show Less &and;</div>
       )
     }
     return (

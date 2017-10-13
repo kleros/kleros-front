@@ -13,7 +13,11 @@
     	font-size: 14px;
     	line-height: 17px;
       text-decoration: none;
+			decoration: none;
     }
+		a:visited {
+			color: #1B2431;
+		}
     .dispute-title {
       padding-top: 13px;
     	height: 31px;

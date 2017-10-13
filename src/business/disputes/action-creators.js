@@ -38,7 +38,6 @@ export const getDisputes = () => async dispatch => {
 }
 
 export const submitDisputeResolution = (values) => async dispatch => {
-  console.log(values)
   try {
     let web3 = await getWeb3()
 

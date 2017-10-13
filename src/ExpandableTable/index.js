@@ -32,11 +32,11 @@ class ExpandableTable extends Component {
     if (this.props.rows.length > this.props.rowLimit) {
       if (this.state.expand) {
         actionDiv = (
-          <div className="actionDiv" onClick={this.showLess.bind(this)}>{this.props.lessMessage}</div>
+          <div className="actionDiv" onClick={this.showLess.bind(this)}>{this.props.lessMessage} &and;</div>
         )
       } else {
         actionDiv = (
-          <div className="actionDiv" onClick={this.showMore.bind(this)}>{this.props.moreMessage}</div>
+          <div className="actionDiv" onClick={this.showMore.bind(this)}>{this.props.moreMessage} &or;</div>
         )
       }
     }
