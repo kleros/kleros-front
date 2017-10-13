@@ -1,6 +1,6 @@
 import React from 'react'
 import DropdownButton from './DropdownButton'
-import EvidenceRow from './EvidenceRow'
+import EvidenceTable from './EvidenceTable'
 import './Evidence.css'
 
 const Evidence = (props) => {
@@ -14,12 +14,7 @@ const Evidence = (props) => {
         </div>
       </div>
       <div className="divider"></div>
-      { props.evidence.map(document => (
-        <div>
-          <EvidenceRow key={ document.name } name={ document.name } description={ document.description } />
-          <div className="divider"></div>
-        </div>
-      ))}
+      <EvidenceTable evidence={props.evidence} />
     </div>
   )
 }
