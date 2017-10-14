@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import 'babel-polyfill'
-import { getDisputes } from '../../business/disputes/action-creators'
+import { getDisputes } from '../../../business/disputes/action-creators'
 import './GridContent.css'
 
 class GridContent extends Component {
@@ -20,7 +20,7 @@ class GridContent extends Component {
     if (isFetching) {
       return (
         <div className='GridContent-container'>
-          <div className='items'>
+          <div className='items loader'>
             <div className='linear-background-100' />
             <div className='linear-background-90' />
             <div className='linear-background-90' />
@@ -32,18 +32,20 @@ class GridContent extends Component {
     return (
       <div className='GridContent-container'>
         <div className='items'>
-          { disputes.map(dispute =>
-            <div key={dispute.caseId} className='items-row'>
-              <div className='item-project'>
-                <div className='item'>{ dispute.title }</div>
-                <div className='item'>{ dispute.category }</div>
+          {
+            disputes.map(dispute =>
+              <div key={ dispute.caseId } className='items-row'>
+                <div className='item item-project'>
+                  <div className='item-title'>{ dispute.title }</div>
+                  <div className='item-category'>{ dispute.category }</div>
+                </div>
+                <div className='item item-deadline'>{ dispute.deadline }</div>
+                <div className='item item-case_id'>{ dispute.caseId }</div>
+                <div className='item item-status'>{ dispute.status }</div>
+                <div className='item item-download'>&#10752;</div>
               </div>
-              <div className='item'>{ dispute.deadline }</div>
-              <div className='item'>{ dispute.caseId }</div>
-              <div className='item'>{ dispute.status }</div>
-              <div className='item'>{ dispute.evidence }</div>
-            </div>
-        ) }
+            )
+          }
         </div>
       </div>
     )
