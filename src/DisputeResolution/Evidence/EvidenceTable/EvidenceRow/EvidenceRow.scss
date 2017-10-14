@@ -1,0 +1,45 @@
+.evidence-row {
+  .row-container {
+    padding: 12px 0px 12px 0px;
+    display: inline-flex;
+    width: 100%;
+    .evidence-download {
+      margin-right: 17px;
+      height: 100%;
+      position: relative;
+    }
+    .evidence-title {
+      flex: 7;
+      h2 {
+        text-transform: none;
+        margin-bottom: 4px;
+        font-family: "Proxima Nova";
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 19px;
+      }
+      p {
+        opacity: 0.58;
+        font-family: "Proxima Nova";
+        font-size: 14px;
+        line-height: 17px;
+      }
+    }
+    .evidence-expand {
+      flex: 3;
+      display: inline-flex;
+      .evidence-expand-container {
+        margin-left:auto; margin-right:0;
+        p {
+          vertical-align: middle;
+          display: inline-block;
+          margin-right: 13px;
+        }
+        .zoom {
+          display: inline-block;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+}

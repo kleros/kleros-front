@@ -1,0 +1,29 @@
+.information {
+  padding: 33px 50px;
+  background: white;
+  display: inline-flex;
+  .information-box {
+    flex: 7;
+    font-family: "Proxima Nova";
+    font-size: 15px;
+    line-height: 23px;
+  }
+  .dispute-information {
+    padding-left: 10%;
+    flex: 3;
+    .statistic {
+      display: flex;
+      margin-bottom: 23px;
+      .title {
+        flex: 6;
+      }
+      .value {
+        flex: 6;
+        font-family: "Proxima Nova";
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 19px;
+      }
+    }
+  }
+}

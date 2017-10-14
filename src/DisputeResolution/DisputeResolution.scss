@@ -1,0 +1,25 @@
+.dispute-resolution {
+  color: #1B2431;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  .content {
+    padding: 37px 50px;
+  }
+  h2 {
+    text-transform: uppercase;
+    opacity: 0.78;
+    font-family: "Proxima Nova";
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    line-height: 19px;
+    margin-bottom: 31px;
+  }
+  .divider {
+    height: 1px;
+    width: 100%;
+    opacity: 0.38;
+    background-color: #D8D8D8;
+  }
+}

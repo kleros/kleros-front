@@ -8,6 +8,7 @@ const Input = ({
   type,
   placeholder,
   children,
+  value,
   meta = {touched: false, error: false},
   ...rest
 }) => (
@@ -18,6 +19,26 @@ const Input = ({
         case 'textarea':
           return (
             <textarea
+              className={innerClassName}
+              placeholder={placeholder}
+              {...rest}
+              {...input}
+            />
+          )
+        case 'radio':
+        return (
+          <input
+            type="radio"
+            className={innerClassName}
+            value={value}
+            {...rest}
+            {...input}
+          />
+        )
+        case 'file':
+          return (
+            <input
+              type="file"
               className={innerClassName}
               placeholder={placeholder}
               {...rest}

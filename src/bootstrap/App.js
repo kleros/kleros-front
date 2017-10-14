@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom'
 import Disputes from '../Disputes'
 import Contracts from '../Contracts'
+import DisputeResolution from '../DisputeResolution'
 import { Provider } from 'react-redux'
 import registerServiceWorker from './registerServiceWorker'
 import store from './store'
@@ -26,6 +27,11 @@ const App = () => (
             exact
             path='/contracts'
             component={ Contracts }
+          />
+          <Route
+            exact
+            path='/disputes/:disputeId'
+            component={ DisputeResolution }
           />
         </Layout>
       </Switch>

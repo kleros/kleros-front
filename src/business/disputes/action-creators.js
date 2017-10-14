@@ -36,3 +36,12 @@ export const getDisputes = () => async dispatch => {
     throw e
   }
 }
+
+export const submitDisputeResolution = (values) => async dispatch => {
+  try {
+    // TODO submit decision to contract //
+  } catch (e) {
+    // FIXME display a user-friendly error //
+    throw e
+  }
+}

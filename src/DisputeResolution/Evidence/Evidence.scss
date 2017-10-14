@@ -1,0 +1,18 @@
+.evidence {
+  padding: 33px 50px;
+  background: #F4F7F9;
+  .top-bar {
+    width: 100%;
+    display: inline-flex;
+    h2 {
+      flex: 7;
+    }
+    .dropdowns {
+      display: inline-flex;
+      flex: 3;
+      div {
+        margin-left:auto; margin-right:0;
+      }
+    }
+  }
+}
