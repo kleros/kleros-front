@@ -5,11 +5,11 @@
   .resolution-option {
     display: inline-flex;
     input[type="radio"] {
-    	height: 25px;
-    	width: 25px;
-    	border: 1px solid #E6ECEF;
-    	border-radius: 3px;
-    	background-color: #FFFFFF;
+      height: 25px;
+      width: 25px;
+      border: 1px solid #E6ECEF;
+      border-radius: 3px;
+      background-color: #FFFFFF;
       margin-right: 13px;
     }
     .option-information {
@@ -40,25 +40,25 @@
       display: none;
     }
     .upload-button {
-    	box-sizing: border-box;
-    	border: 1px dashed rgba(119,144,157,0.5);
-    	border-radius: 6px;
-    	background-color: rgba(246,246,246,0.13);
+      box-sizing: border-box;
+      border: 1px dashed rgba(119,144,157,0.5);
+      border-radius: 6px;
+      background-color: rgba(246,246,246,0.13);
       text-align: center;
       cursor: pointer;
-    	font-family: "Proxima Nova";
-    	font-size: 16px;
-    	line-height: 19px;
+      font-family: "Proxima Nova";
+      font-size: 16px;
+      line-height: 19px;
       padding: 32px;
     }
   }
   .button-container {
     button {
-    	height: 60px;
-    	width: 350px;
-    	border-radius: 4px;
-    	background: linear-gradient(0deg, #0059AB 0%, #0468C4 100%);
-    	box-shadow: 0 1px 0 0 #024E95;
+      height: 60px;
+      width: 350px;
+      border-radius: 4px;
+      background: linear-gradient(0deg, #0059AB 0%, #0468C4 100%);
+      box-shadow: 0 1px 0 0 #024E95;
     }
     margin-top: 34px;
   }
