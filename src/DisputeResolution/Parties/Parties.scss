@@ -1,7 +1,7 @@
 .parties {
-  background-color: white;
+  background-color: #fff;
   padding: 33px 50px;
-  border-bottom: 1px solid rbga(216,216,216,0.38);
+  border-bottom: 1px solid rbga(216, 216, 216, 0.38);
   .party {
     margin-top: 25px;
     .party-icon {
@@ -10,12 +10,11 @@
       height: 30px;
       width: 30px;
       border-radius: 2px;
-      background-color: #50BCE3;
+      background-color: #50bce3;
       vertical-align: middle;
     }
     .party-name {
       display: inline-flex;
-      font-family: "Proxima Nova";
       font-size: 16px;
       font-weight: 600;
       line-height: normal;

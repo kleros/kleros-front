@@ -6,7 +6,7 @@ import { getDisputes } from '../../../business/disputes/action-creators'
 import './GridContent.css'
 
 class GridContent extends Component {
-  componentWillMount = () => {
+  componentWillMount () {
     this.props.getDataDisputes()
   }
 
@@ -34,8 +34,8 @@ class GridContent extends Component {
         <div className='items'>
           {
             disputes.map(dispute =>
-              <Link to={ `disputes/${dispute.caseId}` }>
-                <div key={ dispute.caseId } className='items-row'>
+              <Link to={`disputes/${dispute.caseId}`}>
+                <div key={dispute.caseId} className='items-row'>
                   <div className='item item-project'>
                     <div className='item-title'>{ dispute.title }</div>
                     <div className='item-category'>{ dispute.category }</div>

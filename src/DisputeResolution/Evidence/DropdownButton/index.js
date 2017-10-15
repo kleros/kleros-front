@@ -1,10 +1,10 @@
 import React from 'react'
 import './DropdownButton.css'
 
-const DropdownButton = (props) => {
+const DropdownButton = props => {
   return (
-    <div className="dropdown-button">
-      <span>{props.title}</span>
+    <div className='dropdown-button'>
+      <span>{ props.title }</span>
     </div>
   )
 }

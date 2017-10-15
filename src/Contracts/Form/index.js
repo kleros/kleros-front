@@ -32,35 +32,35 @@ const Form = props => {
         <div className='params'>
           <Field
             name='arbitrator'
-            component={ Input }
+            component={Input}
             type='text'
             required
             innerClassName='input-text-contract-param'
             placeholder='Arbitrator' />
           <Field
             name='hashContract'
-            component={ Input }
+            component={Input}
             type='text'
             required
             innerClassName='input-text-contract-param'
             placeholder='Hash contract' />
           <Field
             name='timeout'
-            component={ Input }
+            component={Input}
             type='text'
             required
             innerClassName='input-text-contract-param'
             placeholder='Timeout' />
           <Field
             name='partyB'
-            component={ Input }
+            component={Input}
             type='text'
             required
             innerClassName='input-text-contract-param'
             placeholder='Party B' />
           <Field
             name='arbitratorExtraData'
-            component={ Input }
+            component={Input}
             type='text'
             required
             innerClassName='input-text-contract-param'
@@ -72,7 +72,7 @@ const Form = props => {
         <div className='subLabel'>Add if you want to receive infos about the contract.</div>
         <Field
           name='email'
-          component={ Input }
+          component={Input}
           type='email'
           required
           id='email'
@@ -83,7 +83,7 @@ const Form = props => {
         <label htmlFor='description'>Description</label>
         <Field
           name='description'
-          component={ Input }
+          component={Input}
           type='textarea'
           required
           innerClassName='input-textarea-contract'
@@ -92,7 +92,7 @@ const Form = props => {
       </div>
       { error && <div><strong>{ error }</strong></div> }
       <div>
-        <button type='submit' disabled={ submitting || error } className='submit'>
+        <button type='submit' disabled={submitting || error} className='submit'>
           Submit contract
         </button>
       </div>
@@ -123,11 +123,10 @@ export default withRouter(connect(mapStateToProps, null)(
   reduxForm({
     form: FORM_NAME,
     validate,
-    onSubmit(values, dispatch) {
+    onSubmit (values, dispatch) {
       return dispatch(deployContract(values))
         .catch(error => {
-          if (error)
-            throw new SubmissionError({ _error: 'submission' })
+          if (error) { throw new SubmissionError({ _error: 'submission' }) }
         })
     }
   })(Form)))

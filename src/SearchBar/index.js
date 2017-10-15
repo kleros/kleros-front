@@ -14,7 +14,7 @@ class SearchBar extends Component {
           <img src={icon} alt='icon' />
         </div>
         <div>
-          <Input placeholder='search here' innerClassName='search'></Input>
+          <Input placeholder='search here' innerClassName='search' />
         </div>
       </div>
     )

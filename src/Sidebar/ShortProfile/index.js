@@ -16,7 +16,7 @@ const ShortProfile = ({
 }) => (
   <div className={`ShortProfile-container ${className} ${theme}`}>
     <div className='icon'>
-      <Identicon seed={ address } />
+      <Identicon seed={address} />
     </div>
     <div className='description'>
       <div className='address'>
