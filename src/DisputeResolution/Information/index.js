@@ -8,8 +8,8 @@ const Information = props => {
       <div className='information-box'>
         <h2>Information</h2>
         <TruncatedTextBox
-          text={ props.text }
-          truncatedCharacters={ props.truncatedCharacters } />
+          text={props.text}
+          truncatedCharacters={props.truncatedCharacters} />
       </div>
       <div className='dispute-information'>
         <h2>Dispute Information</h2>

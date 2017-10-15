@@ -66,15 +66,15 @@ const DisputeResolution = () => {
   return (
     <div className='dispute-resolution'>
       <SearchBar />
-      <Banner title={ dispute.title } />
+      <Banner title={dispute.title} />
       <div className='divider' />
-      <Parties parties={ dispute.parties } />
+      <Parties parties={dispute.parties} />
       <div className='divider' />
-      <Information text={ dispute.description } truncatedCharacters={50} arbitrationFee={dispute.arbitrationFee} timeRemaining={dispute.timeRemaining} />
+      <Information text={dispute.description} truncatedCharacters={50} arbitrationFee={dispute.arbitrationFee} timeRemaining={dispute.timeRemaining} />
       <div className='divider' />
-      <Evidence evidence={ dispute.evidence } />
+      <Evidence evidence={dispute.evidence} />
       <div className='divider' />
-      <Decision resolutionOptions={ dispute.resolutionOptions } />
+      <Decision resolutionOptions={dispute.resolutionOptions} />
     </div>
   )
 }

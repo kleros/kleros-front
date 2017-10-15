@@ -10,7 +10,7 @@ const Form = props => {
   const {resolutionOptions, handleSubmit, submitting, error, hasErrored} = props
 
   return (
-    <form onSubmit={ handleSubmit } className='Form-container'>
+    <form onSubmit={handleSubmit} className='Form-container'>
       {
         resolutionOptions.map(option => (
           <div className='radio-input-container' key={option.value}>
@@ -38,7 +38,7 @@ const Form = props => {
         <h2>Description</h2>
         <Field
           name='description'
-          component={ Input }
+          component={Input}
           type='textarea'
           innerClassName='input-textarea-contract'
           id='description'
@@ -52,7 +52,7 @@ const Form = props => {
         </div>
         <Field
           name='upload'
-          component={ Input }
+          component={Input}
           type='file'
           innerClassName='input-files-dispute'
           id='file'
@@ -62,7 +62,7 @@ const Form = props => {
       <div className='button-container'>
         <button
           type='submit'
-          disabled={ submitting || error }
+          disabled={submitting || error}
           className='submit'>
           Submit now
         </button>
