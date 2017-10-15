@@ -5,6 +5,10 @@
   .items {
     display: flex;
     flex-direction: column;
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
     .items-row {
       display: flex;
       flex-direction: row;
