@@ -14,7 +14,6 @@ const Grid = ({
         <div className='item header-deadline-item'>Deadline</div>
         <div className='item header-case_id-item'>Case ID</div>
         <div className='item header-status-item'>Status</div>
-        <div className='item header-download-item'>Evidence</div>
       </div>
       { children }
     </div>

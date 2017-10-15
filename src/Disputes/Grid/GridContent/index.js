@@ -42,7 +42,6 @@ class GridContent extends Component {
                 <div className='item item-deadline'>{ dispute.deadline }</div>
                 <div className='item item-case_id'>{ dispute.caseId }</div>
                 <div className='item item-status'>{ dispute.status }</div>
-                <div className='item item-download'>&#10752;</div>
               </div>
             )
           }
