@@ -8,14 +8,14 @@
     a {
       height: 17px;
       width: 111px;
-      opacity: 0.58; // TODO use rgba
+      color: rgba(27, 36, 49, 0.58);
       font-size: 14px;
       line-height: 17px;
       text-decoration: none;
       decoration: none;
     }
     a:visited {
-      color: #1b2431;
+      color: inherit;
     }
     .dispute-title {
       width: 339px;

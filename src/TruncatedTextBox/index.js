@@ -16,7 +16,6 @@ class TruncatedTextBox extends Component {
 
   render () {
     const words = this.props.text.split(' ')
-
     // if there is no need to truncate return as is
     if (words.length <= this.props.truncatedCharacters) {
       return (

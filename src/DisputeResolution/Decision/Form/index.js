@@ -45,9 +45,7 @@ const Form = props => {
          />
       </div>
       <div className='upload-container'>
-        <div className='upload-button' onClick={
-            () => document.getElementById('file').click() // FIXME refactoring
-        }>
+        <div className='upload-button' onClick={uploadClick}>
           Add file here
         </div>
         <Field
@@ -70,6 +68,10 @@ const Form = props => {
       { hasErrored && <div>Error contract</div> }
     </form>
   )
+}
+
+const uploadClick = () => {
+  document.getElementById('file').click()
 }
 
 const FORM_NAME = 'disputeResolution'
