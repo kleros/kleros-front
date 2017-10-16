@@ -5,7 +5,7 @@ import './Icon.css'
 class Icon extends Component {
   state = {
     isLoading: true,
-    iconPicturePath: '/',
+    iconPicturePath: '/'
   }
 
   componentDidMount = async () => {

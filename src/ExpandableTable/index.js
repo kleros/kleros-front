@@ -18,20 +18,19 @@ class ExpandableTable extends Component {
     })
   }
 
-  render() {
-    const rowLimit =  this.state.expand ? this.props.rows.length : this.props.rowLimit
+  render () {
+    const rowLimit = this.state.expand ? this.props.rows.length : this.props.rowLimit
     const rows = this.props.rows.slice(0, rowLimit)
     let actionDiv
-
 
     if (this.props.rows.length > this.props.rowLimit) {
       if (this.state.expand) {
         actionDiv = (
-          <div className='actionDiv' onClick={ this.showLess }>{ this.props.lessMessage } &and;</div>
+          <div className='actionDiv' onClick={this.showLess}>{this.props.lessMessage} &and;</div>
         )
       } else {
         actionDiv = (
-          <div className='actionDiv' onClick={ this.showMore }>{ this.props.moreMessage } &or;</div>
+          <div className='actionDiv' onClick={this.showMore}>{this.props.moreMessage} &or;</div>
         )
       }
     }

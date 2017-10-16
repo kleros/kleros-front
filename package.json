@@ -6,6 +6,7 @@
   "private": false,
   "dependencies": {
     "@storybook/storybook-deployer": "^2.0.0",
+    "babel-eslint": "^8.0.1",
     "babel-polyfill": "^6.26.0",
     "blockies": "^0.0.2",
     "blockies-identicon": "^0.1.0",
@@ -54,7 +55,7 @@
       "jest",
       "es6",
       "browser"
-    ]
-  },
-  "proxy": ""
+    ],
+    "parser": "babel-eslint"
+  }
 }

@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import 'babel-polyfill'
 import { getDisputes } from '../../../business/disputes/action-creators'
 import './GridContent.css'
 
 class GridContent extends Component {
-  componentWillMount = () => {
+  componentWillMount () {
     this.props.getDataDisputes()
   }
 
@@ -34,16 +34,17 @@ class GridContent extends Component {
         <div className='items'>
           {
             disputes.map(dispute =>
-              <div key={ dispute.caseId } className='items-row'>
-                <div className='item item-project'>
-                  <div className='item-title'>{ dispute.title }</div>
-                  <div className='item-category'>{ dispute.category }</div>
+              <Link to={`disputes/${dispute.caseId}`}>
+                <div key={dispute.caseId} className='items-row'>
+                  <div className='item item-project'>
+                    <div className='item-title'>{ dispute.title }</div>
+                    <div className='item-category'>{ dispute.category }</div>
+                  </div>
+                  <div className='item item-deadline'>{ dispute.deadline }</div>
+                  <div className='item item-case_id'>#{ dispute.caseId }</div>
+                  <div className='item item-status'>{ dispute.status }</div>
                 </div>
-                <div className='item item-deadline'>{ dispute.deadline }</div>
-                <div className='item item-case_id'>{ dispute.caseId }</div>
-                <div className='item item-status'>{ dispute.status }</div>
-                <div className='item item-download'>&#10752;</div>
-              </div>
+              </Link>
             )
           }
         </div>

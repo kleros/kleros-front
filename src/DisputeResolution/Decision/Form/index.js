@@ -6,8 +6,8 @@ import { submitDisputeResolution } from '../../../business/disputes/action-creat
 import Input from '../../../Input'
 import './Form.css'
 
-const Form = (props) => {
-  const { resolutionOptions, handleSubmit, submitting, error, hasErrored } = props
+const Form = props => {
+  const {resolutionOptions, handleSubmit, submitting, error, hasErrored} = props
 
   return (
     <form onSubmit={handleSubmit} className='Form-container'>
@@ -58,7 +58,10 @@ const Form = (props) => {
       </div>
       { error && <div><strong>{ error }</strong></div> }
       <div className='button-container'>
-        <button type='submit' disabled={submitting || error} className='submit'>
+        <button
+          type='submit'
+          disabled={submitting || error}
+          className='submit'>
           Submit now
         </button>
       </div>

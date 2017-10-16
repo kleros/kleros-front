@@ -1,12 +1,9 @@
 import React from 'react'
 
 import { storiesOf } from '@storybook/react'
-import { action } from '@storybook/addon-actions'
-import { linkTo } from '@storybook/addon-links'
 import StoryRouter from 'storybook-router'
 
 import ShortProfile from '../Sidebar/ShortProfile'
-import ItemMenuSidebar from '../Sidebar/MenuSidebar/ItemMenuSidebar'
 import MenuSidebar from '../Sidebar/MenuSidebar'
 import Sidebar from '../Sidebar'
 

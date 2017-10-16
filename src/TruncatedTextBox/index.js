@@ -14,7 +14,7 @@ class TruncatedTextBox extends Component {
     this.setState({ truncated: true })
   }
 
-  render() {
+  render () {
     const words = this.props.text.split(' ')
     // if there is no need to truncate return as is
     if (words.length <= this.props.truncatedCharacters) {
@@ -29,7 +29,7 @@ class TruncatedTextBox extends Component {
     let actionDiv
 
     if (this.state.truncated) {
-      for (let i=0; i<this.props.truncatedCharacters; i++) {
+      for (let i = 0; i < this.props.truncatedCharacters; i++) {
         displayText += words[i] + ' '
       }
       displayText += '...'
@@ -42,6 +42,7 @@ class TruncatedTextBox extends Component {
         <div className='actionDiv' onClick={this.showLess}>Show Less &and;</div>
       )
     }
+
     return (
       <div className='truncatedTextBox'>
         <div className='text'>

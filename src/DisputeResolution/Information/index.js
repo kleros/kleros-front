@@ -2,12 +2,14 @@ import React from 'react'
 import TruncatedTextBox from '../../TruncatedTextBox'
 import './Information.css'
 
-const Information = (props) => {
+const Information = props => {
   return (
     <div className='information'>
       <div className='information-box'>
         <h2>Information</h2>
-        <TruncatedTextBox text={props.text} truncatedCharacters={props.truncatedCharacters} />
+        <TruncatedTextBox
+          text={props.text}
+          truncatedCharacters={props.truncatedCharacters} />
       </div>
       <div className='dispute-information'>
         <h2>Dispute Information</h2>

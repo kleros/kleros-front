@@ -3,7 +3,7 @@ import DropdownButton from './DropdownButton'
 import EvidenceTable from './EvidenceTable'
 import './Evidence.css'
 
-const Evidence = (props) => {
+const Evidence = props => {
   return (
     <div className='evidence'>
       <div className='top-bar'>

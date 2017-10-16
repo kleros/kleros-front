@@ -1,5 +1,5 @@
 (function () {
-	// The random number is a js implementation of the Xorshift PRNG
+  // The random number is a js implementation of the Xorshift PRNG
   let randseed = new Array(4) // Xorshift: [x, y, z, w] 32 bit values
 
   function seedrand (seed) {
@@ -24,11 +24,11 @@
   }
 
   function createColor () {
-		// saturation is the whole color spectrum
+    // saturation is the whole color spectrum
     let h = Math.floor(rand() * 360)
-		// saturation goes from 40 to 100, it avoids greyish colors
+    // saturation goes from 40 to 100, it avoids greyish colors
     let s = ((rand() * 60) + 40) + '%'
-		// lightness can be anything from 0 to 100, but probabilities are a bell curve around 50%
+    // lightness can be anything from 0 to 100, but probabilities are a bell curve around 50%
     let l = ((rand() + rand() + rand() + rand()) * 25) + '%'
 
     let color = 'hsl(' + h + ',' + s + ',' + l + ')'
@@ -46,8 +46,8 @@
     for (let y = 0; y < height; y++) {
       let row = []
       for (let x = 0; x < dataWidth; x++) {
-				// this makes foreground and background color to have a 43% (1/2.3) probability
-				// spot color has 13% chance
+        // this makes foreground and background color to have a 43% (1/2.3) probability
+        // spot color has 13% chance
         row[x] = Math.floor(rand() * 2.3)
       }
       let r = row.slice(0, mirrorWidth)
@@ -90,12 +90,12 @@
     cc.fillStyle = opts.color
 
     for (let i = 0; i < imageData.length; i++) {
-			// if data is 0, leave the background
+      // if data is 0, leave the background
       if (imageData[i]) {
         let row = Math.floor(i / width)
         let col = i % width
 
-				// if data is 2, choose spot color, if 1 choose foreground
+        // if data is 2, choose spot color, if 1 choose foreground
         cc.fillStyle = (imageData[i] === 1) ? opts.color : opts.spotcolor
 
         cc.fillRect(col * opts.scale, row * opts.scale, opts.scale, opts.scale)
@@ -122,6 +122,6 @@
     module.exports = api
   }
   if (typeof window !== 'undefined') {
-		 window.blockies = api
+    window.blockies = api
   }
 })()

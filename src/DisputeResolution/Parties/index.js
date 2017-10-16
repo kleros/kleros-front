@@ -2,7 +2,7 @@ import React from 'react'
 import './Parties.css'
 
 // TODO make a icon generator component with different colors
-const Parties = (props) => {
+const Parties = props => {
   return (
     <div className='parties'>
       <h2>Involved Parties</h2>
@@ -11,7 +11,7 @@ const Parties = (props) => {
           <div className='party-icon' />
           <div className='party-name'>{ name }</div>
         </div>
-      )}
+      ) }
     </div>
   )
 }

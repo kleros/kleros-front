@@ -9,7 +9,7 @@ import './Disputes.css'
 
 class Disputes extends Component {
   state = {
-    address: 0x0,
+    address: 0x0
   }
 
   componentWillMount () {

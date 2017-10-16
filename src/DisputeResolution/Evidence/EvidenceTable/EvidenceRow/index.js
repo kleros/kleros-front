@@ -2,7 +2,7 @@ import React from 'react'
 import Icon from '../../../../Icon'
 import './EvidenceRow.css'
 
-const EvidenceRow = (props) => {
+const EvidenceRow = props => {
   return (
     <div className='evidence-row'>
       <div className='row-container'>

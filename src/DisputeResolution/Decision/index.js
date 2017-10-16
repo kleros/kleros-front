@@ -2,7 +2,7 @@ import React from 'react'
 import Form from './Form'
 import './Decision.css'
 
-const Decision = (props) => {
+const Decision = props => {
   return (
     <div className='Decision-container'>
       <div className='decision-header'>

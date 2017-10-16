@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import './Banner.css'
 
-const DisputeResolutionBanner = (props) => {
+const DisputeResolutionBanner = props => {
   return (
     <div className='dispute-resolution-banner'>
       <div className='banner-container'>
