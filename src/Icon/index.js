@@ -8,7 +8,7 @@ class Icon extends Component {
     iconPicturePath: '/'
   }
 
-  componentDidMount = async () => {
+  async componentDidMount () {
     let iconPicturePath = await import(`../assets/icons/${this.props.name}.svg`)
 
     if (!_.isUndefined(iconPicturePath)) {

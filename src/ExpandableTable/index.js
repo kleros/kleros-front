@@ -6,13 +6,13 @@ class ExpandableTable extends Component {
     expand: false
   }
 
-  showMore = () => {
+  showMore () {
     this.setState({
       expand: true
     })
   }
 
-  showLess = () => {
+  showLess () {
     this.setState({
       expand: false
     })

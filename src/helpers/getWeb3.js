@@ -8,6 +8,6 @@ export let getWeb3 = async () => new Promise((resolve, reject) => {
     resolve(eth)
   } else {
     // use constant for error message
-    reject({ error: 'no web3' })
+    reject(new Error('no web3'))
   }
 })
