@@ -26,15 +26,15 @@ const Input = ({
             />
           )
         case 'radio':
-        return (
-          <input
-            type='radio'
-            className={innerClassName}
-            value={value}
-            {...rest}
-            {...input}
+          return (
+            <input
+              type='radio'
+              className={innerClassName}
+              value={value}
+              {...rest}
+              {...input}
           />
-        )
+          )
         case 'file':
           return (
             <input

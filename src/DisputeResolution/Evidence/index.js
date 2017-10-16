@@ -9,12 +9,12 @@ const Evidence = (props) => {
       <div className='top-bar'>
         <h2>Evidence</h2>
         <div className='dropdowns'>
-          <DropdownButton title={ 'Filter' } />
-          <DropdownButton title={ 'Sort By' } />
+          <DropdownButton title={'Filter'} />
+          <DropdownButton title={'Sort By'} />
         </div>
       </div>
-      <div className='divider'></div>
-      <EvidenceTable evidence={ props.evidence } />
+      <div className='divider' />
+      <EvidenceTable evidence={props.evidence} />
     </div>
   )
 }

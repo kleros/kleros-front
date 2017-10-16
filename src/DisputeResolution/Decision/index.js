@@ -9,8 +9,8 @@ const Decision = (props) => {
         <h2>Your Decision</h2>
         <p>You have the following options:</p>
       </div>
-      <div className='divider'></div>
-      <Form resolutionOptions={ props.resolutionOptions }/>
+      <div className='divider' />
+      <Form resolutionOptions={props.resolutionOptions} />
     </div>
   )
 }

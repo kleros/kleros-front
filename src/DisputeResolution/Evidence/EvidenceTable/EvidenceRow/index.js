@@ -6,7 +6,7 @@ const EvidenceRow = (props) => {
   return (
     <div className='evidence-row'>
       <div className='row-container'>
-        <a className='evidence-download' href={props.downloadPath}><Icon name={ 'download' } /></a>
+        <a className='evidence-download' href={props.downloadPath}><Icon name={'download'} /></a>
         <div className='evidence-title'>
           <h2>{props.name}</h2>
           <p>{props.description}</p>
@@ -14,7 +14,7 @@ const EvidenceRow = (props) => {
         <div className='evidence-expand'>
           <div className='evidence-expand-container'>
             <p>Expand</p>
-            <Icon name={ 'zoom' } theme={ 'zoom' } />
+            <Icon name={'zoom'} theme={'zoom'} />
           </div>
         </div>
       </div>

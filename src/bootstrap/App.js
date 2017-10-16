@@ -14,24 +14,24 @@ import Layout from '../Layout'
 import './index.css'
 
 const App = () => (
-  <Provider store={ store }>
+  <Provider store={store}>
     <Router>
       <Switch>
         <Layout>
           <Route
             exact
             path='/disputes'
-            component={ Disputes }
+            component={Disputes}
           />
           <Route
             exact
             path='/contracts'
-            component={ Contracts }
+            component={Contracts}
           />
           <Route
             exact
             path='/disputes/:disputeId'
-            component={ DisputeResolution }
+            component={DisputeResolution}
           />
         </Layout>
       </Switch>
