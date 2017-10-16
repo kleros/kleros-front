@@ -56,6 +56,9 @@
       "es6",
       "browser"
     ],
+    "globals": [
+      "state",
+    ],
     "parser": "babel-eslint"
   }
 }

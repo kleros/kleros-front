@@ -6,11 +6,11 @@ class TruncatedTextBox extends Component {
     truncated: true
   }
 
-  showMore = () => {
+  showMore () {
     this.setState({ truncated: false })
   }
 
-  showLess = () => {
+  showLess () {
     this.setState({ truncated: true })
   }
 
