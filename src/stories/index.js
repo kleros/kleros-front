@@ -96,8 +96,8 @@ storiesOf('Sidebar', module)
   /** *************** SearchBar *****************/
 
 storiesOf('SearchBar', module)
-    .add(
-      'default',
-      () =>
-        <SearchBar />
-    )
+  .add(
+    'default',
+    () =>
+      <SearchBar />
+  )

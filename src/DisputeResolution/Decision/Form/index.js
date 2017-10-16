@@ -42,7 +42,7 @@ const Form = props => {
           type='textarea'
           innerClassName='input-textarea-contract'
           id='description'
-         />
+        />
       </div>
       <div className='upload-container'>
         <div className='upload-button' onClick={uploadClick}>

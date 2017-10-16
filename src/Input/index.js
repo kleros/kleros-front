@@ -33,7 +33,7 @@ const Input = ({
               value={value}
               {...rest}
               {...input}
-          />
+            />
           )
         case 'file':
           return (

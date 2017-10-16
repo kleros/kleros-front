@@ -30,8 +30,15 @@
     "@storybook/addon-actions": "^3.2.6",
     "@storybook/addon-links": "^3.2.6",
     "@storybook/react": "^3.2.8",
-    "react-scripts": "1.0.13",
-    "standard": "^10.0.3"
+    "eslint": "^4.9.0",
+    "eslint-plugin-react": "^7.4.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-config-standard-jsx": "^4.0.2",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.2.0",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "react-scripts": "1.0.13"
   },
   "scripts": {
     "start-js": "react-scripts start",
@@ -41,21 +48,10 @@
     "eject": "react-scripts eject",
     "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
-    "lint": "./node_modules/.bin/standard",
-    "lint-fix": "./node_modules/.bin/standard --fix",
+    "lint": "./node_modules/.bin/eslint src",
+    "lint-fix": "./node_modules/.bin/eslint src --fix",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
     "deploy-storybook": "storybook-to-ghpages"
-  },
-  "standard": {
-    "ignore": [
-      "build/*"
-    ],
-    "env": [
-      "jest",
-      "es6",
-      "browser"
-    ],
-    "parser": "babel-eslint"
   }
 }
