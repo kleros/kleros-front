@@ -5,7 +5,7 @@ import Parties from './Parties'
 import Information from './Information'
 import Evidence from './Evidence'
 import Decision from './Decision'
-import "./DisputeResolution.css"
+import './DisputeResolution.css'
 
 // FIXME this is a hardcoded dispute for testing purposes
 const dispute = {
@@ -64,17 +64,17 @@ const dispute = {
 
 const DisputeResolution = () => {
   return (
-    <div className="dispute-resolution">
+    <div className='dispute-resolution'>
       <SearchBar />
-      <Banner title={dispute.title} />
-      <div className="divider"></div>
-      <Parties parties={dispute.parties} />
-      <div className="divider"></div>
-      <Information text={dispute.description} truncatedCharacters={50} arbitrationFee={dispute.arbitrationFee} timeRemaining={dispute.timeRemaining} />
-      <div className="divider"></div>
-      <Evidence evidence={dispute.evidence} />
-      <div className="divider"></div>
-      <Decision resolutionOptions={dispute.resolutionOptions} />
+      <Banner title={ dispute.title } />
+      <div className='divider'></div>
+      <Parties parties={ dispute.parties } />
+      <div className='divider'></div>
+      <Information text={ dispute.description } truncatedCharacters={ 50 } arbitrationFee={ dispute.arbitrationFee } timeRemaining={ dispute.timeRemaining } />
+      <div className='divider'></div>
+      <Evidence evidence={ dispute.evidence } />
+      <div className='divider'></div>
+      <Decision resolutionOptions={ dispute.resolutionOptions } />
     </div>
   )
 }

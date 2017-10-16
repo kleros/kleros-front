@@ -4,10 +4,10 @@ import './Banner.css'
 
 const DisputeResolutionBanner = (props) => {
   return (
-    <div className="dispute-resolution-banner">
-      <div className="banner-container">
+    <div className='dispute-resolution-banner'>
+      <div className='banner-container'>
         <Link to="/disputes">&#x2190; Go back to the list</Link>
-        <div className="dispute-title">
+        <div className='dispute-title'>
           { props.title }
         </div>
       </div>

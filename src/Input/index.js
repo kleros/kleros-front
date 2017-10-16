@@ -28,7 +28,7 @@ const Input = ({
         case 'radio':
         return (
           <input
-            type="radio"
+            type='radio'
             className={innerClassName}
             value={value}
             {...rest}
@@ -38,7 +38,7 @@ const Input = ({
         case 'file':
           return (
             <input
-              type="file"
+              type='file'
               className={innerClassName}
               placeholder={placeholder}
               {...rest}

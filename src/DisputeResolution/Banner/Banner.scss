@@ -1,28 +1,26 @@
 .dispute-resolution-banner {
   height: 130px;
   width: 100%;
-  background-color: #F4F7F9;
+  background-color: #f4f7f9;
   .banner-container {
-    color: #1B2431;
+    color: #1b2431;
     padding: 33px 50px;
     a {
       height: 17px;
       width: 111px;
-      opacity: 0.58;
-      font-family: "Proxima Nova";
+      color: rgba(27, 36, 49, 0.58);
       font-size: 14px;
       line-height: 17px;
       text-decoration: none;
       decoration: none;
     }
     a:visited {
-      color: #1B2431;
+      color: inherit;
     }
     .dispute-title {
       padding-top: 13px;
       height: 31px;
       width: 339px;
-      font-family: "Proxima Nova";
       font-size: 26px;
       line-height: 31px;
     }

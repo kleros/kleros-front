@@ -3,8 +3,8 @@ import './DropdownButton.css'
 
 const DropdownButton = (props) => {
   return (
-    <div className="dropdown-button">
-      <span>{props.title}</span>
+    <div className='dropdown-button'>
+      <span>{ props.title }</span>
     </div>
   )
 }

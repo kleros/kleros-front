@@ -1,5 +1,5 @@
 .dispute-resolution {
-  color: #1B2431;
+  color: #1b2431;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -8,8 +8,7 @@
   }
   h2 {
     text-transform: uppercase;
-    opacity: 0.78;
-    font-family: "Proxima Nova";
+    color: rgba(27, 36, 49, 0.78);
     font-size: 16px;
     font-weight: 600;
     letter-spacing: 1px;
@@ -19,7 +18,6 @@
   .divider {
     height: 1px;
     width: 100%;
-    opacity: 0.38;
-    background-color: #D8D8D8;
+    background-color: rgba(216, 216, 216, 0.38);
   }
 }
