@@ -26,7 +26,9 @@ export const deployContract = (
 ) => async dispatch => {
   await dispatch(fetchPostContract(true))
   try {
-    const provider = await new Web3.providers.HttpProvider('http://localhost:8545')
+    const provider = await new Web3
+      .providers
+      .HttpProvider(process.env.REACT_APP_ETHEREUM_PROVIDER)
 
     let KlerosInstance = await new Kleros(provider)
 
