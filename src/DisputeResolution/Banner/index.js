@@ -8,7 +8,7 @@ const DisputeResolutionBanner = props => {
       <div className='banner-container'>
         <Link to='/disputes'>&#x2190; Go back to the list</Link>
         <div className='dispute-title'>
-          { props.title }
+          {props.title}
         </div>
       </div>
     </div>
