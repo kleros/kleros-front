@@ -6,12 +6,10 @@ class TruncatedTextBox extends Component {
     truncated: true
   }
 
-  showMore = () => {
-    this.setState({ truncated: false })
-  }
-
-  showLess = () => {
-    this.setState({ truncated: true })
+  toggleMore = () => {
+    this.setState({
+      truncated: !this.state.truncated
+    })
   }
 
   render () {
@@ -34,12 +32,12 @@ class TruncatedTextBox extends Component {
       }
       displayText += '...'
       actionDiv = (
-        <div className='actionDiv' onClick={this.showMore}>Show More &or;</div>
+        <div className='actionDiv' onClick={this.toggleMore}>Show More &or;</div>
       )
     } else {
       displayText = this.props.text
       actionDiv = (
-        <div className='actionDiv' onClick={this.showLess}>Show Less &and;</div>
+        <div className='actionDiv' onClick={this.toggleMore}>Show Less &and;</div>
       )
     }
 

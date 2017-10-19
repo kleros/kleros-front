@@ -6,15 +6,9 @@ class ExpandableTable extends Component {
     expand: false
   }
 
-  showMore = () => {
+  toggleMore = () => {
     this.setState({
-      expand: true
-    })
-  }
-
-  showLess = () => {
-    this.setState({
-      expand: false
+      expand: !this.state.expand
     })
   }
 
@@ -26,11 +20,11 @@ class ExpandableTable extends Component {
     if (this.props.rows.length > this.props.rowLimit) {
       if (this.state.expand) {
         actionDiv = (
-          <div className='actionDiv' onClick={this.showLess}>{this.props.lessMessage} &and;</div>
+          <div className='actionDiv' onClick={this.toggleMore}>{this.props.lessMessage} &and;</div>
         )
       } else {
         actionDiv = (
-          <div className='actionDiv' onClick={this.showMore}>{this.props.moreMessage} &or;</div>
+          <div className='actionDiv' onClick={this.toggleMore}>{this.props.moreMessage} &or;</div>
         )
       }
     }
