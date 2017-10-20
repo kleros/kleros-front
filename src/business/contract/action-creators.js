@@ -1,8 +1,11 @@
 import { Kleros } from 'kleros-api'
 import {
   fetchPostContract,
+  failurePostContract,
+  postSuccessContract,
+  requestContract,
   failureContract,
-  postSuccessContract
+  receiveContract
 } from './actions'
 import Web3 from 'web3'
 
@@ -45,13 +48,43 @@ export const deployContract = (
     let contractArbitrable = await arbitrableTransaction.deploy(
       undefined,
       undefined,
-      centralCourtDeployed.address
+      centralCourtDeployed.address,
+      hashContract,
+      timeout,
+      partyB,
+      arbitratorExtraData
     )
 
     await dispatch(postSuccessContract(contractArbitrable.address))
     await dispatch(fetchPostContract(false))
   } catch (err) {
+    dispatch(failurePostContract(true))
     // FIXME send an error user-friendly
-    throw err
+    throw new Error(err)
+  }
+}
+
+export const contractFetchData = address => async dispatch => {
+  dispatch(requestContract(true))
+
+  try {
+    const provider = await new Web3
+      .providers
+      .HttpProvider(process.env.REACT_APP_ETHEREUM_PROVIDER)
+
+    let KlerosInstance = await new Kleros(provider)
+
+    let centralCourt = await KlerosInstance.centralCourt
+
+    // add the feature to get data of the contract on kleros-api
+    //let centralCourtDeployed = await centralCourt.load(address)
+
+    if (false) { // FIXME centralCourtDeployed
+      dispatch(requestContract(false))
+      dispatch(receiveContract({address: '0x', arbitrator: '0x'})) // FIXME mock
+    }
+  } catch (err) {
+    dispatch(failureContract(true))
+    throw new Error(err) // FIXME this error should not throw the execution
   }
 }

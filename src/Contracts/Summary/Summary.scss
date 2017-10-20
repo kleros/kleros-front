@@ -1,0 +1,9 @@
+.SummaryContract-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background: #fff;
+  .content {
+    padding: 37px 50px;
+  }
+}

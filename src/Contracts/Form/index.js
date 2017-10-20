@@ -2,13 +2,27 @@ import React from 'react'
 import _ from 'lodash'
 import { SubmissionError, Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 import { deployContract } from '../../business/contract/action-creators'
 import Input from '../../Input'
 import './Form.css'
 
 const Form = props => {
-  const {formContract, handleSubmit, submitting, error, hasErrored} = props
+  const {
+    contract,
+    submitSucceeded,
+    formContract,
+    handleSubmit,
+    submitting,
+    error,
+    hasErrored
+  } = props
+
+  if (submitSucceeded) {
+    return <Redirect
+      to='/contract-summary/1'
+      push={true} />
+  }
 
   const contracts = ['Freelance', 'Buying goods', 'Services']
 
@@ -18,7 +32,12 @@ const Form = props => {
         <label htmlFor='contractName'>Select contract</label>
       </div>
       <div>
-        <Field name='contractName' component='select' id='contractName' className='input-text-contract'>
+        <Field
+          name='contractName'
+          component='select'
+          id='contractName'
+          className='input-text-contract'
+        >
           <option value=''>Select a contract</option>
           {contracts.map(contract => (
             <option value={contract} key={contract}>
@@ -90,13 +109,13 @@ const Form = props => {
           id='description'
           placeholder='Description' />
       </div>
-      { error && <div><strong>{ error }</strong></div> }
+      {error && <div><strong>{error}</strong></div>}
       <div>
         <button type='submit' disabled={submitting || error} className='submit'>
           Submit contract
         </button>
       </div>
-      { hasErrored && <div>Error contract</div> }
+      {hasErrored && <div>Error contract</div>}
     </form>
   )
 }
@@ -128,5 +147,5 @@ export default withRouter(connect(mapStateToProps, null)(
         .catch(error => {
           if (error) { throw new SubmissionError({ _error: 'submission' }) }
         })
-    }
+    },
   })(Form)))

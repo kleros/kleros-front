@@ -4,12 +4,13 @@ import {
   Route,
   Switch
 } from 'react-router-dom'
-import Disputes from '../Disputes'
-import Contracts from '../Contracts'
-import DisputeResolution from '../DisputeResolution'
 import { Provider } from 'react-redux'
 import registerServiceWorker from './registerServiceWorker'
 import store from './store'
+import Disputes from '../Disputes'
+import Contracts from '../Contracts'
+import ContractSummary from '../Contracts/Summary'
+import DisputeResolution from '../DisputeResolution'
 import Layout from '../Layout'
 import './index.css'
 
@@ -27,6 +28,11 @@ const App = () => (
             exact
             path='/contracts'
             component={Contracts}
+          />
+          <Route
+            exact
+            path='/contract-summary/:address'
+            component={ContractSummary}
           />
           <Route
             exact
