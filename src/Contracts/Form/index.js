@@ -21,7 +21,7 @@ const Form = props => {
   if (submitSucceeded) {
     return <Redirect
       to='/contract-summary/1'
-      push={true} />
+      push />
   }
 
   const contracts = ['Freelance', 'Buying goods', 'Services']
@@ -147,5 +147,5 @@ export default withRouter(connect(mapStateToProps, null)(
         .catch(error => {
           if (error) { throw new SubmissionError({ _error: 'submission' }) }
         })
-    },
+    }
   })(Form)))

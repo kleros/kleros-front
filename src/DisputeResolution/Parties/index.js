@@ -6,10 +6,10 @@ const Parties = props => {
   return (
     <div className='parties'>
       <h2>Involved Parties</h2>
-      {props.parties.map(name =>
-        <div key={name} className='party'>
+      {props.parties.map(party =>
+        <div key={party.address} className='party'>
           <div className='party-icon' />
-          <div className='party-name'>{ name }</div>
+          <div className='party-address'>{ party.address }</div>
         </div>
       ) }
     </div>

@@ -68,16 +68,16 @@ export const contractFetchData = address => async dispatch => {
   dispatch(requestContract(true))
 
   try {
-    const provider = await new Web3
-      .providers
-      .HttpProvider(process.env.REACT_APP_ETHEREUM_PROVIDER)
-
-    let KlerosInstance = await new Kleros(provider)
-
-    let centralCourt = await KlerosInstance.centralCourt
+    // const provider = await new Web3
+    //   .providers
+    //   .HttpProvider(process.env.REACT_APP_ETHEREUM_PROVIDER)
+    //
+    // let KlerosInstance = await new Kleros(provider)
+    //
+    // let centralCourt = await KlerosInstance.centralCourt
 
     // add the feature to get data of the contract on kleros-api
-    //let centralCourtDeployed = await centralCourt.load(address)
+    // let centralCourtDeployed = await centralCourt.load(address)
 
     if (false) { // FIXME centralCourtDeployed
       dispatch(requestContract(false))
