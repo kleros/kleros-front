@@ -5,7 +5,6 @@ import { contractFetchData } from '../../business/contract/action-creators'
 import './Summary.css'
 
 class SummaryContract extends Component {
-
   componentDidMount () {
     this.props.getContract(this.props.contract.address)
   }

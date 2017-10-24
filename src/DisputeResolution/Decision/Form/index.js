@@ -7,8 +7,7 @@ import Input from '../../../Input'
 import './Form.css'
 
 const Form = props => {
-  const {resolutionOptions, handleSubmit, submitting, error, hasErrored} = props
-
+  const {resolutionOptions = [], handleSubmit, submitting, error, hasErrored} = props
   return (
     <form onSubmit={handleSubmit} className='Form-container'>
       {
@@ -34,28 +33,6 @@ const Form = props => {
           </div>
         ))
       }
-      <div className='description-container'>
-        <h2>Description</h2>
-        <Field
-          name='description'
-          component={Input}
-          type='textarea'
-          innerClassName='input-textarea-contract'
-          id='description'
-        />
-      </div>
-      <div className='upload-container'>
-        <div className='upload-button' onClick={uploadClick}>
-          Add file here
-        </div>
-        <Field
-          name='upload'
-          component={Input}
-          type='file'
-          innerClassName='input-files-dispute'
-          id='file'
-        />
-      </div>
       { error && <div><strong>{ error }</strong></div> }
       <div className='button-container'>
         <button
@@ -68,10 +45,6 @@ const Form = props => {
       { hasErrored && <div>Error contract</div> }
     </form>
   )
-}
-
-const uploadClick = () => {
-  document.getElementById('file').click()
 }
 
 const FORM_NAME = 'disputeResolution'

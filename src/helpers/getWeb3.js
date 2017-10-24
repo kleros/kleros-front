@@ -1,11 +1,10 @@
-import Eth from 'ethjs'
+import Web3 from 'web3'
 
-// FIXME se web3 0.20 version
 export let getWeb3 = async () => new Promise((resolve, reject) => {
   // FIXME provider depends of the env .env.local | .env.prod
-  const eth = new Eth(new Eth.HttpProvider(process.env.REACT_APP_ETHEREUM_PROVIDER))
-  if (eth.currentProvider !== undefined) {
-    resolve(eth)
+  const web3 = new Web3(new Web3.providers.HttpProvider(process.env.REACT_APP_ETHEREUM_PROVIDER))
+  if (web3.currentProvider !== undefined) {
+    resolve(web3)
   } else {
     // use constant for error message
     reject(new Error({ error: 'no web3' }))

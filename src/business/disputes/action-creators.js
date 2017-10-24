@@ -21,7 +21,7 @@ export const getDisputes = () => async dispatch => {
   try {
     let web3 = await getWeb3()
 
-    const provider = web3.provider
+    const provider = web3.currentProvider
 
     let KlerosInstance = new Kleros(provider)
 
@@ -42,6 +42,30 @@ export const submitDisputeResolution = (values) => async dispatch => {
     // TODO submit decision to contract //
   } catch (e) {
     // FIXME display a user-friendly error //
+    throw e
+  }
+}
+
+export const getDisputeById = (disputeId) => async dispatch => {
+  dispatch(requestDisputes(true))
+
+  try {
+    let web3 = await getWeb3()
+
+    const provider = web3.currentProvider
+
+    let KlerosInstance = new Kleros(provider)
+
+    // TODO use KlerosPOC
+    let centralCourt = KlerosInstance.centralCourt
+    // FIXME use a variable input for user to set their court contract
+    const dispute = await centralCourt.getDisputeById(process.env.REACT_APP_ARBITRATOR_ADDRESS, disputeId)
+
+    // use same reducer as fetch disputes
+    await dispatch(receiveDisputes([dispute]))
+    await dispatch(requestDisputes(false))
+  } catch (e) {
+    // FIXME display a user-friendly error
     throw e
   }
 }
