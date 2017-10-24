@@ -9,7 +9,6 @@ import './Form.css'
 
 const Form = props => {
   const {
-    contract,
     submitSucceeded,
     formContract,
     handleSubmit,
