@@ -53,7 +53,6 @@ export const deployContract = (
       partyB,
       arbitratorExtraData
     )
-
     await dispatch(postSuccessContract(contractArbitrable.address))
     await dispatch(fetchPostContract(false))
   } catch (err) {

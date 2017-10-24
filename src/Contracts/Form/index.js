@@ -144,7 +144,7 @@ export default withRouter(connect(mapStateToProps, null)(
     onSubmit (values, dispatch) {
       return dispatch(deployContract(values))
         .catch(error => {
-          if (error) { throw new SubmissionError({ _error: 'submission' }) }
+          if (error) { throw new SubmissionError({ _error: 'error submission' }) }
         })
     }
   })(Form)))

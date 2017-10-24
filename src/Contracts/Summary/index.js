@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { contractFetchData } from '../../business/contract/action-creators'
+import Banner from '../../Banner'
 import './Summary.css'
 
 class SummaryContract extends Component {
@@ -22,10 +23,15 @@ class SummaryContract extends Component {
 
     return (
       <div className={`SummaryContract-container`}>
+        <Banner title='Contract summary' linkTo='/contracts' />
+        <div className='divider' />
         <div className='content'>
-          <h1>Contract summary</h1>
           <p>
-            Address: {contract.address}
+            Address: {contract.address}<br></br>
+            Arbitrator: {contract.arbitrator}<br></br>
+            Timeout: {contract.timeout}<br></br>
+            PartyA: {contract.partyA}<br></br>
+            PartyB: {contract.partyB}
           </p>
         </div>
       </div>

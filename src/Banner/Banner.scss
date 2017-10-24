@@ -1,0 +1,28 @@
+.dispute-resolution-banner {
+  height: 130px;
+  width: 100%;
+  background-color: #f4f7f9;
+  .banner-container {
+    color: #1b2431;
+    padding: 33px 50px;
+    a {
+      height: 17px;
+      width: 111px;
+      color: rgba(27, 36, 49, 0.58);
+      font-size: 14px;
+      line-height: 17px;
+      text-decoration: none;
+      decoration: none;
+    }
+    a:visited {
+      color: inherit;
+    }
+    .dispute-title {
+      width: 339px;
+      padding-top: 13px;
+      height: 31px;
+      font-size: 26px;
+      line-height: 31px;
+    }
+  }
+}

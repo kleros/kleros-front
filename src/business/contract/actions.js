@@ -1,6 +1,6 @@
-export const FETCH_POST_CONTRACT = 'REQUEST_DISPUTES'
+export const FETCH_POST_CONTRACT = 'FETCH_POST_CONTRACT'
 export const FAILURE_POST_CONTRACT = 'FAILURE_POST_CONTRACT'
-export const RECEIVE_ADDRESS = 'RECEIVE_ADDRESS'
+export const RECEIVE_ADDRESS_CONTRACT = 'RECEIVE_ADDRESS_CONTRACT'
 export const REQUEST_CONTRACT = 'REQUEST_CONTRACT'
 export const FAILURE_CONTRACT = 'FAILURE_CONTRACT'
 export const RECEIVE_CONTRACT = 'RECEIVE_CONTRACT'
@@ -21,7 +21,7 @@ export const failurePostContract = hasErrored => {
 
 export const postSuccessContract = address => {
   return {
-    type: RECEIVE_ADDRESS,
+    type: RECEIVE_ADDRESS_CONTRACT,
     address
   }
 }

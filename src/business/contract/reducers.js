@@ -1,7 +1,7 @@
 import {
   FETCH_POST_CONTRACT,
   FAILURE_POST_CONTRACT,
-  RECEIVE_ADDRESS,
+  RECEIVE_ADDRESS_CONTRACT,
   REQUEST_CONTRACT,
   FAILURE_CONTRACT,
   RECEIVE_CONTRACT
@@ -25,10 +25,10 @@ export function failurePostContract (state = false, action) {
   }
 }
 
-export function address (state = 0x0, action) {
+export function address (state = {}, action) {
   switch (action.type) {
-    case RECEIVE_ADDRESS:
-      return action.address
+    case RECEIVE_ADDRESS_CONTRACT:
+      return action.postSuccessContract
     default:
       return state
   }
