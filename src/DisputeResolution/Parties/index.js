@@ -9,7 +9,7 @@ const Parties = props => {
       {props.parties.map(party =>
         <div key={party.address} className='party'>
           <div className='party-icon' />
-          <div className='party-address'>{ party.address }</div>
+          <div className='party-address'>{party.address}</div>
         </div>
       ) }
     </div>

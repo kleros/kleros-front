@@ -25,7 +25,7 @@ class DisputeResolution extends Component {
     // FIXME only applies to twoParty contract. Generalize
     const parties = [{address: dispute.disputedContractData.partyA}, {address: dispute.disputedContractData.partyB}]
 
-    let web3 = new Web3()
+    const web3 = new Web3()
     const arbitrationFee = web3.fromWei(dispute.fee)
 
     return (

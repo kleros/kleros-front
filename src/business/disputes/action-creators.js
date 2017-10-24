@@ -59,7 +59,7 @@ export const getDisputeById = (disputeId) => async dispatch => {
     // TODO use KlerosPOC
     let centralCourt = KlerosInstance.centralCourt
     // FIXME use a variable input for user to set their court contract
-    const dispute = await centralCourt.getDisputeById(process.env.REACT_APP_ARBITRATOR_CONTRACT_ADDRESS, disputeId)
+    const dispute = await centralCourt.getDisputeById(process.env.REACT_APP_ARBITRATOR_ADDRESS, disputeId)
 
     // use same reducer as fetch disputes
     await dispatch(receiveDisputes([dispute]))
