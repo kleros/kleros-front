@@ -6,7 +6,7 @@ import {
   requestContract,
   failureContract
 } from './actions'
-import Web3 from 'web3'
+import { getWeb3 } from '../../helpers/getWeb3'
 
 export const errorAfterFiveSeconds = () => {
   return dispatch => {
@@ -17,42 +17,35 @@ export const errorAfterFiveSeconds = () => {
   }
 }
 
-export const deployContract = (
+export const deployContract = ({
   account = undefined,
-  value = 0,
+  value = undefined,
   arbitrator,
-  hashContract = 0x6aa0bb2779ab006be0739900654a89f1f8a2d7373ed38490a7cbab9c9392e1ff,
+  hashContract,
   timeout = 100,
   partyB,
   arbitratorExtraData = ''
-) => async dispatch => {
+}) => async dispatch => {
   await dispatch(fetchPostContract(true))
   try {
-    const provider = await new Web3
-      .providers
-      .HttpProvider(process.env.REACT_APP_ETHEREUM_PROVIDER)
+    let web3 = await getWeb3()
 
-    let KlerosInstance = await new Kleros(provider)
+    const provider = web3.currentProvider
 
-    // FIXME deploy a central court //
-
-    let centralCourt = await KlerosInstance.centralCourt
-
-    let centralCourtDeployed = await centralCourt.deploy()
-
-    // End deploy a central court //
+    let KlerosInstance = new Kleros(provider)
 
     let arbitrableTransaction = await KlerosInstance.arbitrableTransaction
 
     let contractArbitrable = await arbitrableTransaction.deploy(
-      undefined,
-      undefined,
-      centralCourtDeployed.address,
+      account,
+      value,
+      process.env.REACT_APP_ARBITRATOR_ADDRESS,
       hashContract,
       timeout,
       partyB,
       arbitratorExtraData
     )
+
     await dispatch(postSuccessContract(contractArbitrable.address))
     await dispatch(fetchPostContract(false))
   } catch (err) {

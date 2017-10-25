@@ -65,7 +65,7 @@ const Form = props => {
           <Field
             name='timeout'
             component={Input}
-            type='text'
+            type='number'
             required
             innerClassName='input-text-contract-param'
             placeholder='Timeout' />
@@ -130,8 +130,16 @@ const mapStateToProps = state => {
 const validate = values => {
   const errors = {}
 
+  if (!/^(0x)?[0-9a-f]{40}$/i.test(values.arbitrator)) {
+    errors.arbitrator = 'Arbitrator address invalid'
+  }
+
+  if (!/^(0x)?[0-9a-f]{40}$/i.test(values.partyB)) {
+    errors.partyB = 'PartyB address invalid'
+  }
+
   if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Email invalide'
+    errors.email = 'Email invalid'
   }
 
   return errors
