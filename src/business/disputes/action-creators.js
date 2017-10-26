@@ -2,7 +2,9 @@ import { Kleros } from 'kleros-api'
 import {
   requestDisputes,
   failureDisputes,
-  receiveDisputes
+  receiveDisputes,
+  requestCaseData,
+  receiveCaseData
 } from './actions'
 import { getWeb3 } from '../../helpers/getWeb3'
 
@@ -23,12 +25,11 @@ export const getDisputes = () => async dispatch => {
 
     const provider = web3.currentProvider
 
-    let KlerosInstance = new Kleros(provider)
+    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
 
     let court = KlerosInstance.court
 
-    const disputes = await court.getDisputes()
-
+    const disputes = await court.getDisputesForUser()
     await dispatch(receiveDisputes(disputes))
     await dispatch(requestDisputes(false))
   } catch (e) {
@@ -47,23 +48,23 @@ export const submitDisputeResolution = (values) => async dispatch => {
 }
 
 export const getDisputeById = (disputeId) => async dispatch => {
-  dispatch(requestDisputes(true))
+  dispatch(requestCaseData(true))
 
   try {
     let web3 = await getWeb3()
 
     const provider = web3.currentProvider
 
-    let KlerosInstance = new Kleros(provider)
+    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
 
     // TODO use KlerosPOC
-    let centralCourt = KlerosInstance.centralCourt
+    let court = KlerosInstance.court
     // FIXME use a variable input for user to set their court contract
-    const dispute = await centralCourt.getDisputeById(process.env.REACT_APP_ARBITRATOR_ADDRESS, disputeId)
+    const disputeData = await court.getDisputeByHash(disputeId)
 
     // use same reducer as fetch disputes
-    await dispatch(receiveDisputes([dispute]))
-    await dispatch(requestDisputes(false))
+    await dispatch(receiveCaseData(disputeData))
+    await dispatch(requestCaseData(false))
   } catch (e) {
     // FIXME display a user-friendly error
     throw e
