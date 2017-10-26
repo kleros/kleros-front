@@ -24,7 +24,9 @@ export const deployContract = ({
   hashContract,
   timeout = 100,
   partyB,
-  arbitratorExtraData = ''
+  arbitratorExtraData = '',
+  email = '',
+  description = ''
 }) => async dispatch => {
   await dispatch(fetchPostContract(true))
   try {
@@ -32,7 +34,9 @@ export const deployContract = ({
 
     const provider = web3.currentProvider
 
-    let KlerosInstance = new Kleros(provider)
+    let KlerosInstance = new Kleros(provider, 'https://kleros.im')
+
+    console.log(KlerosInstance)
 
     let arbitrableTransaction = await KlerosInstance.arbitrableTransaction
 
@@ -43,7 +47,9 @@ export const deployContract = ({
       hashContract,
       timeout,
       partyB,
-      arbitratorExtraData
+      arbitratorExtraData,
+      email,
+      description
     )
 
     await dispatch(postSuccessContract(contractArbitrable.address))
