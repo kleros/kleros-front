@@ -32,8 +32,6 @@ class DisputeResolution extends Component {
     const arbitrationFee = web3.fromWei(dispute.disputeData.fee)
 
     // time remaining TODO use momentjs to calculate time difference between now and end time
-
-
     return (
       <div className='dispute-resolution'>
         <SearchBar />

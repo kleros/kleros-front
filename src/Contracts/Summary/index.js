@@ -27,10 +27,10 @@ class SummaryContract extends Component {
         <div className='divider' />
         <div className='content'>
           <p>
-            Address: {contract.address}<br></br>
-            Arbitrator: {contract.arbitrator}<br></br>
-            Timeout: {contract.timeout}<br></br>
-            PartyA: {contract.partyA}<br></br>
+            Address: {contract.address}<br />
+            Arbitrator: {contract.arbitrator}<br />
+            Timeout: {contract.timeout}<br />
+            PartyA: {contract.partyA}<br />
             PartyB: {contract.partyB}
           </p>
         </div>
