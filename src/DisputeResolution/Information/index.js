@@ -15,11 +15,11 @@ const Information = props => {
         <h2>Dispute Information</h2>
         <div className='statistic'>
           <div className='title'>Arbitration Fee</div>
-          <div className='value'>{ props.arbitrationFee } ETH</div>
+          <div className='value'>{props.arbitrationFee} ETH</div>
         </div>
         <div className='statistic'>
           <div className='title'>Time Remaining</div>
-          <div className='value'>{ props.timeRemaining }</div>
+          <div className='value'>{props.timeRemaining}</div>
         </div>
       </div>
     </div>

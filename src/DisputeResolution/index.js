@@ -18,28 +18,32 @@ class DisputeResolution extends Component {
   }
 
   render () {
-    const dispute = this.props.disputes[0]
+    if (this.props.isFetching) return false
+
+    const dispute = this.props.caseData
     // FIXME show dispute not found message or a loading indicator
     if (!dispute) return false
 
     // FIXME only applies to twoParty contract. Generalize
-    const parties = [{address: dispute.disputedContractData.partyA}, {address: dispute.disputedContractData.partyB}]
+    const parties = [{address: dispute.disputeData.partyA}, {address: dispute.disputeData.partyB}]
 
+    // arbitration fee
     const web3 = new Web3()
-    const arbitrationFee = web3.fromWei(dispute.fee)
+    const arbitrationFee = web3.fromWei(dispute.disputeData.fee)
 
+    // time remaining TODO use momentjs to calculate time difference between now and end time
     return (
       <div className='dispute-resolution'>
         <SearchBar />
-        <Banner title={dispute.title} />
+        <Banner title={dispute.disputeData.title} />
         <div className='divider' />
         <Parties parties={parties} />
         <div className='divider' />
-        <Information text={dispute.description} truncatedCharacters={50} arbitrationFee={arbitrationFee} timeRemaining={dispute.timeRemaining} />
+        <Information text={dispute.contractData.description} truncatedCharacters={50} arbitrationFee={arbitrationFee} timeRemaining={dispute.disputeData.deadline} />
         <div className='divider' />
-        <Evidence evidence={dispute.evidence} />
+        <Evidence evidence={dispute.contractData.evidencePartyA.concat(dispute.contractData.evidencePartyB)} />
         <div className='divider' />
-        <Decision resolutionOptions={dispute.resolutionOptions} />
+        <Decision resolutionOptions={dispute.disputeData.resolutionOptions} />
       </div>
     )
   }
@@ -47,9 +51,9 @@ class DisputeResolution extends Component {
 
 const mapStateToProps = state => {
   return {
-    disputes: state.disputes.disputes,
-    hasErrored: state.disputes.failureDisputes,
-    isFetching: state.disputes.requestDisputes
+    caseData: state.disputes.caseData,
+    hasErrored: state.disputes.failureCaseData,
+    isFetching: state.disputes.requestCaseData
   }
 }
 

@@ -19,7 +19,7 @@ class TruncatedTextBox extends Component {
     if (words.length <= this.props.truncatedCharacters) {
       return (
         <div className='truncatedTextBox'>
-          this.props.text
+          {this.props.text}
         </div>
       )
     }

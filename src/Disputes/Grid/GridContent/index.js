@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import 'babel-polyfill'
 import { getDisputes } from '../../../business/disputes/action-creators'
+import { truncateAddress } from '../../../helpers/truncateAddress'
 import './GridContent.css'
 
 class GridContent extends Component {
@@ -12,7 +13,6 @@ class GridContent extends Component {
 
   render () {
     const { hasErrored, isFetching, disputes } = this.props
-
     if (hasErrored) {
       return <p>Sorry! There was an error loading the balance</p>
     }
@@ -34,14 +34,14 @@ class GridContent extends Component {
         <div className='items'>
           {
             disputes.map(dispute =>
-              <Link to={`disputes/${dispute.caseId}`}>
-                <div key={dispute.caseId} className='items-row'>
+              <Link key={dispute.hash} to={`disputes/${dispute.hash}`}>
+                <div className='items-row'>
                   <div className='item item-project'>
                     <div className='item-title'>{ dispute.title }</div>
                     <div className='item-category'>{ dispute.category }</div>
                   </div>
                   <div className='item item-deadline'>{ dispute.deadline }</div>
-                  <div className='item item-case_id'>#{ dispute.caseId }</div>
+                  <div className='item item-case_id'>{ truncateAddress(dispute.hash, 10) }</div>
                   <div className='item item-status'>{ dispute.status }</div>
                 </div>
               </Link>

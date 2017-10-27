@@ -7,7 +7,7 @@ import './EvidenceTable.css'
 const EvidenceTable = (props) => {
   const {evidence = []} = props
   const rows = evidence.map(document => (
-    <div key={document.name}>
+    <div key={document.hash}>
       <EvidenceRow name={document.name} description={document.description} />
       <div className='divider' />
     </div>
