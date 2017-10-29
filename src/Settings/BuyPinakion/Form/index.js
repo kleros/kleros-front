@@ -51,7 +51,9 @@ export default withRouter(connect(mapStateToProps, null)(
     onSubmit (values, dispatch) {
       return dispatch(buyPinakion(values))
         .catch(error => {
-          if (error) { throw new SubmissionError({ _error: 'submission' }) }
+          if (error) {
+            throw new SubmissionError({_error: 'unable to buy pinakion'})
+          }
         })
     }
   })(Form)))

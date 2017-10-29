@@ -13,22 +13,22 @@ class Sidebar extends Component {
   }
 
   render () {
+    const {balanceIsFetching, addressIsFetching, balanceHasErrored, addressHasErrored, items} = this.props
     let balance = 0
     let address = 'loading...'
 
-    if (!this.props.balanceIsFetching) balance = this.props.balance
-    if (!this.props.addressIsFetching) address = this.props.address
+    if (!balanceIsFetching) balance = this.props.balance
+    if (!addressIsFetching) address = this.props.address
 
-    if (this.props.balanceHasErrored) balance = -1
-    if (this.props.addressHasErrored) balance = '-error-'
+    if (balanceHasErrored) balance = -1
+    if (addressHasErrored) balance = '-error-'
 
     return (
-      <div className={`Sidebar-container ${this.props.className}`}>
+      <div className={'Sidebar-container'}>
         <ShortProfile address={address} balancePNK={balance} />
         <div className='divider' />
-        <MenuSidebar items={this.props.items} />
+        <MenuSidebar items={items} />
         <div className='emptybar' />
-        { this.props.children }
       </div>
     )
   }
@@ -47,8 +47,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getBalance: url => dispatch(balanceFetchData()),
-    getAddress: url => dispatch(fetchAddress())
+    getBalance: () => dispatch(balanceFetchData()),
+    getAddress: () => dispatch(fetchAddress())
   }
 }
 

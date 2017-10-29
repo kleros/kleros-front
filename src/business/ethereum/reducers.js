@@ -52,7 +52,7 @@ export function failureAddress (state = false, action) {
   }
 }
 
-export function address (state = [], action) {
+export function address (state = 0x0, action) {
   switch (action.type) {
     case RECEIVE_ADDRESS:
       return action.address
