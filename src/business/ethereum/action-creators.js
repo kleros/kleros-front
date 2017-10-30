@@ -30,12 +30,12 @@ export const balanceFetchData = () => async dispatch => {
   }
 }
 
-export const fetchAddress = () => async dispatch => {
+export const fetchAddress = (account = 0) => async dispatch => {
   dispatch(requestAddress(true))
   try {
     let web3 = await getWeb3()
     dispatch(requestAddress(false))
-    dispatch(receiveAddress(web3.eth.accounts[0]))
+    dispatch(receiveAddress(web3.eth.accounts[account]))
   } catch (e) {
     // FIXME display a user-friendly error
     dispatch(failureAddress(true))
