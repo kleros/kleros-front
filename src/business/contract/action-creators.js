@@ -34,9 +34,7 @@ export const deployContract = ({
 
     const provider = web3.currentProvider
 
-    let KlerosInstance = new Kleros(provider, 'https://kleros.im')
-
-    console.log(KlerosInstance)
+    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
 
     let arbitrableTransaction = await KlerosInstance.arbitrableTransaction
 
