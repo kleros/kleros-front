@@ -52,7 +52,7 @@ export function failureContract (state = false, action) {
   }
 }
 
-export function data (state = [], action) {
+export function data (state = {}, action) {
   switch (action.type) {
     case RECEIVE_CONTRACT:
       return action.data

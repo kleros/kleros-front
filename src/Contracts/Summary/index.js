@@ -21,18 +21,22 @@ class SummaryContract extends Component {
       return <p>Loading…</p>
     }
 
+    // TODO get address by the kleros store => Address: {contract.address}<br />
     return (
       <div className={`SummaryContract-container`}>
         <Banner title='Contract summary' linkTo='/contracts' />
         <div className='divider' />
         <div className='content'>
-          <p>
+          <div className='summary'>
             Address: {contract.address}<br />
-            Arbitrator: {contract.arbitrator}<br />
-            Timeout: {contract.timeout}<br />
-            PartyA: {contract.partyA}<br />
-            PartyB: {contract.partyB}
-          </p>
+            Arbitrator: {contract.data.arbitrator}<br />
+            Timeout: {contract.data.timeout}<br />
+            PartyA: {contract.data.partyA}<br />
+            PartyB: {contract.data.partyB}
+          </div>
+          <button type='submit' className='submit'>
+            Create dispute
+          </button>
         </div>
       </div>
     )

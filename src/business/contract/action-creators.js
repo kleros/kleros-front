@@ -4,7 +4,8 @@ import {
   failurePostContract,
   postSuccessContract,
   requestContract,
-  failureContract
+  failureContract,
+  receiveContract
 } from './actions'
 import { getWeb3 } from '../../helpers/getWeb3'
 
@@ -63,7 +64,19 @@ export const contractFetchData = address => async dispatch => {
   dispatch(requestContract(true))
 
   try {
-    // TOOO
+    let web3 = await getWeb3()
+
+    const provider = web3.currentProvider
+
+    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+
+    let arbitrableTransaction = await KlerosInstance.arbitrableTransaction
+
+    let contractDataDeployed = await arbitrableTransaction
+      .getDataContract('0x0adcc658427d894a1e6031914264a85beb4b9178')
+
+    await dispatch(receiveContract(contractDataDeployed))
+    await dispatch(requestContract(false))
   } catch (err) {
     dispatch(failureContract(true))
     throw new Error(err) // FIXME this error should not throw the execution
