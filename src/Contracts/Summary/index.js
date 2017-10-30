@@ -53,7 +53,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getContract: url => dispatch(contractFetchData())
+    getContract: address => dispatch(contractFetchData(address))
   }
 }
 
