@@ -11,6 +11,7 @@ import Disputes from '../Disputes'
 import Contracts from '../Contracts'
 import ContractSummary from '../Contracts/Summary'
 import DisputeResolution from '../DisputeResolution'
+import Settings from '../Settings'
 import Layout from '../Layout'
 import './index.css'
 
@@ -38,6 +39,11 @@ const App = () => (
             exact
             path='/disputes/:disputeId'
             component={DisputeResolution}
+          />
+          <Route
+            exact
+            path='/settings'
+            component={Settings}
           />
         </Layout>
       </Switch>

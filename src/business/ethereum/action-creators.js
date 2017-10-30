@@ -1,26 +1,63 @@
 import {
   requestBalance,
   failureBalance,
-  receiveBalance
+  receiveBalance,
+  requestAddress,
+  failureAddress,
+  receiveAddress,
+  buyingPinakion
 } from './actions'
+import { Kleros } from 'kleros-api'
+import { getWeb3 } from '../../helpers/getWeb3'
 
-const asyncWeb3GetBalance = () => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(42)
-    }, 2000)
-  })
+export const balanceFetchData = () => async dispatch => {
+  dispatch(requestBalance(true))
+  try {
+    let web3 = await getWeb3()
+
+    const provider = web3.currentProvider
+
+    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+
+    let court = KlerosInstance.court
+
+    const balance = await court.getPNKBalance()
+    dispatch(requestBalance(false))
+    dispatch(receiveBalance(balance))
+  } catch (e) {
+    // FIXME display a user-friendly error
+    dispatch(failureBalance(true))
+  }
 }
 
-export const balanceFetchData = () => {
-  return dispatch => {
-    dispatch(requestBalance(true))
+export const fetchAddress = () => async dispatch => {
+  dispatch(requestAddress(true))
+  try {
+    let web3 = await getWeb3()
+    dispatch(requestAddress(false))
+    dispatch(receiveAddress(web3.eth.accounts[0]))
+  } catch (e) {
+    // FIXME display a user-friendly error
+    dispatch(failureAddress(true))
+  }
+}
 
-    asyncWeb3GetBalance()
-      .then(response => {
-        dispatch(requestBalance(false))
-        dispatch(receiveBalance(response))
-      })
-      .catch(() => dispatch(failureBalance(true)))
+export const buyPinakion = buyForm => async dispatch => {
+  dispatch(buyingPinakion(true))
+  try {
+    let web3 = await getWeb3()
+
+    const provider = web3.currentProvider
+
+    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+
+    let court = KlerosInstance.court
+
+    const newBalance = await court.buyPinakion(buyForm.amount)
+    dispatch(buyingPinakion(false))
+    dispatch(receiveBalance(newBalance))
+  } catch (e) {
+    // FIXME display a user-friendly error
+    throw e
   }
 }

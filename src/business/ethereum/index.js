@@ -2,11 +2,17 @@ import { combineReducers } from 'redux'
 import {
   requestBalance,
   failureBalance,
-  balance
+  balance,
+  requestAddress,
+  failureAddress,
+  address
 } from './reducers'
 
 export default combineReducers({
   requestBalance,
   failureBalance,
-  balance
+  balance,
+  requestAddress,
+  failureAddress,
+  address
 })

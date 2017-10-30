@@ -1,0 +1,18 @@
+.Form-container {
+  .input-container {
+    padding: 25px 0px;
+  }
+  .amount-container {
+    margin-top: 15px;
+  }
+  .button-container {
+    button {
+      height: 60px;
+      width: 350px;
+      border-radius: 4px;
+      background: linear-gradient(0deg, #0059ab 0%, #0468c4 100%);
+      box-shadow: 0 1px 0 0 #024e95;
+    }
+    margin-top: 34px;
+  }
+}

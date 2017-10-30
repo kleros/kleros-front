@@ -1,23 +1,55 @@
-import React from 'react'
+import React, { Component } from 'react'
 import ShortProfile from './ShortProfile'
 import MenuSidebar from './MenuSidebar'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+import { balanceFetchData, fetchAddress } from '../business/ethereum/action-creators'
 import './Sidebar.css'
 
-const Sidebar = ({
-  className,
-  address,
-  balancePNK = 0,
-  items = [],
-  children,
-  ...rest
-}) => (
-  <div className={`Sidebar-container ${className}`}>
-    <ShortProfile address={address} balancePNK={balancePNK} />
-    <div className='divider' />
-    <MenuSidebar items={items} />
-    <div className='emptybar' />
-    { children }
-  </div>
-)
+class Sidebar extends Component {
+  componentWillMount () {
+    this.props.getBalance()
+    this.props.getAddress()
+  }
 
-export default Sidebar
+  render () {
+    const {balanceIsFetching, addressIsFetching, balanceHasErrored, addressHasErrored, items} = this.props
+    let balance = 0
+    let address = 'loading...'
+
+    if (!balanceIsFetching) balance = this.props.balance
+    if (!addressIsFetching) address = this.props.address
+
+    if (balanceHasErrored) balance = -1
+    if (addressHasErrored) balance = '-error-'
+
+    return (
+      <div className={'Sidebar-container'}>
+        <ShortProfile address={address} balancePNK={balance} />
+        <div className='divider' />
+        <MenuSidebar items={items} />
+        <div className='emptybar' />
+      </div>
+    )
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    balance: state.ethereum.balance,
+    balanceHasErrored: state.ethereum.failureBalance,
+    balanceIsFetching: state.ethereum.requestBalance,
+    address: state.ethereum.address,
+    addressHasErrored: state.ethereum.failureAddress,
+    addressIsFetching: state.ethereum.requestAddress
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getBalance: () => dispatch(balanceFetchData()),
+    getAddress: () => dispatch(fetchAddress())
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Sidebar))

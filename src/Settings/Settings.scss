@@ -1,0 +1,9 @@
+.Settings-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  color: #1b2431;
+  .content {
+    padding: 37px 50px;
+  }
+}
