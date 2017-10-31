@@ -21,10 +21,11 @@ export const balanceFetchData = () => async dispatch => {
 
     let court = KlerosInstance.court
 
-    const balance = await court.getPNKBalance()
+    const balance = await court.getPNKBalance(process.env.REACT_APP_ARBITRATOR_ADDRESS)
     dispatch(requestBalance(false))
     dispatch(receiveBalance(balance))
   } catch (e) {
+    console.log(e)
     // FIXME display a user-friendly error
     dispatch(failureBalance(true))
   }
@@ -53,11 +54,12 @@ export const buyPinakion = buyForm => async dispatch => {
 
     let court = KlerosInstance.court
 
-    const newBalance = await court.buyPinakion(buyForm.amount)
+    const newBalance = await court.buyPinakion(buyForm.amount, process.env.REACT_APP_ARBITRATOR_ADDRESS)
     dispatch(buyingPinakion(false))
     dispatch(receiveBalance(newBalance))
   } catch (e) {
     // FIXME display a user-friendly error
+    console.log(e)
     throw e
   }
 }
