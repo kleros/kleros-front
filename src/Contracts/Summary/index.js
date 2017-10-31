@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { contractFetchData } from '../../business/contract/action-creators'
+import FontAwesome from 'react-fontawesome'
+import { contractRaiseDispute, contractFetchData } from '../../business/contract/action-creators'
 import Banner from '../../Banner'
 import './Summary.css'
 
@@ -9,6 +10,8 @@ class SummaryContract extends Component {
   componentDidMount () {
     this.props.getContract(this.props.contract.address)
   }
+
+  raiseDispute = e => this.props.raiseDisputeContract(this.props.contract)
 
   render () {
     const {contract} = this.props
@@ -34,7 +37,12 @@ class SummaryContract extends Component {
             PartyA: {contract.data.partyA}<br />
             PartyB: {contract.data.partyB}
           </div>
-          <button type='submit' className='submit'>
+          <button onClick={this.raiseDispute} type='submit' className='submit'>
+            <FontAwesome
+              name='circle-o-notch'
+              spin
+              style={{marginRight: '10px'}}
+            />
             Create dispute
           </button>
         </div>
@@ -53,7 +61,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getContract: address => dispatch(contractFetchData(address))
+    getContract: contractAddress =>
+      dispatch(contractFetchData(contractAddress)),
+    raiseDisputeContract: (contract, arbitrationCost) =>
+      dispatch(contractRaiseDispute(contract, arbitrationCost))
   }
 }
 

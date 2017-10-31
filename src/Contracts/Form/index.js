@@ -3,6 +3,7 @@ import _ from 'lodash'
 import { SubmissionError, Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { withRouter, Redirect } from 'react-router-dom'
+import FontAwesome from 'react-fontawesome'
 import { deployContract } from '../../business/contract/action-creators'
 import Input from '../../Input'
 import './Form.css'
@@ -111,6 +112,14 @@ const Form = props => {
       {error && <div><strong>{error}</strong></div>}
       <div>
         <button type='submit' disabled={submitting || error} className='submit'>
+          {
+            submitting &&
+            <FontAwesome
+              name='circle-o-notch'
+              spin
+              style={{marginRight: '10px'}}
+            />
+          }
           Submit contract
         </button>
       </div>
@@ -152,7 +161,7 @@ export default withRouter(connect(mapStateToProps, null)(
     onSubmit (values, dispatch) {
       return dispatch(deployContract(values))
         .catch(error => {
-          if (error) { throw new SubmissionError({ _error: 'error submission' }) }
+          if (error) { throw new SubmissionError({_error: 'error submission'}) }
         })
     }
   })(Form)))

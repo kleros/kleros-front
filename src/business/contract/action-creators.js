@@ -5,7 +5,8 @@ import {
   postSuccessContract,
   requestContract,
   failureContract,
-  receiveContract
+  receiveContract,
+  raiseDisputeContract
 } from './actions'
 import { getWeb3 } from '../../helpers/getWeb3'
 
@@ -35,7 +36,10 @@ export const deployContract = ({
 
     const provider = web3.currentProvider
 
-    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+    let KlerosInstance = new Kleros(
+      provider,
+      process.env.REACT_APP_STORE_PROVIDER
+    )
 
     let arbitrableTransaction = await KlerosInstance.arbitrableTransaction
 
@@ -60,7 +64,7 @@ export const deployContract = ({
   }
 }
 
-export const contractFetchData = address => async dispatch => {
+export const contractFetchData = contractAddress => async dispatch => {
   dispatch(requestContract(true))
 
   try {
@@ -68,14 +72,54 @@ export const contractFetchData = address => async dispatch => {
 
     const provider = web3.currentProvider
 
-    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+    let KlerosInstance = new Kleros(
+      provider,
+      process.env.REACT_APP_STORE_PROVIDER
+    )
 
     let arbitrableTransaction = await KlerosInstance.arbitrableTransaction
 
-    let contractDataDeployed = await arbitrableTransaction
-      .getDataContract(address)
+    const contractDataDeployed = await arbitrableTransaction
+      .getDataContract('0x1707354be08d40db08ab983baaa51acafa68e755')
 
     await dispatch(receiveContract(contractDataDeployed))
+    await dispatch(requestContract(false))
+  } catch (err) {
+    dispatch(failureContract(true))
+    throw new Error(err) // FIXME this error should not throw the execution
+  }
+}
+
+export const contractRaiseDispute =
+  (contract, arbitrationCost = 1000) => async (
+    dispatch
+  ) => {
+  dispatch(requestContract(true))
+
+  try {
+    let web3 = await getWeb3()
+
+    const provider = web3.currentProvider
+
+    let KlerosInstance = new Kleros(
+      provider,
+      process.env.REACT_APP_STORE_PROVIDER
+    )
+
+    let arbitrableTransaction = await KlerosInstance.arbitrableTransaction
+
+    console.log('KlerosInstance.getAccount()',KlerosInstance.getAccount())
+
+    let raiseDisputeContractTx = 0x0
+
+    if (KlerosInstance.getAccount() === contract.partyA) {
+      raiseDisputeContractTx = arbitrableTransaction.payArbitrationFeeByPartyA()
+    } else {
+      raiseDisputeContractTx = arbitrableTransaction.payArbitrationFeeByPartyB()
+    }
+
+    await dispatch(raiseDisputeContract(raiseDisputeContractTx))
+
     await dispatch(requestContract(false))
   } catch (err) {
     dispatch(failureContract(true))

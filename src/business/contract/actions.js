@@ -4,6 +4,7 @@ export const RECEIVE_ADDRESS_CONTRACT = 'RECEIVE_ADDRESS_CONTRACT'
 export const REQUEST_CONTRACT = 'REQUEST_CONTRACT'
 export const FAILURE_CONTRACT = 'FAILURE_CONTRACT'
 export const RECEIVE_CONTRACT = 'RECEIVE_CONTRACT'
+export const RAISE_DISPUTE_CONTRACT = 'RAISE_DISPUTE_CONTRACT'
 
 export const fetchPostContract = isFetching => {
   return {
@@ -44,5 +45,12 @@ export const receiveContract = data => {
   return {
     type: RECEIVE_CONTRACT,
     data
+  }
+}
+
+export const raiseDisputeContract = raiseDisputeContractTx => {
+  return {
+    type: RAISE_DISPUTE_CONTRACT,
+    raiseDisputeContractTx
   }
 }

@@ -4,7 +4,8 @@ import {
   RECEIVE_ADDRESS_CONTRACT,
   REQUEST_CONTRACT,
   FAILURE_CONTRACT,
-  RECEIVE_CONTRACT
+  RECEIVE_CONTRACT,
+  RAISE_DISPUTE_CONTRACT
 } from './actions'
 
 export function fetchPostContract (state = false, action) {
@@ -56,6 +57,15 @@ export function data (state = {}, action) {
   switch (action.type) {
     case RECEIVE_CONTRACT:
       return action.data
+    default:
+      return state
+  }
+}
+
+export function raiseDisputeContract (state = 0x0, action) {
+  switch (action.type) {
+    case RAISE_DISPUTE_CONTRACT:
+      return action.raiseDisputeContractTx
     default:
       return state
   }
