@@ -108,8 +108,6 @@ export const contractRaiseDispute =
 
     let arbitrableTransaction = await KlerosInstance.arbitrableTransaction
 
-    console.log('KlerosInstance.getAccount()',KlerosInstance.getAccount())
-
     let raiseDisputeContractTx = 0x0
 
     if (KlerosInstance.getAccount() === contract.partyA) {
