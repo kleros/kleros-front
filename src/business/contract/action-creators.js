@@ -106,14 +106,20 @@ export const contractRaiseDispute =
       process.env.REACT_APP_STORE_PROVIDER
     )
 
-    let arbitrableTransaction = await KlerosInstance.arbitrableTransaction
+    let arbitrableTransaction = await KlerosInstance
+      .arbitrableTransaction
+
+    let arbitrableTransactionInstance = await arbitrableTransaction
+      .load(contract.address)
 
     let raiseDisputeContractTx = 0x0
 
-    if (KlerosInstance.getAccount() === contract.partyA) {
-      raiseDisputeContractTx = arbitrableTransaction.payArbitrationFeeByPartyA()
+    if (KlerosInstance.getWeb3Wrapper().getAccount(0) === contract.partyA) {
+      raiseDisputeContractTx = arbitrableTransactionInstance
+        .payArbitrationFeeByPartyA()
     } else {
-      raiseDisputeContractTx = arbitrableTransaction.payArbitrationFeeByPartyB()
+      raiseDisputeContractTx = arbitrableTransactionInstance
+        .payArbitrationFeeByPartyB()
     }
 
     await dispatch(raiseDisputeContract(raiseDisputeContractTx))
