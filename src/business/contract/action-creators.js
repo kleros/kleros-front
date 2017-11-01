@@ -91,9 +91,9 @@ export const contractFetchData = contractAddress => async dispatch => {
 }
 
 export const contractRaiseDispute =
-  (contract, arbitrationCost = 1000) => async (
-    dispatch
-  ) => {
+(contract, arbitrationCost = 1000) => async (
+  dispatch
+) => {
   dispatch(requestContract(true))
 
   try {
