@@ -5,6 +5,7 @@ export const REQUEST_ADDRESS = 'REQUEST_ADDRESS'
 export const FAILURE_ADDRESS = 'FAILURE_ADDRESS'
 export const RECEIVE_ADDRESS = 'RECEIVE_ADDRESS'
 export const BUYING_PINAKION = 'BUYING_PINAKION'
+export const ACTIVATING_PINAKION = 'ACTIVATING_PINAKION'
 
 export const requestBalance = isFetching => {
   return {
@@ -52,5 +53,12 @@ export const buyingPinakion = isBuying => {
   return {
     type: BUYING_PINAKION,
     isBuying
+  }
+}
+
+export const activatingPinakion = isActivating => {
+  return {
+    type: ACTIVATING_PINAKION,
+    isActivating
   }
 }

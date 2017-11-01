@@ -3,7 +3,7 @@ import { SubmissionError, Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import FontAwesome from 'react-fontawesome'
-import { buyPinakion } from '../../../business/ethereum/action-creators'
+import { activatePinakion } from '../../../business/ethereum/action-creators'
 import Input from '../../../Input'
 import './Form.css'
 
@@ -24,7 +24,7 @@ const Form = props => {
           type='number'
           required
           innerClassName='input-number'
-          placeholder='0 ETH' />
+          placeholder='0 PNK' />
       </div>
       { error && <div><strong>{ error }</strong></div> }
       <div className='button-container'>
@@ -37,7 +37,7 @@ const Form = props => {
               style={{marginRight: '10px'}}
             />
           }
-          Buy Now
+          Activate
         </button>
       </div>
       { hasErrored && <div>Error contract</div> }
@@ -45,7 +45,7 @@ const Form = props => {
   )
 }
 
-const FORM_NAME = 'buyPinakion'
+const FORM_NAME = 'activatePinakion'
 
 const mapStateToProps = state => {
   return {
@@ -61,10 +61,11 @@ export default withRouter(connect(mapStateToProps, null)(
     form: FORM_NAME,
     validate,
     onSubmit (values, dispatch) {
-      return dispatch(buyPinakion(values))
+      return dispatch(activatePinakion(values))
         .catch(error => {
           if (error) {
-            throw new SubmissionError({_error: 'unable to buy pinakion'})
+            console.log(error)
+            throw new SubmissionError({_error: 'unable to activate pinakion'})
           }
         })
     }

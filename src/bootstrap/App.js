@@ -12,6 +12,7 @@ import Contracts from '../Contracts'
 import ContractSummary from '../Contracts/Summary'
 import DisputeResolution from '../DisputeResolution'
 import Settings from '../Settings'
+import Jury from '../Jury'
 import Layout from '../Layout'
 import './index.css'
 
@@ -44,6 +45,11 @@ const App = () => (
             exact
             path='/settings'
             component={Settings}
+          />
+          <Route
+            exact
+            path='/jury'
+            component={Jury}
           />
         </Layout>
       </Switch>

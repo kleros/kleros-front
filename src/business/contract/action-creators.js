@@ -91,9 +91,9 @@ export const contractFetchData = contractAddress => async dispatch => {
 }
 
 export const contractRaiseDispute =
-  (contract, arbitrationCost = 1000) => async (
-    dispatch
-  ) => {
+(contract, arbitrationCost = 1000) => async (
+  dispatch
+) => {
   dispatch(requestContract(true))
 
   try {
@@ -127,6 +127,70 @@ export const contractRaiseDispute =
     await dispatch(requestContract(false))
   } catch (err) {
     dispatch(failureContract(true))
+    throw new Error(err) // FIXME this error should not throw the execution
+  }
+}
+
+export const deployRNG = () => async dispatch => {
+  try {
+    let web3 = await getWeb3()
+
+    const provider = web3.currentProvider
+
+    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+
+    let rng = await KlerosInstance.rng
+
+    await rng.deploy()
+  } catch (err) {
+    throw new Error(err) // FIXME this error should not throw the execution
+  }
+}
+
+export const deployPinakion = () => async dispatch => {
+  try {
+    let web3 = await getWeb3()
+
+    const provider = web3.currentProvider
+
+    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+
+    let pinakion = await KlerosInstance.pinakion
+
+    await pinakion.deploy()
+  } catch (err) {
+    throw new Error(err) // FIXME this error should not throw the execution
+  }
+}
+
+export const deployKleros = (PNKAddress, RNGAddress) => async dispatch => {
+  try {
+    let web3 = await getWeb3()
+
+    const provider = web3.currentProvider
+
+    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+
+    let kleros = await KlerosInstance.court
+
+    await kleros.deploy(RNGAddress, PNKAddress)
+  } catch (err) {
+    throw new Error(err) // FIXME this error should not throw the execution
+  }
+}
+
+export const configureKleros = (klerosAddress, PNKAddress) => async dispatch => {
+  try {
+    let web3 = await getWeb3()
+
+    const provider = web3.currentProvider
+
+    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+
+    let pnk = await KlerosInstance.pinakion
+    await pnk.setKleros(PNKAddress, klerosAddress)
+    await pnk.transferOwnership(PNKAddress, klerosAddress)
+  } catch (err) {
     throw new Error(err) // FIXME this error should not throw the execution
   }
 }
