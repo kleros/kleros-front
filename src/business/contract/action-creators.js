@@ -141,7 +141,7 @@ export const deployRNG = () => async dispatch => {
 
     let rng = await KlerosInstance.rng
 
-    let contractDataDeployed = await rng.deploy()
+    await rng.deploy()
   } catch (err) {
     throw new Error(err) // FIXME this error should not throw the execution
   }
@@ -157,13 +157,13 @@ export const deployPinakion = () => async dispatch => {
 
     let pinakion = await KlerosInstance.pinakion
 
-    let contractDataDeployed = await pinakion.deploy()
+    await pinakion.deploy()
   } catch (err) {
     throw new Error(err) // FIXME this error should not throw the execution
   }
 }
 
-export const deployKleros = () => async dispatch => {
+export const deployKleros = (PNKAddress, RNGAddress) => async dispatch => {
   try {
     let web3 = await getWeb3()
 
@@ -173,13 +173,13 @@ export const deployKleros = () => async dispatch => {
 
     let kleros = await KlerosInstance.court
 
-    let contractDataDeployed = await kleros.deploy()
+    await kleros.deploy(RNGAddress, PNKAddress)
   } catch (err) {
     throw new Error(err) // FIXME this error should not throw the execution
   }
 }
 
-export const configureKleros = () => async dispatch => {
+export const configureKleros = (klerosAddress, PNKAddress) => async dispatch => {
   try {
     let web3 = await getWeb3()
 
@@ -188,9 +188,8 @@ export const configureKleros = () => async dispatch => {
     let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
 
     let pnk = await KlerosInstance.pinakion
-    let kleros = await KlerosInstance.court
-    let setKleros = await pnk.setKleros()
-    let transferOwnership = await pnk.transferOwnership()
+    await pnk.setKleros(PNKAddress, klerosAddress)
+    await pnk.transferOwnership(PNKAddress, klerosAddress)
   } catch (err) {
     throw new Error(err) // FIXME this error should not throw the execution
   }
