@@ -5,7 +5,8 @@ import {
   requestAddress,
   failureAddress,
   receiveAddress,
-  buyingPinakion
+  buyingPinakion,
+  activatingPinakion
 } from './actions'
 import { Kleros } from 'kleros-api'
 import { getWeb3 } from '../../helpers/getWeb3'
@@ -53,8 +54,28 @@ export const buyPinakion = buyForm => async dispatch => {
 
     let court = KlerosInstance.court
 
-    const newBalance = await court.buyPinakion(buyForm.amount, process.env.REACT_APP_ARBITRATOR_ADDRESS)
+    const newBalance = await court.buyPNK(buyForm.amount, process.env.REACT_APP_ARBITRATOR_ADDRESS)
     dispatch(buyingPinakion(false))
+    dispatch(receiveBalance(newBalance.balance))
+  } catch (e) {
+    // FIXME display a user-friendly error
+    throw e
+  }
+}
+
+export const activatePinakion = activateForm => async dispatch => {
+  dispatch(activatingPinakion(true))
+  try {
+    let web3 = await getWeb3()
+
+    const provider = web3.currentProvider
+
+    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+
+    let court = KlerosInstance.court
+
+    const newBalance = await court.activatePNK(activateForm.amount, process.env.REACT_APP_ARBITRATOR_ADDRESS)
+    dispatch(activatingPinakion(false))
     dispatch(receiveBalance(newBalance.balance))
   } catch (e) {
     // FIXME display a user-friendly error
