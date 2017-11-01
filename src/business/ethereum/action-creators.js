@@ -23,10 +23,8 @@ export const balanceFetchData = () => async dispatch => {
 
     const balance = await court.getPNKBalance(process.env.REACT_APP_ARBITRATOR_ADDRESS)
     dispatch(requestBalance(false))
-    console.log(balance)
     dispatch(receiveBalance(balance.balance))
   } catch (e) {
-    console.log(e)
     // FIXME display a user-friendly error
     dispatch(failureBalance(true))
   }
@@ -60,7 +58,6 @@ export const buyPinakion = buyForm => async dispatch => {
     dispatch(receiveBalance(newBalance.balance))
   } catch (e) {
     // FIXME display a user-friendly error
-    console.log(e)
     throw e
   }
 }

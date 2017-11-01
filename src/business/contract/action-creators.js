@@ -174,8 +174,6 @@ export const deployKleros = () => async dispatch => {
     let kleros = await KlerosInstance.court
 
     let contractDataDeployed = await kleros.deploy()
-    const data = await kleros.getData()
-    console.log(data)
   } catch (err) {
     throw new Error(err) // FIXME this error should not throw the execution
   }
@@ -191,10 +189,6 @@ export const configureKleros = () => async dispatch => {
 
     let pnk = await KlerosInstance.pinakion
     let kleros = await KlerosInstance.court
-    const pnkdata = await pnk.getData()
-    console.log(pnkdata)
-    const klerosdata = await kleros.getData()
-    console.log(klerosdata)
     let setKleros = await pnk.setKleros()
     let transferOwnership = await pnk.transferOwnership()
   } catch (err) {
