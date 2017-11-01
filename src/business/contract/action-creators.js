@@ -130,3 +130,74 @@ export const contractRaiseDispute =
     throw new Error(err) // FIXME this error should not throw the execution
   }
 }
+
+export const deployRNG = () => async dispatch => {
+  try {
+    let web3 = await getWeb3()
+
+    const provider = web3.currentProvider
+
+    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+
+    let rng = await KlerosInstance.rng
+
+    let contractDataDeployed = await rng.deploy()
+  } catch (err) {
+    throw new Error(err) // FIXME this error should not throw the execution
+  }
+}
+
+export const deployPinakion = () => async dispatch => {
+  try {
+    let web3 = await getWeb3()
+
+    const provider = web3.currentProvider
+
+    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+
+    let pinakion = await KlerosInstance.pinakion
+
+    let contractDataDeployed = await pinakion.deploy()
+  } catch (err) {
+    throw new Error(err) // FIXME this error should not throw the execution
+  }
+}
+
+export const deployKleros = () => async dispatch => {
+  try {
+    let web3 = await getWeb3()
+
+    const provider = web3.currentProvider
+
+    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+
+    let kleros = await KlerosInstance.court
+
+    let contractDataDeployed = await kleros.deploy()
+    const data = await kleros.getData()
+    console.log(data)
+  } catch (err) {
+    throw new Error(err) // FIXME this error should not throw the execution
+  }
+}
+
+export const configureKleros = () => async dispatch => {
+  try {
+    let web3 = await getWeb3()
+
+    const provider = web3.currentProvider
+
+    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+
+    let pnk = await KlerosInstance.pinakion
+    let kleros = await KlerosInstance.court
+    const pnkdata = await pnk.getData()
+    console.log(pnkdata)
+    const klerosdata = await kleros.getData()
+    console.log(klerosdata)
+    let setKleros = await pnk.setKleros()
+    let transferOwnership = await pnk.transferOwnership()
+  } catch (err) {
+    throw new Error(err) // FIXME this error should not throw the execution
+  }
+}
