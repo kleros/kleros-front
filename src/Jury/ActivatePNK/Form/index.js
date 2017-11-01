@@ -24,7 +24,7 @@ const Form = props => {
           type='number'
           required
           innerClassName='input-number'
-          placeholder='0 ETH' />
+          placeholder='0 PNK' />
       </div>
       { error && <div><strong>{ error }</strong></div> }
       <div className='button-container'>
