@@ -90,10 +90,10 @@ export const contractFetchData = contractAddress => async dispatch => {
   }
 }
 
-export const contractRaiseDispute =
-(contract, arbitrationCost = 1000) => async (
-  dispatch
-) => {
+export const contractRaiseDispute = (
+  contract,
+  arbitrationCost = 1500000000
+) => async dispatch => {
   dispatch(requestContract(true))
 
   try {
@@ -106,24 +106,44 @@ export const contractRaiseDispute =
       process.env.REACT_APP_STORE_PROVIDER
     )
 
-    let arbitrableTransaction = await KlerosInstance
-      .arbitrableTransaction
+    let arbitrableTransaction = await KlerosInstance.arbitrableTransaction
 
-    let arbitrableTransactionInstance = await arbitrableTransaction
-      .load(contract.address)
+    let contractInstance = await KlerosInstance.arbitrableTransaction.load(
+      contract.address
+    )
+
+    // TODO move to  the kleros-api
+    const partyAFeeContractInstance = await contractInstance.partyAFee()
+
+    const courtInstance = await KlerosInstance.court.load(
+      process.env.REACT_APP_ARBITRATOR_ADDRESS
+    )
+
+    const arbitrationCost = await courtInstance.arbitrationCost(
+      partyAFeeContractInstance.toNumber()
+    )
 
     let raiseDisputeContractTx = 0x0
 
-    if (KlerosInstance.getWeb3Wrapper().getAccount(0) === contract.partyA) {
-      raiseDisputeContractTx = arbitrableTransactionInstance
-        .payArbitrationFeeByPartyA()
+    const addressParty = KlerosInstance.getWeb3Wrapper().getAccount(0)
+
+    if (addressParty === contract.data.partyA) {
+      raiseDisputeContractTx = await arbitrableTransaction
+        .payArbitrationFeeByPartyA(
+          undefined,
+          contract.address,
+          arbitrationCost.toNumber()
+        )
     } else {
-      raiseDisputeContractTx = arbitrableTransactionInstance
-        .payArbitrationFeeByPartyB()
+      raiseDisputeContractTx = await arbitrableTransaction
+        .payArbitrationFeeByPartyB(
+          undefined,
+          contract.address,
+          arbitrationCost.toNumber()
+        )
     }
 
     await dispatch(raiseDisputeContract(raiseDisputeContractTx))
-
     await dispatch(requestContract(false))
   } catch (err) {
     dispatch(failureContract(true))
