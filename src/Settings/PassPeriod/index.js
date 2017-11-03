@@ -1,27 +1,47 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { passPeriod } from '../../business/contract/action-creators'
+import { passPeriod, getArbitratorData } from '../../business/contract/action-creators'
 import './PassPeriod.css'
 
-const PassPeriod = (props) => {
-  return (
-    <div className='PassPeriod-container'>
-      <h1>Move to Next Period</h1>
-      <div className='PassPeriod-btn' onClick={props.passPeriod}>
-        Next Period
+class PassPeriod extends Component {
+  componentDidMount () {
+    this.props.getArbitratorData()
+  }
+
+  render () {
+    let currentPeriod = 'loading...'
+    let currentSession = 'loading...'
+    if (!this.props.isFetching) {
+      currentPeriod = this.props.contract.data.period
+      currentSession = this.props.contract.data.session
+    }
+
+    return (
+      <div className='PassPeriod-container'>
+        <h1>Move to Next Period</h1>
+        <h2>Current Period: {currentPeriod}</h2>
+        <h2>Current Session: {currentSession}</h2>
+        <div className='PassPeriod-btn' onClick={this.props.passPeriod}>
+          <p>Next Period</p>
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 const mapStateToProps = state => {
-  return {}
+  return {
+    contract: state.contract,
+    hasErrored: state.contract.failureContract,
+    isFetching: state.contract.requestContract
+  }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    passPeriod: () => dispatch(passPeriod())
+    passPeriod: () => dispatch(passPeriod()),
+    getArbitratorData: () => dispatch(getArbitratorData())
   }
 }
 

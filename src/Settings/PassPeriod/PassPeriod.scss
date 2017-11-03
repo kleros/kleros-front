@@ -5,6 +5,7 @@
   	width: 180px;
     border: none;
   	border-radius: 4px;
+    margin-top: 20px;
   	background: linear-gradient(0deg, #0059ab 0%, #0468c4 100%);
   	box-shadow: 0 1px 0 0 #024e95;
   	color: #fff;
@@ -13,5 +14,9 @@
   	line-height: 18px;
   	text-align: center;
     cursor: pointer;
+    p {
+      padding-top: 10px;
+      vertical-align: middle;
+    }
   }
 }
