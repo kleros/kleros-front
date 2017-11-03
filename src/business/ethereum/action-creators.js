@@ -26,6 +26,7 @@ export const balanceFetchData = () => async dispatch => {
     dispatch(requestBalance(false))
     dispatch(receiveBalance(balance))
   } catch (e) {
+    console.log(e)
     // FIXME display a user-friendly error
     dispatch(failureBalance(true))
   }
@@ -38,6 +39,7 @@ export const fetchAddress = (account = 0) => async dispatch => {
     dispatch(requestAddress(false))
     dispatch(receiveAddress(web3.eth.accounts[account]))
   } catch (e) {
+    console.log(e)
     // FIXME display a user-friendly error
     dispatch(failureAddress(true))
   }

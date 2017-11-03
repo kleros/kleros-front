@@ -161,7 +161,9 @@ export const deployRNG = () => async dispatch => {
 
     let rng = await KlerosInstance.rng
 
-    await rng.deploy()
+    const rngInstance = await rng.deploy()
+    const data = await rng.getData(rngInstance.address)
+    console.log(data)
   } catch (err) {
     throw new Error(err) // FIXME this error should not throw the execution
   }
@@ -208,8 +210,11 @@ export const configureKleros = (klerosAddress, PNKAddress) => async dispatch => 
     let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
 
     let pnk = await KlerosInstance.pinakion
+    console.log(PNKAddress)
+    console.log(klerosAddress)
     await pnk.setKleros(PNKAddress, klerosAddress)
-    await pnk.transferOwnership(PNKAddress, klerosAddress)
+    const data = await pnk.transferOwnership(PNKAddress, klerosAddress)
+    console.log(data)
   } catch (err) {
     throw new Error(err) // FIXME this error should not throw the execution
   }
@@ -228,6 +233,7 @@ export const getArbitratorData = (
 
     const arbitrator = await KlerosInstance.court
     const data = await arbitrator.getData(klerosAddress)
+    console.log(data)
     await dispatch(receiveContract(data))
     await dispatch(requestContract(false))
   } catch (e) {

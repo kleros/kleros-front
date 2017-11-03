@@ -5,5 +5,12 @@
   color: #1b2431;
   .content {
     padding: 37px 50px;
+    display: flex;
+    .buy-pnk-wrapper {
+      flex: 3;
+    }
+    .pass-period-wrapper {
+      flex: 3;
+    }
   }
 }

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Redirect } from 'react-router-dom'
 import ActivatePNK from './ActivatePNK'
-import PassPeriod from './PassPeriod'
 import { getArbitratorData } from '../business/contract/action-creators'
 import './Jury.css'
 
@@ -34,7 +33,6 @@ class Jury extends Component {
       <div className='Jury-container'>
         <div className='content'>
           { content }
-          <PassPeriod />
         </div>
       </div>
     )
