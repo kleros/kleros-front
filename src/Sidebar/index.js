@@ -17,7 +17,7 @@ class Sidebar extends Component {
     let balance = 0
     let address = 'loading...'
 
-    if (!balanceIsFetching) balance = this.props.balance
+    if (!balanceIsFetching) balance = (this.props.balance.tokenBalance - this.props.balance.activatedTokens)
     if (!addressIsFetching) address = this.props.address
 
     if (balanceHasErrored) balance = -1

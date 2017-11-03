@@ -214,3 +214,45 @@ export const configureKleros = (klerosAddress, PNKAddress) => async dispatch => 
     throw new Error(err) // FIXME this error should not throw the execution
   }
 }
+
+export const getArbitratorData = (
+  klerosAddress = process.env.REACT_APP_ARBITRATOR_ADDRESS
+) => async dispatch => {
+  dispatch(requestContract(true))
+  try {
+    let web3 = await getWeb3()
+
+    const provider = web3.currentProvider
+
+    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+
+    const arbitrator = await KlerosInstance.court
+    const data = await arbitrator.getData(klerosAddress)
+    await dispatch(receiveContract(data))
+    await dispatch(requestContract(false))
+  } catch (e) {
+    dispatch(failureContract(true))
+    throw new Error(e) // FIXME this error should not throw the execution
+  }
+}
+
+export const passPeriod = (
+  klerosAddress = process.env.REACT_APP_ARBITRATOR_ADDRESS
+) => async dispatch => {
+  dispatch(requestContract(true))
+  try {
+    let web3 = await getWeb3()
+
+    const provider = web3.currentProvider
+
+    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+
+    const arbitrator = await KlerosInstance.court
+    const data = await arbitrator.passPeriod(klerosAddress)
+    await dispatch(receiveContract(data))
+    await dispatch(requestContract(false))
+  } catch (e) {
+    dispatch(failureContract(true))
+    throw new Error(e) // FIXME this error should not throw the execution
+  }
+}

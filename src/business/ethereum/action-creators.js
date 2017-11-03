@@ -24,7 +24,7 @@ export const balanceFetchData = () => async dispatch => {
 
     const balance = await court.getPNKBalance(process.env.REACT_APP_ARBITRATOR_ADDRESS)
     dispatch(requestBalance(false))
-    dispatch(receiveBalance(balance.balance))
+    dispatch(receiveBalance(balance))
   } catch (e) {
     // FIXME display a user-friendly error
     dispatch(failureBalance(true))
@@ -56,7 +56,7 @@ export const buyPinakion = buyForm => async dispatch => {
 
     const newBalance = await court.buyPNK(buyForm.amount, process.env.REACT_APP_ARBITRATOR_ADDRESS)
     dispatch(buyingPinakion(false))
-    dispatch(receiveBalance(newBalance.balance))
+    dispatch(receiveBalance(newBalance))
   } catch (e) {
     // FIXME display a user-friendly error
     throw e
@@ -76,7 +76,7 @@ export const activatePinakion = activateForm => async dispatch => {
 
     const newBalance = await court.activatePNK(activateForm.amount, process.env.REACT_APP_ARBITRATOR_ADDRESS)
     dispatch(activatingPinakion(false))
-    dispatch(receiveBalance(newBalance.balance))
+    dispatch(receiveBalance(newBalance))
   } catch (e) {
     // FIXME display a user-friendly error
     throw e
