@@ -6,9 +6,9 @@ import './PassPeriod.css'
 
 const PassPeriod = (props) => {
   return (
-    <div className="PassPeriod-container">
+    <div className='PassPeriod-container'>
       <h1>Move to Next Period</h1>
-      <div className="PassPeriod-btn" onClick={props.passPeriod}>
+      <div className='PassPeriod-btn' onClick={props.passPeriod}>
         Next Period
       </div>
     </div>

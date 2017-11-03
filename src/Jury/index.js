@@ -1,18 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter, Redirect } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import ActivatePNK from './ActivatePNK'
 import { getArbitratorData } from '../business/contract/action-creators'
 import './Jury.css'
 
 class Jury extends Component {
-  componentDidMount() {
+  componentDidMount () {
     this.props.getArbitratorData()
   }
 
   render () {
-    console.log(this.props.arbitratorData)
-
     let period = -1
     if (!this.props.isFetching) period = this.props.arbitratorData.data.period
 
@@ -22,10 +20,10 @@ class Jury extends Component {
         content = (
           <ActivatePNK />
         )
-        break;
+        break
       default:
         content = (
-          <div></div>
+          <div />
         )
     }
 

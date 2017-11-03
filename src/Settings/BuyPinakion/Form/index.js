@@ -64,7 +64,6 @@ export default withRouter(connect(mapStateToProps, null)(
       return dispatch(buyPinakion(values))
         .catch(error => {
           if (error) {
-            console.log(error)
             throw new SubmissionError({_error: 'unable to buy pinakion'})
           }
         })
