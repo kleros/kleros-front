@@ -29,7 +29,7 @@ export const getDisputes = () => async dispatch => {
 
     let court = KlerosInstance.court
 
-    const disputes = await court.getDisputesForUser()
+    const disputes = await court.getDisputesForUser(process.env.REACT_APP_ARBITRATOR_ADDRESS)
     await dispatch(receiveDisputes(disputes))
     await dispatch(requestDisputes(false))
   } catch (e) {
