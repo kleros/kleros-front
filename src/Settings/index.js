@@ -1,7 +1,6 @@
 import React from 'react'
 import BuyPinakion from './BuyPinakion'
 import PassPeriod from './PassPeriod'
-import Deploy from './Deploy'
 import './Settings.css'
 
 const Settings = () => (
@@ -12,9 +11,6 @@ const Settings = () => (
       </div>
       <div className='pass-period-wrapper'>
         <PassPeriod />
-      </div>
-      <div className='deploy-wrapper'>
-        <Deploy />
       </div>
     </div>
   </div>
