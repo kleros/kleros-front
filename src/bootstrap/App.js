@@ -9,6 +9,7 @@ import registerServiceWorker from './registerServiceWorker'
 import store from './store'
 import Disputes from '../Disputes'
 import Contracts from '../Contracts'
+import ContractsTable from '../ContractsTable'
 import ContractSummary from '../Contracts/Summary'
 import DisputeResolution from '../DisputeResolution'
 import Settings from '../Settings'
@@ -29,6 +30,11 @@ const App = () => (
           <Route
             exact
             path='/contracts'
+            component={ContractsTable}
+          />
+          <Route
+            exact
+            path='/contracts/new'
             component={Contracts}
           />
           <Route

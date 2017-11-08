@@ -257,3 +257,13 @@ export const passPeriod = (
     throw new Error(e) // FIXME this error should not throw the execution
   }
 }
+
+export const getContracts = (
+  klerosAddress = process.env.REACT_APP_ARBITRATOR_ADDRESS
+) => async dispatch => {
+  try {
+    
+  } catch (e) {
+
+  }
+}
