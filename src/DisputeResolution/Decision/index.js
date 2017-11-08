@@ -10,7 +10,11 @@ const Decision = props => {
         <p>You have the following options:</p>
       </div>
       <div className='divider' />
-      <Form resolutionOptions={props.resolutionOptions} />
+      <Form
+        resolutionOptions={props.resolutionOptions}
+        disputeId={props.disputeId}
+        votes={props.votes}
+      />
     </div>
   )
 }

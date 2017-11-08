@@ -4,7 +4,10 @@ import {
   failureDisputes,
   receiveDisputes,
   requestCaseData,
-  receiveCaseData
+  receiveCaseData,
+  submitRuling,
+  rulingSubmitted,
+  rulingFailed
 } from './actions'
 import { getWeb3 } from '../../helpers/getWeb3'
 
@@ -38,10 +41,27 @@ export const getDisputes = () => async dispatch => {
   }
 }
 
-export const submitDisputeResolution = (values) => async dispatch => {
+export const submitDisputeResolution = (ruling, disputeId, votes) => async dispatch => {
+  dispatch(submitRuling(true))
   try {
-    // TODO submit decision to contract //
+    let web3 = await getWeb3()
+
+    const provider = web3.currentProvider
+
+    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+
+    let court = KlerosInstance.court
+
+    const submittedRulingTx = await court.submitVotes(
+      process.env.REACT_APP_ARBITRATOR_ADDRESS,
+      disputeId,
+      ruling,
+      votes
+    )
+    dispatch(rulingSubmitted(submittedRulingTx))
+    dispatch(submitRuling(false))
   } catch (e) {
+    dispatch(rulingFailed(true))
     // FIXME display a user-friendly error //
     throw e
   }

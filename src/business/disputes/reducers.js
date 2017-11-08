@@ -4,7 +4,10 @@ import {
   RECEIVE_DISPUTES,
   REQUEST_CASE_DATA,
   FAILURE_CASE_DATA,
-  RECEIVE_CASE_DATA
+  RECEIVE_CASE_DATA,
+  SUBMIT_RULING,
+  RULING_SUBMITTED,
+  RULING_FAILED
 } from './actions'
 
 export function requestDisputes (state = true, action) {
@@ -56,6 +59,33 @@ export function caseData (state = [], action) {
   switch (action.type) {
     case RECEIVE_CASE_DATA:
       return action.caseData
+    default:
+      return state
+  }
+}
+
+export function submitRuling (state = [], action) {
+  switch (action.type) {
+    case SUBMIT_RULING:
+      return action.isSubmitting
+    default:
+      return state
+  }
+}
+
+export function rulingSubmitted (state = [], action) {
+  switch (action.type) {
+    case RULING_SUBMITTED:
+      return action.tx
+    default:
+      return state
+  }
+}
+
+export function rulingFailed (state = [], action) {
+  switch (action.type) {
+    case RULING_FAILED:
+      return action.hasErrored
     default:
       return state
   }
