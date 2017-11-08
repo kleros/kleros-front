@@ -262,8 +262,18 @@ export const getContracts = (
   klerosAddress = process.env.REACT_APP_ARBITRATOR_ADDRESS
 ) => async dispatch => {
   try {
-    
-  } catch (e) {
+    let web3 = await getWeb3()
 
+    const provider = web3.currentProvider
+
+    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+
+    const arbitrator = await KlerosInstance.court
+    const data = await arbitrator.getContractsForUser()
+    await dispatch(receiveContract(data))
+    await dispatch(requestContract(false))
+  } catch (e) {
+    dispatch(failureContract(true))
+    throw new Error(e)
   }
 }
