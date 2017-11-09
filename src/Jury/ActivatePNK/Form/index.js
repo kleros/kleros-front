@@ -2,7 +2,7 @@ import React from 'react'
 import { SubmissionError, Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import FontAwesome from 'react-fontawesome'
+// import FontAwesome from 'react-fontawesome'
 import { activatePinakion } from '../../../business/ethereum/action-creators'
 import Input from '../../../Input'
 import './Form.css'
@@ -30,12 +30,12 @@ const Form = props => {
       <div className='button-container'>
         <button type='submit' disabled={submitting || error} className='submit'>
           {
-            submitting &&
-            <FontAwesome
-              name='circle-o-notch'
-              spin
-              style={{marginRight: '10px'}}
-            />
+            submitting && true
+            // <FontAwesome
+            //   name='circle-o-notch'
+            //   spin
+            //   style={{marginRight: '10px'}}
+            // />
           }
           Activate
         </button>

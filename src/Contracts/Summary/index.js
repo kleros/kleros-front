@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import FontAwesome from 'react-fontawesome'
+// import FontAwesome from 'react-fontawesome'
 import { contractRaiseDispute, contractFetchData } from '../../business/contract/action-creators'
 import Banner from '../../Banner'
 import './Summary.css'
@@ -38,11 +38,6 @@ class SummaryContract extends Component {
             PartyB: {contract.data.partyB}
           </div>
           <button onClick={this.raiseDispute} type='submit' className='submit'>
-            <FontAwesome
-              name='circle-o-notch'
-              spin
-              style={{marginRight: '10px'}}
-            />
             Create dispute
           </button>
         </div>
