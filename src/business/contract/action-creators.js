@@ -133,6 +133,7 @@ export const contractRaiseDispute = (
 
     let raiseDisputeContractTx = 0x0
     if (userAddress === contract.partyA) {
+      console.log("partyA")
       raiseDisputeContractTx = await arbitrableTransaction
         .payArbitrationFeeByPartyA(
           userAddress,
@@ -140,12 +141,15 @@ export const contractRaiseDispute = (
           web3.fromWei(arbitrationCost.toNumber(), 'ether')
         )
     } else if (userAddress === contract.partyB) {
+      console.log("partyB")
       raiseDisputeContractTx = await arbitrableTransaction
         .payArbitrationFeeByPartyB(
           userAddress,
           contract.address,
           web3.fromWei(arbitrationCost.toNumber(), 'ether')
         )
+    } else {
+      throw new Error(`${userAddress} is not a party in contract`)
     }
 
     await dispatch(raiseDisputeContract(raiseDisputeContractTx))
