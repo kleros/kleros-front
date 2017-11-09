@@ -20,7 +20,7 @@ const Form = props => {
 
   if (submitSucceeded) {
     return <Redirect
-      to='/contract-summary/1'
+      to='/contracts'
       push />
   }
 

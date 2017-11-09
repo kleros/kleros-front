@@ -5,7 +5,10 @@ import {
   address,
   requestContract,
   failureContract,
-  data,
+  contract,
+  requestContracts,
+  failureContracts,
+  contracts,
   raiseDisputeContract
 } from './reducers'
 
@@ -15,6 +18,9 @@ export default combineReducers({
   address,
   requestContract,
   failureContract,
-  data,
+  contract,
+  requestContracts,
+  failureContracts,
+  contracts,
   raiseDisputeContract
 })

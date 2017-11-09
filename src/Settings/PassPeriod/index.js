@@ -13,8 +13,8 @@ class PassPeriod extends Component {
     let currentPeriod = 'loading...'
     let currentSession = 'loading...'
     if (!this.props.isFetching) {
-      currentPeriod = this.props.contract.data.period
-      currentSession = this.props.contract.data.session
+      currentPeriod = this.props.contract.period
+      currentSession = this.props.contract.session
     }
 
     return (
@@ -32,7 +32,7 @@ class PassPeriod extends Component {
 
 const mapStateToProps = state => {
   return {
-    contract: state.contract,
+    contract: state.contract.contract,
     hasErrored: state.contract.failureContract,
     isFetching: state.contract.requestContract
   }

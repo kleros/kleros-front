@@ -10,10 +10,9 @@ const Grid = ({
     <div className='grid'>
       <div className='header'>
         <div className='item header-arbitrator'>Arbitrator</div>
-        <div className='item header-contract-hash'>Contract Hash</div>
+        <div className='item header-contract-hash'>Contract Address</div>
         <div className='item header-party-a'>Party A</div>
         <div className='item header-party-b'>Party B</div>
-        <div className='item header-status'>Status</div>
       </div>
       { children }
     </div>

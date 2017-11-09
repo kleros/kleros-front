@@ -36,13 +36,12 @@ class GridContent extends Component {
         <div className='items'>
           {
             contracts.map(contract =>
-              <Link key={contract.hash} to={`contracts/${contract.hash}`}>
+              <Link key={contract.address} to={`contract-summary/${contract.address}`}>
                 <div className='items-row'>
                   <div className='item-arbitrator'>{ truncateAddress(contract.arbitrator, 10) }</div>
-                  <div className='item-contract-hash'>{ truncateAddress(contract.hash, 10) }</div>
+                  <div className='item-contract-hash'>{ truncateAddress(contract.address, 10) }</div>
                   <div className='item item-party-a'>{ truncateAddress(contract.partyA, 10) }</div>
                   <div className='item item-party-b'>{ truncateAddress(contract.partyB, 10) }</div>
-                  <div className='item item-status'>{ (contract.status === 3) ? "Dispute Raised" : "No Dispute" }</div>
                 </div>
               </Link>
             )
@@ -54,6 +53,7 @@ class GridContent extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state.contract)
   return {
     contracts: state.contract.contracts,
     hasErrored: state.contract.failureDisputes,
