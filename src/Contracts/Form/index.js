@@ -20,7 +20,7 @@ const Form = props => {
 
   if (submitSucceeded) {
     return <Redirect
-      to='/contract-summary/1'
+      to='/contracts'
       push />
   }
 
@@ -113,7 +113,7 @@ const Form = props => {
       <div>
         <button type='submit' disabled={submitting || error} className='submit'>
           {
-            submitting &&
+            submitting && 
             <FontAwesome
               name='circle-o-notch'
               spin

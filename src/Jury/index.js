@@ -12,7 +12,7 @@ class Jury extends Component {
 
   render () {
     let period = -1
-    if (!this.props.isFetching) period = this.props.arbitratorData.data.period
+    if (!this.props.isFetching) period = this.props.arbitratorData.period
 
     let content
     switch (period) {
@@ -39,7 +39,7 @@ class Jury extends Component {
 
 const mapStateToProps = state => {
   return {
-    arbitratorData: state.contract,
+    arbitratorData: state.contract.contract,
     hasErrored: state.contract.failureContract,
     isFetching: state.contract.requestContract
   }

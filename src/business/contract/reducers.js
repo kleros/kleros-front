@@ -5,6 +5,9 @@ import {
   REQUEST_CONTRACT,
   FAILURE_CONTRACT,
   RECEIVE_CONTRACT,
+  REQUEST_CONTRACTS,
+  FAILURE_CONTRACTS,
+  RECEIVE_CONTRACTS,
   RAISE_DISPUTE_CONTRACT
 } from './actions'
 
@@ -53,9 +56,36 @@ export function failureContract (state = false, action) {
   }
 }
 
-export function data (state = {}, action) {
+export function contract (state = {}, action) {
   switch (action.type) {
     case RECEIVE_CONTRACT:
+      return action.data
+    default:
+      return state
+  }
+}
+
+export function requestContracts (state = false, action) {
+  switch (action.type) {
+    case REQUEST_CONTRACTS:
+      return action.isFetching
+    default:
+      return state
+  }
+}
+
+export function failureContracts (state = false, action) {
+  switch (action.type) {
+    case FAILURE_CONTRACTS:
+      return action.hasErrored
+    default:
+      return state
+  }
+}
+
+export function contracts (state = [], action) {
+  switch (action.type) {
+    case RECEIVE_CONTRACTS:
       return action.data
     default:
       return state

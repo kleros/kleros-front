@@ -4,6 +4,9 @@ export const RECEIVE_ADDRESS_CONTRACT = 'RECEIVE_ADDRESS_CONTRACT'
 export const REQUEST_CONTRACT = 'REQUEST_CONTRACT'
 export const FAILURE_CONTRACT = 'FAILURE_CONTRACT'
 export const RECEIVE_CONTRACT = 'RECEIVE_CONTRACT'
+export const REQUEST_CONTRACTS = 'REQUEST_CONTRACTS'
+export const FAILURE_CONTRACTS = 'FAILURE_CONTRACTS'
+export const RECEIVE_CONTRACTS = 'RECEIVE_CONTRACTS'
 export const RAISE_DISPUTE_CONTRACT = 'RAISE_DISPUTE_CONTRACT'
 
 export const fetchPostContract = isFetching => {
@@ -44,6 +47,27 @@ export const failureContract = hasErrored => {
 export const receiveContract = data => {
   return {
     type: RECEIVE_CONTRACT,
+    data
+  }
+}
+
+export const requestContracts = isFetching => {
+  return {
+    type: REQUEST_CONTRACTS,
+    isFetching
+  }
+}
+
+export const failureContracts = hasErrored => {
+  return {
+    type: FAILURE_CONTRACTS,
+    hasErrored
+  }
+}
+
+export const receiveContracts = data => {
+  return {
+    type: RECEIVE_CONTRACTS,
     data
   }
 }

@@ -8,7 +8,7 @@ import './Summary.css'
 
 class SummaryContract extends Component {
   componentDidMount () {
-    this.props.getContract(this.props.contract.address)
+    this.props.getContract(this.props.match.params.address)
   }
 
   raiseDispute = e => this.props.raiseDisputeContract(this.props.contract)
@@ -32,10 +32,13 @@ class SummaryContract extends Component {
         <div className='content'>
           <div className='summary'>
             Address: {contract.address}<br />
-            Arbitrator: {contract.data.arbitrator}<br />
-            Timeout: {contract.data.timeout}<br />
-            PartyA: {contract.data.partyA}<br />
-            PartyB: {contract.data.partyB}
+            Arbitrator: {contract.arbitrator}<br />
+            Timeout: {contract.timeout}<br />
+            PartyA: {contract.partyA}<br />
+            PartyB: {contract.partyB}<br />
+            Party A Fee Paid: {contract.partyAFee}<br />
+            Party B Fee Paid: {contract.partyBFee}<br />
+            Status: {contract.status}
           </div>
           <button onClick={this.raiseDispute} type='submit' className='submit'>
             <FontAwesome
@@ -53,7 +56,7 @@ class SummaryContract extends Component {
 
 const mapStateToProps = state => {
   return {
-    contract: state.contract,
+    contract: state.contract.contract,
     hasErrored: state.contract.failureContract,
     isFetching: state.contract.requestContract
   }
