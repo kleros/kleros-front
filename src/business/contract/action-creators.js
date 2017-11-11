@@ -165,6 +165,44 @@ export const contractRaiseDispute = (
   }
 }
 
+
+export const addEvidence = ({
+  account = undefined,
+  value = undefined,
+  address,
+  evidenceHash,
+  account = 0
+}) => async dispatch => {
+  await dispatch(requestContract(true))
+
+  try {
+    let web3 = await getWeb3()
+
+    const provider = web3.currentProvider
+
+    const userAddress = web3.eth.accounts[account]
+
+    let KlerosInstance = new Kleros(
+      provider,
+      process.env.REACT_APP_STORE_PROVIDER
+    )
+
+    let arbitrableTransaction = await KlerosInstance.arbitrableTransaction
+
+    const submitEvidence = await arbitrableTransaction.submitEvidence(
+      address,
+      evidence
+    )
+
+    await dispatch(postSuccessContract(contractArbitrable.address))
+    await dispatch(fetchPostContract(false))
+  } catch (err) {
+    dispatch(failurePostContract(true))
+    // FIXME send an error user-friendly
+    throw new Error(err)
+  }
+}
+
 export const deployRNG = () => async dispatch => {
   try {
     let web3 = await getWeb3()

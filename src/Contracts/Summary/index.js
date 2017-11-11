@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import FontAwesome from 'react-fontawesome'
 import { contractRaiseDispute, contractFetchData } from '../../business/contract/action-creators'
+import EvidenceForm from './EvidenceForm'
 import Banner from '../../Banner'
 import './Summary.css'
 
@@ -16,13 +17,18 @@ class SummaryContract extends Component {
     this.props.match.params.address
   )
 
+  raiseDispute = e => this.props.addEvidenceContract(
+    this.props.match.params.address,
+    evidence
+  )
+
   render () {
     const {isFetching, hasErrored, match, contract} = this.props
 
     if (hasErrored)
       return <p>Sorry! There was an error loading the contract</p>
 
-    // TODO get address by the kleros store => Address: {contract.address}<br />
+    // TODO get address by the kleros store => Address: {contract.address}
     return (
       <div className={`SummaryContract-container`}>
         <Banner title='Contract summary' linkTo='/contracts' />
@@ -49,6 +55,17 @@ class SummaryContract extends Component {
             }
             Create dispute
           </button>
+          <button onClick={this.addEvidence} type='submit' className='submit'>
+            {
+              isFetching &&
+              <FontAwesome
+                name='circle-o-notch'
+                spin
+                style={{marginRight: '10px'}}
+              />
+            }
+            Add evidence
+          </button>
         </div>
       </div>
     )
@@ -68,7 +85,9 @@ const mapDispatchToProps = dispatch => {
     getContract: contractAddress =>
       dispatch(contractFetchData(contractAddress)),
     raiseDisputeContract: (contract, address) =>
-      dispatch(contractRaiseDispute(contract, address))
+      dispatch(contractRaiseDispute(contract, address)),
+    addEvidenceContract: (address, evidence) =>
+      dispatch(contractAddEvidence(address, evidence))
   }
 }
 
