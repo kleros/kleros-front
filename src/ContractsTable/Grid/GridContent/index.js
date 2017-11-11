@@ -17,8 +17,6 @@ class GridContent extends Component {
       return <p>Sorry! There was an error loading the balance</p>
     }
 
-    console.log(contracts)
-
     if (isFetching) {
       return (
         <div className='GridContent-container'>
@@ -53,7 +51,6 @@ class GridContent extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state.contract)
   return {
     contracts: state.contract.contracts,
     hasErrored: state.contract.failureDisputes,

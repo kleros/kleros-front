@@ -11,18 +11,16 @@ class SummaryContract extends Component {
     this.props.getContract(this.props.match.params.address)
   }
 
-  raiseDispute = e => this.props.raiseDisputeContract(this.props.contract)
+  raiseDispute = e => this.props.raiseDisputeContract(
+    this.props.contract,
+    this.props.match.params.address
+  )
 
   render () {
-    const {contract} = this.props
+    const {isFetching, hasErrored, match, contract} = this.props
 
-    if (contract.hasErrored) {
+    if (hasErrored)
       return <p>Sorry! There was an error loading the contract</p>
-    }
-
-    if (contract.isFetching) {
-      return <p>Loading…</p>
-    }
 
     // TODO get address by the kleros store => Address: {contract.address}<br />
     return (
@@ -31,7 +29,7 @@ class SummaryContract extends Component {
         <div className='divider' />
         <div className='content'>
           <div className='summary'>
-            Address: {contract.address}<br />
+            Address: {match.params.address}<br />
             Arbitrator: {contract.arbitrator}<br />
             Timeout: {contract.timeout}<br />
             PartyA: {contract.partyA}<br />
@@ -41,11 +39,14 @@ class SummaryContract extends Component {
             Status: {contract.status}
           </div>
           <button onClick={this.raiseDispute} type='submit' className='submit'>
-            <FontAwesome
-              name='circle-o-notch'
-              spin
-              style={{marginRight: '10px'}}
-            />
+            {
+              isFetching &&
+              <FontAwesome
+                name='circle-o-notch'
+                spin
+                style={{marginRight: '10px'}}
+              />
+            }
             Create dispute
           </button>
         </div>
@@ -66,8 +67,8 @@ const mapDispatchToProps = dispatch => {
   return {
     getContract: contractAddress =>
       dispatch(contractFetchData(contractAddress)),
-    raiseDisputeContract: (contract, arbitrationCost) =>
-      dispatch(contractRaiseDispute(contract, arbitrationCost))
+    raiseDisputeContract: (contract, address) =>
+      dispatch(contractRaiseDispute(contract, address))
   }
 }
 

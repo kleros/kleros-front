@@ -95,7 +95,7 @@ export const contractFetchData = contractAddress => async dispatch => {
 
 export const contractRaiseDispute = (
   contract,
-  arbitrationCost = 0.15,
+  address,
   account = 0
 ) => async dispatch => {
   dispatch(requestContract(true))
@@ -115,38 +115,43 @@ export const contractRaiseDispute = (
     let arbitrableTransaction = await KlerosInstance.arbitrableTransaction
     if (!arbitrableTransaction)
       throw new Error("unable to find contract")
+
     let contractInstance = await KlerosInstance.arbitrableTransaction.load(
-      contract.address
+      address
     )
 
     let fee
-    if (contract.partyA === userAddress) fee = await contractInstance.partyAFee()
-    if (contract.partyB === userAddress) fee = await contractInstance.partyBFee()
+    if (contract.partyA === userAddress)
+      fee = await contractInstance.partyAFee()
+    if (contract.partyB === userAddress)
+      fee = await contractInstance.partyBFee()
+
+    const extraDataContractInstance = await contractInstance
+      .arbitratorExtraData()
 
     const courtInstance = await KlerosInstance.court.load(
       process.env.REACT_APP_ARBITRATOR_ADDRESS
     )
 
     const arbitrationCost = await courtInstance.arbitrationCost(
-      fee.toNumber()
+      extraDataContractInstance
     )
 
     let raiseDisputeContractTx = 0x0
+
     if (userAddress === contract.partyA) {
-      console.log("partyA")
       raiseDisputeContractTx = await arbitrableTransaction
         .payArbitrationFeeByPartyA(
           userAddress,
-          contract.address,
-          web3.fromWei(arbitrationCost.toNumber(), 'ether')
+          address,
+          web3.fromWei(arbitrationCost.toNumber() - fee.toNumber(), 'ether')
         )
     } else if (userAddress === contract.partyB) {
-      console.log("partyB")
       raiseDisputeContractTx = await arbitrableTransaction
         .payArbitrationFeeByPartyB(
           userAddress,
-          contract.address,
-          web3.fromWei(arbitrationCost.toNumber(), 'ether')
+          address,
+          web3.fromWei(arbitrationCost.toNumber() - fee.toNumber(), 'ether')
         )
     } else {
       throw new Error(`${userAddress} is not a party in contract`)
@@ -280,7 +285,7 @@ export const getContracts = (
 
     const arbitrator = await KlerosInstance.court
     const data = await arbitrator.getContractsForUser()
-    console.log(data)
+
     await dispatch(receiveContracts(data))
     await dispatch(requestContracts(false))
   } catch (e) {

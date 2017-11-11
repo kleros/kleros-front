@@ -64,8 +64,7 @@ export default withRouter(connect(mapStateToProps, null)(
       return dispatch(activatePinakion(values))
         .catch(error => {
           if (error) {
-            console.log(error)
-            throw new SubmissionError({_error: 'unable to activate pinakion'})
+            throw new SubmissionError({_error: 'Error to activate pinakion'})
           }
         })
     }
