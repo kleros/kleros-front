@@ -9,7 +9,8 @@ import {
   requestContracts,
   failureContracts,
   receiveContracts,
-  raiseDisputeContract
+  raiseDisputeContract,
+  addEvidenceContract
 } from './actions'
 import { getWeb3 } from '../../helpers/getWeb3'
 
@@ -169,9 +170,9 @@ export const contractRaiseDispute = (
 export const addEvidence = ({
   account = undefined,
   value = undefined,
+  evidence,
   address,
-  evidenceHash,
-  account = 0
+  evidenceHash
 }) => async dispatch => {
   await dispatch(requestContract(true))
 
@@ -194,7 +195,7 @@ export const addEvidence = ({
       evidence
     )
 
-    await dispatch(postSuccessContract(contractArbitrable.address))
+    await dispatch(addEvidenceContract(address))
     await dispatch(fetchPostContract(false))
   } catch (err) {
     dispatch(failurePostContract(true))

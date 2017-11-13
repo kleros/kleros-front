@@ -4,12 +4,13 @@ import { SubmissionError, Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { withRouter, Redirect } from 'react-router-dom'
 import FontAwesome from 'react-fontawesome'
-import { deployContract } from '../../business/contract/action-creators'
-import Input from '../../Input'
+import { addEvidence } from '../../../business/contract/action-creators'
+import Input from '../../../Input'
 import './EvidenceForm.css'
 
 const EvidenceForm = props => {
   const {
+    evidenceFormContract,
     submitSucceeded,
     handleSubmit,
     submitting,
@@ -34,13 +35,6 @@ const EvidenceForm = props => {
           required
           innerClassName='input-text-contract-param'
           placeholder='Link to the evidence' />
-        <Field
-          name='evidenceHash'
-          component={Input}
-          type='text'
-          required
-          innerClassName='input-text-contract-param'
-          placeholder='Hash of the evidence document' />
         <Field
           name='addressContract'
           component={Input}
@@ -69,17 +63,18 @@ const EvidenceForm = props => {
 
 const FORM_NAME = 'evidence'
 
+const mapStateToProps = state => {
+  return {
+    evidenceFormContract: state.form.evidence
+  }
+}
+
 const validate = values => {
   const errors = {}
 
   // FIXME regex https | ipfs | swarm
   if (!/^(0x)?[0-9a-f]{40}$/i.test(values.evidence)) {
     errors.evidence = 'Evidence link invalid'
-  }
-
-  // FIXME regex hash keccak256
-  if (!/^(0x)?[0-9a-f]{40}$/i.test(values.evidenceHash)) {
-    errors.partyB = 'Evidence hash invalid'
   }
 
   return errors
@@ -90,10 +85,10 @@ export default withRouter(connect(mapStateToProps, null)(
     form: FORM_NAME,
     validate,
     onSubmit (values, dispatch) {
-      return dispatch(contract(values))
+      return dispatch(addEvidence(values))
         .catch(error => {
           if (error)
             throw new SubmissionError({_error: 'error evidence submission'})
         })
     }
-  })(Form)))
+  })(EvidenceForm)))

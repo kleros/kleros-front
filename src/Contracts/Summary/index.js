@@ -17,11 +17,6 @@ class SummaryContract extends Component {
     this.props.match.params.address
   )
 
-  raiseDispute = e => this.props.addEvidenceContract(
-    this.props.match.params.address,
-    evidence
-  )
-
   render () {
     const {isFetching, hasErrored, match, contract} = this.props
 
@@ -55,17 +50,7 @@ class SummaryContract extends Component {
             }
             Create dispute
           </button>
-          <button onClick={this.addEvidence} type='submit' className='submit'>
-            {
-              isFetching &&
-              <FontAwesome
-                name='circle-o-notch'
-                spin
-                style={{marginRight: '10px'}}
-              />
-            }
-            Add evidence
-          </button>
+          <EvidenceForm />
         </div>
       </div>
     )
@@ -85,9 +70,7 @@ const mapDispatchToProps = dispatch => {
     getContract: contractAddress =>
       dispatch(contractFetchData(contractAddress)),
     raiseDisputeContract: (contract, address) =>
-      dispatch(contractRaiseDispute(contract, address)),
-    addEvidenceContract: (address, evidence) =>
-      dispatch(contractAddEvidence(address, evidence))
+      dispatch(contractRaiseDispute(contract, address))
   }
 }
 

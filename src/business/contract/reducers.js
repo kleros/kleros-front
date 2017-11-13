@@ -8,7 +8,8 @@ import {
   REQUEST_CONTRACTS,
   FAILURE_CONTRACTS,
   RECEIVE_CONTRACTS,
-  RAISE_DISPUTE_CONTRACT
+  RAISE_DISPUTE_CONTRACT,
+  ADD_EVIDENCE_CONTRACT
 } from './actions'
 
 export function fetchPostContract (state = false, action) {
@@ -96,6 +97,15 @@ export function raiseDisputeContract (state = 0x0, action) {
   switch (action.type) {
     case RAISE_DISPUTE_CONTRACT:
       return action.raiseDisputeContractTx
+    default:
+      return state
+  }
+}
+
+export function addEvidenceContract (state = 0x0, action) {
+  switch (action.type) {
+    case ADD_EVIDENCE_CONTRACT:
+      return action.addEvicenceContractTx
     default:
       return state
   }
