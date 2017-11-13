@@ -105,7 +105,7 @@ export function raiseDisputeContract (state = 0x0, action) {
 export function addEvidenceContract (state = 0x0, action) {
   switch (action.type) {
     case ADD_EVIDENCE_CONTRACT:
-      return action.addEvicenceContractTx
+      return action.addEvidenceContractTx
     default:
       return state
   }
