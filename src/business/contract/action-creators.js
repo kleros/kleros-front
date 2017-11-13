@@ -190,12 +190,13 @@ export const addEvidence = ({
 
     let arbitrableTransaction = await KlerosInstance.arbitrableTransaction
 
-    const submitEvidence = await arbitrableTransaction.submitEvidence(
+    const submitEvidenceTx = await arbitrableTransaction.submitEvidence(
+      undefined,
       address,
       evidence
     )
 
-    await dispatch(addEvidenceContract(address))
+    await dispatch(addEvidenceContract(submitEvidenceTx))
     await dispatch(fetchPostContract(false))
   } catch (err) {
     dispatch(failurePostContract(true))

@@ -73,7 +73,7 @@ const validate = values => {
   const errors = {}
 
   // FIXME regex https | ipfs | swarm
-  if (!/^(0x)?[0-9a-f]{40}$/i.test(values.evidence)) {
+  if (!/(bzz|ipfs|https):\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/i.test(values.evidence)) {
     errors.evidence = 'Evidence link invalid'
   }
 
