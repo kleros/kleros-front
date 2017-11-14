@@ -9,6 +9,8 @@ export const FAILURE_CONTRACTS = 'FAILURE_CONTRACTS'
 export const RECEIVE_CONTRACTS = 'RECEIVE_CONTRACTS'
 export const RAISE_DISPUTE_CONTRACT = 'RAISE_DISPUTE_CONTRACT'
 // TODO add REQUEST_RAISE_DISPUTE_CONTRACT and RECEIVE_DISPUTE_CONTRACT
+export const ADD_EVIDENCE_CONTRACT = 'ADD_EVIDENCE_CONTRACT'
+// TODO add REQUEST_ADD_EVIDENCE_CONTRACT and RECEIVE_ADD_EVIDENCE_CONTRACT
 
 export const fetchPostContract = isFetching => {
   return {
@@ -77,5 +79,12 @@ export const raiseDisputeContract = raiseDisputeContractTx => {
   return {
     type: RAISE_DISPUTE_CONTRACT,
     raiseDisputeContractTx
+  }
+}
+
+export const addEvidenceContract = addEvidenceContractTx => {
+  return {
+    type: ADD_EVIDENCE_CONTRACT,
+    addEvidenceContractTx
   }
 }

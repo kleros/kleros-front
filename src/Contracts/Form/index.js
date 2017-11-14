@@ -113,7 +113,7 @@ const Form = props => {
       <div>
         <button type='submit' disabled={submitting || error} className='submit'>
           {
-            submitting && 
+            submitting &&
             <FontAwesome
               name='circle-o-notch'
               spin
