@@ -20,8 +20,7 @@ class SummaryContract extends Component {
   render () {
     const {isFetching, hasErrored, match, contract} = this.props
 
-    if (hasErrored)
-      return <p>Sorry! There was an error loading the contract</p>
+    if (hasErrored) { return <p>Sorry! There was an error loading the contract</p> }
 
     // TODO get address by the kleros store => Address: {contract.address}
     return (

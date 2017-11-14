@@ -114,18 +114,15 @@ export const contractRaiseDispute = (
     )
 
     let arbitrableTransaction = await KlerosInstance.arbitrableTransaction
-    if (!arbitrableTransaction)
-      throw new Error("unable to find contract")
+    if (!arbitrableTransaction) { throw new Error('unable to find contract') }
 
     let contractInstance = await KlerosInstance.arbitrableTransaction.load(
       address
     )
 
     let fee
-    if (contract.partyA === userAddress)
-      fee = await contractInstance.partyAFee()
-    if (contract.partyB === userAddress)
-      fee = await contractInstance.partyBFee()
+    if (contract.partyA === userAddress) { fee = await contractInstance.partyAFee() }
+    if (contract.partyB === userAddress) { fee = await contractInstance.partyBFee() }
 
     const extraDataContractInstance = await contractInstance
       .arbitratorExtraData()
@@ -166,7 +163,6 @@ export const contractRaiseDispute = (
   }
 }
 
-
 export const addEvidence = ({
   account = undefined,
   value = undefined,
@@ -191,7 +187,7 @@ export const addEvidence = ({
     let arbitrableTransaction = await KlerosInstance.arbitrableTransaction
 
     const submitEvidenceTx = await arbitrableTransaction.submitEvidence(
-      undefined,
+      userAddress,
       address,
       evidence
     )

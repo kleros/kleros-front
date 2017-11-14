@@ -1,5 +1,4 @@
 import React from 'react'
-import _ from 'lodash'
 import { SubmissionError, Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { withRouter, Redirect } from 'react-router-dom'
@@ -10,13 +9,11 @@ import './EvidenceForm.css'
 
 const EvidenceForm = props => {
   const {
-    evidenceFormContract,
     submitSucceeded,
     handleSubmit,
     submitting,
     error,
-    hasErrored,
-    match
+    hasErrored
   } = props
 
   if (submitSucceeded) {
@@ -26,7 +23,9 @@ const EvidenceForm = props => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className='EvidenceForm-container'>
+    <form
+      onSubmit={handleSubmit}
+      className='EvidenceForm-container'>
       <div className='params'>
         <Field
           name='evidence'
@@ -35,12 +34,6 @@ const EvidenceForm = props => {
           required
           innerClassName='input-text-contract-param'
           placeholder='Link to the evidence' />
-        <Field
-          name='addressContract'
-          component={Input}
-          type='hidden'
-          value={match.params.address}
-          required />
       </div>
       {error && <div><strong>{error}</strong></div>}
       <div>
@@ -72,7 +65,7 @@ const mapStateToProps = state => {
 const validate = values => {
   const errors = {}
 
-  // FIXME regex https | ipfs | swarm
+  /* eslint-disable */
   if (!/(bzz|ipfs|https):\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/i.test(values.evidence)) {
     errors.evidence = 'Evidence link invalid'
   }
@@ -84,11 +77,13 @@ export default withRouter(connect(mapStateToProps, null)(
   reduxForm({
     form: FORM_NAME,
     validate,
-    onSubmit (values, dispatch) {
-      return dispatch(addEvidence(values))
+    onSubmit (values, dispatch, props) {
+      return dispatch(addEvidence({
+        ...values,
+        address: props.match.params.address
+      }))
         .catch(error => {
-          if (error)
-            throw new SubmissionError({_error: 'error evidence submission'})
+          if (error) { throw new SubmissionError({_error: 'error evidence submission'}) }
         })
     }
   })(EvidenceForm)))
