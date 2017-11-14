@@ -9,7 +9,8 @@ import {
   requestContracts,
   failureContracts,
   receiveContracts,
-  raiseDisputeContract
+  raiseDisputeContract,
+  addEvidenceContract
 } from './actions'
 import { getWeb3 } from '../../helpers/getWeb3'
 
@@ -113,18 +114,15 @@ export const contractRaiseDispute = (
     )
 
     let arbitrableTransaction = await KlerosInstance.arbitrableTransaction
-    if (!arbitrableTransaction)
-      throw new Error("unable to find contract")
+    if (!arbitrableTransaction) { throw new Error('unable to find contract') }
 
     let contractInstance = await KlerosInstance.arbitrableTransaction.load(
       address
     )
 
     let fee
-    if (contract.partyA === userAddress)
-      fee = await contractInstance.partyAFee()
-    if (contract.partyB === userAddress)
-      fee = await contractInstance.partyBFee()
+    if (contract.partyA === userAddress) { fee = await contractInstance.partyAFee() }
+    if (contract.partyB === userAddress) { fee = await contractInstance.partyBFee() }
 
     const extraDataContractInstance = await contractInstance
       .arbitratorExtraData()
@@ -162,6 +160,44 @@ export const contractRaiseDispute = (
   } catch (err) {
     dispatch(failureContract(true))
     throw new Error(err) // FIXME this error should not throw the execution
+  }
+}
+
+export const addEvidence = ({
+  account = undefined,
+  value = undefined,
+  evidence,
+  address,
+  evidenceHash
+}) => async dispatch => {
+  await dispatch(requestContract(true))
+
+  try {
+    let web3 = await getWeb3()
+
+    const provider = web3.currentProvider
+
+    const userAddress = web3.eth.accounts[account]
+
+    let KlerosInstance = new Kleros(
+      provider,
+      process.env.REACT_APP_STORE_PROVIDER
+    )
+
+    let arbitrableTransaction = await KlerosInstance.arbitrableTransaction
+
+    const submitEvidenceTx = await arbitrableTransaction.submitEvidence(
+      userAddress,
+      address,
+      evidence
+    )
+
+    await dispatch(addEvidenceContract(submitEvidenceTx))
+    await dispatch(fetchPostContract(false))
+  } catch (err) {
+    dispatch(failurePostContract(true))
+    // FIXME send an error user-friendly
+    throw new Error(err)
   }
 }
 
