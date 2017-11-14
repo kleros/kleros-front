@@ -21,6 +21,7 @@ class DisputeResolution extends Component {
     if (this.props.isFetching) return false
 
     const dispute = this.props.caseData
+    console.log(dispute)
     // FIXME show dispute not found message or a loading indicator
     if (!dispute) return false
 
@@ -41,7 +42,7 @@ class DisputeResolution extends Component {
         <div className='divider' />
         <Information text={dispute.contractData.description} truncatedCharacters={50} arbitrationFee={arbitrationFee} timeRemaining={dispute.disputeData.deadline} />
         <div className='divider' />
-        <Evidence evidence={dispute.contractData.evidencePartyA.concat(dispute.contractData.evidencePartyB)} />
+        <Evidence evidence={dispute.contractData.evidencePartyA ? dispute.contractData.evidencePartyA.concat(dispute.contractData.evidencePartyB) : []} />
         <div className='divider' />
         <Decision
           resolutionOptions={dispute.disputeData.resolutionOptions}

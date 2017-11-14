@@ -81,7 +81,7 @@ export const getDisputeById = (disputeId) => async dispatch => {
     let court = KlerosInstance.court
     // FIXME use a variable input for user to set their court contract
     const disputeData = await court.getDisputeByHash(disputeId)
-
+    console.log(disputeData)
     // use same reducer as fetch disputes
     await dispatch(receiveCaseData(disputeData))
     await dispatch(requestCaseData(false))
