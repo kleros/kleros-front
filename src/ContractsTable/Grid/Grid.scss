@@ -13,10 +13,6 @@
       border-bottom-right-radius: 0;
       border-bottom-left-radius: 0;
       padding: 12px 0;
-      .header-arbitrator {
-        color: #7f8fa4;
-        font-weight: 600;
-      }
       .header-contract-hash {
         padding-left: 40px;
         width: 35%;
@@ -24,11 +20,14 @@
       .header-party-a {
         width: 25%;
       }
-      .header-party-a {
+      .header-party-b {
         width: 25%;
       }
+      .header-rule {
+        width: 15%;
+      }
       .header-status {
-        width: 25%;
+        width: 20%;
         padding-right: 40px;
       }
     }
@@ -41,7 +40,6 @@
         flex-direction: column;
         justify-content: space-between;
         border: #fff 1px solid;
-        padding: 12px 40px;
         .items-row {
           display: flex;
           flex-direction: row;

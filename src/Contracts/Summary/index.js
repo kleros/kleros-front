@@ -28,6 +28,26 @@ class SummaryContract extends Component {
         <Banner title='Contract summary' linkTo='/contracts' />
         <div className='divider' />
         <div className='content'>
+          <h1>
+            {match.params.address}
+            <span className='pull-right'>
+              {
+                (contract.partyAFee && contract.partyBFee)
+                ? <EvidenceForm />
+                : <button onClick={this.raiseDispute} type='submit' className='submit'>
+                    {
+                      isFetching &&
+                      <FontAwesome
+                        name='circle-o-notch'
+                        spin
+                        style={{marginRight: '10px'}}
+                      />
+                    }
+                    Create dispute
+                  </button>
+              }
+            </span>
+          </h1>
           <div className='summary'>
             Address: {match.params.address}<br />
             Arbitrator: {contract.arbitrator}<br />
@@ -38,23 +58,17 @@ class SummaryContract extends Component {
             Party B Fee Paid: {contract.partyBFee}<br />
             Status: {contract.status}<br />
           </div>
-          <button onClick={this.raiseDispute} type='submit' className='submit'>
-            {
-              isFetching &&
-              <FontAwesome
-                name='circle-o-notch'
-                spin
-                style={{marginRight: '10px'}}
-              />
-            }
-            Create dispute
-          </button>
-          <EvidenceForm />
+          {
+            contract.evidences !== undefined &&
+            contract.evidences.length > 0 &&
+            <h2>Evidences</h2>
+          }
           <ul>
             {
-              contract.evidences !== undefined && contract.evidences.map(evidence => (
-                <li key={evidence._id}>{evidence.url}</li>
-              ))
+              contract.evidences !== undefined
+              &&  contract.evidences.map(evidence => (
+                    <li key={evidence._id}>{evidence.url}</li>
+                  ))
             }
           </ul>
         </div>

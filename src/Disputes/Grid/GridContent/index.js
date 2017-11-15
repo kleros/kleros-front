@@ -33,6 +33,14 @@ class GridContent extends Component {
       <div className='GridContent-container'>
         <div className='items'>
           {
+            (disputes.length === 0) &&
+            <div className='items-row'>
+              <div className='item item-no-disputes'>
+                You haven't any disputes.
+              </div>
+            </div>
+          }
+          {
             disputes.map(dispute =>
               <Link key={dispute.hash} to={`disputes/${dispute.hash}`}>
                 <div className='items-row'>

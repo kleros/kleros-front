@@ -50,13 +50,6 @@ const Form = props => {
         _.has(formContract, 'values.contractName') &&
         <div className='params'>
           <Field
-            name='arbitrator'
-            component={Input}
-            type='text'
-            required
-            innerClassName='input-text-contract-param'
-            placeholder='Arbitrator' />
-          <Field
             name='hashContract'
             component={Input}
             type='text'

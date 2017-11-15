@@ -80,8 +80,15 @@ table {
 // FIXME create a constant.scss file with the constants
 
 h1 {
-  color: #1B2431;
+  color: #1b2431;
   font-size: 24px;
+  line-height: 29px;
+  margin-bottom: 22px;
+}
+
+h2 {
+  color: #1b2431;
+  font-size: 20px;
   line-height: 29px;
   margin-bottom: 22px;
 }

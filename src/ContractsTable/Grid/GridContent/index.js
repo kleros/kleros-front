@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import 'babel-polyfill'
+import FontAwesome from 'react-fontawesome'
 import { getContracts } from '../../../business/contract/action-creators'
 import { truncateAddress } from '../../../helpers/truncateAddress'
 import './GridContent.css'
@@ -32,14 +33,17 @@ class GridContent extends Component {
     return (
       <div className='GridContent-container'>
         <div className='items'>
+          {console.log(contracts)}
           {
             contracts.map(contract =>
               <Link key={contract.address} to={`contract-summary/${contract.address}`}>
                 <div className='items-row'>
-                  <div className='item-arbitrator'>{ truncateAddress(contract.arbitrator, 10) }</div>
-                  <div className='item-contract-hash'>{ truncateAddress(contract.address, 10) }</div>
-                  <div className='item item-party-a'>{ truncateAddress(contract.partyA, 10) }</div>
-                  <div className='item item-party-b'>{ truncateAddress(contract.partyB, 10) }</div>
+                  <div className='item-contract-hash'>{contract.address}</div>
+                  <div className='item item-party-a'>{truncateAddress(contract.partyA, 10)}</div>
+                  <div className='item item-party-b'>{truncateAddress(contract.partyB, 10)}</div>
+                  <div className='item item-rule'>
+                    <FontAwesome name='circle-thin' />
+                  </div>
                 </div>
               </Link>
             )

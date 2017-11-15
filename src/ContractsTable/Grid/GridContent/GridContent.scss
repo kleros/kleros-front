@@ -21,25 +21,28 @@
         background-color: rgba(216, 216, 216, 0.15);
         cursor: pointer;
       }
-      .item-arbitrator {
-        display: flex;
-        flex-direction: column;
-      }
       .item {
         padding: 20px 0;
       }
       .item-contract-hash {
-        padding-left: 40px;
+        padding: 20px 0 0 40px;
         width: 35%;
+        font-size: 14px;
       }
       .item-party-a {
         width: 25%;
         font-size: 14px;
-        font-weight: 600;
-        color: #7f8fa4;
       }
       .item-party-b {
         width: 25%;
+        font-size: 14px;
+      }
+      .item-fee-party {
+        width: 20%;
+        font-size: 14px;
+      }
+      .item-rule {
+        width: 15%;
         font-size: 14px;
       }
       .item-status {

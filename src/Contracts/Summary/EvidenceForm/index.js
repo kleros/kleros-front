@@ -16,12 +16,6 @@ const EvidenceForm = props => {
     hasErrored
   } = props
 
-  if (submitSucceeded) {
-    return <Redirect
-      to='/contracts'
-      push />
-  }
-
   return (
     <form
       onSubmit={handleSubmit}
@@ -34,22 +28,29 @@ const EvidenceForm = props => {
           required
           innerClassName='input-text-contract-param'
           placeholder='Link to the evidence' />
+        <div>
+          <button type='submit' disabled={submitting || error} className='submit'>
+            {
+              submitting &&
+              <FontAwesome
+                name='circle-o-notch'
+                spin
+                style={{marginRight: '10px'}}
+              />
+            }
+            Add an evidence
+            {
+              submitSucceeded &&
+              <FontAwesome
+                name='check'
+                style={{marginLeft: '10px'}}
+              />
+            }
+          </button>
+        </div>
+        {error && <div><strong>{error}</strong></div>}
+        {hasErrored && <div>Error evidence</div>}
       </div>
-      {error && <div><strong>{error}</strong></div>}
-      <div>
-        <button type='submit' disabled={submitting || error} className='submit'>
-          {
-            submitting &&
-            <FontAwesome
-              name='circle-o-notch'
-              spin
-              style={{marginRight: '10px'}}
-            />
-          }
-          Add an evidence
-        </button>
-      </div>
-      {hasErrored && <div>Error evidence</div>}
     </form>
   )
 }
