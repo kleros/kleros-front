@@ -36,7 +36,7 @@ class SummaryContract extends Component {
             PartyB: {contract.partyB}<br />
             Party A Fee Paid: {contract.partyAFee}<br />
             Party B Fee Paid: {contract.partyBFee}<br />
-            Status: {contract.status}
+            Status: {contract.status}<br />
           </div>
           <button onClick={this.raiseDispute} type='submit' className='submit'>
             {
@@ -50,6 +50,13 @@ class SummaryContract extends Component {
             Create dispute
           </button>
           <EvidenceForm />
+          <ul>
+            {
+              contract.evidences !== undefined && contract.evidences.map(evidence => (
+                <li key={evidence._id}>{evidence.url}</li>
+              ))
+            }
+          </ul>
         </div>
       </div>
     )

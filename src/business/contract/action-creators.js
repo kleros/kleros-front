@@ -84,7 +84,10 @@ export const contractFetchData = contractAddress => async dispatch => {
     let arbitrableTransaction = await KlerosInstance.arbitrableTransaction
 
     const contractDataDeployed = await arbitrableTransaction
-      .getDataContract(contractAddress)
+      .getDataContract(
+        web3.eth.accounts[0],
+        contractAddress
+      )
 
     await dispatch(receiveContract(contractDataDeployed))
     await dispatch(requestContract(false))
