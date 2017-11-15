@@ -33,7 +33,6 @@ class GridContent extends Component {
     return (
       <div className='GridContent-container'>
         <div className='items'>
-          {console.log(contracts)}
           {
             contracts.map(contract =>
               <Link key={contract.address} to={`contract-summary/${contract.address}`}>
