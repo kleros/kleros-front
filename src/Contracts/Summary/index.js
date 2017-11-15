@@ -33,8 +33,8 @@ class SummaryContract extends Component {
             <span className='pull-right'>
               {
                 (contract.partyAFee && contract.partyBFee)
-                ? <EvidenceForm />
-                : <button onClick={this.raiseDispute} type='submit' className='submit'>
+                  ? <EvidenceForm />
+                  : <button onClick={this.raiseDispute} type='submit' className='submit'>
                     {
                       isFetching &&
                       <FontAwesome
@@ -65,10 +65,10 @@ class SummaryContract extends Component {
           }
           <ul>
             {
-              contract.evidences !== undefined
-              &&  contract.evidences.map(evidence => (
-                    <li key={evidence._id}>{evidence.url}</li>
-                  ))
+              contract.evidences !== undefined &&
+              contract.evidences.map(evidence => (
+                <li key={evidence._id}>{evidence.url}</li>
+              ))
             }
           </ul>
         </div>

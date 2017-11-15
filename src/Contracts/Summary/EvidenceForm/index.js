@@ -1,7 +1,7 @@
 import React from 'react'
 import { SubmissionError, Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
-import { withRouter, Redirect } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import FontAwesome from 'react-fontawesome'
 import { addEvidence } from '../../../business/contract/action-creators'
 import Input from '../../../Input'
