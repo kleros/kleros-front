@@ -19,14 +19,14 @@ class DecisionSummary extends Component {
 
     let action
     switch (period) {
-      case 4: // appeal stage TODO
+      case 3: // appeal stage TODO
         action = (
           <div>
             Appeal Ruling
           </div>
         )
         break
-      case 5: // execution phase TODO
+      case 4: // execution phase TODO
         action = (
           <div>
             Execute Ruling
