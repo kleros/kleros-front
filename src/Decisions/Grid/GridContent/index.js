@@ -42,7 +42,7 @@ class GridContent extends Component {
           }
           {
             disputes.map(dispute => {
-              if ((dispute.isJuror && dispute.hasRuled) || !dispute.isJuror)
+              if ((dispute.isJuror && dispute.hasRuled) || !dispute.isJuror) {
                 return (
                   <Link key={dispute.hash} to={`decisions/${dispute.hash}`}>
                     <div className='items-row'>
@@ -55,7 +55,8 @@ class GridContent extends Component {
                       <div className='item item-status'>{ dispute.status }</div>
                     </div>
                   </Link>
-              )
+                )
+              }
 
               return false
             }
