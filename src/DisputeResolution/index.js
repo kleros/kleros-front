@@ -48,6 +48,7 @@ class DisputeResolution extends Component {
           resolutionOptions={dispute.disputeData.resolutionOptions}
           disputeId={dispute.disputeData.disputeId}
           votes={dispute.disputeData.votes}
+          hash={dispute.disputeData.hash}
         />
       </div>
     )

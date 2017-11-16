@@ -41,7 +41,7 @@ export const getDisputes = () => async dispatch => {
   }
 }
 
-export const submitDisputeResolution = (ruling, disputeId, votes) => async dispatch => {
+export const submitDisputeResolution = (ruling, disputeId, votes, hash) => async dispatch => {
   dispatch(submitRuling(true))
   try {
     let web3 = await getWeb3()
@@ -56,7 +56,8 @@ export const submitDisputeResolution = (ruling, disputeId, votes) => async dispa
       process.env.REACT_APP_ARBITRATOR_ADDRESS,
       disputeId,
       ruling,
-      votes
+      votes,
+      hash
     )
     dispatch(rulingSubmitted(submittedRulingTx))
     dispatch(submitRuling(false))
