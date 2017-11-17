@@ -14,3 +14,8 @@ export const STATUS_TO_STATE = [
   "Dispute Created",
   "Resolved"
 ]
+export const RULINGS = [
+  "No Ruling",
+  "Party A Wins",
+  "Party B Wins"
+]

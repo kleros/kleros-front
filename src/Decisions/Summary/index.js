@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { getDisputeById } from '../../business/disputes/action-creators'
 import { getArbitratorData } from '../../business/contract/action-creators'
-import { STATUS_TO_STATE } from '../../constants'
+import { STATUS_TO_STATE, RULINGS } from '../../constants'
 import Banner from '../../Banner'
 
 import './Summary.css'
@@ -50,7 +50,7 @@ class DecisionSummary extends Component {
           PartyA: {dispute.contractData.partyA}<br />
           PartyB: {dispute.contractData.partyB}<br />
           Status: {STATUS_TO_STATE[dispute.disputeData.status]}<br />
-          Ruling: {dispute.disputeData.ruling}
+        Ruling: {RULINGS[dispute.disputeData.ruling]}
         </div>
       )
     }
