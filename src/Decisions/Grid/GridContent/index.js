@@ -4,6 +4,7 @@ import { withRouter, Link } from 'react-router-dom'
 import 'babel-polyfill'
 import { getDisputes } from '../../../business/disputes/action-creators'
 import { truncateAddress } from '../../../helpers/truncateAddress'
+import { PERIOD_TO_STATE } from '../../../constants'
 import './GridContent.css'
 
 class GridContent extends Component {
@@ -52,7 +53,7 @@ class GridContent extends Component {
                       </div>
                       <div className='item item-deadline'>{ dispute.deadline }</div>
                       <div className='item item-case_id'>{ truncateAddress(dispute.hash, 10) }</div>
-                      <div className='item item-status'>{ dispute.status }</div>
+                      <div className='item item-status'>{ PERIOD_TO_STATE[dispute.period] }</div>
                     </div>
                   </Link>
                 )
