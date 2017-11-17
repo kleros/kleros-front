@@ -21,7 +21,6 @@ class DisputeResolution extends Component {
     if (this.props.isFetching) return false
 
     const dispute = this.props.caseData
-    console.log(dispute)
     // FIXME show dispute not found message or a loading indicator
     if (!dispute) return false
 
