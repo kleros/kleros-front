@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { getDisputeById, appealDispute } from '../../business/disputes/action-creators'
+import { getDisputeById, appealDispute, executeRuling } from '../../business/disputes/action-creators'
 import { getArbitratorData } from '../../business/contract/action-creators'
 import { STATUS_TO_STATE, RULINGS } from '../../constants'
 import Banner from '../../Banner'
@@ -19,6 +19,11 @@ class DecisionSummary extends Component {
     const disputeId = this.props.caseData.disputeData.disputeId
     const extraData = this.props.caseData.contractData.extraData
     this.props.appealDispute(disputeId, extraData)
+  }
+  
+  executeRuling = () => {
+    const disputeId = this.props.caseData.disputeData.disputeId
+    this.props.executeRuling(disputeId)
   }
 
   render () {
@@ -38,7 +43,7 @@ class DecisionSummary extends Component {
         break
       case 4: // execution phase TODO
         action = (
-          <div className='action-btn'>
+          <div className='action-btn' onClick={this.executeRuling}>
             Execute Ruling
           </div>
         )
@@ -95,7 +100,8 @@ const mapDispatchToProps = dispatch => {
   return {
     getDisputeById: disputeId => dispatch(getDisputeById(disputeId)),
     getArbitratorData: disputeId => dispatch(getArbitratorData(disputeId)),
-    appealDispute: (disputeId, extraData) => dispatch(appealDispute(disputeId, extraData))
+    appealDispute: (disputeId, extraData) => dispatch(appealDispute(disputeId, extraData)),
+    executeRuling: disputeId => dispatch(executeRuling(disputeId))
   }
 }
 

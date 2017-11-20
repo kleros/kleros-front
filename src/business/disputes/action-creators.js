@@ -105,3 +105,18 @@ export const appealDispute = (disputeId, extraData) => async dispatch => {
     throw e
   }
 }
+
+export const executeRuling = disputeId => async dispatch => {
+  try {
+    let web3 = await getWeb3()
+
+    const provider = web3.currentProvider
+
+    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+
+    let court = KlerosInstance.court
+    await court.executeRuling(process.env.REACT_APP_ARBITRATOR_ADDRESS, disputeId)
+  } catch (e) {
+    throw e
+  }
+}
