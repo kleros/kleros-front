@@ -1,7 +1,15 @@
 import React from 'react'
-import Grid from './Grid'
-import GridContent from './Grid/GridContent'
+import _ from 'lodash'
+import DisputesTable from '../DisputesTable'
 import './Decisions.css'
+
+const filterFunction = disputes => {
+  return _.filter(disputes, dispute => {
+    if ((dispute.disputeData.isJuror && dispute.disputeData.hasRuled) || !dispute.disputeData.isJuror) {
+      return dispute
+    }
+  })
+}
 
 const Decisions = props => {
   const itemsTitle = [
@@ -16,9 +24,7 @@ const Decisions = props => {
     <div className='Decisions-container'>
       <div className='content'>
         <h1>Open Cases</h1>
-        <Grid itemTitles={itemsTitle}>
-          <GridContent />
-        </Grid>
+        <DisputesTable itemTitles={itemsTitle} baseLink={'decisions'} filterFunction={filterFunction} />
       </div>
     </div>
   )

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
+import _ from 'lodash'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { balanceFetchData } from '../business/ethereum/action-creators'
-import GridContent from './Grid/GridContent'
-import Grid from './Grid'
+import DisputesTable from '../DisputesTable'
 import SearchBar from '../SearchBar'
 import './Disputes.css'
 
@@ -25,14 +25,20 @@ class Disputes extends Component {
       'Evidence'
     ]
 
+    const filterFunction = disputes => {
+      return _.filter(disputes, dispute => {
+        if (dispute.disputeData.isJuror && !dispute.disputeData.hasRuled) {
+          return dispute
+        }
+      })
+    }
+
     return (
       <div className='Disputes-container'>
         <SearchBar />
         <div className='content'>
           <h1>Open Disputes</h1>
-          <Grid itemTitles={itemsTitle}>
-            <GridContent />
-          </Grid>
+          <DisputesTable itemTitles={itemsTitle} baseLink={'disputes'} filterFunction={filterFunction} />
         </div>
       </div>
     )

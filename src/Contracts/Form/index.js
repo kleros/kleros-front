@@ -57,6 +57,13 @@ const Form = props => {
             innerClassName='input-text-contract-param'
             placeholder='Hash contract' />
           <Field
+            name='value'
+            component={Input}
+            type='number'
+            required
+            innerClassName='input-text-contract-param'
+            placeholder='Payment (ETH)' />
+          <Field
             name='timeout'
             component={Input}
             type='number'

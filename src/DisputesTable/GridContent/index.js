@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import 'babel-polyfill'
-import { getDisputes } from '../../../business/disputes/action-creators'
-import { truncateAddress } from '../../../helpers/truncateAddress'
-import { PERIOD_TO_STATE } from '../../../constants'
+import { getDisputes } from '../../business/disputes/action-creators'
+import { truncateAddress } from '../../helpers/truncateAddress'
+import { STATUS_TO_STATE } from '../../constants'
 import './GridContent.css'
 
 class GridContent extends Component {
@@ -13,9 +13,9 @@ class GridContent extends Component {
   }
 
   render () {
-    const { hasErrored, isFetching, disputes } = this.props
+    const { hasErrored, isFetching, disputes, baseLink, filterFunction } = this.props
     if (hasErrored) {
-      return <p>Sorry! There was an error loading the balance</p>
+      return <p>Sorry! There was an error loading the disputes</p>
     }
 
     if (isFetching) {
@@ -30,6 +30,8 @@ class GridContent extends Component {
       )
     }
 
+    const filteredDisputes = filterFunction(disputes)
+
     return (
       <div className='GridContent-container'>
         <div className='items'>
@@ -42,24 +44,20 @@ class GridContent extends Component {
             </div>
           }
           {
-            disputes.map(dispute => {
-              if (dispute.isJuror && !dispute.hasRuled) {
-                return (
-                  <Link key={dispute.hash} to={`disputes/${dispute.hash}`}>
-                    <div className='items-row'>
-                      <div className='item item-project'>
-                        <div className='item-title'>{ dispute.title }</div>
-                        <div className='item-category'>{ dispute.category }</div>
-                      </div>
-                      <div className='item item-deadline'>{ dispute.deadline }</div>
-                      <div className='item item-case_id'>{ truncateAddress(dispute.hash, 10) }</div>
-                      <div className='item item-status'>{ PERIOD_TO_STATE[dispute.period] }</div>
+            filteredDisputes.map(dispute => {
+              return (
+                <Link key={dispute.disputeData.hash} to={`${baseLink}/${dispute.disputeData.hash}`}>
+                  <div className='items-row'>
+                    <div className='item item-project'>
+                      <div className='item-title'>{ dispute.disputeData.title }</div>
+                      <div className='item-category'>{ dispute.contractData.category }</div>
                     </div>
-                  </Link>
-                )
-              }
-
-              return false
+                    <div className='item item-deadline'>{ dispute.disputeData.deadline }</div>
+                    <div className='item item-case_id'>{ truncateAddress(dispute.disputeData.hash, 10) }</div>
+                    <div className='item item-status'>{ STATUS_TO_STATE[dispute.contractData.status] }</div>
+                  </div>
+                </Link>
+              )
             }
 
             )

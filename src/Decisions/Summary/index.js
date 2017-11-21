@@ -63,7 +63,7 @@ class DecisionSummary extends Component {
           Timeout: {dispute.contractData.timeout}<br />
           PartyA: {dispute.contractData.partyA}<br />
           PartyB: {dispute.contractData.partyB}<br />
-          Status: {STATUS_TO_STATE[dispute.disputeData.status]}<br />
+        Status: {STATUS_TO_STATE[dispute.contractData.status]}<br />
         Ruling: {RULINGS[dispute.disputeData.ruling]}
         </div>
       )
