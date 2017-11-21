@@ -11,6 +11,7 @@ const Form = props => {
   const {
     resolutionOptions = [],
     votes,
+    hash,
     disputeId,
     handleSubmit,
     submitting,
@@ -19,7 +20,7 @@ const Form = props => {
   } = props
 
   const submitWithProps = (values, dispatch) => {
-    return dispatch(submitDisputeResolution(values.decision, disputeId, votes))
+    return dispatch(submitDisputeResolution(values.decision, disputeId, votes, hash))
       .catch(error => {
         if (error) { throw new SubmissionError({_error: 'Unable to submit ruling'}) }
       })

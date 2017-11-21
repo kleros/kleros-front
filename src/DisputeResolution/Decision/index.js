@@ -14,6 +14,7 @@ const Decision = props => {
         resolutionOptions={props.resolutionOptions}
         disputeId={props.disputeId}
         votes={props.votes}
+        hash={props.hash}
       />
     </div>
   )

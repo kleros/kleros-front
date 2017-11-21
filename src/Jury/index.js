@@ -23,7 +23,9 @@ class Jury extends Component {
         break
       default:
         content = (
-          <div />
+          <div>
+            You can only activate PNK during the 1st period of the contract
+          </div>
         )
     }
 

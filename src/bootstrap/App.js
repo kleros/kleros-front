@@ -14,6 +14,8 @@ import ContractSummary from '../Contracts/Summary'
 import DisputeResolution from '../DisputeResolution'
 import Settings from '../Settings'
 import Jury from '../Jury'
+import Decisions from '../Decisions'
+import DecisionSummary from '../Decisions/Summary'
 import Layout from '../Layout'
 import './index.css'
 
@@ -56,6 +58,16 @@ const App = () => (
             exact
             path='/jury'
             component={Jury}
+          />
+          <Route
+            exact
+            path='/decisions'
+            component={Decisions}
+          />
+          <Route
+            exact
+            path='/decisions/:disputeId'
+            component={DecisionSummary}
           />
         </Layout>
       </Switch>

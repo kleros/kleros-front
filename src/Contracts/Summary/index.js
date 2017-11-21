@@ -43,7 +43,7 @@ class SummaryContract extends Component {
                         style={{marginRight: '10px'}}
                       />
                     }
-                    Create dispute
+                  Create dispute
                   </button>
               }
             </span>

@@ -41,7 +41,7 @@ export const getDisputes = () => async dispatch => {
   }
 }
 
-export const submitDisputeResolution = (ruling, disputeId, votes) => async dispatch => {
+export const submitDisputeResolution = (ruling, disputeId, votes, hash) => async dispatch => {
   dispatch(submitRuling(true))
   try {
     let web3 = await getWeb3()
@@ -56,7 +56,8 @@ export const submitDisputeResolution = (ruling, disputeId, votes) => async dispa
       process.env.REACT_APP_ARBITRATOR_ADDRESS,
       disputeId,
       ruling,
-      votes
+      votes,
+      hash
     )
     dispatch(rulingSubmitted(submittedRulingTx))
     dispatch(submitRuling(false))
@@ -67,7 +68,7 @@ export const submitDisputeResolution = (ruling, disputeId, votes) => async dispa
   }
 }
 
-export const getDisputeById = (disputeId) => async dispatch => {
+export const getDisputeById = hash => async dispatch => {
   dispatch(requestCaseData(true))
 
   try {
@@ -80,8 +81,7 @@ export const getDisputeById = (disputeId) => async dispatch => {
     // TODO use KlerosPOC
     let court = KlerosInstance.court
     // FIXME use a variable input for user to set their court contract
-    const disputeData = await court.getDisputeByHash(disputeId)
-
+    const disputeData = await court.getDisputeByHash(hash, process.env.REACT_APP_ARBITRATOR_ADDRESS)
     // use same reducer as fetch disputes
     await dispatch(receiveCaseData(disputeData))
     await dispatch(requestCaseData(false))

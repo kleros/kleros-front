@@ -41,12 +41,13 @@ class DisputeResolution extends Component {
         <div className='divider' />
         <Information text={dispute.contractData.description} truncatedCharacters={50} arbitrationFee={arbitrationFee} timeRemaining={dispute.disputeData.deadline} />
         <div className='divider' />
-        <Evidence evidence={dispute.contractData.evidencePartyA.concat(dispute.contractData.evidencePartyB)} />
+        <Evidence evidence={dispute.contractData.evidencePartyA ? dispute.contractData.evidencePartyA.concat(dispute.contractData.evidencePartyB) : []} />
         <div className='divider' />
         <Decision
           resolutionOptions={dispute.disputeData.resolutionOptions}
           disputeId={dispute.disputeData.disputeId}
           votes={dispute.disputeData.votes}
+          hash={dispute.disputeData.hash}
         />
       </div>
     )
