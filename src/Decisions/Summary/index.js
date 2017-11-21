@@ -9,7 +9,6 @@ import Banner from '../../Banner'
 import './Summary.css'
 
 class DecisionSummary extends Component {
-
   componentDidMount () {
     this.props.getDisputeById(this.props.match.params.disputeId)
     this.props.getArbitratorData()
@@ -20,7 +19,7 @@ class DecisionSummary extends Component {
     const extraData = this.props.caseData.contractData.extraData
     this.props.appealDispute(disputeId, extraData)
   }
-  
+
   executeRuling = () => {
     const disputeId = this.props.caseData.disputeData.disputeId
     this.props.executeRuling(disputeId)
@@ -28,20 +27,21 @@ class DecisionSummary extends Component {
 
   render () {
     if (this.props.isFetchingCase) return false
+    console.log(this.props.caseData)
 
     let period = -1
     if (!this.props.isFetchingArbitrator) period = this.props.arbitratorData.period
 
     let action
     switch (period) {
-      case 3: // appeal stage TODO
+      case 3:
         action = (
           <div className='action-btn' onClick={this.appealDispute}>
             Appeal Ruling
           </div>
         )
         break
-      case 4: // execution phase TODO
+      case 4:
         action = (
           <div className='action-btn' onClick={this.executeRuling}>
             Execute Ruling
@@ -74,7 +74,9 @@ class DecisionSummary extends Component {
         <Banner title='Decision Summary' linkTo='/decisions' />
         <div className='content'>
           <div className='action'>
-            { action }
+            <span className='pull-right'>
+              { action }
+            </span>
           </div>
           <div className='summary'>
             { summary }
