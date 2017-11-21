@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { getDisputeById } from '../../business/disputes/action-creators'
+import { getDisputeById, appealDispute, executeRuling } from '../../business/disputes/action-creators'
 import { getArbitratorData } from '../../business/contract/action-creators'
 import { STATUS_TO_STATE, RULINGS } from '../../constants'
 import Banner from '../../Banner'
@@ -14,22 +14,36 @@ class DecisionSummary extends Component {
     this.props.getArbitratorData()
   }
 
+  appealDispute = () => {
+    const disputeId = this.props.caseData.disputeData.disputeId
+    const extraData = this.props.caseData.contractData.extraData
+    this.props.appealDispute(disputeId, extraData)
+  }
+
+  executeRuling = () => {
+    const disputeId = this.props.caseData.disputeData.disputeId
+    this.props.executeRuling(disputeId)
+  }
+
   render () {
+    if (this.props.isFetchingCase) return false
+    console.log(this.props.caseData)
+
     let period = -1
     if (!this.props.isFetchingArbitrator) period = this.props.arbitratorData.period
 
     let action
     switch (period) {
-      case 3: // appeal stage TODO
+      case 3:
         action = (
-          <div>
+          <div className='action-btn' onClick={this.appealDispute}>
             Appeal Ruling
           </div>
         )
         break
-      case 4: // execution phase TODO
+      case 4:
         action = (
-          <div>
+          <div className='action-btn' onClick={this.executeRuling}>
             Execute Ruling
           </div>
         )
@@ -60,7 +74,9 @@ class DecisionSummary extends Component {
         <Banner title='Decision Summary' linkTo='/decisions' />
         <div className='content'>
           <div className='action'>
-            { action }
+            <span className='pull-right'>
+              { action }
+            </span>
           </div>
           <div className='summary'>
             { summary }
@@ -85,7 +101,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getDisputeById: disputeId => dispatch(getDisputeById(disputeId)),
-    getArbitratorData: disputeId => dispatch(getArbitratorData(disputeId))
+    getArbitratorData: disputeId => dispatch(getArbitratorData(disputeId)),
+    appealDispute: (disputeId, extraData) => dispatch(appealDispute(disputeId, extraData)),
+    executeRuling: disputeId => dispatch(executeRuling(disputeId))
   }
 }
 
