@@ -27,31 +27,33 @@ class DecisionSummary extends Component {
 
   render () {
     if (this.props.isFetchingCase) return false
-    console.log(this.props.caseData)
 
     let period = -1
     if (!this.props.isFetchingArbitrator) period = this.props.arbitratorData.period
 
-    let action
-    switch (period) {
-      case 3:
-        action = (
-          <div className='action-btn' onClick={this.appealDispute}>
-            Appeal Ruling
-          </div>
-        )
-        break
-      case 4:
-        action = (
-          <div className='action-btn' onClick={this.executeRuling}>
-            Execute Ruling
-          </div>
-        )
-        break
-      default:
-        action = (
-          <div />
-        )
+    let action = <div />
+    // only allow actions if dispute is not resolved
+    if (this.props.caseData.contractData.status !== 4) {
+      switch (period) {
+        case 3:
+          action = (
+            <div className='action-btn' onClick={this.appealDispute}>
+              Appeal Ruling
+            </div>
+          )
+          break
+        case 4:
+          action = (
+            <div className='action-btn' onClick={this.executeRuling}>
+              Execute Ruling
+            </div>
+          )
+          break
+        default:
+          action = (
+            <div />
+          )
+      }
     }
 
     let summary
