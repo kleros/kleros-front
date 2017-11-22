@@ -20,8 +20,8 @@ class Sidebar extends Component {
     if (!balanceIsFetching) balance = (this.props.balance.tokenBalance - this.props.balance.activatedTokens)
     if (!addressIsFetching) address = this.props.address
 
-    if (balanceHasErrored) balance = -1
-    if (addressHasErrored) balance = '-error-'
+    if (balanceHasErrored) balance = 0
+    if (addressHasErrored) address = 'Locked'
 
     return (
       <div className={'Sidebar-container'}>
