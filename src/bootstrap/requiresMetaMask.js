@@ -10,5 +10,4 @@ const RequiresMetaMask = () => (
   </div>
 )
 
-
 export default RequiresMetaMask

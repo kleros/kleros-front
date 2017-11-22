@@ -29,6 +29,8 @@ class Sidebar extends Component {
       )
     }
 
+    if (balanceHasErrored) balance = -1
+
     return (
       <div className={'Sidebar-container'}>
         <ShortProfile address={address} balancePNK={balance} />
