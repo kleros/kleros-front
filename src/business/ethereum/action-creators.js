@@ -11,6 +11,26 @@ import {
 import { Kleros } from 'kleros-api'
 import { getWeb3 } from '../../helpers/getWeb3'
 
+// fetch account async to avoid race conditions. use for actions that are triggered on page load
+const _getAccountSafe = async (
+  account = 0
+) => {
+  try {
+    let web3 = await getWeb3()
+
+    const accounts = await new Promise((resolve, reject) => {
+      web3.eth.getAccounts((err, accounts) => {
+        if (err) reject(err)
+        resolve(accounts)
+      })
+    })
+
+    return accounts[account]
+  } catch (e) {
+    throw e
+  }
+}
+
 export const balanceFetchData = () => async dispatch => {
   dispatch(requestBalance(true))
   try {
@@ -21,11 +41,12 @@ export const balanceFetchData = () => async dispatch => {
     let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
 
     let court = KlerosInstance.court
-
-    const balance = await court.getPNKBalance(process.env.REACT_APP_ARBITRATOR_ADDRESS)
+    const account = await _getAccountSafe()
+    const balance = await court.getPNKBalance(process.env.REACT_APP_ARBITRATOR_ADDRESS, account)
     dispatch(requestBalance(false))
     dispatch(receiveBalance(balance))
   } catch (e) {
+    console.log(e)
     // FIXME display a user-friendly error
     dispatch(failureBalance(true))
   }
@@ -34,16 +55,10 @@ export const balanceFetchData = () => async dispatch => {
 export const fetchAddress = (account = 0) => async dispatch => {
   dispatch(requestAddress(true))
   try {
-    let web3 = await getWeb3()
     // use async method to ensure that web3 has loaded
-    const accounts = await new Promise((resolve, reject) => {
-      web3.eth.getAccounts((err, accounts) => {
-        if (err) reject(err)
-        resolve(accounts)
-      })
-    })
+    const userAccount = await _getAccountSafe(account)
     dispatch(requestAddress(false))
-    dispatch(receiveAddress(accounts[account]))
+    dispatch(receiveAddress(userAccount))
   } catch (e) {
     // FIXME display a user-friendly error
     dispatch(failureAddress(true))
