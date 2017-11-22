@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ShortProfile from './ShortProfile'
 import MenuSidebar from './MenuSidebar'
+import AccountLocked from './AccountLocked'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { balanceFetchData, fetchAddress } from '../business/ethereum/action-creators'
@@ -20,8 +21,15 @@ class Sidebar extends Component {
     if (!balanceIsFetching) balance = (this.props.balance.tokenBalance - this.props.balance.activatedTokens)
     if (!addressIsFetching) address = this.props.address
 
+    if (addressHasErrored) {
+      return (
+        <div className='Sidebar-container'>
+          <AccountLocked />
+        </div>
+      )
+    }
+
     if (balanceHasErrored) balance = -1
-    if (addressHasErrored) balance = '-error-'
 
     return (
       <div className={'Sidebar-container'}>
