@@ -35,8 +35,15 @@ export const fetchAddress = (account = 0) => async dispatch => {
   dispatch(requestAddress(true))
   try {
     let web3 = await getWeb3()
+    // use async method to ensure that web3 has loaded
+    const accounts = await new Promise((resolve, reject) => {
+      web3.eth.getAccounts((err, accounts) => {
+        if (err) reject(err)
+        resolve(accounts)
+      })
+    })
     dispatch(requestAddress(false))
-    dispatch(receiveAddress(web3.eth.accounts[account]))
+    dispatch(receiveAddress(accounts[account]))
   } catch (e) {
     // FIXME display a user-friendly error
     dispatch(failureAddress(true))
