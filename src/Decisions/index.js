@@ -3,13 +3,11 @@ import _ from 'lodash'
 import DisputesTable from '../DisputesTable'
 import './Decisions.css'
 
-const filterFunction = disputes => {
-  return _.filter(disputes, dispute => {
-    if ((dispute.disputeData.isJuror && dispute.disputeData.hasRuled) || !dispute.disputeData.isJuror) {
-      return dispute
-    }
-  })
-}
+const filterFunction = disputes => _.filter(disputes, dispute => (
+    ((dispute.disputeData.isJuror && dispute.disputeData.hasRuled) || !dispute.disputeData.isJuror) && dispute
+  )
+)
+
 
 const Decisions = props => {
   const itemsTitle = [

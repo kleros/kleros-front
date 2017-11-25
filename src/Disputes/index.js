@@ -25,13 +25,10 @@ class Disputes extends Component {
       'Evidence'
     ]
 
-    const filterFunction = disputes => {
-      return _.filter(disputes, dispute => {
-        if (dispute.disputeData.isJuror && !dispute.disputeData.hasRuled) {
-          return dispute
-        }
-      })
-    }
+    const filterFunction = disputes => _.filter(disputes, dispute => (
+        ((dispute.disputeData.isJuror && !dispute.disputeData.hasRuled) && dispute)
+      )
+    )
 
     return (
       <div className='Disputes-container'>

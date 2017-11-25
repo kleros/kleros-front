@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { getDisputeById, appealDispute, executeRuling } from '../../business/disputes/action-creators'
 import { getArbitratorData } from '../../business/contract/action-creators'
-import { STATUS_TO_STATE, RULINGS } from '../../constants'
+import { STATUS_TO_STATE, RULINGS, RESOLVED_STATUS } from '../../constants'
 import Banner from '../../Banner'
 
 import './Summary.css'
@@ -33,7 +33,7 @@ class DecisionSummary extends Component {
 
     let action = <div />
     // only allow actions if dispute is not resolved
-    if (this.props.caseData.contractData.status !== 4) {
+    if (this.props.caseData.contractData.status !== RESOLVED_STATUS) {
       switch (period) {
         case 3:
           action = (
