@@ -26,8 +26,7 @@ class Disputes extends Component {
     ]
 
     const filterFunction = disputes => _.filter(disputes, dispute => (
-        ((dispute.disputeData.isJuror && !dispute.disputeData.hasRuled) && dispute)
-      )
+      ((dispute.disputeData.isJuror && !dispute.disputeData.hasRuled) && dispute))
     )
 
     return (

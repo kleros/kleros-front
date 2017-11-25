@@ -4,10 +4,8 @@ import DisputesTable from '../DisputesTable'
 import './Decisions.css'
 
 const filterFunction = disputes => _.filter(disputes, dispute => (
-    ((dispute.disputeData.isJuror && dispute.disputeData.hasRuled) || !dispute.disputeData.isJuror) && dispute
-  )
+  ((dispute.disputeData.isJuror && dispute.disputeData.hasRuled) || !dispute.disputeData.isJuror) && dispute)
 )
-
 
 const Decisions = props => {
   const itemsTitle = [
