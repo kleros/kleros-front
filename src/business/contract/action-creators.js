@@ -49,7 +49,7 @@ export const deployContract = ({
 
     let contractArbitrable = await arbitrableTransaction.deploy(
       account,
-      value,
+      web3.toWei(value, 'ether'),
       process.env.REACT_APP_ARBITRATOR_ADDRESS,
       hashContract,
       timeout,

@@ -1,10 +1,16 @@
 import React from 'react'
+import GridContent from './GridContent'
 import './Grid.css'
 
-const Grid = ({
+const defaultFilterFunction = dispute => {
+  return dispute
+}
+
+const DisputesTable = ({
   className,
   itemTitles = [],
-  children,
+  baseLink,
+  filterFunction = defaultFilterFunction,
   ...rest
 }) => (
   <div className={`Grid-container ${className}`}>
@@ -15,10 +21,10 @@ const Grid = ({
         <div className='item header-case_id-item'>Case ID</div>
         <div className='item header-status-item'>Status</div>
       </div>
-      { children }
+      <GridContent baseLink={baseLink} filterFunction={filterFunction} />
     </div>
 
   </div>
 )
 
-export default Grid
+export default DisputesTable
