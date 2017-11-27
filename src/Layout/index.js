@@ -4,6 +4,7 @@ import './Layout.css'
 
 const Layout = ({
   className,
+  address,
   children,
   ...rest
 }) => (
@@ -16,7 +17,7 @@ const Layout = ({
         'decisions',
         'settings'
       ]}
-      address={'0xA1E4380A3B1f749673E270229993eE55F35663b4'}
+      address={address}
       balancePNK={242}
     />
     { children }

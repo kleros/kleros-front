@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { Component } from 'react'
 import {
   HashRouter as Router,
   Route,
   Switch
 } from 'react-router-dom'
-import { Provider } from 'react-redux'
+import {
+  Provider,
+  connect
+} from 'react-redux'
 import registerServiceWorker from './registerServiceWorker'
 import RequiresMetaMask from './requiresMetaMask'
-import store from './store'
+import { fetchAddress } from '../business/ethereum/action-creators'
 import Disputes from '../Disputes'
 import Contracts from '../Contracts'
 import ContractsTable from '../ContractsTable'
@@ -20,13 +23,42 @@ import DecisionSummary from '../Decisions/Summary'
 import Layout from '../Layout'
 import './index.css'
 
-const App = () => {
-  if (typeof window.web3 !== 'undefined') {
+class App extends Component {
+  state = {
+    appLoaded: false
+  }
+
+  componentWillMount() {
+    // fetch address before rendering app to make sure web3 has been loaded and to avoid race conditions
+    this.props.getAddress()
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // if address has loaded
+    // FIXME handle error
+    if (this.props.address === 0 && (nextProps.address || nextProps.address === null)) {
+      this.setState({
+        appLoaded: true
+      })
+    }
+  }
+
+  render() {
+    // if no web3 show requires metamask page
+    if (typeof window.web3 === 'undefined') {
+      return (
+        <RequiresMetaMask />
+      )
+    }
+
+    // FIXME show a loading screen?
+    if (!this.state.appLoaded) return false
+
     return (
-      <Provider store={store}>
+      <Provider store={this.props.store}>
         <Router>
           <Switch>
-            <Layout>
+            <Layout address={this.props.address}>
               <Route
                 exact
                 path='/disputes'
@@ -77,13 +109,23 @@ const App = () => {
         </Router>
       </Provider>
     )
-  } else {
-    return (
-      <RequiresMetaMask />
-    )
   }
 }
 
 registerServiceWorker()
 
-export default App
+const mapStateToProps = state => {
+  return {
+    address: state.ethereum.address,
+    addressHasErrored: state.ethereum.failureAddress,
+    addressIsFetching: state.ethereum.requestAddress
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getAddress: () => dispatch(fetchAddress())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
