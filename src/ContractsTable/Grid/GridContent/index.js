@@ -4,7 +4,7 @@ import { withRouter, Link } from 'react-router-dom'
 import 'babel-polyfill'
 import FontAwesome from 'react-fontawesome'
 import { getContracts } from '../../../business/contract/action-creators'
-import { truncateAddress } from '../../../helpers/truncateAddress'
+import { truncateText } from '../../../helpers/truncateText'
 import './GridContent.css'
 
 class GridContent extends Component {
@@ -38,8 +38,8 @@ class GridContent extends Component {
               <Link key={contract.address} to={`contract-summary/${contract.address}`}>
                 <div className='items-row'>
                   <div className='item-contract-hash'>{contract.address}</div>
-                  <div className='item item-party-a'>{truncateAddress(contract.partyA, 10)}</div>
-                  <div className='item item-party-b'>{truncateAddress(contract.partyB, 10)}</div>
+                  <div className='item item-party-a'>{truncateText(contract.partyA, 10)}</div>
+                  <div className='item item-party-b'>{truncateText(contract.partyB, 10)}</div>
                   <div className='item item-rule'>
                     <FontAwesome name='circle-thin' />
                   </div>

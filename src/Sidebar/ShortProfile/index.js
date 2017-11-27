@@ -2,7 +2,7 @@ import React from 'react'
 import Icon from '../../Icon'
 import Identicon from '../../Identicon'
 import { TRUNCATED_DIGITS } from '../../constants'
-import { truncateAddress } from '../../helpers/truncateAddress'
+import { truncateText } from '../../helpers/truncateText'
 import './ShortProfile.css'
 
 const ShortProfile = ({
@@ -20,7 +20,7 @@ const ShortProfile = ({
     </div>
     <div className='description'>
       <div className='address'>
-        { truncateAddress(address, TRUNCATED_DIGITS) }
+        { truncateText(address, TRUNCATED_DIGITS) }
       </div>
       <div className='balancePNK'>
         { balancePNK } PNK
