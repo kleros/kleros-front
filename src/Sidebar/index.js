@@ -47,7 +47,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getBalance: () => dispatch(balanceFetchData()),
+    getBalance: () => dispatch(balanceFetchData())
   }
 }
 

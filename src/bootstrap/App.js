@@ -28,12 +28,12 @@ class App extends Component {
     appLoaded: false
   }
 
-  componentWillMount() {
+  componentWillMount () {
     // fetch address before rendering app to make sure web3 has been loaded and to avoid race conditions
     this.props.getAddress()
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps (nextProps) {
     // if address has loaded
     // FIXME handle error
     if (this.props.address === 0 && (nextProps.address || nextProps.address === null)) {
@@ -43,7 +43,7 @@ class App extends Component {
     }
   }
 
-  render() {
+  render () {
     // if no web3 show requires metamask page
     if (typeof window.web3 === 'undefined') {
       return (
