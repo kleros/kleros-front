@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import 'babel-polyfill'
 import { getDisputes } from '../../business/disputes/action-creators'
-import { truncateAddress } from '../../helpers/truncateAddress'
+import { truncateText } from '../../helpers/truncateText'
 import { STATUS_TO_STATE } from '../../constants'
 import './GridContent.css'
 
@@ -49,11 +49,11 @@ class GridContent extends Component {
                 <Link key={dispute.disputeData.hash} to={`${baseLink}/${dispute.disputeData.hash}`}>
                   <div className='items-row'>
                     <div className='item item-project'>
-                      <div className='item-title'>{ dispute.disputeData.title }</div>
+                      <div className='item-title'>{ truncateText(dispute.contractData.description, 35) }</div>
                       <div className='item-category'>{ dispute.contractData.category }</div>
                     </div>
                     <div className='item item-deadline'>{ dispute.disputeData.deadline }</div>
-                    <div className='item item-case_id'>{ truncateAddress(dispute.disputeData.hash, 10) }</div>
+                    <div className='item item-case_id'>{ truncateText(dispute.disputeData.hash, 10) }</div>
                     <div className='item item-status'>{ STATUS_TO_STATE[dispute.contractData.status] }</div>
                   </div>
                 </Link>

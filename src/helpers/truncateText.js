@@ -1,4 +1,4 @@
-export const truncateAddress = (address, digits) => {
+export const truncateText = (address, digits) => {
   if (!address) return
   if (address.length <= digits) return address
 
