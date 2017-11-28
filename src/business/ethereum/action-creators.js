@@ -41,12 +41,10 @@ export const balanceFetchData = () => async dispatch => {
     let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
 
     let court = KlerosInstance.court
-    const account = await _getAccountSafe()
-    const balance = await court.getPNKBalance(process.env.REACT_APP_ARBITRATOR_ADDRESS, account)
+    const balance = await court.getPNKBalance(process.env.REACT_APP_ARBITRATOR_ADDRESS)
     dispatch(requestBalance(false))
     dispatch(receiveBalance(balance))
   } catch (e) {
-    console.log(e)
     // FIXME display a user-friendly error
     dispatch(failureBalance(true))
   }
@@ -61,6 +59,7 @@ export const fetchAddress = (account = 0) => async dispatch => {
     dispatch(receiveAddress(userAccount))
   } catch (e) {
     // FIXME display a user-friendly error
+    dispatch(requestAddress(false))
     dispatch(failureAddress(true))
   }
 }
