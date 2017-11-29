@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import Web3 from 'web3'
+import { getDisputeById } from '../business/disputes/action-creators'
 import SearchBar from '../SearchBar'
 import Banner from './Banner'
 import Parties from './Parties'
 import Information from './Information'
 import Evidence from './Evidence'
 import Decision from './Decision'
-import { getDisputeById } from '../business/disputes/action-creators'
-import Web3 from 'web3'
 import './DisputeResolution.css'
 
 class DisputeResolution extends Component {

@@ -3,6 +3,7 @@ import _ from 'lodash'
 import { SubmissionError, Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { withRouter, Redirect } from 'react-router-dom'
+import Web3 from 'web3'
 import FontAwesome from 'react-fontawesome'
 import { deployContract } from '../../business/contract/action-creators'
 import Input from '../../Input'
@@ -49,13 +50,6 @@ const Form = props => {
       {
         _.has(formContract, 'values.contractName') &&
         <div className='params'>
-          <Field
-            name='hashContract'
-            component={Input}
-            type='text'
-            required
-            innerClassName='input-text-contract-param'
-            placeholder='Hash contract' />
           <Field
             name='value'
             component={Input}
@@ -159,6 +153,8 @@ export default withRouter(connect(mapStateToProps, null)(
     form: FORM_NAME,
     validate,
     onSubmit (values, dispatch) {
+      const web3 = new Web3()
+      values.hashContract = web3.sha3(values.description)
       return dispatch(deployContract(values))
         .catch(error => {
           if (error) { throw new SubmissionError({_error: 'error submission'}) }
