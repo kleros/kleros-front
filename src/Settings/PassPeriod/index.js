@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { passPeriod, getArbitratorData } from '../../business/contract/action-creators'
+import { PERIOD_TO_STATE } from '../../constants'
 import './PassPeriod.css'
 
 class PassPeriod extends Component {
@@ -13,7 +14,7 @@ class PassPeriod extends Component {
     let currentPeriod = 'loading...'
     let currentSession = 'loading...'
     if (!this.props.isFetching) {
-      currentPeriod = this.props.contract.period
+      currentPeriod = PERIOD_TO_STATE[this.props.contract.period]
       currentSession = this.props.contract.session
     }
 

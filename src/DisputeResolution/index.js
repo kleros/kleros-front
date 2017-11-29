@@ -30,6 +30,7 @@ class DisputeResolution extends Component {
     // arbitration fee
     const web3 = new Web3()
     const arbitrationFee = web3.fromWei(dispute.disputeData.fee)
+    console.log(dispute.contractData.evidences)
 
     // time remaining TODO use momentjs to calculate time difference between now and end time
     return (
@@ -41,7 +42,7 @@ class DisputeResolution extends Component {
         <div className='divider' />
         <Information text={dispute.contractData.description} truncatedCharacters={50} arbitrationFee={arbitrationFee} timeRemaining={dispute.disputeData.deadline} />
         <div className='divider' />
-        <Evidence evidence={dispute.contractData.evidencePartyA ? dispute.contractData.evidencePartyA.concat(dispute.contractData.evidencePartyB) : []} />
+        <Evidence evidence={dispute.contractData.evidences} />
         <div className='divider' />
         <Decision
           resolutionOptions={dispute.disputeData.resolutionOptions}
@@ -58,7 +59,7 @@ const mapStateToProps = state => {
   return {
     caseData: state.disputes.caseData,
     hasErrored: state.disputes.failureCaseData,
-    isFetching: state.disputes.requestCaseData
+    isFetching: state.disputes.requestCaseData,
   }
 }
 

@@ -21,7 +21,20 @@ const EvidenceForm = props => {
       className='EvidenceForm-container'>
       <div className='params'>
         <Field
-          name='evidence'
+          name='name'
+          component={Input}
+          type='text'
+          required
+          innerClassName='input-text-contract-param'
+          placeholder='Title' />
+        <Field
+          name='description'
+          component={Input}
+          type='text'
+          innerClassName='input-text-contract-param'
+          placeholder='Description' />
+        <Field
+          name='url'
           component={Input}
           type='text'
           required

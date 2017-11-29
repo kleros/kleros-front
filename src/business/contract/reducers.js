@@ -9,6 +9,8 @@ import {
   FAILURE_CONTRACTS,
   RECEIVE_CONTRACTS,
   RAISE_DISPUTE_CONTRACT,
+  REQUEST_RAISE_DISPUTE_CONTRACT,
+  FAILURE_RAISE_DISPUTE,
   ADD_EVIDENCE_CONTRACT
 } from './actions'
 
@@ -97,6 +99,24 @@ export function raiseDisputeContract (state = 0x0, action) {
   switch (action.type) {
     case RAISE_DISPUTE_CONTRACT:
       return action.raiseDisputeContractTx
+    default:
+      return state
+  }
+}
+
+export function requestRaiseDispute (state = false, action) {
+  switch (action.type) {
+    case REQUEST_RAISE_DISPUTE_CONTRACT:
+      return action.isRaisingDispute
+    default:
+      return state
+  }
+}
+
+export function failureRaiseDispute (state = false, action) {
+  switch (action.type) {
+    case FAILURE_RAISE_DISPUTE:
+      return action.hasErrored
     default:
       return state
   }

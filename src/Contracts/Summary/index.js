@@ -12,13 +12,20 @@ class SummaryContract extends Component {
     this.props.getContract(this.props.match.params.address)
   }
 
+  componentWillReceiveProps (nextProps) {
+    // if raising dispute was successful refresh contract data
+    if (this.props.isRaisingDispute && !nextProps.isRaisingDispute) {
+      this.props.getContract(this.props.match.params.address)
+    }
+  }
+
   raiseDispute = e => this.props.raiseDisputeContract(
     this.props.contract,
     this.props.match.params.address
   )
 
   render () {
-    const {isFetching, hasErrored, match, contract} = this.props
+    const {hasErrored, match, contract, isRaisingDispute} = this.props
 
     if (hasErrored) {
       return <p>Sorry! There was an error loading the contract</p>
@@ -32,6 +39,23 @@ class SummaryContract extends Component {
         <div className='content'>
           <h1>
             {match.params.address}
+            <span className='pull-right'>
+              {
+                (contract.partyAFee && contract.partyBFee)
+                  ? <EvidenceForm />
+                  : <button onClick={this.raiseDispute} type='submit' className='submit'>
+                    {
+                      isRaisingDispute &&
+                      <FontAwesome
+                        name='circle-o-notch'
+                        spin
+                        style={{marginRight: '10px'}}
+                      />
+                    }
+                  Create dispute
+                  </button>
+              }
+            </span>
           </h1>
           <div className='summary'>
             Address: {match.params.address}<br />
@@ -67,7 +91,7 @@ class SummaryContract extends Component {
             {
               contract.evidences !== undefined &&
               contract.evidences.map(evidence => (
-                <li key={evidence._id}>{evidence.url}</li>
+                <li key={evidence._id}>{`${evidence.name}: ${evidence.description} - ${evidence.url}`}</li>
               ))
             }
           </ul>
@@ -81,7 +105,8 @@ const mapStateToProps = state => {
   return {
     contract: state.contract.contract,
     hasErrored: state.contract.failureContract,
-    isFetching: state.contract.requestContract
+    isFetching: state.contract.requestContract,
+    isRaisingDispute: state.contract.requestRaiseDispute
   }
 }
 

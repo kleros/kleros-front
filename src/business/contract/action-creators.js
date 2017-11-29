@@ -10,6 +10,8 @@ import {
   failureContracts,
   receiveContracts,
   raiseDisputeContract,
+  requestRaiseDispute,
+  failureRaiseDispute,
   addEvidenceContract
 } from './actions'
 import { getWeb3 } from '../../helpers/getWeb3'
@@ -102,7 +104,7 @@ export const contractRaiseDispute = (
   address,
   account = 0
 ) => async dispatch => {
-  dispatch(requestContract(true))
+  dispatch(requestRaiseDispute(true))
 
   try {
     let web3 = await getWeb3()
@@ -159,9 +161,9 @@ export const contractRaiseDispute = (
     }
 
     await dispatch(raiseDisputeContract(raiseDisputeContractTx))
-    await dispatch(requestContract(false))
+    await dispatch(requestRaiseDispute(false))
   } catch (err) {
-    dispatch(failureContract(true))
+    dispatch(failureRaiseDispute(true))
     throw new Error(err) // FIXME this error should not throw the execution
   }
 }
@@ -169,7 +171,9 @@ export const contractRaiseDispute = (
 export const addEvidence = ({
   account = undefined,
   value = undefined,
-  evidence,
+  name,
+  description,
+  url,
   address,
   evidenceHash
 }) => async dispatch => {
@@ -192,7 +196,9 @@ export const addEvidence = ({
     const submitEvidenceTx = await arbitrableTransaction.submitEvidence(
       userAddress,
       address,
-      evidence
+      name,
+      description,
+      url
     )
 
     await dispatch(addEvidenceContract(submitEvidenceTx))
