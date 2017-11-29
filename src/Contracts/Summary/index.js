@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import _ from 'lodash'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import FontAwesome from 'react-fontawesome'
@@ -20,7 +21,9 @@ class SummaryContract extends Component {
   render () {
     const {isFetching, hasErrored, match, contract} = this.props
 
-    if (hasErrored) { return <p>Sorry! There was an error loading the contract</p> }
+    if (hasErrored) {
+      return <p>Sorry! There was an error loading the contract</p>
+    }
 
     // TODO get address by the kleros store => Address: {contract.address}
     return (
@@ -30,23 +33,6 @@ class SummaryContract extends Component {
         <div className='content'>
           <h1>
             {match.params.address}
-            <span className='pull-right'>
-              {
-                (contract.partyAFee && contract.partyBFee)
-                  ? <EvidenceForm />
-                  : <button onClick={this.raiseDispute} type='submit' className='submit'>
-                    {
-                      isFetching &&
-                      <FontAwesome
-                        name='circle-o-notch'
-                        spin
-                        style={{marginRight: '10px'}}
-                      />
-                    }
-                  Create dispute
-                  </button>
-              }
-            </span>
           </h1>
           <div className='summary'>
             Address: {match.params.address}<br />
@@ -58,6 +44,21 @@ class SummaryContract extends Component {
             Party B Fee Paid: {contract.partyBFee}<br />
             Status: {contract.status}<br />
           </div>
+          {
+            (contract.partyAFee && contract.partyBFee)
+              ? <EvidenceForm />
+              : <button onClick={this.raiseDispute} type='submit' className='submit'>
+                {
+                  isFetching &&
+                  <FontAwesome
+                    name='circle-o-notch'
+                    spin
+                    style={{marginRight: '10px'}}
+                  />
+                }
+                  Create dispute
+                </button>
+          }
           {
             contract.evidences !== undefined &&
             contract.evidences.length > 0 &&

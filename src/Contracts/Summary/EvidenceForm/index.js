@@ -39,13 +39,6 @@ const EvidenceForm = props => {
               />
             }
             Add an evidence
-            {
-              submitSucceeded &&
-              <FontAwesome
-                name='check'
-                style={{marginLeft: '10px'}}
-              />
-            }
           </button>
         </div>
         {error && <div><strong>{error}</strong></div>}
@@ -84,7 +77,9 @@ export default withRouter(connect(mapStateToProps, null)(
         address: props.match.params.address
       }))
         .catch(error => {
-          if (error) { throw new SubmissionError({_error: 'error evidence submission'}) }
+          if (error) {
+            throw new SubmissionError({_error: 'error evidence submission'})
+          }
         })
     }
   })(EvidenceForm)))

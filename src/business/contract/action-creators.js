@@ -196,6 +196,7 @@ export const addEvidence = ({
     )
 
     await dispatch(addEvidenceContract(submitEvidenceTx))
+    await dispatch(contractFetchData(address))
     await dispatch(fetchPostContract(false))
   } catch (err) {
     dispatch(failurePostContract(true))
