@@ -13,7 +13,7 @@ const Input = ({
   ...rest
 }) => {
   // FIXME hack. Can't specify both value and defaultValue
-  if (!input.value) delete input.value
+  if (input && !input.value) delete input.value
 
   return (
     <div className={`Input-container ${className}`}>
