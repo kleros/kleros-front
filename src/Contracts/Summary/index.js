@@ -25,7 +25,7 @@ class SummaryContract extends Component {
   )
 
   render () {
-    const {hasErrored, match, contract, isRaisingDispute} = this.props
+    const {isFetching, hasErrored, match, contract, isRaisingDispute} = this.props
 
     if (hasErrored) {
       return <p>Sorry! There was an error loading the contract</p>
@@ -42,7 +42,7 @@ class SummaryContract extends Component {
             <span className='pull-right'>
               {
                 (contract.partyAFee && contract.partyBFee)
-                  ? <EvidenceForm />
+                  ? <div />
                   : <button onClick={this.raiseDispute} type='submit' className='submit'>
                     {
                       isRaisingDispute &&

@@ -87,7 +87,6 @@ export const contractFetchData = contractAddress => async dispatch => {
 
     const contractDataDeployed = await arbitrableTransaction
       .getDataContract(
-        web3.eth.accounts[0],
         contractAddress
       )
 

@@ -58,7 +58,7 @@ const mapStateToProps = state => {
   return {
     caseData: state.disputes.caseData,
     hasErrored: state.disputes.failureCaseData,
-    isFetching: state.disputes.requestCaseData,
+    isFetching: state.disputes.requestCaseData
   }
 }
 
