@@ -3,30 +3,43 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import ActivatePNK from './ActivatePNK'
 import { getArbitratorData } from '../business/contract/action-creators'
+import { balanceFetchData } from '../business/ethereum/action-creators'
+import { PERIOD_TO_STATE } from '../constants'
 import './Jury.css'
 
 class Jury extends Component {
-  componentDidMount () {
+  componentWillMount () {
+    this.props.getBalance()
     this.props.getArbitratorData()
   }
 
   render () {
-    let period = -1
-    if (!this.props.isFetching) period = this.props.arbitratorData.period
+    if (this.props.isFetching || this.props.balanceIsFetching) return false
 
+    let period = -1
     let content
-    switch (period) {
-      case 0:
-        content = (
-          <ActivatePNK />
-        )
-        break
-      default:
-        content = (
-          <div>
-            You can only activate PNK during the 1st period of the contract
-          </div>
-        )
+    period = this.props.arbitratorData.period
+
+    if (this.props.balance.activatedTokens) {
+      content = (
+        <div>
+          You have already activated PNK for this session
+        </div>
+      )
+    } else {
+      switch (period) {
+        case 0:
+          content = (
+            <ActivatePNK maxTokens={this.props.balance.tokenBalance} />
+          )
+          break
+        default:
+          content = (
+            <div>
+              You can only activate PNK during {PERIOD_TO_STATE[0]} period
+            </div>
+          )
+      }
     }
 
     return (
@@ -43,13 +56,17 @@ const mapStateToProps = state => {
   return {
     arbitratorData: state.contract.contract,
     hasErrored: state.contract.failureContract,
-    isFetching: state.contract.requestContract
+    isFetching: state.contract.requestContract,
+    balanceHasErrored: state.ethereum.failureBalance,
+    balanceIsFetching: state.ethereum.requestBalance,
+    balance: state.ethereum.balance
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getArbitratorData: disputeId => dispatch(getArbitratorData(disputeId))
+    getArbitratorData: disputeId => dispatch(getArbitratorData(disputeId)),
+    getBalance: () => dispatch(balanceFetchData())
   }
 }
 

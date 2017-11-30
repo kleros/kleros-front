@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import _ from 'lodash'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import FontAwesome from 'react-fontawesome'
@@ -57,7 +56,7 @@ class SummaryContract extends Component {
                   />
                 }
                   Create dispute
-                </button>
+              </button>
           }
           {
             contract.evidences !== undefined &&

@@ -9,7 +9,6 @@ import './EvidenceForm.css'
 
 const EvidenceForm = props => {
   const {
-    submitSucceeded,
     handleSubmit,
     submitting,
     error,

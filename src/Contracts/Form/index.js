@@ -75,7 +75,6 @@ const Form = props => {
             name='arbitratorExtraData'
             component={Input}
             type='text'
-            required
             innerClassName='input-text-contract-param'
             placeholder='Arbitrator extra data' />
         </div>

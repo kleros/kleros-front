@@ -42,8 +42,8 @@ export const balanceFetchData = () => async dispatch => {
 
     let court = KlerosInstance.court
     const balance = await court.getPNKBalance(process.env.REACT_APP_ARBITRATOR_ADDRESS)
-    dispatch(requestBalance(false))
     dispatch(receiveBalance(balance))
+    dispatch(requestBalance(false))
   } catch (e) {
     // FIXME display a user-friendly error
     dispatch(failureBalance(true))
