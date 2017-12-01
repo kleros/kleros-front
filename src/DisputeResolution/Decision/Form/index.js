@@ -1,7 +1,7 @@
 import React from 'react'
 import { SubmissionError, Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 import FontAwesome from 'react-fontawesome'
 import { submitDisputeResolution } from '../../../business/disputes/action-creators'
 import Input from '../../../Input'
@@ -9,6 +9,7 @@ import './Form.css'
 
 const Form = props => {
   const {
+    submitSucceeded,
     resolutionOptions = [],
     votes,
     hash,
@@ -24,6 +25,12 @@ const Form = props => {
       .catch(error => {
         if (error) { throw new SubmissionError({_error: 'Unable to submit ruling'}) }
       })
+  }
+
+  if (submitSucceeded) {
+    return <Redirect
+      to='/disputes'
+      push />
   }
 
   return (
