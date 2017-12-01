@@ -12,6 +12,7 @@ const Form = props => {
     handleSubmit,
     submitting,
     error,
+    maxTokens = 0,
     hasErrored
   } = props
 
@@ -24,7 +25,9 @@ const Form = props => {
           type='number'
           required
           innerClassName='input-number'
-          placeholder='0 PNK' />
+          step={1 * 10e-18}
+          defaultValue={maxTokens}
+        />
       </div>
       { error && <div><strong>{ error }</strong></div> }
       <div className='button-container'>
@@ -52,8 +55,12 @@ const mapStateToProps = state => {
   }
 }
 
-const validate = values => {
-  return {}
+const validate = (values, props) => {
+  const errors = {}
+  if (values.amount > props.maxTokens) {
+    errors.amount = 'Cannot activate more PNK than you own'
+  }
+  return errors
 }
 
 export default withRouter(connect(mapStateToProps, null)(
@@ -64,7 +71,7 @@ export default withRouter(connect(mapStateToProps, null)(
       return dispatch(activatePinakion(values))
         .catch(error => {
           if (error) {
-            throw new SubmissionError({_error: 'Error to activate pinakion'})
+            throw new SubmissionError({_error: 'Error activating pinakion'})
           }
         })
     }

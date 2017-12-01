@@ -7,7 +7,14 @@ import Web3 from 'web3'
 import FontAwesome from 'react-fontawesome'
 import { deployContract } from '../../business/contract/action-creators'
 import Input from '../../Input'
+import SHA3 from 'crypto-js/sha3'
 import './Form.css'
+
+let sha3 = (value) => {
+  return SHA3(value, {
+    outputLength: 256
+  }).toString()
+}
 
 const Form = props => {
   const {
@@ -75,7 +82,6 @@ const Form = props => {
             name='arbitratorExtraData'
             component={Input}
             type='text'
-            required
             innerClassName='input-text-contract-param'
             placeholder='Arbitrator extra data' />
         </div>
@@ -122,6 +128,34 @@ const Form = props => {
   )
 }
 
+// NOTE copied from web3 v1.0 isAddress. Remove when we upgrade to web3 v1.0
+const isAddress = address => {
+  if (!/^(0x)?[0-9a-f]{40}$/i.test(address)) {
+    // check if it has the basic requirements of an address
+    return false
+  } else if (/^(0x)?[0-9a-f]{40}$/.test(address) || /^(0x)?[0-9A-F]{40}$/.test(address)) {
+    // If it's all small caps or all all caps, return true
+    return true
+  } else {
+    // Otherwise check each case
+    return isChecksumAddress(address)
+  }
+}
+
+// NOTE copied from web3 v1.0 isAddress. Remove when we upgrade to web3 v1.0
+const isChecksumAddress = address => {
+  // Check each case
+  address = address.replace('0x', '')
+  const addressHash = sha3(address.toLowerCase())
+  for (let i = 0; i < 40; i++) {
+    // the nth letter should be uppercase if the nth digit of casemap is 1
+    if ((parseInt(addressHash[i], 16) > 7 && address[i].toUpperCase() !== address[i]) || (parseInt(addressHash[i], 16) <= 7 && address[i].toLowerCase() !== address[i])) {
+      return false
+    }
+  }
+  return true
+}
+
 const FORM_NAME = 'contract'
 
 const mapStateToProps = state => {
@@ -133,11 +167,7 @@ const mapStateToProps = state => {
 const validate = values => {
   const errors = {}
 
-  if (!/^(0x)?[0-9a-f]{40}$/i.test(values.arbitrator)) {
-    errors.arbitrator = 'Arbitrator address invalid'
-  }
-
-  if (!/^(0x)?[0-9a-f]{40}$/i.test(values.partyB)) {
+  if (!isAddress(values.partyB)) {
     errors.partyB = 'PartyB address invalid'
   }
 
