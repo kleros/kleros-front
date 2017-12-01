@@ -13,7 +13,7 @@ import './Form.css'
 let sha3 = (value) => {
   return SHA3(value, {
     outputLength: 256
-  }).toString();
+  }).toString()
 }
 
 const Form = props => {
@@ -145,9 +145,9 @@ const isAddress = address => {
 // NOTE copied from web3 v1.0 isAddress. Remove when we upgrade to web3 v1.0
 const isChecksumAddress = address => {
   // Check each case
-  address = address.replace('0x','')
+  address = address.replace('0x', '')
   const addressHash = sha3(address.toLowerCase())
-  for (let i = 0; i < 40; i++ ) {
+  for (let i = 0; i < 40; i++) {
     // the nth letter should be uppercase if the nth digit of casemap is 1
     if ((parseInt(addressHash[i], 16) > 7 && address[i].toUpperCase() !== address[i]) || (parseInt(addressHash[i], 16) <= 7 && address[i].toLowerCase() !== address[i])) {
       return false
