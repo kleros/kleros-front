@@ -61,7 +61,6 @@ const Form = props => {
             name='value'
             component={Input}
             type='number'
-            step={1 * 10e-18}
             required
             innerClassName='input-text-contract-param'
             placeholder='Payment (ETH)' />
