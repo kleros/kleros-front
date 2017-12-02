@@ -7,6 +7,9 @@ export const RECEIVE_CASE_DATA = 'RECEIVE_CASE_DATA'
 export const SUBMIT_RULING = 'SUBMIT_RULING'
 export const RULING_SUBMITTED = 'RULING_SUBMITTED'
 export const RULING_FAILED = 'RULING_FAILED'
+export const EXECUTE_SUBMITTED = 'EXECUTE_SUBMITTED'
+export const REDISTRIBUTE_SUBMITTED = 'REDISTRIBUTE_SUBMITTED'
+// TODO execute and redistibute failure cases
 
 export function requestDisputes (isFetching = true) {
   return {
@@ -68,5 +71,19 @@ export function rulingFailed (hasErrored = false) {
   return {
     type: RULING_FAILED,
     hasErrored
+  }
+}
+
+export function submitRedistributeJurorTokens (isSubmitting = false) {
+  return {
+    type: REDISTRIBUTE_SUBMITTED,
+    isSubmitting
+  }
+}
+
+export function submitExecute (isSubmitting = false) {
+  return {
+    type: EXECUTE_SUBMITTED,
+    isSubmitting
   }
 }

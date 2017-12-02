@@ -7,7 +7,9 @@ import {
   receiveCaseData,
   submitRuling,
   rulingSubmitted,
-  rulingFailed
+  rulingFailed,
+  submitRedistributeJurorTokens,
+  submitExecute
 } from './actions'
 import { getWeb3 } from '../../helpers/getWeb3'
 
@@ -106,7 +108,25 @@ export const appealDispute = (disputeId, extraData) => async dispatch => {
   }
 }
 
+export const repartitionJurorTokens = disputeId => async dispatch => {
+  dispatch(submitRedistributeJurorTokens(true))
+  try {
+    const web3 = await getWeb3()
+
+    const provider = web3.currentProvider
+
+    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+
+    let court = KlerosInstance.court
+    await court.repartitionJurorTokens(process.env.REACT_APP_ARBITRATOR_ADDRESS, disputeId)
+    dispatch(submitRedistributeJurorTokens(false))
+  } catch (e) {
+    throw e
+  }
+}
+
 export const executeRuling = disputeId => async dispatch => {
+  dispatch(submitExecute(true))
   try {
     let web3 = await getWeb3()
 
@@ -116,6 +136,7 @@ export const executeRuling = disputeId => async dispatch => {
 
     let court = KlerosInstance.court
     await court.executeRuling(process.env.REACT_APP_ARBITRATOR_ADDRESS, disputeId)
+    dispatch(submitExecute(false))
   } catch (e) {
     throw e
   }

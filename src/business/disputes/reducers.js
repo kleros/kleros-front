@@ -7,7 +7,9 @@ import {
   RECEIVE_CASE_DATA,
   SUBMIT_RULING,
   RULING_SUBMITTED,
-  RULING_FAILED
+  RULING_FAILED,
+  REDISTRIBUTE_SUBMITTED,
+  EXECUTE_SUBMITTED
 } from './actions'
 
 export function requestDisputes (state = true, action) {
@@ -86,6 +88,24 @@ export function rulingFailed (state = [], action) {
   switch (action.type) {
     case RULING_FAILED:
       return action.hasErrored
+    default:
+      return state
+  }
+}
+
+export function redistibuteJurorTokensSubmitted (state = false, action) {
+  switch (action.type) {
+    case REDISTRIBUTE_SUBMITTED:
+      return action.isSubmitting
+    default:
+      return state
+  }
+}
+
+export function executeSubmitted (state = false, action) {
+  switch (action.type) {
+    case EXECUTE_SUBMITTED:
+      return action.isSubmitting
     default:
       return state
   }
