@@ -8,7 +8,8 @@ export const REQUEST_CONTRACTS = 'REQUEST_CONTRACTS'
 export const FAILURE_CONTRACTS = 'FAILURE_CONTRACTS'
 export const RECEIVE_CONTRACTS = 'RECEIVE_CONTRACTS'
 export const RAISE_DISPUTE_CONTRACT = 'RAISE_DISPUTE_CONTRACT'
-// TODO add REQUEST_RAISE_DISPUTE_CONTRACT and RECEIVE_DISPUTE_CONTRACT
+export const REQUEST_RAISE_DISPUTE_CONTRACT = 'REQUEST_RAISE_DISPUTE_CONTRACT'
+export const FAILURE_RAISE_DISPUTE = 'FAILURE_RAISE_DISPUTE'
 export const ADD_EVIDENCE_CONTRACT = 'ADD_EVIDENCE_CONTRACT'
 // TODO add REQUEST_ADD_EVIDENCE_CONTRACT and RECEIVE_ADD_EVIDENCE_CONTRACT
 
@@ -79,6 +80,20 @@ export const raiseDisputeContract = raiseDisputeContractTx => {
   return {
     type: RAISE_DISPUTE_CONTRACT,
     raiseDisputeContractTx
+  }
+}
+
+export const requestRaiseDispute = isRaisingDispute => {
+  return {
+    type: REQUEST_RAISE_DISPUTE_CONTRACT,
+    isRaisingDispute
+  }
+}
+
+export const failureRaiseDispute = hasErrored => {
+  return {
+    type: FAILURE_RAISE_DISPUTE,
+    hasErrored
   }
 }
 

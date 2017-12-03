@@ -10,6 +10,8 @@ import {
   failureContracts,
   contracts,
   raiseDisputeContract,
+  requestRaiseDispute,
+  failureRaiseDispute,
   addEvidenceContract
 } from './reducers'
 
@@ -24,5 +26,7 @@ export default combineReducers({
   failureContracts,
   contracts,
   raiseDisputeContract,
+  requestRaiseDispute,
+  failureRaiseDispute,
   addEvidenceContract
 })
