@@ -1,23 +1,45 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { getDisputeById, appealDispute, executeRuling } from '../../business/disputes/action-creators'
+import {
+  getDisputeById,
+  appealDispute,
+  executeRuling,
+  repartitionJurorTokens
+} from '../../business/disputes/action-creators'
 import { getArbitratorData } from '../../business/contract/action-creators'
-import { STATUS_TO_STATE, RULINGS, RESOLVED_STATUS } from '../../constants'
+import { STATUS_TO_STATE, RULINGS, RESOLVED_STATUS, DISPUTE_EXECUTABLE } from '../../constants'
 import Banner from '../../Banner'
 
 import './Summary.css'
 
 class DecisionSummary extends Component {
-  componentDidMount () {
-    this.props.getDisputeById(this.props.match.params.disputeId)
+  componentWillMount () {
+    this.loadDispute()
     this.props.getArbitratorData()
+  }
+
+  componentWillReceiveProps (nextProps) {
+    // reload dispute if we are done submitting redistibute or execute
+    if ((this.props.isSubmittingRedistribute && !nextProps.isSubmittingRedistribute) ||
+    (this.props.isSubmittingExecute && !nextProps.isSubmittingExecute)) {
+      this.loadDispute()
+    }
+  }
+
+  loadDispute = () => {
+    this.props.getDisputeById(this.props.match.params.disputeId)
   }
 
   appealDispute = () => {
     const disputeId = this.props.caseData.disputeData.disputeId
     const extraData = this.props.caseData.contractData.extraData
     this.props.appealDispute(disputeId, extraData)
+  }
+
+  repartitionJurorTokens = () => {
+    const disputeId = this.props.caseData.disputeData.disputeId
+    this.props.repartitionJurorTokens(disputeId)
   }
 
   executeRuling = () => {
@@ -27,6 +49,7 @@ class DecisionSummary extends Component {
 
   render () {
     if (this.props.isFetchingCase) return false
+    const dispute = this.props.caseData
 
     let period = -1
     if (!this.props.isFetchingArbitrator) period = this.props.arbitratorData.period
@@ -43,11 +66,23 @@ class DecisionSummary extends Component {
           )
           break
         case 4:
-          action = (
-            <div className='action-btn' onClick={this.executeRuling}>
-              Execute Ruling
-            </div>
-          )
+          // we still need to repartition tokens
+          if (dispute.disputeData.state < DISPUTE_EXECUTABLE) {
+            action = (
+              <div>
+                <p>In order to Execute your ruling you must first reallocate tokens for the jurors</p>
+                <div className='action-btn' onClick={this.repartitionJurorTokens}>
+                  Redistribute Tokens
+                </div>
+              </div>
+            )
+          } else if (dispute.disputeData.state === DISPUTE_EXECUTABLE) {
+            action = (
+              <div className='action-btn' onClick={this.executeRuling}>
+                Execute Ruling
+              </div>
+            )
+          }
           break
         default:
           action = (
@@ -56,20 +91,16 @@ class DecisionSummary extends Component {
       }
     }
 
-    let summary
-    if (!this.props.isFetchingCase) {
-      const dispute = this.props.caseData
-      summary = (
-        <div>
-          Arbitrator: {dispute.contractData.arbitrator}<br />
-          Timeout: {dispute.contractData.timeout}<br />
-          PartyA: {dispute.contractData.partyA}<br />
-          PartyB: {dispute.contractData.partyB}<br />
-        Status: {STATUS_TO_STATE[dispute.contractData.status]}<br />
-        Ruling: {RULINGS[dispute.disputeData.ruling]}
-        </div>
-      )
-    }
+    const summary = (
+      <div>
+        Arbitrator: {dispute.contractData.arbitrator}<br />
+        Timeout: {dispute.contractData.timeout}<br />
+        PartyA: {dispute.contractData.partyA}<br />
+        PartyB: {dispute.contractData.partyB}<br />
+      Status: {STATUS_TO_STATE[dispute.contractData.status]}<br />
+      Ruling: {RULINGS[dispute.disputeData.ruling]}
+      </div>
+    )
 
     return (
       <div className='DecisionSummary-container'>
@@ -96,7 +127,9 @@ const mapStateToProps = state => {
     isFetchingCase: state.disputes.requestCaseData,
     arbitratorData: state.contract.contract,
     hasErroredArbitrator: state.contract.failureContract,
-    isFetchingArbitrator: state.contract.requestContract
+    isFetchingArbitrator: state.contract.requestContract,
+    isSubmittingRedistribute: state.disputes.redistibuteJurorTokensSubmitted,
+    isSubmittingExecute: state.disputes.executeSubmitted
   }
 }
 
@@ -105,7 +138,8 @@ const mapDispatchToProps = dispatch => {
     getDisputeById: disputeId => dispatch(getDisputeById(disputeId)),
     getArbitratorData: disputeId => dispatch(getArbitratorData(disputeId)),
     appealDispute: (disputeId, extraData) => dispatch(appealDispute(disputeId, extraData)),
-    executeRuling: disputeId => dispatch(executeRuling(disputeId))
+    executeRuling: disputeId => dispatch(executeRuling(disputeId)),
+    repartitionJurorTokens: disputeId => dispatch(repartitionJurorTokens(disputeId))
   }
 }
 
