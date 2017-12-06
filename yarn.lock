@@ -4892,9 +4892,9 @@ klaw@^1.0.0:
   optionalDependencies:
     graceful-fs "^4.1.9"
 
-kleros-api@^0.0.42:
-  version "0.0.42"
-  resolved "https://registry.yarnpkg.com/kleros-api/-/kleros-api-0.0.42.tgz#8e45dc89f78a8255cea2a9090e7764bd421fd0c4"
+kleros-api@^0.0.45:
+  version "0.0.45"
+  resolved "https://registry.yarnpkg.com/kleros-api/-/kleros-api-0.0.45.tgz#647f8648abfcc2ff1d71f0f7d8989a9508df3b29"
   dependencies:
     babel-preset-env "^1.6.0"
     babel-preset-react "^6.24.1"
