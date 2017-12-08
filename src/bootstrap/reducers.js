@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
-import ethereum from '../business/ethereum'
-import disputes from '../business/disputes'
-import contract from '../business/contract'
+import ethereum from '../redux/ethereum'
+import disputes from '../redux/disputes'
+import contracts from '../redux/contracts'
 
 export default combineReducers({
   ethereum,
   disputes,
-  contract,
+  contracts,
   form: formReducer
 })
