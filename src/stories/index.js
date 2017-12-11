@@ -5,11 +5,16 @@ import StoryRouter from 'storybook-router'
 
 import ShortProfile from '../Sidebar/ShortProfile'
 import MenuSidebar from '../Sidebar/MenuSidebar'
+import ItemMenuSidebar from '../Sidebar/MenuSidebar/ItemMenuSidebar'
 import Sidebar from '../Sidebar'
 
 import Identicon from '../Identicon'
 import Icon from '../Icon'
 import SearchBar from '../SearchBar'
+
+import Input from '../Input'
+import TruncatedTextBox from '../TruncatedTextBox'
+import Grid from '../ContractsTable/Grid'
 
 import '../bootstrap/index.css'
 
@@ -65,6 +70,16 @@ storiesOf('ShortProfile', module)
 
 storiesOf('ItemMenuSidebar', module)
   .addDecorator(StoryRouter())
+  .add(
+    'default',
+    () => <ItemMenuSidebar />
+  )
+  .add(
+    'with dark background and name',
+    () => <ItemMenuSidebar
+      name='items'
+      theme='dark' />
+  )
 
 /** *************** MenuSidebar *****************/
 
@@ -100,4 +115,67 @@ storiesOf('SearchBar', module)
     'default',
     () =>
       <SearchBar />
+  )
+
+  /** ************** Input ********************/
+
+storiesOf('Input', module)
+  .add(
+    'default',
+    () => <Input />
+  )
+  .add(
+    'input text type with placeholder',
+    () => <Input 
+      type='text'
+      placeholder='Add your name here' />
+  )
+  .add(
+    'textarea with placeholder',
+    () => <Input 
+      type='textarea'
+      placeholder='Add your comments' />
+  )
+  .add(
+    'radio button',
+    () => <Input type='radio' />
+  )
+  .add(
+    'file input type with placeholder',
+    () => <Input type='file' placeholder='Browse file' />
+  )
+
+/** *************** TruncatedTextBox *****************/
+
+storiesOf('TruncatedTextBox', module)
+  .add('default',
+    () => <TruncatedTextBox />
+  )
+  .add(
+    'with text and truncatedCharacters=4',
+    () => <TruncatedTextBox
+      text='with text length is greater than/equal to truncatedCharacters'
+      truncatedCharacters={4} />
+  )
+  .add(
+    'with text length less than truncatedCharacter=8',
+    () => <TruncatedTextBox
+      text='with text length is less than truncatedCharacters'
+      truncatedCharacters={8} />
+  )
+
+/** *************** Grid ****************/
+
+storiesOf('Grid', module)
+  .add(
+    'default',
+    () => <Grid />
+  )
+  .add(
+    'with input text and icon',
+    () =>
+      <Grid>
+        <Input type='text' placeholder='Type something here' />
+        <Icon name='Disputes' theme='dark' />
+      </Grid>
   )
