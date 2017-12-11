@@ -23,3 +23,6 @@ yarn-error.log*
 
 # css
 src/**/*.css
+
+# editors
+/.vscode/
