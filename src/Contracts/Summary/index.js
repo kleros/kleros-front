@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import FontAwesome from 'react-fontawesome'
 import { contractRaiseDispute, contractFetchData } from '../../business/contract/action-creators'
+import { STATUS_TO_STATE } from '../../constants'
 import EvidenceForm from './EvidenceForm'
 import Banner from '../../Banner'
 import './Summary.css'
@@ -48,7 +49,7 @@ class SummaryContract extends Component {
             PartyB: {contract.partyB}<br />
             Party A Fee Paid: {contract.partyAFee}<br />
             Party B Fee Paid: {contract.partyBFee}<br />
-            Status: {contract.status}<br />
+            Status: {STATUS_TO_STATE[contract.status] || '?'}<br />
           </div>
           {
             (contract.partyAFee && contract.partyBFee)
