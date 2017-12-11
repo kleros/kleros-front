@@ -8,6 +8,7 @@
 * [Getting started](#getting-started)
   * [Install dependancies](#install-dependancies)
   * [Run application](#install-dependancies)
+  * [POC Ethereum network](#poc-ethereum-network)
 * [Storybook](#storybook)
   * [Local](#local)
   * [Remote](#remote)
@@ -29,6 +30,14 @@ yarn start
 ```
 
 Go to http://localhost:3000.
+
+### POC Ethereum network
+
+For the POC, the smart contract are deployed on the
+[kovan testnet network](https://kovan-testnet.github.io/website/).
+
+To get some kovan token, you can follow this link
+[https://github.com/kovan-testnet/faucet](https://github.com/kovan-testnet/faucet).
 
 ## Storybook
 
