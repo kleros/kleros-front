@@ -25,6 +25,8 @@ yarn
 
 ### Run application
 
+Before running the app you'll need to install [Metamask](https://metamask.io/) and use the Kovan Test Network.
+
 ```
 yarn start
 ```
