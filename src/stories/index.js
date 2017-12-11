@@ -126,13 +126,13 @@ storiesOf('Input', module)
   )
   .add(
     'input text type with placeholder',
-    () => <Input 
+    () => <Input
       type='text'
       placeholder='Add your name here' />
   )
   .add(
     'textarea with placeholder',
-    () => <Input 
+    () => <Input
       type='textarea'
       placeholder='Add your comments' />
   )
