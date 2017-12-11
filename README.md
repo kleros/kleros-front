@@ -72,3 +72,7 @@ yarn run lint-fix # fix lint
 ## Invision
 
 Go [there](https://projects.invisionapp.com/share/SRDBNEDE7#/screens/252442857).
+
+## Contributing
+
+We welcome contributions from anyone on the internet. Check out our [contributing guide](https://github.com/kleros/kleros.md/blob/master/quality-management/contributing.md) to learn more on how to get involved.
