@@ -25,29 +25,29 @@ class DisputeResolution extends Component {
     if (!dispute) return false
 
     // FIXME only applies to twoParty contract. Generalize
-    const parties = [{address: dispute.disputeData.partyA}, {address: dispute.disputeData.partyB}]
+    const parties = [{address: dispute.partyA}, {address: dispute.partyB}]
 
     // arbitration fee
     const web3 = new Web3()
-    const arbitrationFee = web3.fromWei(dispute.disputeData.fee)
+    const arbitrationFee = web3.fromWei(dispute.fee)
 
     // time remaining TODO use momentjs to calculate time difference between now and end time
     return (
       <div className='dispute-resolution'>
         <SearchBar />
-        <Banner title={dispute.disputeData.title} />
+        <Banner title={dispute.title} />
         <div className='divider' />
         <Parties parties={parties} />
         <div className='divider' />
-        <Information text={dispute.contractData.description} truncatedCharacters={50} arbitrationFee={arbitrationFee} timeRemaining={dispute.disputeData.deadline} />
+        <Information text={dispute.description} truncatedCharacters={50} arbitrationFee={arbitrationFee} timeRemaining={dispute.deadline} />
         <div className='divider' />
-        <Evidence evidence={dispute.contractData.evidences} />
+        <Evidence evidence={dispute.evidence} />
         <div className='divider' />
         <Decision
-          resolutionOptions={dispute.disputeData.resolutionOptions}
-          disputeId={dispute.disputeData.disputeId}
-          votes={dispute.disputeData.votes}
-          hash={dispute.disputeData.hash}
+          resolutionOptions={dispute.resolutionOptions}
+          disputeId={dispute.disputeId}
+          votes={dispute.votes}
+          hash={dispute.hash}
         />
       </div>
     )

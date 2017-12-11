@@ -52,8 +52,8 @@ export const deployContract = ({
     let contractArbitrable = await arbitrableContract.deployContract(
       account,
       web3.toWei(value, 'ether'),
-      process.env.REACT_APP_ARBITRATOR_ADDRESS,
       hashContract,
+      process.env.REACT_APP_ARBITRATOR_ADDRESS,
       timeout,
       partyB.toLowerCase(),
       arbitratorExtraData,
@@ -140,25 +140,21 @@ export const contractRaiseDispute = (
     )
 
     let raiseDisputeContractTx = 0x0
+    const cost = web3.fromWei(arbitrationCost.toNumber() - fee.toNumber(), 'ether')
 
     if (userAddress === contract.partyA) {
-        raiseDisputeContractTx = await KlerosInstance.arbitrableTransaction.payArbitrationFeeByPartyA(
+      raiseDisputeContractTx = await KlerosInstance.disputes
+        .raiseDisputePartyA(
           userAddress,
           address,
-          web3.fromWei(arbitrationCost.toNumber() - fee.toNumber(), 'ether')
+          cost
         )
-      // raiseDisputeContractTx = await KlerosInstance.disputes
-      //   .raiseDisputePartyA(
-      //     userAddress,
-      //     address,
-      //     web3.fromWei(arbitrationCost.toNumber() - fee.toNumber(), 'ether')
-      //   )
     } else if (userAddress === contract.partyB) {
       raiseDisputeContractTx = await KlerosInstance.disputes
         .raiseDisputePartyB(
           userAddress,
           address,
-          web3.fromWei(arbitrationCost.toNumber() - fee.toNumber(), 'ether')
+          cost
         )
     } else {
       throw new Error(`${userAddress} is not a party in contract`)

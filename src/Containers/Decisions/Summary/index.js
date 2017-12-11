@@ -56,7 +56,7 @@ class DecisionSummary extends Component {
 
     let action = <div />
     // only allow actions if dispute is not resolved
-    if (this.props.caseData.status !== RESOLVED_STATUS) {
+    if (this.props.caseData.arbitrableContractStatus !== RESOLVED_STATUS) {
       switch (period) {
         case 3:
           action = (
@@ -67,7 +67,7 @@ class DecisionSummary extends Component {
           break
         case 4:
           // we still need to repartition tokens
-          if (dispute.state < DISPUTE_EXECUTABLE) {
+          if (dispute.disputeState < DISPUTE_EXECUTABLE) {
             action = (
               <div>
                 <p>In order to Execute your ruling you must first reallocate tokens for the jurors</p>
@@ -76,7 +76,7 @@ class DecisionSummary extends Component {
                 </div>
               </div>
             )
-          } else if (dispute.state === DISPUTE_EXECUTABLE) {
+          } else if (dispute.disputeState === DISPUTE_EXECUTABLE) {
             action = (
               <div className='action-btn' onClick={this.executeRuling}>
                 Execute Ruling
@@ -94,10 +94,10 @@ class DecisionSummary extends Component {
     const summary = (
       <div>
         Arbitrator: {dispute.arbitratorAddress}<br />
-        Timeout: {dispute.timeout}<br />
+        Deadline: {dispute.deadline}<br />
         PartyA: {dispute.partyA}<br />
         PartyB: {dispute.partyB}<br />
-      Status: {STATUS_TO_STATE[dispute.status]}<br />
+      Status: {STATUS_TO_STATE[dispute.arbitrableContractStatus]}<br />
       Ruling: {RULINGS[dispute.ruling]}
       </div>
     )

@@ -26,7 +26,7 @@ class SummaryContract extends Component {
   )
 
   render () {
-    const {isFetching, hasErrored, match, contract, isRaisingDispute} = this.props
+    const {hasErrored, match, contract, isRaisingDispute} = this.props
 
     if (hasErrored) {
       return <p>Sorry! There was an error loading the contract</p>
@@ -89,7 +89,6 @@ const mapStateToProps = state => {
   return {
     contract: state.contracts.contract,
     hasErrored: state.contracts.failureContract,
-    isFetching: state.contracts.requestContract,
     isRaisingDispute: state.contracts.requestRaiseDispute
   }
 }

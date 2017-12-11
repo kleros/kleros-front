@@ -45,8 +45,6 @@ class GridContent extends Component {
           }
           {
             filteredDisputes.map(dispute => {
-              const deadline = `${dispute.deadline.getUTCDate()}/${dispute.deadline.getUTCMonth()}/${dispute.deadline.getFullYear()}`
-
               return (
                 <Link key={dispute.arbitrableContractAddress} to={`${baseLink}/${dispute.arbitrableContractAddress}`}>
                   <div className='items-row'>
@@ -54,9 +52,9 @@ class GridContent extends Component {
                       <div className='item-title'>{ truncateText(dispute.description, 35) }</div>
                       <div className='item-category'>{ dispute.category }</div>
                     </div>
-                    <div className='item item-deadline'>{ deadline }</div>
+                    <div className='item item-deadline'>{ dispute.deadline }</div>
                     <div className='item item-case_id'>{ truncateText(dispute.hash, 10) }</div>
-                    <div className='item item-status'>{ STATUS_TO_STATE[dispute.status] }</div>
+                    <div className='item item-status'>{ STATUS_TO_STATE[dispute.arbitrableContractStatus] }</div>
                   </div>
                 </Link>
               )

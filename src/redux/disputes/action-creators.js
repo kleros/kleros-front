@@ -38,7 +38,6 @@ export const getDisputes = (
       process.env.REACT_APP_ARBITRATOR_ADDRESS,
       web3.eth.accounts[account]
     )
-    console.log(disputes)
     await dispatch(receiveDisputes(disputes))
     await dispatch(requestDisputes(false))
   } catch (e) {

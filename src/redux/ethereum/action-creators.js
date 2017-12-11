@@ -78,7 +78,7 @@ export const buyPinakion = (
     const newBalance = await KlerosInstance.arbitrator.buyPNK(
       buyForm.amount,
       process.env.REACT_APP_ARBITRATOR_ADDRESS,
-      web3.eth.acconnts[account]
+      web3.eth.accounts[account]
     )
     dispatch(buyingPinakion(false))
     dispatch(receiveBalance(newBalance))

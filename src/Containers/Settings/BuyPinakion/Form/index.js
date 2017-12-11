@@ -22,6 +22,7 @@ const Form = props => {
           name='amount'
           component={Input}
           type='number'
+          step={1 * 10e-18}
           required
           innerClassName='input-number'
           placeholder='0 ETH' />
