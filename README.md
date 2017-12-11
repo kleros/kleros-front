@@ -6,8 +6,8 @@
 ## Table of Contents
 
 * [Getting started](#getting-started)
-  * [Install dependancies](#install-dependancies)
-  * [Run application](#install-dependancies)
+  * [Install dependencies](#install-dependencies)
+  * [Run application](#run-application)
   * [POC Ethereum network](#poc-ethereum-network)
 * [Storybook](#storybook)
   * [Local](#local)
@@ -17,7 +17,7 @@
 
 ## Getting started
 
-### Install dependancies
+### Install dependencies
 
 ```
 yarn
