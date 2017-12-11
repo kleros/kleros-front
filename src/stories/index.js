@@ -5,6 +5,7 @@ import StoryRouter from 'storybook-router'
 
 import ShortProfile from '../Sidebar/ShortProfile'
 import MenuSidebar from '../Sidebar/MenuSidebar'
+import ItemMenuSidebar from '../Sidebar/MenuSidebar/ItemMenuSidebar'
 import Sidebar from '../Sidebar'
 
 import Identicon from '../Identicon'
@@ -65,6 +66,16 @@ storiesOf('ShortProfile', module)
 
 storiesOf('ItemMenuSidebar', module)
   .addDecorator(StoryRouter())
+  .add(
+    'default',
+    () => <ItemMenuSidebar />
+  )
+  .add(
+    'with dark background and name',
+    () => <ItemMenuSidebar
+      name='items'
+      theme='dark' />
+  )
 
 /** *************** MenuSidebar *****************/
 
