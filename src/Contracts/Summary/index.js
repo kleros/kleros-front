@@ -40,23 +40,6 @@ class SummaryContract extends Component {
         <div className='content'>
           <h1>
             {match.params.address}
-            <span className='pull-right'>
-              {
-                (contract.partyAFee && contract.partyBFee)
-                  ? <div />
-                  : <button onClick={this.raiseDispute} type='submit' className='submit'>
-                    {
-                      isRaisingDispute &&
-                      <FontAwesome
-                        name='circle-o-notch'
-                        spin
-                        style={{marginRight: '10px'}}
-                      />
-                    }
-                  Create dispute
-                  </button>
-              }
-            </span>
           </h1>
           <div className='summary'>
             Address: {match.params.address}<br />
@@ -73,7 +56,7 @@ class SummaryContract extends Component {
               ? <EvidenceForm />
               : <button onClick={this.raiseDispute} type='submit' className='submit'>
                 {
-                  isFetching &&
+                  (isFetching || isRaisingDispute) &&
                   <FontAwesome
                     name='circle-o-notch'
                     spin
