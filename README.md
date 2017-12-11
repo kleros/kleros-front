@@ -30,6 +30,14 @@ yarn start
 
 Go to http://localhost:3000.
 
+### Ethereum network
+
+The smart contract are deployed on the
+[kovan testnet network](https://kovan-testnet.github.io/website/).
+
+To get some kovan token, you can follow this link
+[https://github.com/kovan-testnet/faucet](https://github.com/kovan-testnet/faucet).
+
 ## Storybook
 
 We use [Storybook](https://storybook.js.org/).
