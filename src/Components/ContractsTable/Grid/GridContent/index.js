@@ -43,7 +43,7 @@ class GridContent extends Component {
             </div>
           }
           {
-            contracts.filter( contract => {
+            contracts.filter(contract => {
               return contract.arbitrator === process.env.REACT_APP_ARBITRATOR_ADDRESS
             }).map(contract => {
               return (
