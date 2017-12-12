@@ -61,9 +61,7 @@ class GridContent extends Component {
                   </div>
                 </Link>
               )
-            }
-
-            )
+            })
           }
         </div>
       </div>
