@@ -26,7 +26,7 @@ export const errorAfterFiveSeconds = () => {
 }
 
 export const deployContract = ({
-  account = undefined,
+  account = 0,
   value = undefined,
   arbitrator,
   hashContract,
@@ -50,7 +50,7 @@ export const deployContract = ({
     let arbitrableContract = await KlerosInstance.arbitrableContract
 
     let contractArbitrable = await arbitrableContract.deployContract(
-      account,
+      web3.eth.accounts[account],
       web3.toWei(value, 'ether'),
       hashContract,
       process.env.REACT_APP_ARBITRATOR_ADDRESS,
