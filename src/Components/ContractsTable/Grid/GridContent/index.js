@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import _ from 'lodash'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import 'babel-polyfill'
@@ -33,6 +34,14 @@ class GridContent extends Component {
     return (
       <div className='GridContent-container'>
         <div className='items'>
+          {
+            _.isEmpty(contracts) &&
+            <div className='items-row'>
+              <div className='item item-no-contracts'>
+                You have no contracts.
+              </div>
+            </div>
+          }
           {
             contracts.map(contract =>
               <Link key={contract.address} to={`contract-summary/${contract.address}`}>

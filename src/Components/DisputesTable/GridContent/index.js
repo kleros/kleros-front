@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import _ from 'lodash'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import 'babel-polyfill'
@@ -36,7 +37,7 @@ class GridContent extends Component {
       <div className='GridContent-container'>
         <div className='items'>
           {
-            (disputes.length === 0) &&
+            _.isEmpty(disputes) &&
             <div className='items-row'>
               <div className='item item-no-disputes'>
                 You have no disputes.

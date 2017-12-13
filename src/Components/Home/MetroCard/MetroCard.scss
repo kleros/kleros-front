@@ -1,0 +1,38 @@
+.MetroCard-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  .no-contracts {
+    padding: 20px;
+    width: 100%;
+    font-size: 18px;
+    text-align: center;
+    background: #fff;
+    border-radius: 3px;
+  }
+  .card {
+    flex: 1;
+    height: 100px;
+    background: #fff;
+    margin-right: 10px;
+    border-radius: 3px;
+    a {
+      text-decoration: none;
+      color: #333;
+    }
+    &:last-child {
+      margin-right: 0px;
+    }
+    .card-content {
+      display: flex;
+      flex-direction: row;
+      .card-icon {
+      }
+      .card-details {
+        margin: 6px 0 0 5px;
+        .card-details-item {
+        }
+      }
+    }
+  }
+}
