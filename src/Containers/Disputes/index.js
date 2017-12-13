@@ -41,14 +41,14 @@ class Disputes extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = () => {
   return {
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getBalance: url => dispatch(balanceFetchData())
+    getBalance: () => dispatch(balanceFetchData())
   }
 }
 

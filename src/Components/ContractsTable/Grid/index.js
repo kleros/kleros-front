@@ -3,8 +3,7 @@ import './Grid.css'
 
 const Grid = ({
   className,
-  children,
-  ...rest
+  children
 }) => (
   <div className={`Grid-container ${className}`}>
     <div className='grid'>

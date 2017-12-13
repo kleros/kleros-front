@@ -16,19 +16,9 @@ import {
 } from './actions'
 import { getWeb3 } from '../../helpers/getWeb3'
 
-export const errorAfterFiveSeconds = () => {
-  return dispatch => {
-    setTimeout(() => {
-      // This function is able to dispatch other action creators
-      dispatch(failureContract(true))
-    }, 5000)
-  }
-}
-
 export const deployContract = ({
   account = undefined,
   value = undefined,
-  arbitrator,
   hashContract,
   timeout = 100,
   partyB,
@@ -170,12 +160,10 @@ export const contractRaiseDispute = (
 
 export const addEvidence = ({
   account = 0,
-  value = undefined,
   name,
   description,
   url,
-  address,
-  evidenceHash
+  address
 }) => async dispatch => {
   await dispatch(requestContract(true))
 
