@@ -45,8 +45,8 @@ class GridContent extends Component {
           {
             contracts.filter(contract => {
               return contract.arbitrator === process.env.REACT_APP_ARBITRATOR_ADDRESS
-            }).map(contract => {
-              return (
+            }).map(contract =>
+              (
                 <Link key={contract.address} to={`contract-summary/${contract.address}`}>
                   <div className='items-row'>
                     <div className='item-contract-hash'>{contract.address}</div>
@@ -58,7 +58,7 @@ class GridContent extends Component {
                   </div>
                 </Link>
               )
-            })
+            )
           }
         </div>
       </div>

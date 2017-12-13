@@ -47,8 +47,8 @@ class GridContent extends Component {
           {
             filteredDisputes.filter(dispute => {
               return dispute.arbitratorAddress === process.env.REACT_APP_ARBITRATOR_ADDRESS
-            }).map(dispute => {
-              return (
+            }).map(dispute =>
+              (
                 <Link key={dispute.arbitrableContractAddress} to={`${baseLink}/${dispute.arbitrableContractAddress}`}>
                   <div className='items-row'>
                     <div className='item item-project'>
@@ -61,7 +61,7 @@ class GridContent extends Component {
                   </div>
                 </Link>
               )
-            })
+            )
           }
         </div>
       </div>
