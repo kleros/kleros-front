@@ -26,3 +26,4 @@ src/**/*.css
 
 # editors
 /.vscode/
+.idea/*

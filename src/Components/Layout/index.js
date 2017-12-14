@@ -5,8 +5,7 @@ import './Layout.css'
 const Layout = ({
   className,
   address,
-  children,
-  ...rest
+  children
 }) => (
   <div className={`Layout-container ${className}`}>
     <Sidebar

@@ -8,8 +8,7 @@ const ItemMenuSidebar = ({
   className,
   active,
   name,
-  theme,
-  ...rest
+  theme
 }) => (
   <div>
     <NavLink

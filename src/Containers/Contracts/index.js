@@ -30,18 +30,14 @@ class Contracts extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    balance: state.ethereum.balance,
-    hasErrored: state.ethereum.failureBalance,
-    isFetching: state.ethereum.requestBalance
-  }
-}
+const mapStateToProps = state => ({
+  balance: state.ethereum.balance,
+  hasErrored: state.ethereum.failureBalance,
+  isFetching: state.ethereum.requestBalance
+})
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getBalance: url => dispatch(balanceFetchData())
-  }
+const mapDispatchToProps = {
+  getBalance: balanceFetchData
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Contracts))
