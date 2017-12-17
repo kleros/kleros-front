@@ -13,6 +13,7 @@ import RequiresMetaMask from './requiresMetaMask'
 import { fetchAddress } from '../redux/ethereum/action-creators'
 import Disputes from '../Containers/Disputes'
 import Contracts from '../Containers/Contracts'
+import Home from '../Components/Home'
 import ContractsTable from '../Components/ContractsTable'
 import ContractSummary from '../Containers/Contracts/Summary'
 import DisputeResolution from '../Containers/Disputes/DisputeResolution'
@@ -59,6 +60,11 @@ class App extends Component {
         <Router>
           <Switch>
             <Layout address={this.props.address}>
+              <Route
+                exact
+                path='/'
+                component={Home}
+              />
               <Route
                 exact
                 path='/disputes'

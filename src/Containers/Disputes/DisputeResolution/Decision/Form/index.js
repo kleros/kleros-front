@@ -88,7 +88,7 @@ const mapStateToProps = state => {
   }
 }
 
-const validate = values => {
+const validate = () => {
   return {}
 }
 

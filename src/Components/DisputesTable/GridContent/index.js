@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import _ from 'lodash'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import 'babel-polyfill'
@@ -36,7 +37,7 @@ class GridContent extends Component {
       <div className='GridContent-container'>
         <div className='items'>
           {
-            (disputes.length === 0) &&
+            _.isEmpty(disputes) &&
             <div className='items-row'>
               <div className='item item-no-disputes'>
                 You have no disputes.
@@ -44,12 +45,14 @@ class GridContent extends Component {
             </div>
           }
           {
-            filteredDisputes.map(dispute => {
-              return (
+            filteredDisputes.filter(dispute => {
+              return dispute.arbitratorAddress === process.env.REACT_APP_ARBITRATOR_ADDRESS
+            }).map(dispute =>
+              (
                 <Link key={dispute.arbitrableContractAddress} to={`${baseLink}/${dispute.arbitrableContractAddress}`}>
                   <div className='items-row'>
                     <div className='item item-project'>
-                      <div className='item-title'>{ truncateText(dispute.description, 35) }</div>
+                      <div className='item-title'>{ truncateText(dispute.description ? dispute.description : 'unavailable', 35) }</div>
                       <div className='item-category'>{ dispute.category }</div>
                     </div>
                     <div className='item item-deadline'>{ dispute.deadline }</div>
@@ -58,8 +61,6 @@ class GridContent extends Component {
                   </div>
                 </Link>
               )
-            }
-
             )
           }
         </div>

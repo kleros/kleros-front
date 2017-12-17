@@ -20,7 +20,7 @@ class SummaryContract extends Component {
     }
   }
 
-  raiseDispute = e => this.props.raiseDisputeContract(
+  raiseDispute = () => this.props.raiseDisputeContract(
     this.props.contract,
     this.props.match.params.address
   )

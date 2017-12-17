@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import _ from 'lodash'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import 'babel-polyfill'
@@ -34,17 +35,29 @@ class GridContent extends Component {
       <div className='GridContent-container'>
         <div className='items'>
           {
-            contracts.map(contract =>
-              <Link key={contract.address} to={`contract-summary/${contract.address}`}>
-                <div className='items-row'>
-                  <div className='item-contract-hash'>{contract.address}</div>
-                  <div className='item item-party-a'>{truncateText(contract.partyA, 10)}</div>
-                  <div className='item item-party-b'>{truncateText(contract.partyB, 10)}</div>
-                  <div className='item item-rule'>
-                    <FontAwesome name='circle-thin' />
+            _.isEmpty(contracts) &&
+            <div className='items-row'>
+              <div className='item item-no-contracts'>
+                You have no contracts.
+              </div>
+            </div>
+          }
+          {
+            contracts.filter(contract => {
+              return contract.arbitrator === process.env.REACT_APP_ARBITRATOR_ADDRESS
+            }).map(contract =>
+              (
+                <Link key={contract.address} to={`contract-summary/${contract.address}`}>
+                  <div className='items-row'>
+                    <div className='item-contract-hash'>{contract.address}</div>
+                    <div className='item item-party-a'>{truncateText(contract.partyA, 10)}</div>
+                    <div className='item item-party-b'>{truncateText(contract.partyB, 10)}</div>
+                    <div className='item item-rule'>
+                      <FontAwesome name='circle-thin' />
+                    </div>
                   </div>
-                </div>
-              </Link>
+                </Link>
+              )
             )
           }
         </div>

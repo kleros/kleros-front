@@ -7,7 +7,7 @@ const filterFunction = disputes => _.filter(disputes, dispute => (
   ((dispute.isJuror && dispute.hasRuled) || !dispute.isJuror) && dispute)
 )
 
-const Decisions = props => {
+const Decisions = () => {
   const itemsTitle = [
     'Project',
     'Deadline',
