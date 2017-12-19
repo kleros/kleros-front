@@ -10,17 +10,18 @@ import {
 } from 'react-redux'
 import registerServiceWorker from './registerServiceWorker'
 import RequiresMetaMask from './requiresMetaMask'
-import { fetchAddress } from '../business/ethereum/action-creators'
-import Disputes from '../Disputes'
-import Contracts from '../Contracts'
-import ContractsTable from '../ContractsTable'
-import ContractSummary from '../Contracts/Summary'
-import DisputeResolution from '../DisputeResolution'
-import Settings from '../Settings'
-import Jury from '../Jury'
-import Decisions from '../Decisions'
-import DecisionSummary from '../Decisions/Summary'
-import Layout from '../Layout'
+import { fetchAddress } from '../redux/ethereum/action-creators'
+import Disputes from '../Containers/Disputes'
+import Contracts from '../Containers/Contracts'
+import Home from '../Components/Home'
+import ContractsTable from '../Components/ContractsTable'
+import ContractSummary from '../Containers/Contracts/Summary'
+import DisputeResolution from '../Containers/Disputes/DisputeResolution'
+import Settings from '../Containers/Settings'
+import Jury from '../Containers/Jury'
+import Decisions from '../Containers/Decisions'
+import DecisionSummary from '../Containers/Decisions/Summary'
+import Layout from '../Components/Layout'
 import './index.css'
 
 class App extends Component {
@@ -61,6 +62,11 @@ class App extends Component {
             <Layout address={this.props.address}>
               <Route
                 exact
+                path='/'
+                component={Home}
+              />
+              <Route
+                exact
                 path='/disputes'
                 component={Disputes}
               />
@@ -81,7 +87,7 @@ class App extends Component {
               />
               <Route
                 exact
-                path='/disputes/:disputeId'
+                path='/disputes/:address'
                 component={DisputeResolution}
               />
               <Route
@@ -101,7 +107,7 @@ class App extends Component {
               />
               <Route
                 exact
-                path='/decisions/:disputeId'
+                path='/decisions/:address'
                 component={DecisionSummary}
               />
             </Layout>
