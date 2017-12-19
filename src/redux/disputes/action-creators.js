@@ -1,7 +1,6 @@
 import { Kleros } from 'kleros-api'
 import {
   requestDisputes,
-  failureDisputes,
   receiveDisputes,
   requestCaseData,
   receiveCaseData,
@@ -12,15 +11,6 @@ import {
   submitExecute
 } from './actions'
 import { getWeb3 } from '../../helpers/getWeb3'
-
-export const errorAfterFiveSeconds = () => {
-  return dispatch => {
-    setTimeout(() => {
-      // This function is able to dispatch other action creators
-      dispatch(failureDisputes(true))
-    }, 5000)
-  }
-}
 
 export const getDisputes = (
   account = 0

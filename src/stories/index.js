@@ -3,13 +3,13 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import StoryRouter from 'storybook-router'
 
-import ShortProfile from '../Sidebar/ShortProfile'
-import MenuSidebar from '../Sidebar/MenuSidebar'
-import Sidebar from '../Sidebar'
+import ShortProfile from '../Components/Sidebar/ShortProfile'
+import MenuSidebar from '../Components/Sidebar/MenuSidebar'
+import Sidebar from '../Components/Sidebar'
 
-import Identicon from '../Identicon'
-import Icon from '../Icon'
-import SearchBar from '../SearchBar'
+import Identicon from '../Components/Identicon'
+import Icon from '../Components/Icon'
+import SearchBar from '../Components/SearchBar'
 
 import '../bootstrap/index.css'
 

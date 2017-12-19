@@ -16,9 +16,8 @@ class Jury extends Component {
   render () {
     if (this.props.isFetching || this.props.balanceIsFetching) return false
 
-    let period = -1
+    const period = this.props.arbitratorData.period
     let content
-    period = this.props.arbitratorData.period
 
     if (this.props.balance.activatedTokens) {
       content = (

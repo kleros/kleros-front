@@ -3,11 +3,9 @@ import { Link } from 'react-router-dom'
 import './Banner.css'
 
 const Banner = ({
-  className,
   title,
   linkTo,
-  children,
-  ...rest
+  children
 }) => (
   <div className='dispute-resolution-banner'>
     <div className='banner-container'>
