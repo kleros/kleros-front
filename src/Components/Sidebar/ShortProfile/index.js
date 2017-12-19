@@ -11,8 +11,7 @@ const ShortProfile = ({
   balancePNK = 0,
   notificationIsActive = false,
   children,
-  theme,
-  ...rest
+  theme
 }) => (
   <div className={`ShortProfile-container ${className} ${theme}`}>
     <div className='icon'>

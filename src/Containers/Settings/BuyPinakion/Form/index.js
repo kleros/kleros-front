@@ -48,12 +48,12 @@ const Form = props => {
 
 const FORM_NAME = 'buyPinakion'
 
-const mapStateToProps = state => {
+const mapStateToProps = () => {
   return {
   }
 }
 
-const validate = values => {
+const validate = () => {
   return {}
 }
 

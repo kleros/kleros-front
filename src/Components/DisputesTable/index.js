@@ -8,10 +8,8 @@ const defaultFilterFunction = dispute => {
 
 const DisputesTable = ({
   className,
-  itemTitles = [],
   baseLink,
-  filterFunction = defaultFilterFunction,
-  ...rest
+  filterFunction = defaultFilterFunction
 }) => (
   <div className={`Grid-container ${className}`}>
     <div className='grid'>

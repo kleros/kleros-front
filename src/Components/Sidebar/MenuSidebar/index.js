@@ -8,8 +8,7 @@ const MenuSidebar = ({
   className,
   items = [],
   theme,
-  children,
-  ...rest
+  children
 }) => (
   <div className={`MenuSidebar-container ${className} ${theme}`}>
     { items.map(item =>
