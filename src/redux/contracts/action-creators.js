@@ -82,6 +82,9 @@ export const contractFetchData = (
         web3.eth.accounts[account]
       )
 
+    contractDataDeployed.partyAFeeEther = await web3.fromWei(contractDataDeployed.partyAFee, 'ether')
+    contractDataDeployed.partyBFeeEther = await web3.fromWei(contractDataDeployed.partyBFee, 'ether')
+
     await dispatch(receiveContract(contractDataDeployed))
     await dispatch(requestContract(false))
   } catch (err) {

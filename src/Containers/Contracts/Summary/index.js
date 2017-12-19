@@ -47,8 +47,8 @@ class SummaryContract extends Component {
             Timeout: {contract.timeout}<br />
             PartyA: {contract.partyA}<br />
             PartyB: {contract.partyB}<br />
-            Party A Fee Paid: {contract.partyAFee}<br />
-            Party B Fee Paid: {contract.partyBFee}<br />
+            Party A Fee Paid: {contract.partyAFeeEther}<br />
+            Party B Fee Paid: {contract.partyBFeeEther}<br />
             Status: {STATUS_TO_STATE[contract.status] || '?'}<br />
           </div>
           {
