@@ -4,7 +4,6 @@ import {
   failureDisputes,
   disputes,
   requestCaseData,
-  failureCaseData,
   caseData,
   redistibuteJurorTokensSubmitted,
   executeSubmitted
@@ -15,7 +14,6 @@ export default combineReducers({
   failureDisputes,
   disputes,
   requestCaseData,
-  failureCaseData,
   caseData,
   redistibuteJurorTokensSubmitted,
   executeSubmitted
