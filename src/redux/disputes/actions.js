@@ -2,7 +2,6 @@ export const REQUEST_DISPUTES = 'REQUEST_DISPUTES'
 export const FAILURE_DISPUTES = 'FAILURE_DISPUTES'
 export const RECEIVE_DISPUTES = 'RECEIVE_DISPUTES'
 export const REQUEST_CASE_DATA = 'REQUEST_CASE_DATA'
-export const FAILURE_CASE_DATA = 'FAILURE_CASE_DATA'
 export const RECEIVE_CASE_DATA = 'RECEIVE_CASE_DATA'
 export const SUBMIT_RULING = 'SUBMIT_RULING'
 export const RULING_SUBMITTED = 'RULING_SUBMITTED'
@@ -36,13 +35,6 @@ export function requestCaseData (isFetching = true) {
   return {
     type: REQUEST_CASE_DATA,
     isFetching
-  }
-}
-
-export function failureCaseData (hasErrored = false) {
-  return {
-    type: FAILURE_CASE_DATA,
-    hasErrored
   }
 }
 

@@ -5,7 +5,6 @@ import {
   disputes,
   requestCaseData,
   failureCaseData,
-  caseData,
   redistibuteJurorTokensSubmitted,
   executeSubmitted
 } from './reducers'
@@ -16,7 +15,6 @@ export default combineReducers({
   disputes,
   requestCaseData,
   failureCaseData,
-  caseData,
   redistibuteJurorTokensSubmitted,
   executeSubmitted
 })

@@ -4,7 +4,6 @@ import {
   RECEIVE_DISPUTES,
   REQUEST_CASE_DATA,
   FAILURE_CASE_DATA,
-  RECEIVE_CASE_DATA,
   SUBMIT_RULING,
   RULING_SUBMITTED,
   RULING_FAILED,
@@ -52,15 +51,6 @@ export function failureCaseData (state = false, action) {
   switch (action.type) {
     case FAILURE_CASE_DATA:
       return action.hasErrored
-    default:
-      return state
-  }
-}
-
-export function caseData (state = [], action) {
-  switch (action.type) {
-    case RECEIVE_CASE_DATA:
-      return action.caseData
     default:
       return state
   }
