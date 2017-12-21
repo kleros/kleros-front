@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import Web3 from 'web3'
 import { getDisputeForContract } from '../../../redux/disputes/action-creators'
+import { getRulingOptions } from '../../../redux/contracts/action-creators'
 import SearchBar from '../../../Components/SearchBar'
 import Banner from './Banner'
 import Parties from './Parties'
@@ -15,6 +16,7 @@ class DisputeResolution extends Component {
   componentWillMount () {
     // fetch dispute
     this.props.getDisputeForContract(this.props.match.params.address)
+    this.props.getRulingOptions(this.props.match.params.address)
   }
 
   render () {
@@ -44,7 +46,7 @@ class DisputeResolution extends Component {
         <Evidence evidence={dispute.evidence} />
         <div className='divider' />
         <Decision
-          resolutionOptions={dispute.resolutionOptions}
+          resolutionOptions={this.props.rulingOptions}
           disputeId={dispute.disputeId}
           votes={dispute.votes}
           hash={dispute.hash}
@@ -58,13 +60,16 @@ const mapStateToProps = state => {
   return {
     caseData: state.disputes.caseData,
     hasErrored: state.disputes.failureCaseData,
-    isFetching: state.disputes.requestCaseData
+    isFetching: state.disputes.requestCaseData,
+    rulingOptions: state.contracts.rulingOptions
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getDisputeForContract: contractAddress => dispatch(getDisputeForContract(contractAddress))
+    getDisputeForContract: contractAddress => dispatch(getDisputeForContract(contractAddress)),
+    getRulingOptions: contractAddress => dispatch(getRulingOptions(contractAddress))
+
   }
 }
 
