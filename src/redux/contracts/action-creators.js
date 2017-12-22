@@ -12,7 +12,10 @@ import {
   raiseDisputeContract,
   requestRaiseDispute,
   failureRaiseDispute,
-  addEvidenceContract
+  addEvidenceContract,
+  requestRulingOptions,
+  receiveRulingOptions,
+  failureRulingOptions
 } from './actions'
 import { getWeb3 } from '../../helpers/getWeb3'
 
@@ -310,7 +313,6 @@ export const passPeriod = (
 }
 
 export const getContracts = (
-  klerosAddress = process.env.REACT_APP_ARBITRATOR_ADDRESS,
   account = 0
 ) => async dispatch => {
   await dispatch(requestContracts(true))
@@ -328,6 +330,27 @@ export const getContracts = (
     await dispatch(requestContracts(false))
   } catch (e) {
     dispatch(failureContracts(true))
+    throw new Error(e)
+  }
+}
+
+export const getRulingOptions = (
+  contractAddress
+) => async dispatch => {
+  await dispatch(requestRulingOptions(true))
+  try {
+    let web3 = await getWeb3()
+
+    const provider = web3.currentProvider
+
+    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+
+    const rulingOptions = await KlerosInstance.arbitrableContract.getRulingOptions(contractAddress)
+
+    await dispatch(receiveRulingOptions(rulingOptions))
+    await dispatch(requestRulingOptions(false))
+  } catch (e) {
+    dispatch(failureRulingOptions(true))
     throw new Error(e)
   }
 }
