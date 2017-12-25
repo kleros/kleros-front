@@ -19,7 +19,7 @@ class Identicon extends Component {
     }
 
     return (
-      <div className='ethereum-address-icon' style={style} />
+      <div className={`ethereum-address-icon ${this.props.className}`} style={style} />
     )
   }
 }

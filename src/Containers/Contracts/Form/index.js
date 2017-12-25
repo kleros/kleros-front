@@ -8,6 +8,7 @@ import FontAwesome from 'react-fontawesome'
 import { deployContract } from '../../../redux/contracts/action-creators'
 import Input from '../../../Components/Input'
 import SHA3 from 'crypto-js/sha3'
+import Identicon from '../../../Components/Identicon'
 import './Form.css'
 
 let sha3 = (value) => {
@@ -72,6 +73,15 @@ const Form = props => {
             required
             innerClassName='input-text-contract-param'
             placeholder='Timeout' />
+          {
+            _.has(formContract, 'values.partyB') &&
+            <Identicon
+              className='identicon-contract-address'
+              seed={formContract.values.partyB}
+              width={34}
+              height={34}
+            />
+          }
           <Field
             name='partyB'
             component={Input}
