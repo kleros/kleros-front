@@ -32,6 +32,7 @@
     "@storybook/addon-actions": "^3.2.6",
     "@storybook/addon-links": "^3.2.6",
     "@storybook/react": "^3.2.8",
+    "coveralls": "^3.0.0",
     "enzyme-adapter-react-15": "^1.0.5",
     "enzyme-to-json": "^3.3.0",
     "eslint": "^4.9.0",
@@ -50,6 +51,8 @@
     "start": "npm-run-all -p watch-css start-js",
     "build": "npm run build-css && react-scripts build",
     "test": "npm run build-css && react-scripts test --env=jsdom",
+    "test:coverage": "npm test -- --coverage",
+    "test:coveralls": "cat ./coverage/lcov.info | coveralls",
     "eject": "react-scripts eject",
     "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
@@ -63,6 +66,10 @@
   "jest": {
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!<rootDir>/node_modules/"
     ]
   },
   "setupTestFrameworkScriptFile": "<rootDir>/src/setupTests.js"
