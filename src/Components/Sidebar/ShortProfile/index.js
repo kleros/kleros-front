@@ -7,9 +7,9 @@ import './ShortProfile.css'
 
 class ShortProfile extends Component {
   swapView = () => {
-    let appView = window.localStorage.getItem(KLEROS_VIEW_KEY)
+    const appView = window.localStorage.getItem(KLEROS_VIEW_KEY)
     if (appView === APP_VIEWS.JUROR) window.localStorage.setItem(KLEROS_VIEW_KEY, APP_VIEWS.PARTY)
-    if (appView === APP_VIEWS.PARTY) window.localStorage.setItem(KLEROS_VIEW_KEY, APP_VIEWS.JUROR)
+    else if (appView === APP_VIEWS.PARTY) window.localStorage.setItem(KLEROS_VIEW_KEY, APP_VIEWS.JUROR)
 
     window.location.reload()
   }
