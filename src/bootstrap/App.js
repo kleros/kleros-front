@@ -58,8 +58,7 @@ class App extends Component {
 
     // get which view user is in
     let appView = window.localStorage.getItem(KLEROS_VIEW_KEY)
-
-    if (appView === 'undefined') {
+    if (!appView || appView === 'undefined') {
       appView = process.env.REACT_APP_DEFAULT_VIEW
       window.localStorage.setItem(KLEROS_VIEW_KEY, appView)
     }
