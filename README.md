@@ -1,6 +1,6 @@
 # Kleros front
 
-[![Build Status](https://travis-ci.org/kleros/kleros-front.svg?branch=master)](https://travis-ci.org/kleros/kleros-front) [![Join the chat at https://gitter.im/kleros/kleros-front](https://badges.gitter.im/kleros/kleros-front.svg)](https://gitter.im/kleros/kleros-front?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build Status](https://travis-ci.org/kleros/kleros-front.svg?branch=master)](https://travis-ci.org/kleros/kleros-front) [![Coverage Status](https://coveralls.io/repos/github/kleros/kleros-front/badge.svg)](https://coveralls.io/github/kleros/kleros-front) [![Join the chat at https://gitter.im/kleros/kleros-front](https://badges.gitter.im/kleros/kleros-front.svg)](https://gitter.im/kleros/kleros-front?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://github.com/standard/standard)
 
 ## Table of Contents
@@ -32,6 +32,11 @@ yarn start
 ```
 
 Go to http://localhost:3000.
+
+### Run test
+```bash
+yarn test
+```
 
 ### POC Ethereum network
 
