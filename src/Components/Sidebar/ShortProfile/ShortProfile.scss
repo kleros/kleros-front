@@ -24,18 +24,8 @@
       opacity: 0.66;
     }
   }
-  .notification {
-    position: relative;
-  }
-  .notificationIsActive {
-    position: absolute;
-    top: -4px;
-    left: 9px;
-    height: 10px;
-    width: 10px;
-    background-color: #ff1c38;
-    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.13);
-    border-radius: 50%;
+  .swap-views {
+    cursor: pointer;
   }
 }
 

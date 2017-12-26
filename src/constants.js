@@ -25,3 +25,4 @@ export const APP_VIEWS = {
   'JUROR': 'juror',
   'PARTY': 'party'
 }
+export const KLEROS_VIEW_KEY = 'KLEROS_APP_VIEW'

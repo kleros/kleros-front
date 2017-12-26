@@ -22,7 +22,7 @@ import Jury from '../Containers/Jury'
 import Decisions from '../Containers/Decisions'
 import DecisionSummary from '../Containers/Decisions/Summary'
 import Layout from '../Components/Layout'
-import { APP_VIEWS } from '../constants'
+import { APP_VIEWS, KLEROS_VIEW_KEY } from '../constants'
 import './index.css'
 
 class App extends Component {
@@ -56,8 +56,15 @@ class App extends Component {
     // FIXME show a loading screen?
     if (!this.state.appLoaded) return false
 
-    const appView = process.env.REACT_APP_VIEW
+    // get which view user is in
+    let appView = window.localStorage.getItem(KLEROS_VIEW_KEY)
 
+    if (appView === 'undefined') {
+      appView = process.env.REACT_APP_DEFAULT_VIEW
+      window.localStorage.setItem(KLEROS_VIEW_KEY, appView)
+    }
+
+    // FIXME DRY this out a bit
     let routes
     if (appView === APP_VIEWS.JUROR) {
       routes = (
