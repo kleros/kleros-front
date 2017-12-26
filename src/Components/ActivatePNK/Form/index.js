@@ -3,8 +3,8 @@ import { SubmissionError, Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import FontAwesome from 'react-fontawesome'
-import { activatePinakion } from '../../../../redux/ethereum/action-creators'
-import Input from '../../../../Components/Input'
+import { activatePinakion } from '../../../redux/ethereum/action-creators'
+import Input from '../../Input'
 import './Form.css'
 
 const Form = props => {
