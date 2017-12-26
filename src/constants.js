@@ -21,3 +21,7 @@ export const RULINGS = [
   'Party A Wins',
   'Party B Wins'
 ]
+export const APP_VIEWS = {
+  'JUROR': 'juror',
+  'PARTY': 'party'
+}

@@ -22,6 +22,7 @@ import Jury from '../Containers/Jury'
 import Decisions from '../Containers/Decisions'
 import DecisionSummary from '../Containers/Decisions/Summary'
 import Layout from '../Components/Layout'
+import { APP_VIEWS } from '../constants'
 import './index.css'
 
 class App extends Component {
@@ -55,62 +56,95 @@ class App extends Component {
     // FIXME show a loading screen?
     if (!this.state.appLoaded) return false
 
+    const appView = process.env.REACT_APP_VIEW
+
+    let routes
+    if (appView === APP_VIEWS.JUROR) {
+      routes = (
+        <Layout address={this.props.address} view={appView}>
+          <Route
+            exact
+            path='/'
+            component={Home}
+          />
+          <Route
+            exact
+            path='/disputes'
+            component={Disputes}
+          />
+          <Route
+            exact
+            path='/disputes/:address'
+            component={DisputeResolution}
+          />
+          <Route
+            exact
+            path='/settings'
+            component={Settings}
+          />
+          <Route
+            exact
+            path='/jury'
+            component={Jury}
+          />
+          <Route
+            exact
+            path='/decisions'
+            component={Decisions}
+          />
+          <Route
+            exact
+            path='/decisions/:address'
+            component={DecisionSummary}
+          />
+        </Layout>
+      )
+    } else if (appView === APP_VIEWS.PARTY) {
+      routes = (
+        <Layout address={this.props.address} view={appView}>
+          <Route
+            exact
+            path='/'
+            component={Home}
+          />
+          <Route
+            exact
+            path='/contracts'
+            component={ContractsTable}
+          />
+          <Route
+            exact
+            path='/contracts/new'
+            component={Contracts}
+          />
+          <Route
+            exact
+            path='/contract-summary/:address'
+            component={ContractSummary}
+          />
+          <Route
+            exact
+            path='/settings'
+            component={Settings}
+          />
+          <Route
+            exact
+            path='/decisions'
+            component={Decisions}
+          />
+          <Route
+            exact
+            path='/decisions/:address'
+            component={DecisionSummary}
+          />
+        </Layout>
+      )
+    }
     return (
       <Provider store={this.props.store}>
         <Router>
           <Switch>
-            <Layout address={this.props.address}>
-              <Route
-                exact
-                path='/'
-                component={Home}
-              />
-              <Route
-                exact
-                path='/disputes'
-                component={Disputes}
-              />
-              <Route
-                exact
-                path='/contracts'
-                component={ContractsTable}
-              />
-              <Route
-                exact
-                path='/contracts/new'
-                component={Contracts}
-              />
-              <Route
-                exact
-                path='/contract-summary/:address'
-                component={ContractSummary}
-              />
-              <Route
-                exact
-                path='/disputes/:address'
-                component={DisputeResolution}
-              />
-              <Route
-                exact
-                path='/settings'
-                component={Settings}
-              />
-              <Route
-                exact
-                path='/jury'
-                component={Jury}
-              />
-              <Route
-                exact
-                path='/decisions'
-                component={Decisions}
-              />
-              <Route
-                exact
-                path='/decisions/:address'
-                component={DecisionSummary}
-              />
-            </Layout>
+            {routes}
           </Switch>
         </Router>
       </Provider>
