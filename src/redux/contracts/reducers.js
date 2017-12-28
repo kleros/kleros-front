@@ -11,7 +11,10 @@ import {
   RAISE_DISPUTE_CONTRACT,
   REQUEST_RAISE_DISPUTE_CONTRACT,
   FAILURE_RAISE_DISPUTE,
-  ADD_EVIDENCE_CONTRACT
+  ADD_EVIDENCE_CONTRACT,
+  REQUEST_RULING_OPTIONS,
+  FAILURE_RULING_OPTIONS,
+  RECEIVE_RULING_OPTIONS
 } from './actions'
 
 export function fetchPostContract (state = false, action) {
@@ -126,6 +129,33 @@ export function addEvidenceContract (state = 0x0, action) {
   switch (action.type) {
     case ADD_EVIDENCE_CONTRACT:
       return action.addEvidenceContractTx
+    default:
+      return state
+  }
+}
+
+export function requestRulingOptions (state = false, action) {
+  switch (action.type) {
+    case REQUEST_RULING_OPTIONS:
+      return action.isFetching
+    default:
+      return state
+  }
+}
+
+export function failureRulingOptions (state = false, action) {
+  switch (action.type) {
+    case FAILURE_RULING_OPTIONS:
+      return action.hasErrored
+    default:
+      return state
+  }
+}
+
+export function rulingOptions (state = [], action) {
+  switch (action.type) {
+    case RECEIVE_RULING_OPTIONS:
+      return action.rulingOptions
     default:
       return state
   }

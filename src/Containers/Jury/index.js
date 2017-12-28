@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import ActivatePNK from './ActivatePNK'
+import ActivatePNK from '../../Components/ActivatePNK'
 import { getArbitratorData } from '../../redux/contracts/action-creators'
 import { balanceFetchData } from '../../redux/ethereum/action-creators'
 import { PERIOD_TO_STATE } from '../../constants'

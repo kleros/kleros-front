@@ -11,8 +11,9 @@
     "blockies": "^0.0.2",
     "blockies-identicon": "^0.1.0",
     "crypto-js": "^3.1.9-1",
+    "enzyme": "^3.2.0",
     "global": "^4.3.2",
-    "kleros-api": "^0.0.46",
+    "kleros-api": "^0.0.47",
     "node-sass-chokidar": "^0.0.3",
     "npm-run-all": "^4.1.1",
     "react": "^15.6.1",
@@ -31,6 +32,9 @@
     "@storybook/addon-actions": "^3.2.6",
     "@storybook/addon-links": "^3.2.6",
     "@storybook/react": "^3.2.8",
+    "coveralls": "^3.0.0",
+    "enzyme-adapter-react-15": "^1.0.5",
+    "enzyme-to-json": "^3.3.0",
     "eslint": "^4.9.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-config-standard-jsx": "^4.0.2",
@@ -39,13 +43,16 @@
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-react": "^7.4.0",
     "eslint-plugin-standard": "^3.0.1",
-    "react-scripts": "1.0.13"
+    "react-scripts": "1.0.13",
+    "react-test-renderer": "^15.5.0"
   },
   "scripts": {
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
     "build": "npm run build-css && react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "npm run build-css && react-scripts test --env=jsdom",
+    "test:coverage": "npm test -- --coverage",
+    "test:coveralls": "cat ./coverage/lcov.info | coveralls",
     "eject": "react-scripts eject",
     "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
@@ -55,5 +62,15 @@
     "build-storybook": "build-storybook -s public",
     "deploy-storybook": "storybook-to-ghpages",
     "postinstall": "npm rebuild node-sass"
-  }
+  },
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!<rootDir>/node_modules/"
+    ]
+  },
+  "setupTestFrameworkScriptFile": "<rootDir>/src/setupTests.js"
 }

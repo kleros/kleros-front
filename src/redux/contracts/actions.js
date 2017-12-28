@@ -11,6 +11,9 @@ export const RAISE_DISPUTE_CONTRACT = 'RAISE_DISPUTE_CONTRACT'
 export const REQUEST_RAISE_DISPUTE_CONTRACT = 'REQUEST_RAISE_DISPUTE_CONTRACT'
 export const FAILURE_RAISE_DISPUTE = 'FAILURE_RAISE_DISPUTE'
 export const ADD_EVIDENCE_CONTRACT = 'ADD_EVIDENCE_CONTRACT'
+export const REQUEST_RULING_OPTIONS = 'REQUEST_RULING_OPTIONS'
+export const RECEIVE_RULING_OPTIONS = 'RECEIVE_RULING_OPTIONS'
+export const FAILURE_RULING_OPTIONS = 'FAILURE_RULING_OPTIONS'
 // TODO add REQUEST_ADD_EVIDENCE_CONTRACT and RECEIVE_ADD_EVIDENCE_CONTRACT
 
 export const fetchPostContract = isFetching => {
@@ -101,5 +104,26 @@ export const addEvidenceContract = addEvidenceContractTx => {
   return {
     type: ADD_EVIDENCE_CONTRACT,
     addEvidenceContractTx
+  }
+}
+
+export const requestRulingOptions = isFetching => {
+  return {
+    type: REQUEST_RULING_OPTIONS,
+    isFetching
+  }
+}
+
+export const receiveRulingOptions = rulingOptions => {
+  return {
+    type: RECEIVE_RULING_OPTIONS,
+    rulingOptions
+  }
+}
+
+export const failureRulingOptions = hasErrored => {
+  return {
+    type: FAILURE_RULING_OPTIONS,
+    hasErrored
   }
 }
