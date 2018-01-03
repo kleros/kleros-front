@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="17px" height="17px" viewBox="0 0 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>search icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="KLEROS---opened-dispute-2" transform="translate(-839.000000, -614.000000)" stroke="#CED0DA" stroke-width="2">
+            <g id="Group-5" transform="translate(607.000000, 602.000000)">
+                <g id="search-icon" transform="translate(233.000000, 13.000000)">
+                    <path d="M10.4468793,9.34877586 L14.6153276,13.5172241 C14.918431,13.8208448 14.918431,14.3122241 14.6153276,14.6153276 C14.3122241,14.918431 13.8203276,14.918431 13.5172241,14.6153276 L9.34825862,10.4463621" id="Stroke-1"></path>
+                    <path d="M11.5957759,5.92737931 C11.5957759,9.05824138 9.05818966,11.5958276 5.92732759,11.5958276 C2.79646552,11.5958276 0.25887931,9.05824138 0.25887931,5.92737931 C0.25887931,2.79651724 2.79646552,0.258931034 5.92732759,0.258931034 C9.05818966,0.258931034 11.5957759,2.79651724 11.5957759,5.92737931 Z" id="Stroke-3"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
