@@ -1,1 +1,0 @@
-webpackJsonp([6],{1114:function(module,exports,__webpack_require__){module.exports=__webpack_require__.p+"static/media/decisions.37c92707.svg"}});
