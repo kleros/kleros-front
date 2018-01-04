@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
+
 import './Icon.css'
 
 class Icon extends Component {
@@ -9,7 +10,9 @@ class Icon extends Component {
   }
 
   componentDidMount = async () => {
-    let iconPicturePath = await import(`../../assets/icons/${this.props.name}.svg`)
+    let iconPicturePath = await import(`../../assets/icons/${
+      this.props.name
+    }.svg`)
 
     if (!_.isUndefined(iconPicturePath)) {
       this.setState({
@@ -21,7 +24,7 @@ class Icon extends Component {
 
   render () {
     if (this.state.isLoading) {
-      return (<div>Icon not found...</div>)
+      return <div>Icon not found...</div>
     }
 
     return (
