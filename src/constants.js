@@ -1,4 +1,5 @@
 export const TRUNCATED_DIGITS = 10
+
 export const EVIDENCE_TABLE_TRUNCATED_ENTRIES = 5
 export const RESOLVED_STATUS = 4
 export const DISPUTE_EXECUTABLE = 2
