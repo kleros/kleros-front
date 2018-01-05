@@ -11,77 +11,77 @@ export const EXECUTE_SUBMITTED = 'EXECUTE_SUBMITTED'
 export const REDISTRIBUTE_SUBMITTED = 'REDISTRIBUTE_SUBMITTED'
 // TODO execute and redistibute failure cases
 
-export function requestDisputes (isFetching = true) {
+export function requestDisputes(isFetching = true) {
   return {
     type: REQUEST_DISPUTES,
     isFetching
   }
 }
 
-export function failureDisputes (hasErrored = false) {
+export function failureDisputes(hasErrored = false) {
   return {
     type: FAILURE_DISPUTES,
     hasErrored
   }
 }
 
-export function receiveDisputes (disputes = []) {
+export function receiveDisputes(disputes = []) {
   return {
     type: RECEIVE_DISPUTES,
     disputes
   }
 }
 
-export function requestCaseData (isFetching = true) {
+export function requestCaseData(isFetching = true) {
   return {
     type: REQUEST_CASE_DATA,
     isFetching
   }
 }
 
-export function failureCaseData (hasErrored = false) {
+export function failureCaseData(hasErrored = false) {
   return {
     type: FAILURE_CASE_DATA,
     hasErrored
   }
 }
 
-export function receiveCaseData (caseData = null) {
+export function receiveCaseData(caseData = null) {
   return {
     type: RECEIVE_CASE_DATA,
     caseData
   }
 }
 
-export function rulingSubmitted (tx = null) {
+export function rulingSubmitted(tx = null) {
   return {
     type: RULING_SUBMITTED,
     tx
   }
 }
 
-export function submitRuling (isSubmitting = false) {
+export function submitRuling(isSubmitting = false) {
   return {
     type: SUBMIT_RULING,
     isSubmitting
   }
 }
 
-export function rulingFailed (hasErrored = false) {
+export function rulingFailed(hasErrored = false) {
   return {
     type: RULING_FAILED,
     hasErrored
   }
 }
 
-export function submitRedistributeJurorTokens (isSubmitting = false) {
+export function submitRedistributeJurorTokens(isSubmitting = false) {
   return {
     type: REDISTRIBUTE_SUBMITTED,
     isSubmitting
   }
 }
 
-export function submitExecute (isSubmitting = false) {
+export function submitExecute(isSubmitting = false) {
   return {
     type: EXECUTE_SUBMITTED,
     isSubmitting

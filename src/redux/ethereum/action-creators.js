@@ -12,9 +12,7 @@ import { Kleros } from 'kleros-api'
 import { getWeb3 } from '../../helpers/getWeb3'
 
 // fetch account async to avoid race conditions. use for actions that are triggered on page load
-const _getAccountSafe = async (
-  account = 0
-) => {
+const _getAccountSafe = async (account = 0) => {
   try {
     let web3 = await getWeb3()
 
@@ -38,9 +36,14 @@ export const balanceFetchData = () => async dispatch => {
 
     const provider = web3.currentProvider
 
-    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+    let KlerosInstance = new Kleros(
+      provider,
+      process.env.REACT_APP_STORE_PROVIDER
+    )
 
-    const balance = await KlerosInstance.arbitrator.getPNKBalance(process.env.REACT_APP_ARBITRATOR_ADDRESS)
+    const balance = await KlerosInstance.arbitrator.getPNKBalance(
+      process.env.REACT_APP_ARBITRATOR_ADDRESS
+    )
     dispatch(receiveBalance(balance))
     dispatch(requestBalance(false))
   } catch (e) {
@@ -63,17 +66,17 @@ export const fetchAddress = (account = 0) => async dispatch => {
   }
 }
 
-export const buyPinakion = (
-  buyForm,
-  account = 0
-) => async dispatch => {
+export const buyPinakion = (buyForm, account = 0) => async dispatch => {
   dispatch(buyingPinakion(true))
   try {
     let web3 = await getWeb3()
 
     const provider = web3.currentProvider
 
-    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+    let KlerosInstance = new Kleros(
+      provider,
+      process.env.REACT_APP_STORE_PROVIDER
+    )
 
     const newBalance = await KlerosInstance.arbitrator.buyPNK(
       buyForm.amount,
@@ -98,7 +101,10 @@ export const activatePinakion = (
 
     const provider = web3.currentProvider
 
-    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+    let KlerosInstance = new Kleros(
+      provider,
+      process.env.REACT_APP_STORE_PROVIDER
+    )
 
     const newBalance = await KlerosInstance.arbitrator.activatePNK(
       activateForm.amount,

@@ -12,7 +12,7 @@ import {
   EXECUTE_SUBMITTED
 } from './actions'
 
-export function requestDisputes (state = true, action) {
+export function requestDisputes(state = true, action) {
   switch (action.type) {
     case REQUEST_DISPUTES:
       return action.isFetching
@@ -21,7 +21,7 @@ export function requestDisputes (state = true, action) {
   }
 }
 
-export function failureDisputes (state = false, action) {
+export function failureDisputes(state = false, action) {
   switch (action.type) {
     case FAILURE_DISPUTES:
       return action.hasErrored
@@ -30,7 +30,7 @@ export function failureDisputes (state = false, action) {
   }
 }
 
-export function disputes (state = [], action) {
+export function disputes(state = [], action) {
   switch (action.type) {
     case RECEIVE_DISPUTES:
       return action.disputes
@@ -39,7 +39,7 @@ export function disputes (state = [], action) {
   }
 }
 
-export function requestCaseData (state = true, action) {
+export function requestCaseData(state = true, action) {
   switch (action.type) {
     case REQUEST_CASE_DATA:
       return action.isFetching
@@ -48,7 +48,7 @@ export function requestCaseData (state = true, action) {
   }
 }
 
-export function failureCaseData (state = false, action) {
+export function failureCaseData(state = false, action) {
   switch (action.type) {
     case FAILURE_CASE_DATA:
       return action.hasErrored
@@ -57,7 +57,7 @@ export function failureCaseData (state = false, action) {
   }
 }
 
-export function caseData (state = [], action) {
+export function caseData(state = [], action) {
   switch (action.type) {
     case RECEIVE_CASE_DATA:
       return action.caseData
@@ -66,7 +66,7 @@ export function caseData (state = [], action) {
   }
 }
 
-export function submitRuling (state = [], action) {
+export function submitRuling(state = [], action) {
   switch (action.type) {
     case SUBMIT_RULING:
       return action.isSubmitting
@@ -75,7 +75,7 @@ export function submitRuling (state = [], action) {
   }
 }
 
-export function rulingSubmitted (state = [], action) {
+export function rulingSubmitted(state = [], action) {
   switch (action.type) {
     case RULING_SUBMITTED:
       return action.tx
@@ -84,7 +84,7 @@ export function rulingSubmitted (state = [], action) {
   }
 }
 
-export function rulingFailed (state = [], action) {
+export function rulingFailed(state = [], action) {
   switch (action.type) {
     case RULING_FAILED:
       return action.hasErrored
@@ -93,7 +93,7 @@ export function rulingFailed (state = [], action) {
   }
 }
 
-export function redistibuteJurorTokensSubmitted (state = false, action) {
+export function redistibuteJurorTokensSubmitted(state = false, action) {
   switch (action.type) {
     case REDISTRIBUTE_SUBMITTED:
       return action.isSubmitting
@@ -102,7 +102,7 @@ export function redistibuteJurorTokensSubmitted (state = false, action) {
   }
 }
 
-export function executeSubmitted (state = false, action) {
+export function executeSubmitted(state = false, action) {
   switch (action.type) {
     case EXECUTE_SUBMITTED:
       return action.isSubmitting

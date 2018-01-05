@@ -26,7 +26,7 @@ import '../bootstrap/index.css'
 /** *************** Icon *****************/
 
 storiesOf('Icon', module).add('Icon with name=Disputes, theme=dark', () => (
-  <Icon name='Disputes' theme='dark' />
+  <Icon name="Disputes" theme="dark" />
 ))
 
 /** *************** Identicon *****************/
@@ -43,15 +43,15 @@ storiesOf('ShortProfile', module)
   .add('default', () => <ShortProfile />)
   .add('with icon, username and balance', () => (
     <ShortProfile
-      address='0x5DF9B87991262F6BA471F09758CDE1c0FC1De734'
+      address="0x5DF9B87991262F6BA471F09758CDE1c0FC1De734"
       balancePNK={242}
       icon={<Identicon />}
     />
   ))
   .add('with dark background, icon, address and balance', () => (
     <ShortProfile
-      theme='dark'
-      address='0x5DF9B87991262F6BA471F09758CDE1c0FC1De734'
+      theme="dark"
+      address="0x5DF9B87991262F6BA471F09758CDE1c0FC1De734"
       balancePNK={242}
       icon={<Identicon />}
     />
@@ -60,8 +60,8 @@ storiesOf('ShortProfile', module)
     'with dark background, icon, address, balance and active notification',
     () => (
       <ShortProfile
-        theme='dark'
-        address='0x5DF9B87991262F6BA471F09758CDE1c0FC1De734'
+        theme="dark"
+        address="0x5DF9B87991262F6BA471F09758CDE1c0FC1De734"
         balancePNK={242}
         notificationIsActive
         icon={<Identicon />}
@@ -75,7 +75,7 @@ storiesOf('ItemMenuSidebar', module)
   .addDecorator(StoryRouter())
   .add('default', () => <ItemMenuSidebar />)
   .add('with dark background and name', () => (
-    <ItemMenuSidebar name='items' theme='dark' />
+    <ItemMenuSidebar name="items" theme="dark" />
   ))
 
 /** *************** MenuSidebar *****************/
@@ -96,7 +96,7 @@ storiesOf('Sidebar', module)
   ))
   .add('with items=Disputes, Contracts, Jury', () => (
     <Sidebar
-      address='0xa1e4380a3b1f749673e270229993ee55f35663b4'
+      address="0xa1e4380a3b1f749673e270229993ee55f35663b4"
       balancePNK={242}
       items={['Disputes', 'Contracts', 'Jury']}
     />
@@ -112,14 +112,14 @@ storiesOf('SearchBar', module).add('default', () => <SearchBar />)
 storiesOf('Input', module)
   .add('default', () => <Input />)
   .add('input text type with placeholder', () => (
-    <Input type='text' placeholder='Add your name here' />
+    <Input type="text" placeholder="Add your name here" />
   ))
   .add('textarea with placeholder', () => (
-    <Input type='textarea' placeholder='Add your comments' />
+    <Input type="textarea" placeholder="Add your comments" />
   ))
-  .add('radio button', () => <Input type='radio' />)
+  .add('radio button', () => <Input type="radio" />)
   .add('file input type with placeholder', () => (
-    <Input type='file' placeholder='Browse file' />
+    <Input type="file" placeholder="Browse file" />
   ))
 
 /** *************** TruncatedTextBox *****************/
@@ -128,13 +128,13 @@ storiesOf('TruncatedTextBox', module)
   .add('default', () => <TruncatedTextBox />)
   .add('with text and truncatedCharacters=4', () => (
     <TruncatedTextBox
-      text='with text length is greater than/equal to truncatedCharacters'
+      text="with text length is greater than/equal to truncatedCharacters"
       truncatedCharacters={4}
     />
   ))
   .add('with text length less than truncatedCharacter=8', () => (
     <TruncatedTextBox
-      text='with text length is less than truncatedCharacters'
+      text="with text length is less than truncatedCharacters"
       truncatedCharacters={8}
     />
   ))
@@ -145,8 +145,8 @@ storiesOf('Grid', module)
   .add('default', () => <Grid />)
   .add('with input text and icon', () => (
     <Grid>
-      <Input type='text' placeholder='Type something here' />
-      <Icon name='Disputes' theme='dark' />
+      <Input type="text" placeholder="Type something here" />
+      <Icon name="Disputes" theme="dark" />
     </Grid>
   ))
 
@@ -154,7 +154,7 @@ storiesOf('Grid', module)
 
 storiesOf('Banner', module)
   .addDecorator(StoryRouter())
-  .add('default', () => <Banner title='Banner Title' linkTo='/example' />)
+  .add('default', () => <Banner title="Banner Title" linkTo="/example" />)
 
 /** *************** MetroCard ****************/
 

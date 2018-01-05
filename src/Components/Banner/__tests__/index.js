@@ -3,7 +3,7 @@ import Banner from '../index'
 
 describe('Banner - Exists', () => {
   test('render component successfully', () => {
-    const component = shallow(<Banner linkTo='' />)
+    const component = shallow(<Banner linkTo="" />)
     expect(component).toMatchSnapshot()
   })
 })
@@ -21,7 +21,9 @@ describe('Bannner - Render component with props', () => {
   })
 
   test('render component that contains `Go back to the list` text', () => {
-    expect(component.find('Link').props().children).toEqual('← Go back to the list')
+    expect(component.find('Link').props().children).toEqual(
+      '← Go back to the list'
+    )
   })
 
   test('render component with props[linkTo, title, className]', () => {

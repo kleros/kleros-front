@@ -7,7 +7,7 @@ import {
   RECEIVE_ADDRESS
 } from './actions'
 
-export function requestBalance (state = false, action) {
+export function requestBalance(state = false, action) {
   switch (action.type) {
     case REQUEST_BALANCE:
       return action.isFetching
@@ -16,7 +16,7 @@ export function requestBalance (state = false, action) {
   }
 }
 
-export function failureBalance (state = false, action) {
+export function failureBalance(state = false, action) {
   switch (action.type) {
     case FAILURE_BALANCE:
       return action.hasErrored
@@ -25,7 +25,7 @@ export function failureBalance (state = false, action) {
   }
 }
 
-export function balance (state = [], action) {
+export function balance(state = [], action) {
   switch (action.type) {
     case RECEIVE_BALANCE:
       return action.balance
@@ -34,7 +34,7 @@ export function balance (state = [], action) {
   }
 }
 
-export function requestAddress (state = false, action) {
+export function requestAddress(state = false, action) {
   switch (action.type) {
     case REQUEST_ADDRESS:
       return action.isFetching
@@ -43,7 +43,7 @@ export function requestAddress (state = false, action) {
   }
 }
 
-export function failureAddress (state = false, action) {
+export function failureAddress(state = false, action) {
   switch (action.type) {
     case FAILURE_ADDRESS:
       return action.hasErrored
@@ -52,7 +52,7 @@ export function failureAddress (state = false, action) {
   }
 }
 
-export function address (state = 0x0, action) {
+export function address(state = 0x0, action) {
   switch (action.type) {
     case RECEIVE_ADDRESS:
       return action.address ? action.address : null

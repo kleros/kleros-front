@@ -17,7 +17,7 @@ import {
   RECEIVE_RULING_OPTIONS
 } from './actions'
 
-export function fetchPostContract (state = false, action) {
+export function fetchPostContract(state = false, action) {
   switch (action.type) {
     case FETCH_POST_CONTRACT:
       return action.isFetching
@@ -26,7 +26,7 @@ export function fetchPostContract (state = false, action) {
   }
 }
 
-export function failurePostContract (state = false, action) {
+export function failurePostContract(state = false, action) {
   switch (action.type) {
     case FAILURE_POST_CONTRACT:
       return action.hasErrored
@@ -35,7 +35,7 @@ export function failurePostContract (state = false, action) {
   }
 }
 
-export function address (state = 0x0, action) {
+export function address(state = 0x0, action) {
   switch (action.type) {
     case RECEIVE_ADDRESS_CONTRACT:
       return action.address
@@ -44,7 +44,7 @@ export function address (state = 0x0, action) {
   }
 }
 
-export function requestContract (state = false, action) {
+export function requestContract(state = false, action) {
   switch (action.type) {
     case REQUEST_CONTRACT:
       return action.isFetching
@@ -53,7 +53,7 @@ export function requestContract (state = false, action) {
   }
 }
 
-export function failureContract (state = false, action) {
+export function failureContract(state = false, action) {
   switch (action.type) {
     case FAILURE_CONTRACT:
       return action.hasErrored
@@ -62,7 +62,7 @@ export function failureContract (state = false, action) {
   }
 }
 
-export function contract (state = {}, action) {
+export function contract(state = {}, action) {
   switch (action.type) {
     case RECEIVE_CONTRACT:
       return action.data
@@ -71,7 +71,7 @@ export function contract (state = {}, action) {
   }
 }
 
-export function requestContracts (state = false, action) {
+export function requestContracts(state = false, action) {
   switch (action.type) {
     case REQUEST_CONTRACTS:
       return action.isFetching
@@ -80,7 +80,7 @@ export function requestContracts (state = false, action) {
   }
 }
 
-export function failureContracts (state = false, action) {
+export function failureContracts(state = false, action) {
   switch (action.type) {
     case FAILURE_CONTRACTS:
       return action.hasErrored
@@ -89,7 +89,7 @@ export function failureContracts (state = false, action) {
   }
 }
 
-export function contracts (state = [], action) {
+export function contracts(state = [], action) {
   switch (action.type) {
     case RECEIVE_CONTRACTS:
       return action.data
@@ -98,7 +98,7 @@ export function contracts (state = [], action) {
   }
 }
 
-export function raiseDisputeContract (state = 0x0, action) {
+export function raiseDisputeContract(state = 0x0, action) {
   switch (action.type) {
     case RAISE_DISPUTE_CONTRACT:
       return action.raiseDisputeContractTx
@@ -107,7 +107,7 @@ export function raiseDisputeContract (state = 0x0, action) {
   }
 }
 
-export function requestRaiseDispute (state = false, action) {
+export function requestRaiseDispute(state = false, action) {
   switch (action.type) {
     case REQUEST_RAISE_DISPUTE_CONTRACT:
       return action.isRaisingDispute
@@ -116,7 +116,7 @@ export function requestRaiseDispute (state = false, action) {
   }
 }
 
-export function failureRaiseDispute (state = false, action) {
+export function failureRaiseDispute(state = false, action) {
   switch (action.type) {
     case FAILURE_RAISE_DISPUTE:
       return action.hasErrored
@@ -125,7 +125,7 @@ export function failureRaiseDispute (state = false, action) {
   }
 }
 
-export function addEvidenceContract (state = 0x0, action) {
+export function addEvidenceContract(state = 0x0, action) {
   switch (action.type) {
     case ADD_EVIDENCE_CONTRACT:
       return action.addEvidenceContractTx
@@ -134,7 +134,7 @@ export function addEvidenceContract (state = 0x0, action) {
   }
 }
 
-export function requestRulingOptions (state = false, action) {
+export function requestRulingOptions(state = false, action) {
   switch (action.type) {
     case REQUEST_RULING_OPTIONS:
       return action.isFetching
@@ -143,7 +143,7 @@ export function requestRulingOptions (state = false, action) {
   }
 }
 
-export function failureRulingOptions (state = false, action) {
+export function failureRulingOptions(state = false, action) {
   switch (action.type) {
     case FAILURE_RULING_OPTIONS:
       return action.hasErrored
@@ -152,7 +152,7 @@ export function failureRulingOptions (state = false, action) {
   }
 }
 
-export function rulingOptions (state = [], action) {
+export function rulingOptions(state = [], action) {
   switch (action.type) {
     case RECEIVE_RULING_OPTIONS:
       return action.rulingOptions

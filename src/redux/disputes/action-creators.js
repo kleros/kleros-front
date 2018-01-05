@@ -12,9 +12,7 @@ import {
 } from './actions'
 import { getWeb3 } from '../../helpers/getWeb3'
 
-export const getDisputes = (
-  account = 0
-) => async dispatch => {
+export const getDisputes = (account = 0) => async dispatch => {
   dispatch(requestDisputes(true))
 
   try {
@@ -22,7 +20,10 @@ export const getDisputes = (
 
     const provider = web3.currentProvider
 
-    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+    let KlerosInstance = new Kleros(
+      provider,
+      process.env.REACT_APP_STORE_PROVIDER
+    )
 
     const disputes = await KlerosInstance.disputes.getDisputesForUser(
       process.env.REACT_APP_ARBITRATOR_ADDRESS,
@@ -49,7 +50,10 @@ export const submitDisputeResolution = (
 
     const provider = web3.currentProvider
 
-    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+    let KlerosInstance = new Kleros(
+      provider,
+      process.env.REACT_APP_STORE_PROVIDER
+    )
 
     const submittedRulingTx = await KlerosInstance.disputes.submitVotesForDispute(
       process.env.REACT_APP_ARBITRATOR_ADDRESS,
@@ -79,7 +83,10 @@ export const getDisputeForContract = (
 
     const provider = web3.currentProvider
 
-    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+    let KlerosInstance = new Kleros(
+      provider,
+      process.env.REACT_APP_STORE_PROVIDER
+    )
 
     // FIXME use a variable input for user to set their court contract
     const disputeData = await KlerosInstance.disputes.getDataForDispute(
@@ -101,10 +108,17 @@ export const appealDispute = (disputeId, extraData) => async dispatch => {
 
     const provider = web3.currentProvider
 
-    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+    let KlerosInstance = new Kleros(
+      provider,
+      process.env.REACT_APP_STORE_PROVIDER
+    )
 
     let court = KlerosInstance.klerosPOC
-    await court.appealRuling(process.env.REACT_APP_ARBITRATOR_ADDRESS, disputeId, extraData)
+    await court.appealRuling(
+      process.env.REACT_APP_ARBITRATOR_ADDRESS,
+      disputeId,
+      extraData
+    )
   } catch (e) {
     throw e
   }
@@ -117,10 +131,16 @@ export const repartitionJurorTokens = disputeId => async dispatch => {
 
     const provider = web3.currentProvider
 
-    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+    let KlerosInstance = new Kleros(
+      provider,
+      process.env.REACT_APP_STORE_PROVIDER
+    )
 
     let court = KlerosInstance.klerosPOC
-    await court.repartitionJurorTokens(process.env.REACT_APP_ARBITRATOR_ADDRESS, disputeId)
+    await court.repartitionJurorTokens(
+      process.env.REACT_APP_ARBITRATOR_ADDRESS,
+      disputeId
+    )
     dispatch(submitRedistributeJurorTokens(false))
   } catch (e) {
     throw e
@@ -134,10 +154,16 @@ export const executeRuling = disputeId => async dispatch => {
 
     const provider = web3.currentProvider
 
-    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+    let KlerosInstance = new Kleros(
+      provider,
+      process.env.REACT_APP_STORE_PROVIDER
+    )
 
     let court = KlerosInstance.klerosPOC
-    await court.executeRuling(process.env.REACT_APP_ARBITRATOR_ADDRESS, disputeId)
+    await court.executeRuling(
+      process.env.REACT_APP_ARBITRATOR_ADDRESS,
+      disputeId
+    )
     dispatch(submitExecute(false))
   } catch (e) {
     throw e

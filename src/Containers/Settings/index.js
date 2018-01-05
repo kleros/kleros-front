@@ -4,12 +4,12 @@ import PassPeriod from './PassPeriod'
 import './Settings.css'
 
 const Settings = () => (
-  <div className='Settings-container'>
-    <div className='content'>
-      <div className='buy-pnk-wrapper'>
+  <div className="Settings-container">
+    <div className="content">
+      <div className="buy-pnk-wrapper">
         <BuyPinakion />
       </div>
-      <div className='pass-period-wrapper'>
+      <div className="pass-period-wrapper">
         <PassPeriod />
       </div>
     </div>

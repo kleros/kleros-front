@@ -3,14 +3,10 @@ import FontAwesome from 'react-fontawesome'
 import './AccountLocked.css'
 
 const AccountLocked = () => (
-  <div className='account-locked-container'>
+  <div className="account-locked-container">
     <span> MetaMask Account Locked </span>
     <br />
-    <FontAwesome
-      name='lock'
-      size='3x'
-      style={{marginTop: '20px'}}
-    />
+    <FontAwesome name="lock" size="3x" style={{ marginTop: '20px' }} />
   </div>
 )
 

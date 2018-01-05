@@ -8,29 +8,23 @@ import { PERIOD_TO_STATE } from '../../constants'
 import './Jury.css'
 
 class Jury extends Component {
-  componentWillMount () {
+  componentWillMount() {
     this.props.getBalance()
     this.props.getArbitratorData()
   }
 
-  render () {
+  render() {
     if (this.props.isFetching || this.props.balanceIsFetching) return false
 
     const period = this.props.arbitratorData.period
     let content
 
     if (this.props.balance.activatedTokens) {
-      content = (
-        <div>
-          You have already activated PNK for this session
-        </div>
-      )
+      content = <div>You have already activated PNK for this session</div>
     } else {
       switch (period) {
         case 0:
-          content = (
-            <ActivatePNK maxTokens={this.props.balance.tokenBalance} />
-          )
+          content = <ActivatePNK maxTokens={this.props.balance.tokenBalance} />
           break
         default:
           content = (
@@ -42,10 +36,8 @@ class Jury extends Component {
     }
 
     return (
-      <div className='Jury-container'>
-        <div className='content'>
-          { content }
-        </div>
+      <div className="Jury-container">
+        <div className="content">{content}</div>
       </div>
     )
   }

@@ -79,14 +79,19 @@ export const contractFetchData = (
       process.env.REACT_APP_STORE_PROVIDER
     )
 
-    const contractDataDeployed = await KlerosInstance.arbitrableContract
-      .getData(
-        contractAddress,
-        web3.eth.accounts[account]
-      )
+    const contractDataDeployed = await KlerosInstance.arbitrableContract.getData(
+      contractAddress,
+      web3.eth.accounts[account]
+    )
 
-    contractDataDeployed.partyAFeeEther = await web3.fromWei(contractDataDeployed.partyAFee, 'ether')
-    contractDataDeployed.partyBFeeEther = await web3.fromWei(contractDataDeployed.partyBFee, 'ether')
+    contractDataDeployed.partyAFeeEther = await web3.fromWei(
+      contractDataDeployed.partyAFee,
+      'ether'
+    )
+    contractDataDeployed.partyBFeeEther = await web3.fromWei(
+      contractDataDeployed.partyBFee,
+      'ether'
+    )
 
     await dispatch(receiveContract(contractDataDeployed))
     await dispatch(requestContract(false))
@@ -121,11 +126,14 @@ export const contractRaiseDispute = (
     )
 
     let fee
-    if (contract.partyA === userAddress) { fee = await contractInstance.partyAFee() }
-    if (contract.partyB === userAddress) { fee = await contractInstance.partyBFee() }
+    if (contract.partyA === userAddress) {
+      fee = await contractInstance.partyAFee()
+    }
+    if (contract.partyB === userAddress) {
+      fee = await contractInstance.partyBFee()
+    }
 
-    const extraDataContractInstance = await contractInstance
-      .arbitratorExtraData()
+    const extraDataContractInstance = await contractInstance.arbitratorExtraData()
 
     const courtInstance = await KlerosInstance.klerosPOC.load(
       process.env.REACT_APP_ARBITRATOR_ADDRESS
@@ -136,22 +144,23 @@ export const contractRaiseDispute = (
     )
 
     let raiseDisputeContractTx = 0x0
-    const cost = web3.fromWei(arbitrationCost.toNumber() - fee.toNumber(), 'ether')
+    const cost = web3.fromWei(
+      arbitrationCost.toNumber() - fee.toNumber(),
+      'ether'
+    )
 
     if (userAddress === contract.partyA) {
-      raiseDisputeContractTx = await KlerosInstance.disputes
-        .raiseDisputePartyA(
-          userAddress,
-          address,
-          cost
-        )
+      raiseDisputeContractTx = await KlerosInstance.disputes.raiseDisputePartyA(
+        userAddress,
+        address,
+        cost
+      )
     } else if (userAddress === contract.partyB) {
-      raiseDisputeContractTx = await KlerosInstance.disputes
-        .raiseDisputePartyB(
-          userAddress,
-          address,
-          cost
-        )
+      raiseDisputeContractTx = await KlerosInstance.disputes.raiseDisputePartyB(
+        userAddress,
+        address,
+        cost
+      )
     } else {
       throw new Error(`${userAddress} is not a party in contract`)
     }
@@ -211,7 +220,10 @@ export const deployRNG = () => async dispatch => {
 
     const provider = web3.currentProvider
 
-    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+    let KlerosInstance = new Kleros(
+      provider,
+      process.env.REACT_APP_STORE_PROVIDER
+    )
 
     let rng = await KlerosInstance.blockHashRng
 
@@ -228,7 +240,10 @@ export const deployPinakion = () => async dispatch => {
 
     const provider = web3.currentProvider
 
-    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+    let KlerosInstance = new Kleros(
+      provider,
+      process.env.REACT_APP_STORE_PROVIDER
+    )
 
     let pinakion = await KlerosInstance.pinakion
 
@@ -244,7 +259,10 @@ export const deployKleros = (PNKAddress, RNGAddress) => async dispatch => {
 
     const provider = web3.currentProvider
 
-    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+    let KlerosInstance = new Kleros(
+      provider,
+      process.env.REACT_APP_STORE_PROVIDER
+    )
 
     let kleros = await KlerosInstance.klerosPOC
 
@@ -254,13 +272,19 @@ export const deployKleros = (PNKAddress, RNGAddress) => async dispatch => {
   }
 }
 
-export const configureKleros = (klerosAddress, PNKAddress) => async dispatch => {
+export const configureKleros = (
+  klerosAddress,
+  PNKAddress
+) => async dispatch => {
   try {
     let web3 = await getWeb3()
 
     const provider = web3.currentProvider
 
-    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+    let KlerosInstance = new Kleros(
+      provider,
+      process.env.REACT_APP_STORE_PROVIDER
+    )
 
     let pnk = await KlerosInstance.pinakion
     await pnk.setKleros(PNKAddress, klerosAddress)
@@ -279,7 +303,10 @@ export const getArbitratorData = (
 
     const provider = web3.currentProvider
 
-    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+    let KlerosInstance = new Kleros(
+      provider,
+      process.env.REACT_APP_STORE_PROVIDER
+    )
 
     const arbitrator = await KlerosInstance.arbitrator
     const data = await arbitrator.getData(klerosAddress)
@@ -300,7 +327,10 @@ export const passPeriod = (
 
     const provider = web3.currentProvider
 
-    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+    let KlerosInstance = new Kleros(
+      provider,
+      process.env.REACT_APP_STORE_PROVIDER
+    )
 
     const arbitrator = await KlerosInstance.arbitrator
     const data = await arbitrator.passPeriod(klerosAddress)
@@ -312,19 +342,22 @@ export const passPeriod = (
   }
 }
 
-export const getContracts = (
-  account = 0
-) => async dispatch => {
+export const getContracts = (account = 0) => async dispatch => {
   await dispatch(requestContracts(true))
   try {
     let web3 = await getWeb3()
 
     const provider = web3.currentProvider
 
-    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+    let KlerosInstance = new Kleros(
+      provider,
+      process.env.REACT_APP_STORE_PROVIDER
+    )
 
     const arbitrator = await KlerosInstance.arbitrator
-    const data = await arbitrator.getContractsForUser(web3.eth.accounts[account])
+    const data = await arbitrator.getContractsForUser(
+      web3.eth.accounts[account]
+    )
 
     await dispatch(receiveContracts(data))
     await dispatch(requestContracts(false))
@@ -334,18 +367,21 @@ export const getContracts = (
   }
 }
 
-export const getRulingOptions = (
-  contractAddress
-) => async dispatch => {
+export const getRulingOptions = contractAddress => async dispatch => {
   await dispatch(requestRulingOptions(true))
   try {
     let web3 = await getWeb3()
 
     const provider = web3.currentProvider
 
-    let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
+    let KlerosInstance = new Kleros(
+      provider,
+      process.env.REACT_APP_STORE_PROVIDER
+    )
 
-    const rulingOptions = await KlerosInstance.arbitrableContract.getRulingOptions(contractAddress)
+    const rulingOptions = await KlerosInstance.arbitrableContract.getRulingOptions(
+      contractAddress
+    )
 
     await dispatch(receiveRulingOptions(rulingOptions))
     await dispatch(requestRulingOptions(false))

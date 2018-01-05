@@ -8,42 +8,39 @@ import Input from '../../Input'
 import './Form.css'
 
 const Form = props => {
-  const {
-    handleSubmit,
-    submitting,
-    error,
-    maxTokens = 0,
-    hasErrored
-  } = props
+  const { handleSubmit, submitting, error, maxTokens = 0, hasErrored } = props
 
   return (
-    <form onSubmit={handleSubmit} className='Form-container'>
-      <div className='amount-container'>
+    <form onSubmit={handleSubmit} className="Form-container">
+      <div className="amount-container">
         <Field
-          name='amount'
+          name="amount"
           component={Input}
-          type='number'
+          type="number"
           required
-          innerClassName='input-number'
+          innerClassName="input-number"
           step={1 * 10e-18}
           defaultValue={maxTokens}
         />
       </div>
-      { error && <div><strong>{ error }</strong></div> }
-      <div className='button-container'>
-        <button type='submit' disabled={submitting || error} className='submit'>
-          {
-            submitting &&
+      {error && (
+        <div>
+          <strong>{error}</strong>
+        </div>
+      )}
+      <div className="button-container">
+        <button type="submit" disabled={submitting || error} className="submit">
+          {submitting && (
             <FontAwesome
-              name='circle-o-notch'
+              name="circle-o-notch"
               spin
-              style={{marginRight: '10px'}}
+              style={{ marginRight: '10px' }}
             />
-          }
+          )}
           Activate
         </button>
       </div>
-      { hasErrored && <div>Error contract</div> }
+      {hasErrored && <div>Error contract</div>}
     </form>
   )
 }
@@ -66,16 +63,18 @@ const validate = (values, props) => {
   return errors
 }
 
-export default withRouter(connect(mapStateToProps, null)(
-  reduxForm({
-    form: FORM_NAME,
-    validate,
-    onSubmit (values, dispatch) {
-      return dispatch(activatePinakion(values))
-        .catch(error => {
+export default withRouter(
+  connect(mapStateToProps, null)(
+    reduxForm({
+      form: FORM_NAME,
+      validate,
+      onSubmit(values, dispatch) {
+        return dispatch(activatePinakion(values)).catch(error => {
           if (error) {
-            throw new SubmissionError({_error: 'Error activating pinakion'})
+            throw new SubmissionError({ _error: 'Error activating pinakion' })
           }
         })
-    }
-  })(Form)))
+      }
+    })(Form)
+  )
+)

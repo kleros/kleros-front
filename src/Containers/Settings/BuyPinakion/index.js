@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import BuyPinakionForm from './Form'
 
 class BuyPinakion extends Component {
-  render () {
+  render() {
     return (
-      <div className='BuyPinakion-container'>
-        <div className='description'>
+      <div className="BuyPinakion-container">
+        <div className="description">
           <h1>Buy Pinakion</h1>
           <p>1 ETH = 1 PNK</p>
         </div>

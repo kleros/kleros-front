@@ -8,21 +8,29 @@ import {
   repartitionJurorTokens
 } from '../../../redux/disputes/action-creators'
 import { getArbitratorData } from '../../../redux/contracts/action-creators'
-import { STATUS_TO_STATE, RULINGS, RESOLVED_STATUS, DISPUTE_EXECUTABLE } from '../../../constants'
+import {
+  STATUS_TO_STATE,
+  RULINGS,
+  RESOLVED_STATUS,
+  DISPUTE_EXECUTABLE
+} from '../../../constants'
 import Banner from '../../../Components/Banner'
 
 import './Summary.css'
 
 class DecisionSummary extends Component {
-  componentWillMount () {
+  componentWillMount() {
     this.loadDispute()
     this.props.getArbitratorData()
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     // reload dispute if we are done submitting redistibute or execute
-    if ((this.props.isSubmittingRedistribute && !nextProps.isSubmittingRedistribute) ||
-    (this.props.isSubmittingExecute && !nextProps.isSubmittingExecute)) {
+    if (
+      (this.props.isSubmittingRedistribute &&
+        !nextProps.isSubmittingRedistribute) ||
+      (this.props.isSubmittingExecute && !nextProps.isSubmittingExecute)
+    ) {
       this.loadDispute()
     }
   }
@@ -47,12 +55,14 @@ class DecisionSummary extends Component {
     this.props.executeRuling(disputeId)
   }
 
-  render () {
+  render() {
     if (this.props.isFetchingCase) return false
     const dispute = this.props.caseData
 
     let period = -1
-    if (!this.props.isFetchingArbitrator) period = this.props.arbitratorData.period
+    if (!this.props.isFetchingArbitrator) {
+      period = this.props.arbitratorData.period
+    }
 
     let action = <div />
     // only allow actions if dispute is not resolved
@@ -60,7 +70,7 @@ class DecisionSummary extends Component {
       switch (period) {
         case 3:
           action = (
-            <div className='action-btn' onClick={this.appealDispute}>
+            <div className="action-btn" onClick={this.appealDispute}>
               Appeal Ruling
             </div>
           )
@@ -70,50 +80,54 @@ class DecisionSummary extends Component {
           if (dispute.disputeState < DISPUTE_EXECUTABLE) {
             action = (
               <div>
-                <p>In order to Execute your ruling you must first reallocate tokens for the jurors</p>
-                <div className='action-btn' onClick={this.repartitionJurorTokens}>
+                <p>
+                  In order to Execute your ruling you must first reallocate
+                  tokens for the jurors
+                </p>
+                <div
+                  className="action-btn"
+                  onClick={this.repartitionJurorTokens}>
                   Redistribute Tokens
                 </div>
               </div>
             )
           } else if (dispute.disputeState === DISPUTE_EXECUTABLE) {
             action = (
-              <div className='action-btn' onClick={this.executeRuling}>
+              <div className="action-btn" onClick={this.executeRuling}>
                 Execute Ruling
               </div>
             )
           }
           break
         default:
-          action = (
-            <div />
-          )
+          action = <div />
       }
     }
 
     const summary = (
       <div>
-        Arbitrator: {dispute.arbitratorAddress}<br />
-        Deadline: {dispute.deadline}<br />
-        PartyA: {dispute.partyA}<br />
-        PartyB: {dispute.partyB}<br />
-      Status: {STATUS_TO_STATE[dispute.arbitrableContractStatus]}<br />
-      Ruling: {RULINGS[dispute.ruling]}
+        Arbitrator: {dispute.arbitratorAddress}
+        <br />
+        Deadline: {dispute.deadline}
+        <br />
+        PartyA: {dispute.partyA}
+        <br />
+        PartyB: {dispute.partyB}
+        <br />
+        Status: {STATUS_TO_STATE[dispute.arbitrableContractStatus]}
+        <br />
+        Ruling: {RULINGS[dispute.ruling]}
       </div>
     )
 
     return (
-      <div className='DecisionSummary-container'>
-        <Banner title='Decision Summary' linkTo='/decisions' />
-        <div className='content'>
-          <div className='action'>
-            <span className='pull-right'>
-              { action }
-            </span>
+      <div className="DecisionSummary-container">
+        <Banner title="Decision Summary" linkTo="/decisions" />
+        <div className="content">
+          <div className="action">
+            <span className="pull-right">{action}</span>
           </div>
-          <div className='summary'>
-            { summary }
-          </div>
+          <div className="summary">{summary}</div>
         </div>
       </div>
     )
@@ -135,12 +149,17 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getDisputeForContract: contractAddress => dispatch(getDisputeForContract(contractAddress)),
+    getDisputeForContract: contractAddress =>
+      dispatch(getDisputeForContract(contractAddress)),
     getArbitratorData: disputeId => dispatch(getArbitratorData(disputeId)),
-    appealDispute: (disputeId, extraData) => dispatch(appealDispute(disputeId, extraData)),
+    appealDispute: (disputeId, extraData) =>
+      dispatch(appealDispute(disputeId, extraData)),
     executeRuling: disputeId => dispatch(executeRuling(disputeId)),
-    repartitionJurorTokens: disputeId => dispatch(repartitionJurorTokens(disputeId))
+    repartitionJurorTokens: disputeId =>
+      dispatch(repartitionJurorTokens(disputeId))
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DecisionSummary))
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(DecisionSummary)
+)

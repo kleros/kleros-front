@@ -23,28 +23,29 @@
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.6",
-    "@storybook/storybook-deployer": "^2.0.0",
     "@storybook/addon-links": "^3.2.6",
     "@storybook/react": "^3.2.8",
-    "storybook-router": "^0.2.9",
+    "@storybook/storybook-deployer": "^2.0.0",
     "babel-eslint": "^8.0.1",
     "babel-polyfill": "^6.26.0",
-    "eslint": "^4.9.0",
-    "eslint-config-standard": "^10.2.1",
-    "eslint-config-standard-jsx": "^4.0.2",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-node": "^5.2.0",
-    "eslint-plugin-promise": "^3.6.0",
-    "eslint-plugin-react": "^7.4.0",
-    "eslint-plugin-standard": "^3.0.1",
+    "coveralls": "^3.0.0",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-15": "^1.0.5",
     "enzyme-to-json": "^3.3.0",
-    "coveralls": "^3.0.0",
+    "eslint": "^4.9.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-react": "^7.5.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.2.0",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "lint-staged": "^6.0.0",
     "node-sass-chokidar": "^0.0.3",
     "npm-run-all": "^4.1.1",
+    "prettier": "1.9.2",
     "react-scripts": "1.0.13",
-    "react-test-renderer": "^15.5.0"
+    "react-test-renderer": "^15.5.0",
+    "storybook-router": "^0.2.9"
   },
   "scripts": {
     "start-js": "react-scripts start",
@@ -58,16 +59,27 @@
       "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
     "watch-css":
       "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
-    "lint": "./node_modules/.bin/eslint src",
-    "lint-fix": "./node_modules/.bin/eslint src --fix",
+    "lint":
+      "./node_modules/.bin/prettier 'src/**/*.js' 'src/**/*.scss' --write && ./node_modules/.bin/eslint src",
+    "lint-fix":
+      "./node_modules/.bin/prettier 'src/**/*.js' 'src/**/*.scss' --write && ./node_modules/.bin/eslint src --fix",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
     "deploy-storybook": "storybook-to-ghpages",
-    "postinstall": "npm rebuild node-sass"
+    "postinstall": "npm rebuild node-sass",
+    "precommit": "lint-staged"
   },
   "jest": {
     "snapshotSerializers": ["enzyme-to-json/serializer"],
     "collectCoverageFrom": ["src/**/*.{js,jsx}", "!<rootDir>/node_modules/"]
   },
-  "setupTestFrameworkScriptFile": "<rootDir>/src/setupTests.js"
+  "setupTestFrameworkScriptFile": "<rootDir>/src/setupTests.js",
+  "lint-staged": {
+    "*.js": [
+      "prettier --write --single-quote --print-width=120 --trailing-comma=es5 --jsx-bracket-same-line",
+      "xo",
+      "jest --findRelatedTests",
+      "git add"
+    ]
+  }
 }
