@@ -76,7 +76,7 @@
   },
   "setupTestFrameworkScriptFile": "<rootDir>/src/setupTests.js",
   "lint-staged": {
-    "*.{js,css,md}": [
+    "*.{js,scss}": [
       "prettier --write",
       "eslint",
       "jest --findRelatedTests",
