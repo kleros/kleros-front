@@ -2,6 +2,8 @@ import React from 'react'
 
 import { storiesOf } from '@storybook/react'
 import StoryRouter from 'storybook-router'
+import { Provider } from 'react-redux'
+import store from '../bootstrap/store'
 
 import ShortProfile from '../Components/Sidebar/ShortProfile'
 import MenuSidebar from '../Components/Sidebar/MenuSidebar'
@@ -86,13 +88,17 @@ storiesOf('MenuSidebar', module)
 
 storiesOf('Sidebar', module)
   .addDecorator(StoryRouter())
+  .addDecorator(setStoryStore => (
+    <Provider store={store}>{setStoryStore()}</Provider>
+  ))
   .add('with items=Disputes, Contracts, Jury', () => (
     <Sidebar
-      address={0xa1e4380a3b1f749673e270229993ee55f35663b4}
+      address='0xa1e4380a3b1f749673e270229993ee55f35663b4'
       balancePNK={242}
       items={['Disputes', 'Contracts', 'Jury']}
     />
   ))
+  .add('with account locked', () => <Sidebar />)
 
 /** *************** SearchBar *****************/
 
