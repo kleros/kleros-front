@@ -9,16 +9,15 @@ const Input = ({
   placeholder,
   children,
   value,
-  meta = {touched: false, error: false},
+  meta = { touched: false, error: false },
   ...rest
 }) => {
   // FIXME hack. Can't specify both value and defaultValue
   if (input && !input.value) delete input.value
-
   return (
     <div className={`Input-container ${className}`}>
       {children}
-      { (() => {
+      {(() => {
         switch (type) {
           case 'textarea':
             return (
@@ -49,7 +48,7 @@ const Input = ({
                 {...input}
               />
             )
-          default :
+          default:
             return (
               <input
                 className={innerClassName}
@@ -60,11 +59,14 @@ const Input = ({
               />
             )
         }
-      })() }
-      {
-        meta.touched && meta.error &&
-          <span className='input_error'><br />{ meta.error }</span>
-      }
+      })()}
+      {meta.touched &&
+        meta.error && (
+          <span className='input_error'>
+            <br />
+            {meta.error}
+          </span>
+        )}
     </div>
   )
 }
