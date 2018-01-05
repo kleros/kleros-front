@@ -1,10 +1,7 @@
 import React from 'react'
 import './Grid.css'
 
-const Grid = ({
-  className,
-  children
-}) => (
+const Grid = ({ className, children }) => (
   <div className={`Grid-container ${className}`}>
     <div className='grid'>
       <div className='header'>
@@ -13,9 +10,8 @@ const Grid = ({
         <div className='item header-party-b'>Address Party B</div>
         <div className='item header-rule'>Rule</div>
       </div>
-      { children }
+      {children}
     </div>
-
   </div>
 )
 

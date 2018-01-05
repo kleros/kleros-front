@@ -5,9 +5,9 @@ import StoryRouter from 'storybook-router'
 import { Provider } from 'react-redux'
 import store from '../bootstrap/store'
 
+import Sidebar from '../Components/Sidebar'
 import ShortProfile from '../Components/Sidebar/ShortProfile'
 import MenuSidebar from '../Components/Sidebar/MenuSidebar'
-import Sidebar from '../Components/Sidebar'
 import ItemMenuSidebar from '../Components/Sidebar/MenuSidebar/ItemMenuSidebar'
 
 import Identicon from '../Components/Identicon'
@@ -17,6 +17,9 @@ import SearchBar from '../Components/SearchBar'
 import Input from '../Components/Input'
 import TruncatedTextBox from '../Components/TruncatedTextBox'
 import Grid from '../Components/ContractsTable/Grid'
+
+import Banner from '../Components/Banner'
+import MetroCard from '../Components/Home/MetroCard'
 
 import '../bootstrap/index.css'
 
@@ -146,3 +149,18 @@ storiesOf('Grid', module)
       <Icon name='Disputes' theme='dark' />
     </Grid>
   ))
+
+/** *************** Banner ****************/
+
+storiesOf('Banner', module)
+  .addDecorator(StoryRouter())
+  .add('default', () => <Banner title='Banner Title' linkTo='/example' />)
+
+/** *************** MetroCard ****************/
+
+storiesOf('MetroCard', module)
+  .addDecorator(StoryRouter())
+  .addDecorator(setStoryStore => (
+    <Provider store={store}>{setStoryStore()}</Provider>
+  ))
+  .add('default', () => <MetroCard />)
