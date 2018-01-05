@@ -27,3 +27,6 @@ src/**/*.css
 # editors
 /.vscode/
 .idea/*
+
+# storybook build
+/storybook-static
