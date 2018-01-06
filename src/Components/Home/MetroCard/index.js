@@ -3,6 +3,7 @@ import _ from 'lodash'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import 'babel-polyfill'
+
 import { getContracts } from '../../../redux/contracts/action-creators'
 import { truncateText } from '../../../helpers/truncateText'
 import Identicon from '../../Identicon'
@@ -39,36 +40,33 @@ class MetroCard extends Component {
 
     return (
       <div className='MetroCard-container'>
-        {
-          _.isEmpty(contracts) &&
-          <div className='no-contracts'>
-            You have no contracts.
-          </div>
-        }
-        {
-          contractsLast3Elements.map(contract =>
-            <div className='card'>
-              <Link key={contract.address} to={`contract-summary/${contract.address}`}>
-                <div className='card-content'>
-                  <div className='card-icon'>
-                    <Identicon seed={contract.address} />
+        {_.isEmpty(contracts) && (
+          <div className='no-contracts'>You have no contracts.</div>
+        )}
+        {contractsLast3Elements.map(contract => (
+          <div className='card'>
+            <Link
+              key={contract.address}
+              to={`contract-summary/${contract.address}`}>
+              <div className='card-content'>
+                <div className='card-icon'>
+                  <Identicon seed={contract.address} />
+                </div>
+                <div className='card-details'>
+                  <div className='card-details-item'>
+                    <b>{truncateText(contract.address, 20)}</b>
                   </div>
-                  <div className='card-details'>
-                    <div className='card-details-item'>
-                      <b>{truncateText(contract.address, 20)}</b>
-                    </div>
-                    <div className='card-details-item'>
-                      Party A: {truncateText(contract.partyA, 20)}
-                    </div>
-                    <div className='card-details-item'>
-                      Party B: {truncateText(contract.partyB, 20)}
-                    </div>
+                  <div className='card-details-item'>
+                    Party A: {truncateText(contract.partyA, 20)}
+                  </div>
+                  <div className='card-details-item'>
+                    Party B: {truncateText(contract.partyB, 20)}
                   </div>
                 </div>
-              </Link>
-            </div>
-          )
-        }
+              </div>
+            </Link>
+          </div>
+        ))}
       </div>
     )
   }
@@ -88,4 +86,6 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MetroCard))
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(MetroCard)
+)

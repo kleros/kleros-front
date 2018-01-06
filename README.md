@@ -14,6 +14,7 @@
   * [Remote](#remote)
 * [Linter](#linter)
 * [Invision](#invision)
+* [Contributing](#contributing)
 
 ## Getting started
 
