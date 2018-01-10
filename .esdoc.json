@@ -1,0 +1,38 @@
+{
+  "source": "./src",
+  "destination": "./docs-static",
+  "plugins": [
+    {
+      "name": "esdoc-standard-plugin",
+      "option": {
+        "all": true,
+        "brand": {
+          "title": "Kleros Front",
+          "description": "Documentation for Kleros frontend",
+          "repository": "https://github.com/kleros/kleros-front",
+          "site": "https://kleros.io/kleros-front",
+          "author": "https://github.com/kleros",
+          "image": "https://kleros.io/img/logo_kleroterion.png"
+        }
+      }
+    },
+    {
+      "name": "esdoc-ecmascript-proposal-plugin",
+      "option": {
+        "all": true
+      }
+    },
+    {
+      "name": "esdoc-jsx-plugin",
+      "option": {
+        "enable": true
+      }
+    },
+    {
+      "name": "esdoc-external-ecmascript-plugin",
+      "option": {
+        "enable": true
+      }
+    }
+  ]
+}
