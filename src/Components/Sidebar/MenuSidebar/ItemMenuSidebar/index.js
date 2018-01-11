@@ -18,6 +18,7 @@ const ItemMenuSidebar = ({
         ${className}
         ${theme}`}
       activeStyle={{ background: 'rgba(255,255,255,0.1)' }}
+      replace
     >
       <div className={`activeDiv ${active}`} />
       <div className='icon'>
