@@ -9,11 +9,11 @@ import { truncateText } from '../../../../helpers/truncateText'
 import './GridContent.css'
 
 class GridContent extends Component {
-  componentWillMount () {
+  componentWillMount() {
     this.props.getDataContracts()
   }
 
-  render () {
+  render() {
     const { hasErrored, isFetching, contracts = [] } = this.props
     if (hasErrored) {
       return <p>Sorry! There was an error loading the balance</p>
@@ -21,45 +21,50 @@ class GridContent extends Component {
 
     if (isFetching) {
       return (
-        <div className='GridContent-container'>
-          <div className='items loader'>
-            <div className='linear-background-100' />
-            <div className='linear-background-90' />
-            <div className='linear-background-90' />
+        <div className="GridContent-container">
+          <div className="items loader">
+            <div className="linear-background-100" />
+            <div className="linear-background-90" />
+            <div className="linear-background-90" />
           </div>
         </div>
       )
     }
 
     return (
-      <div className='GridContent-container'>
-        <div className='items'>
-          {
-            _.isEmpty(contracts) &&
-            <div className='items-row'>
-              <div className='item item-no-contracts'>
+      <div className="GridContent-container">
+        <div className="items">
+          {_.isEmpty(contracts) && (
+            <div className="items-row">
+              <div className="item item-no-contracts">
                 You have no contracts.
               </div>
             </div>
-          }
-          {
-            contracts.filter(contract => {
-              return contract.arbitrator === process.env.REACT_APP_ARBITRATOR_ADDRESS
-            }).map(contract =>
-              (
-                <Link key={contract.address} to={`contract-summary/${contract.address}`}>
-                  <div className='items-row'>
-                    <div className='item-contract-hash'>{contract.address}</div>
-                    <div className='item item-party-a'>{truncateText(contract.partyA, 10)}</div>
-                    <div className='item item-party-b'>{truncateText(contract.partyB, 10)}</div>
-                    <div className='item item-rule'>
-                      <FontAwesome name='circle-thin' />
-                    </div>
-                  </div>
-                </Link>
+          )}
+          {contracts
+            .filter(contract => {
+              return (
+                contract.arbitrator === process.env.REACT_APP_ARBITRATOR_ADDRESS
               )
-            )
-          }
+            })
+            .map(contract => (
+              <Link
+                key={contract.address}
+                to={`contract-summary/${contract.address}`}>
+                <div className="items-row">
+                  <div className="item-contract-hash">{contract.address}</div>
+                  <div className="item item-party-a">
+                    {truncateText(contract.partyA, 10)}
+                  </div>
+                  <div className="item item-party-b">
+                    {truncateText(contract.partyB, 10)}
+                  </div>
+                  <div className="item item-rule">
+                    <FontAwesome name="circle-thin" />
+                  </div>
+                </div>
+              </Link>
+            ))}
         </div>
       </div>
     )
@@ -80,4 +85,6 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GridContent))
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(GridContent)
+)

@@ -6,18 +6,14 @@ import './Home.css'
 
 const Home = () => {
   return (
-    <div className='Home-container'>
+    <div className="Home-container">
       <SearchBar />
-      <div className='content'>
+      <div className="content">
         <h1>
           Open Contracts
-          <span className='pull-right'>
-            <Link
-              key={'new-contract'}
-              to={`contracts/new`}>
-              <button className='submit'>
-                New Contract
-              </button>
+          <span className="pull-right">
+            <Link key={'new-contract'} to={`contracts/new`}>
+              <button className="submit">New Contract</button>
             </Link>
           </span>
         </h1>

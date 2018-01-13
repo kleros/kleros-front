@@ -6,11 +6,11 @@ import Form from './Form'
 import './Contracts.css'
 
 class Contracts extends Component {
-  componentDidMount () {
+  componentDidMount() {
     this.props.getBalance()
   }
 
-  render () {
+  render() {
     if (this.props.balance.hasErrored) {
       return <p>Sorry! There was an error loading the balance</p>
     }
@@ -20,8 +20,8 @@ class Contracts extends Component {
     }
 
     return (
-      <div className='Contracts-content'>
-        <div className='content'>
+      <div className="Contracts-content">
+        <div className="content">
           <h1>Contracts</h1>
           <Form />
         </div>
@@ -40,4 +40,6 @@ const mapDispatchToProps = {
   getBalance: balanceFetchData
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Contracts))
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Contracts)
+)

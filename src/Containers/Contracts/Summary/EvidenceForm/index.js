@@ -8,52 +8,54 @@ import Input from '../../../../Components/Input'
 import './EvidenceForm.css'
 
 const EvidenceForm = props => {
-  const {
-    handleSubmit,
-    submitting,
-    error,
-    hasErrored
-  } = props
+  const { handleSubmit, submitting, error, hasErrored } = props
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className='EvidenceForm-container'>
-      <div className='params'>
+    <form onSubmit={handleSubmit} className="EvidenceForm-container">
+      <div className="params">
         <Field
-          name='name'
+          name="name"
           component={Input}
-          type='text'
+          type="text"
           required
-          innerClassName='input-text-contract-param'
-          placeholder='Title' />
+          innerClassName="input-text-contract-param"
+          placeholder="Title"
+        />
         <Field
-          name='description'
+          name="description"
           component={Input}
-          type='text'
-          innerClassName='input-text-contract-param'
-          placeholder='Description' />
+          type="text"
+          innerClassName="input-text-contract-param"
+          placeholder="Description"
+        />
         <Field
-          name='url'
+          name="url"
           component={Input}
-          type='text'
+          type="text"
           required
-          innerClassName='input-text-contract-param'
-          placeholder='Link to the evidence' />
+          innerClassName="input-text-contract-param"
+          placeholder="Link to the evidence"
+        />
         <div>
-          <button type='submit' disabled={submitting || error} className='submit'>
-            {
-              submitting &&
+          <button
+            type="submit"
+            disabled={submitting || error}
+            className="submit">
+            {submitting && (
               <FontAwesome
-                name='circle-o-notch'
+                name="circle-o-notch"
                 spin
-                style={{marginRight: '10px'}}
+                style={{ marginRight: '10px' }}
               />
-            }
+            )}
             Add an evidence
           </button>
         </div>
-        {error && <div><strong>{error}</strong></div>}
+        {error && (
+          <div>
+            <strong>{error}</strong>
+          </div>
+        )}
         {hasErrored && <div>Error evidence</div>}
       </div>
     </form>
@@ -72,26 +74,34 @@ const validate = values => {
   const errors = {}
 
   /* eslint-disable */
-  if (!/(bzz|ipfs|https):\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/i.test(values.evidence)) {
+  if (
+    !/(bzz|ipfs|https):\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/i.test(
+      values.evidence
+    )
+  ) {
     errors.evidence = 'Evidence link invalid'
   }
 
   return errors
 }
 
-export default withRouter(connect(mapStateToProps, null)(
-  reduxForm({
-    form: FORM_NAME,
-    validate,
-    onSubmit (values, dispatch, props) {
-      return dispatch(addEvidence({
-        ...values,
-        address: props.match.params.address
-      }))
-        .catch(error => {
+export default withRouter(
+  connect(mapStateToProps, null)(
+    reduxForm({
+      form: FORM_NAME,
+      validate,
+      onSubmit(values, dispatch, props) {
+        return dispatch(
+          addEvidence({
+            ...values,
+            address: props.match.params.address
+          })
+        ).catch(error => {
           if (error) {
-            throw new SubmissionError({_error: 'error evidence submission'})
+            throw new SubmissionError({ _error: 'error evidence submission' })
           }
         })
-    }
-  })(EvidenceForm)))
+      }
+    })(EvidenceForm)
+  )
+)

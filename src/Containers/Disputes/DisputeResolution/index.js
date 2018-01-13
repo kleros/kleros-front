@@ -13,13 +13,13 @@ import Decision from './Decision'
 import './DisputeResolution.css'
 
 class DisputeResolution extends Component {
-  componentWillMount () {
+  componentWillMount() {
     // fetch dispute
     this.props.getDisputeForContract(this.props.match.params.address)
     this.props.getRulingOptions(this.props.match.params.address)
   }
 
-  render () {
+  render() {
     if (this.props.isFetching) return false
 
     const dispute = this.props.caseData
@@ -27,7 +27,7 @@ class DisputeResolution extends Component {
     if (!dispute) return false
 
     // FIXME only applies to twoParty contract. Generalize
-    const parties = [{address: dispute.partyA}, {address: dispute.partyB}]
+    const parties = [{ address: dispute.partyA }, { address: dispute.partyB }]
 
     // arbitration fee
     const web3 = new Web3()
@@ -35,16 +35,21 @@ class DisputeResolution extends Component {
 
     // time remaining TODO use momentjs to calculate time difference between now and end time
     return (
-      <div className='dispute-resolution'>
+      <div className="dispute-resolution">
         <SearchBar />
         <Banner title={dispute.title} />
-        <div className='divider' />
+        <div className="divider" />
         <Parties parties={parties} />
-        <div className='divider' />
-        <Information text={dispute.description} truncatedCharacters={50} arbitrationFee={arbitrationFee} timeRemaining={dispute.deadline} />
-        <div className='divider' />
+        <div className="divider" />
+        <Information
+          text={dispute.description}
+          truncatedCharacters={50}
+          arbitrationFee={arbitrationFee}
+          timeRemaining={dispute.deadline}
+        />
+        <div className="divider" />
         <Evidence evidence={dispute.evidence} />
-        <div className='divider' />
+        <div className="divider" />
         <Decision
           resolutionOptions={this.props.rulingOptions}
           disputeId={dispute.disputeId}
@@ -67,10 +72,13 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getDisputeForContract: contractAddress => dispatch(getDisputeForContract(contractAddress)),
-    getRulingOptions: contractAddress => dispatch(getRulingOptions(contractAddress))
-
+    getDisputeForContract: contractAddress =>
+      dispatch(getDisputeForContract(contractAddress)),
+    getRulingOptions: contractAddress =>
+      dispatch(getRulingOptions(contractAddress))
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DisputeResolution))
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(DisputeResolution)
+)

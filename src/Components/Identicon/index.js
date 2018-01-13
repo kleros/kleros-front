@@ -3,7 +3,7 @@ import Blockies from './blockies'
 import './Identicon.css'
 
 class Identicon extends Component {
-  render () {
+  render() {
     const imgURL = Blockies.create({
       seed: this.props.seed || '0xfb6916095ca1df60bb79ce92ce3ea74c37c5d359',
       scale: this.props.scale || 5,
@@ -19,7 +19,10 @@ class Identicon extends Component {
     }
 
     return (
-      <div className={`ethereum-address-icon ${this.props.className}`} style={style} />
+      <div
+        className={`ethereum-address-icon ${this.props.className}`}
+        style={style}
+      />
     )
   }
 }

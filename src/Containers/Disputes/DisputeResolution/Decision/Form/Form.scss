@@ -4,7 +4,7 @@
   }
   .resolution-option {
     display: inline-flex;
-    input[type=radio] {
+    input[type='radio'] {
       height: 25px;
       width: 25px;
       border: 1px solid #e6ecef;
@@ -34,15 +34,15 @@
     }
   }
   .upload-container {
-    input[type=file] {
+    input[type='file'] {
       display: none;
     }
     .upload-button {
       padding: 32px;
       box-sizing: border-box;
-      border: 1px dashed rgba(119,144,157,0.5);
+      border: 1px dashed rgba(119, 144, 157, 0.5);
       border-radius: 6px;
-      background-color: rgba(246,246,246,0.13);
+      background-color: rgba(246, 246, 246, 0.13);
       text-align: center;
       cursor: pointer;
       font-size: 16px;

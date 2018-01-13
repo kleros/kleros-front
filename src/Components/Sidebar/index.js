@@ -8,30 +8,33 @@ import { balanceFetchData } from '../../redux/ethereum/action-creators'
 import './Sidebar.css'
 
 class Sidebar extends Component {
-  componentWillMount () {
+  componentWillMount() {
     this.props.getBalance()
   }
 
-  render () {
-    const {balanceIsFetching, balanceHasErrored, items, address} = this.props
+  render() {
+    const { balanceIsFetching, balanceHasErrored, items, address } = this.props
     if (!address) {
       return (
-        <div className='Sidebar-container'>
+        <div className="Sidebar-container">
           <AccountLocked />
         </div>
       )
     }
 
     let balance = 0
-    if (!balanceIsFetching) balance = (this.props.balance.tokenBalance - this.props.balance.activatedTokens)
+    if (!balanceIsFetching) {
+      balance =
+        this.props.balance.tokenBalance - this.props.balance.activatedTokens
+    }
     if (balanceHasErrored) balance = -1
 
     return (
       <div className={'Sidebar-container'}>
         <ShortProfile address={address} balancePNK={balance} />
-        <div className='divider' />
+        <div className="divider" />
         <MenuSidebar items={items} />
-        <div className='emptybar' />
+        <div className="emptybar" />
       </div>
     )
   }

@@ -10,11 +10,11 @@ import Identicon from '../../Identicon'
 import './MetroCard.css'
 
 class MetroCard extends Component {
-  componentWillMount () {
+  componentWillMount() {
     this.props.getDataContracts()
   }
 
-  render () {
+  render() {
     const { hasErrored, isFetching, contracts = [] } = this.props
     if (hasErrored) {
       return <p>Sorry! There was an error loading the balance</p>
@@ -22,11 +22,11 @@ class MetroCard extends Component {
 
     if (isFetching) {
       return (
-        <div className='GridContent-container'>
-          <div className='items loader'>
-            <div className='linear-background-100' />
-            <div className='linear-background-90' />
-            <div className='linear-background-90' />
+        <div className="GridContent-container">
+          <div className="items loader">
+            <div className="linear-background-100" />
+            <div className="linear-background-90" />
+            <div className="linear-background-90" />
           </div>
         </div>
       )
@@ -39,27 +39,27 @@ class MetroCard extends Component {
     }
 
     return (
-      <div className='MetroCard-container'>
+      <div className="MetroCard-container">
         {_.isEmpty(contracts) && (
-          <div className='no-contracts'>You have no contracts.</div>
+          <div className="no-contracts">You have no contracts.</div>
         )}
         {contractsLast3Elements.map(contract => (
-          <div className='card'>
+          <div className="card">
             <Link
               key={contract.address}
               to={`contract-summary/${contract.address}`}>
-              <div className='card-content'>
-                <div className='card-icon'>
+              <div className="card-content">
+                <div className="card-icon">
                   <Identicon seed={contract.address} />
                 </div>
-                <div className='card-details'>
-                  <div className='card-details-item'>
+                <div className="card-details">
+                  <div className="card-details-item">
                     <b>{truncateText(contract.address, 20)}</b>
                   </div>
-                  <div className='card-details-item'>
+                  <div className="card-details-item">
                     Party A: {truncateText(contract.partyA, 20)}
                   </div>
-                  <div className='card-details-item'>
+                  <div className="card-details-item">
                     Party B: {truncateText(contract.partyB, 20)}
                   </div>
                 </div>

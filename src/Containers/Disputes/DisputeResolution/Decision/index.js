@@ -4,12 +4,12 @@ import './Decision.css'
 
 const Decision = props => {
   return (
-    <div className='Decision-container'>
-      <div className='decision-header'>
+    <div className="Decision-container">
+      <div className="decision-header">
         <h2>Your Decision</h2>
         <p>You have the following options:</p>
       </div>
-      <div className='divider' />
+      <div className="divider" />
       <Form
         resolutionOptions={props.resolutionOptions}
         disputeId={props.disputeId}

@@ -1,16 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { passPeriod, getArbitratorData } from '../../../redux/contracts/action-creators'
+import {
+  passPeriod,
+  getArbitratorData
+} from '../../../redux/contracts/action-creators'
 import { PERIOD_TO_STATE } from '../../../constants'
 import './PassPeriod.css'
 
 class PassPeriod extends Component {
-  componentDidMount () {
+  componentDidMount() {
     this.props.getArbitratorData()
   }
 
-  render () {
+  render() {
     let currentPeriod = 'loading...'
     let currentSession = 'loading...'
     if (!this.props.isFetching) {
@@ -19,11 +22,11 @@ class PassPeriod extends Component {
     }
 
     return (
-      <div className='PassPeriod-container'>
+      <div className="PassPeriod-container">
         <h1>Move to Next Period</h1>
         <h2>Current Period: {currentPeriod}</h2>
         <h2>Current Session: {currentSession}</h2>
-        <div className='PassPeriod-btn' onClick={this.props.passPeriod}>
+        <div className="PassPeriod-btn" onClick={this.props.passPeriod}>
           <p>Next Period</p>
         </div>
       </div>
@@ -46,4 +49,6 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PassPeriod))
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(PassPeriod)
+)

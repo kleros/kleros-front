@@ -1,13 +1,6 @@
 import React, { Component } from 'react'
-import {
-  HashRouter as Router,
-  Route,
-  Switch
-} from 'react-router-dom'
-import {
-  Provider,
-  connect
-} from 'react-redux'
+import { HashRouter as Router, Route, Switch } from 'react-router-dom'
+import { Provider, connect } from 'react-redux'
 import registerServiceWorker from './registerServiceWorker'
 import RequiresMetaMask from './requiresMetaMask'
 import { fetchAddress } from '../redux/ethereum/action-creators'
@@ -30,27 +23,28 @@ class App extends Component {
     appLoaded: false
   }
 
-  componentWillMount () {
+  componentWillMount() {
     // fetch address before rendering app to make sure web3 has been loaded and to avoid race conditions
     this.props.getAddress()
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     // if address has loaded
     // FIXME handle error
-    if (this.props.address === 0 && (nextProps.address || nextProps.address === null)) {
+    if (
+      this.props.address === 0 &&
+      (nextProps.address || nextProps.address === null)
+    ) {
       this.setState({
         appLoaded: true
       })
     }
   }
 
-  render () {
+  render() {
     // if no web3 show requires metamask page
     if (typeof window.web3 === 'undefined') {
-      return (
-        <RequiresMetaMask />
-      )
+      return <RequiresMetaMask />
     }
 
     // FIXME show a loading screen?
@@ -68,90 +62,40 @@ class App extends Component {
     if (appView === APP_VIEWS.JUROR) {
       routes = (
         <Layout address={this.props.address} view={appView}>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/disputes" component={Disputes} />
           <Route
             exact
-            path='/'
-            component={Home}
-          />
-          <Route
-            exact
-            path='/disputes'
-            component={Disputes}
-          />
-          <Route
-            exact
-            path='/disputes/:address'
+            path="/disputes/:address"
             component={DisputeResolution}
           />
-          <Route
-            exact
-            path='/settings'
-            component={Settings}
-          />
-          <Route
-            exact
-            path='/jury'
-            component={Jury}
-          />
-          <Route
-            exact
-            path='/decisions'
-            component={Decisions}
-          />
-          <Route
-            exact
-            path='/decisions/:address'
-            component={DecisionSummary}
-          />
+          <Route exact path="/settings" component={Settings} />
+          <Route exact path="/jury" component={Jury} />
+          <Route exact path="/decisions" component={Decisions} />
+          <Route exact path="/decisions/:address" component={DecisionSummary} />
         </Layout>
       )
     } else if (appView === APP_VIEWS.PARTY) {
       routes = (
         <Layout address={this.props.address} view={appView}>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/contracts" component={ContractsTable} />
+          <Route exact path="/contracts/new" component={Contracts} />
           <Route
             exact
-            path='/'
-            component={Home}
-          />
-          <Route
-            exact
-            path='/contracts'
-            component={ContractsTable}
-          />
-          <Route
-            exact
-            path='/contracts/new'
-            component={Contracts}
-          />
-          <Route
-            exact
-            path='/contract-summary/:address'
+            path="/contract-summary/:address"
             component={ContractSummary}
           />
-          <Route
-            exact
-            path='/settings'
-            component={Settings}
-          />
-          <Route
-            exact
-            path='/decisions'
-            component={Decisions}
-          />
-          <Route
-            exact
-            path='/decisions/:address'
-            component={DecisionSummary}
-          />
+          <Route exact path="/settings" component={Settings} />
+          <Route exact path="/decisions" component={Decisions} />
+          <Route exact path="/decisions/:address" component={DecisionSummary} />
         </Layout>
       )
     }
     return (
       <Provider store={this.props.store}>
         <Router>
-          <Switch>
-            {routes}
-          </Switch>
+          <Switch>{routes}</Switch>
         </Router>
       </Provider>
     )

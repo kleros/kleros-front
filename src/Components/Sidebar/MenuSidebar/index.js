@@ -4,19 +4,14 @@ import ItemMenuSidebar from './ItemMenuSidebar'
 
 import './MenuSidebar.css'
 
-const MenuSidebar = ({
-  className,
-  items = [],
-  theme,
-  children
-}) => (
+const MenuSidebar = ({ className, items = [], theme, children }) => (
   <div className={`MenuSidebar-container ${className} ${theme}`}>
-    { items.map(item =>
-      <div key={item} className='item'>
+    {items.map(item => (
+      <div key={item} className="item">
         <ItemMenuSidebar name={item} />
       </div>
-    ) }
-    { children }
+    ))}
+    {children}
   </div>
 )
 

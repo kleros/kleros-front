@@ -11,7 +11,7 @@ import SHA3 from 'crypto-js/sha3'
 import Identicon from '../../../Components/Identicon'
 import './Form.css'
 
-let sha3 = (value) => {
+let sha3 = value => {
   return SHA3(value, {
     outputLength: 256
   }).toString()
@@ -28,26 +28,23 @@ const Form = props => {
   } = props
 
   if (submitSucceeded) {
-    return <Redirect
-      to='/contracts'
-      push />
+    return <Redirect to="/contracts" push />
   }
 
   const contracts = ['Freelance', 'Buying goods', 'Services']
 
   return (
-    <form onSubmit={handleSubmit} className='Form-container'>
+    <form onSubmit={handleSubmit} className="Form-container">
       <div>
-        <label htmlFor='contractName'>Select contract</label>
+        <label htmlFor="contractName">Select contract</label>
       </div>
       <div>
         <Field
-          name='contractName'
-          component='select'
-          id='contractName'
-          className='input-text-contract'
-        >
-          <option value=''>Select a contract</option>
+          name="contractName"
+          component="select"
+          id="contractName"
+          className="input-text-contract">
+          <option value="">Select a contract</option>
           {contracts.map(contract => (
             <option value={contract} key={contract}>
               {contract}
@@ -55,82 +52,91 @@ const Form = props => {
           ))}
         </Field>
       </div>
-      {
-        _.has(formContract, 'values.contractName') &&
-        <div className='params'>
+      {_.has(formContract, 'values.contractName') && (
+        <div className="params">
           <Field
-            name='value'
+            name="value"
             component={Input}
-            type='number'
+            type="number"
             step={1 * 10e-18}
             required
-            innerClassName='input-text-contract-param'
-            placeholder='Payment (ETH)' />
+            innerClassName="input-text-contract-param"
+            placeholder="Payment (ETH)"
+          />
           <Field
-            name='timeout'
+            name="timeout"
             component={Input}
-            type='number'
+            type="number"
             required
-            innerClassName='input-text-contract-param'
-            placeholder='Timeout' />
-          {
-            _.has(formContract, 'values.partyB') &&
+            innerClassName="input-text-contract-param"
+            placeholder="Timeout"
+          />
+          {_.has(formContract, 'values.partyB') && (
             <Identicon
-              className='identicon-contract-address'
+              className="identicon-contract-address"
               seed={formContract.values.partyB}
               width={34}
               height={34}
             />
-          }
+          )}
           <Field
-            name='partyB'
+            name="partyB"
             component={Input}
-            type='text'
+            type="text"
             required
-            innerClassName='input-text-contract-param'
-            placeholder='Party B' />
+            innerClassName="input-text-contract-param"
+            placeholder="Party B"
+          />
           <Field
-            name='arbitratorExtraData'
+            name="arbitratorExtraData"
             component={Input}
-            type='text'
-            innerClassName='input-text-contract-param'
-            placeholder='Arbitrator extra data' />
+            type="text"
+            innerClassName="input-text-contract-param"
+            placeholder="Arbitrator extra data"
+          />
         </div>
-      }
+      )}
       <div>
-        <label htmlFor='email'>Email</label>
-        <div className='subLabel'>Add if you want to receive infos about the contract.</div>
+        <label htmlFor="email">Email</label>
+        <div className="subLabel">
+          Add if you want to receive infos about the contract.
+        </div>
         <Field
-          name='email'
+          name="email"
           component={Input}
-          type='email'
+          type="email"
           required
-          id='email'
-          innerClassName='input-text-contract'
-          placeholder='Email' />
+          id="email"
+          innerClassName="input-text-contract"
+          placeholder="Email"
+        />
       </div>
       <div>
-        <label htmlFor='description'>Description</label>
+        <label htmlFor="description">Description</label>
         <Field
-          name='description'
+          name="description"
           component={Input}
-          type='textarea'
+          type="textarea"
           required
-          innerClassName='input-textarea-contract'
-          id='description'
-          placeholder='Description' />
+          innerClassName="input-textarea-contract"
+          id="description"
+          placeholder="Description"
+        />
       </div>
-      {error && <div><strong>{error}</strong></div>}
+      {error && (
+        <div>
+          <strong>{error}</strong>
+        </div>
+      )}
       <div>
-        <button type='submit' disabled={submitting || error} className='submit'>
-          {
-            submitting &&
+        <button type="submit" disabled={submitting || error} className="submit">
+          {submitting && (
             <FontAwesome
-              name='circle-o-notch'
+              name="circle-o-notch"
               spin
-              style={{marginRight: '10px'}}
+              style={{ marginRight: '10px' }}
             />
-          }
+          )}
           Submit contract
         </button>
       </div>
@@ -144,7 +150,10 @@ const isAddress = address => {
   if (!/^(0x)?[0-9a-f]{40}$/i.test(address)) {
     // check if it has the basic requirements of an address
     return false
-  } else if (/^(0x)?[0-9a-f]{40}$/.test(address) || /^(0x)?[0-9A-F]{40}$/.test(address)) {
+  } else if (
+    /^(0x)?[0-9a-f]{40}$/.test(address) ||
+    /^(0x)?[0-9A-F]{40}$/.test(address)
+  ) {
     // If it's all small caps or all all caps, return true
     return true
   } else {
@@ -160,7 +169,12 @@ const isChecksumAddress = address => {
   const addressHash = sha3(address.toLowerCase())
   for (let i = 0; i < 40; i++) {
     // the nth letter should be uppercase if the nth digit of casemap is 1
-    if ((parseInt(addressHash[i], 16) > 7 && address[i].toUpperCase() !== address[i]) || (parseInt(addressHash[i], 16) <= 7 && address[i].toLowerCase() !== address[i])) {
+    if (
+      (parseInt(addressHash[i], 16) > 7 &&
+        address[i].toUpperCase() !== address[i]) ||
+      (parseInt(addressHash[i], 16) <= 7 &&
+        address[i].toLowerCase() !== address[i])
+    ) {
       return false
     }
   }
@@ -189,16 +203,20 @@ const validate = values => {
   return errors
 }
 
-export default withRouter(connect(mapStateToProps, null)(
-  reduxForm({
-    form: FORM_NAME,
-    validate,
-    onSubmit (values, dispatch) {
-      const web3 = new Web3()
-      values.hashContract = web3.sha3(values.description)
-      return dispatch(deployContract(values))
-        .catch(error => {
-          if (error) { throw new SubmissionError({_error: 'error submission'}) }
+export default withRouter(
+  connect(mapStateToProps, null)(
+    reduxForm({
+      form: FORM_NAME,
+      validate,
+      onSubmit(values, dispatch) {
+        const web3 = new Web3()
+        values.hashContract = web3.sha3(values.description)
+        return dispatch(deployContract(values)).catch(error => {
+          if (error) {
+            throw new SubmissionError({ _error: 'error submission' })
+          }
         })
-    }
-  })(Form)))
+      }
+    })(Form)
+  )
+)

@@ -1,41 +1,42 @@
-(function () {
+;(function() {
   // The random number is a js implementation of the Xorshift PRNG
   let randseed = new Array(4) // Xorshift: [x, y, z, w] 32 bit values
 
-  function seedrand (seed) {
+  function seedrand(seed) {
     for (let i = 0; i < randseed.length; i++) {
       randseed[i] = 0
     }
     for (let i = 0; i < seed.length; i++) {
-      randseed[i % 4] = ((randseed[i % 4] << 5) - randseed[i % 4]) + seed.charCodeAt(i)
+      randseed[i % 4] =
+        (randseed[i % 4] << 5) - randseed[i % 4] + seed.charCodeAt(i)
     }
   }
 
-  function rand () {
+  function rand() {
     // based on Java's String.hashCode(), expanded to 4 32bit values
     let t = randseed[0] ^ (randseed[0] << 11)
 
     randseed[0] = randseed[1]
     randseed[1] = randseed[2]
     randseed[2] = randseed[3]
-    randseed[3] = (randseed[3] ^ (randseed[3] >> 19) ^ t ^ (t >> 8))
+    randseed[3] = randseed[3] ^ (randseed[3] >> 19) ^ t ^ (t >> 8)
 
     return (randseed[3] >>> 0) / ((1 << 31) >>> 0)
   }
 
-  function createColor () {
+  function createColor() {
     // saturation is the whole color spectrum
     let h = Math.floor(rand() * 360)
     // saturation goes from 40 to 100, it avoids greyish colors
-    let s = ((rand() * 60) + 40) + '%'
+    let s = rand() * 60 + 40 + '%'
     // lightness can be anything from 0 to 100, but probabilities are a bell curve around 50%
-    let l = ((rand() + rand() + rand() + rand()) * 25) + '%'
+    let l = (rand() + rand() + rand() + rand()) * 25 + '%'
 
     let color = 'hsl(' + h + ',' + s + ',' + l + ')'
     return color
   }
 
-  function createImageData (size) {
+  function createImageData(size) {
     let width = size // Only support square icons for now
     let height = size
 
@@ -62,10 +63,11 @@
     return data
   }
 
-  function buildOpts (opts) {
+  function buildOpts(opts) {
     let newOpts = {}
 
-    newOpts.seed = opts.seed || Math.floor((Math.random() * Math.pow(10, 16))).toString(16)
+    newOpts.seed =
+      opts.seed || Math.floor(Math.random() * Math.pow(10, 16)).toString(16)
 
     seedrand(newOpts.seed)
 
@@ -78,7 +80,7 @@
     return newOpts
   }
 
-  function renderIcon (opts, canvas) {
+  function renderIcon(opts, canvas) {
     let imageData = createImageData(opts.size)
     let width = Math.sqrt(imageData.length)
 
@@ -96,7 +98,7 @@
         let col = i % width
 
         // if data is 2, choose spot color, if 1 choose foreground
-        cc.fillStyle = (imageData[i] === 1) ? opts.color : opts.spotcolor
+        cc.fillStyle = imageData[i] === 1 ? opts.color : opts.spotcolor
 
         cc.fillRect(col * opts.scale, row * opts.scale, opts.scale, opts.scale)
       }
@@ -104,7 +106,7 @@
     return canvas
   }
 
-  function createIcon (optsParam) {
+  function createIcon(optsParam) {
     let opts = buildOpts(optsParam || {})
     let canvas = document.createElement('canvas')
 

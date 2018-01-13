@@ -9,23 +9,29 @@ import { STATUS_TO_STATE } from '../../../constants'
 import './GridContent.css'
 
 class GridContent extends Component {
-  componentWillMount () {
+  componentWillMount() {
     this.props.getDataDisputes()
   }
 
-  render () {
-    const { hasErrored, isFetching, disputes, baseLink, filterFunction } = this.props
+  render() {
+    const {
+      hasErrored,
+      isFetching,
+      disputes,
+      baseLink,
+      filterFunction
+    } = this.props
     if (hasErrored) {
       return <p>Sorry! There was an error loading the disputes</p>
     }
 
     if (isFetching) {
       return (
-        <div className='GridContent-container'>
-          <div className='items loader'>
-            <div className='linear-background-100' />
-            <div className='linear-background-90' />
-            <div className='linear-background-90' />
+        <div className="GridContent-container">
+          <div className="items loader">
+            <div className="linear-background-100" />
+            <div className="linear-background-90" />
+            <div className="linear-background-90" />
           </div>
         </div>
       )
@@ -34,35 +40,46 @@ class GridContent extends Component {
     const filteredDisputes = filterFunction(disputes)
 
     return (
-      <div className='GridContent-container'>
-        <div className='items'>
-          {
-            _.isEmpty(disputes) &&
-            <div className='items-row'>
-              <div className='item item-no-disputes'>
-                You have no disputes.
-              </div>
+      <div className="GridContent-container">
+        <div className="items">
+          {_.isEmpty(disputes) && (
+            <div className="items-row">
+              <div className="item item-no-disputes">You have no disputes.</div>
             </div>
-          }
-          {
-            filteredDisputes.filter(dispute => {
-              return dispute.arbitratorAddress === process.env.REACT_APP_ARBITRATOR_ADDRESS
-            }).map(dispute =>
-              (
-                <Link key={dispute.arbitrableContractAddress} to={`${baseLink}/${dispute.arbitrableContractAddress}`}>
-                  <div className='items-row'>
-                    <div className='item item-project'>
-                      <div className='item-title'>{ truncateText(dispute.description ? dispute.description : 'unavailable', 35) }</div>
-                      <div className='item-category'>{ dispute.category }</div>
-                    </div>
-                    <div className='item item-deadline'>{ dispute.deadline }</div>
-                    <div className='item item-case_id'>{ truncateText(dispute.hash, 10) }</div>
-                    <div className='item item-status'>{ STATUS_TO_STATE[dispute.arbitrableContractStatus] }</div>
-                  </div>
-                </Link>
+          )}
+          {filteredDisputes
+            .filter(dispute => {
+              return (
+                dispute.arbitratorAddress ===
+                process.env.REACT_APP_ARBITRATOR_ADDRESS
               )
-            )
-          }
+            })
+            .map(dispute => (
+              <Link
+                key={dispute.arbitrableContractAddress}
+                to={`${baseLink}/${dispute.arbitrableContractAddress}`}>
+                <div className="items-row">
+                  <div className="item item-project">
+                    <div className="item-title">
+                      {truncateText(
+                        dispute.description
+                          ? dispute.description
+                          : 'unavailable',
+                        35
+                      )}
+                    </div>
+                    <div className="item-category">{dispute.category}</div>
+                  </div>
+                  <div className="item item-deadline">{dispute.deadline}</div>
+                  <div className="item item-case_id">
+                    {truncateText(dispute.hash, 10)}
+                  </div>
+                  <div className="item item-status">
+                    {STATUS_TO_STATE[dispute.arbitrableContractStatus]}
+                  </div>
+                </div>
+              </Link>
+            ))}
         </div>
       </div>
     )
@@ -83,4 +100,6 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GridContent))
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(GridContent)
+)

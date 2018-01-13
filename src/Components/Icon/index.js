@@ -22,7 +22,7 @@ class Icon extends Component {
     }
   }
 
-  render () {
+  render() {
     if (this.state.isLoading) {
       return <div>Icon not found...</div>
     }

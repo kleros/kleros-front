@@ -12,29 +12,29 @@ class Disputes extends Component {
     address: 0x0
   }
 
-  componentWillMount () {
+  componentWillMount() {
     this.props.getBalance()
   }
 
-  render () {
-    const itemsTitle = [
-      'Project',
-      'Deadline',
-      'Case ID',
-      'Status',
-      'Evidence'
-    ]
+  render() {
+    const itemsTitle = ['Project', 'Deadline', 'Case ID', 'Status', 'Evidence']
 
-    const filterFunction = disputes => _.filter(disputes, dispute => (
-      ((dispute.isJuror && !dispute.hasRuled) && dispute))
-    )
+    const filterFunction = disputes =>
+      _.filter(
+        disputes,
+        dispute => dispute.isJuror && !dispute.hasRuled && dispute
+      )
 
     return (
-      <div className='Disputes-container'>
+      <div className="Disputes-container">
         <SearchBar />
-        <div className='content'>
+        <div className="content">
           <h1>Open Disputes</h1>
-          <DisputesTable itemTitles={itemsTitle} baseLink={'disputes'} filterFunction={filterFunction} />
+          <DisputesTable
+            itemTitles={itemsTitle}
+            baseLink={'disputes'}
+            filterFunction={filterFunction}
+          />
         </div>
       </div>
     )
@@ -42,8 +42,7 @@ class Disputes extends Component {
 }
 
 const mapStateToProps = () => {
-  return {
-  }
+  return {}
 }
 
 const mapDispatchToProps = dispatch => {
@@ -52,4 +51,6 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Disputes))
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Disputes)
+)
