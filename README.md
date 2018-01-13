@@ -75,6 +75,19 @@ yarn run lint # check lint
 yarn run lint-fix # fix lint
 ```
 
+## Documentation 
+
+
+Build documentation
+```
+yarn run build-docs
+```
+
+Open documentation
+```
+yarn run docs
+```
+
 ## Invision
 
 Go [there](https://projects.invisionapp.com/share/SRDBNEDE7#/screens/252442857).
