@@ -25,16 +25,31 @@ import Layout from '../Components/Layout'
 import { APP_VIEWS, KLEROS_VIEW_KEY } from '../constants'
 import './index.css'
 
+/**
+ * class App
+ * @extends React.Component
+ */
 class App extends Component {
+  /**
+   * Set initial state
+   * @param {boolean} appLoaded - param for hide/showing page loader
+   */
   state = {
     appLoaded: false
   }
 
+  /**
+   * run fn getAddress before render
+   */
   componentWillMount () {
     // fetch address before rendering app to make sure web3 has been loaded and to avoid race conditions
     this.props.getAddress()
   }
 
+  /**
+   * change state param appLoaded to true if no address
+   * @param nextProps
+   */
   componentWillReceiveProps (nextProps) {
     // if address has loaded
     // FIXME handle error
@@ -45,8 +60,13 @@ class App extends Component {
     }
   }
 
+  /**
+   * render App content
+   */
   render () {
-    // if no web3 show requires metamask page
+    /**
+     * if no web3 show requires metamask page
+     */
     if (typeof window.web3 === 'undefined') {
       return (
         <RequiresMetaMask />
@@ -118,6 +138,11 @@ class App extends Component {
 
 registerServiceWorker()
 
+/**
+ * add Redux state to component props
+ * @param state
+ * @returns {{address, addressHasErrored: *, addressIsFetching: *}}
+ */
 const mapStateToProps = state => {
   return {
     address: state.ethereum.address,
@@ -126,6 +151,11 @@ const mapStateToProps = state => {
   }
 }
 
+/**
+ * dispatch changes to Redux state
+ * @param dispatch
+ * @returns {{getAddress: (function(): *)}}
+ */
 const mapDispatchToProps = dispatch => {
   return {
     getAddress: () => dispatch(fetchAddress())

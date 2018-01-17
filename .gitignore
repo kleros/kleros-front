@@ -30,3 +30,6 @@ src/**/*.css
 
 # storybook build
 /storybook-static
+
+# docs
+/docs-static
