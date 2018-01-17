@@ -83,94 +83,52 @@ class App extends Component {
       window.localStorage.setItem(KLEROS_VIEW_KEY, appView)
     }
 
-    // FIXME DRY this out a bit
+    let routesData = {
+      juror: [
+        {path: '/', component: Home},
+        {path: '/disputes', component: Disputes},
+        {path: '/disputes/:address', component: DisputeResolution},
+        {path: '/settings', component: Settings},
+        {path: '/jury', component: Jury},
+        {path: '/decisions', component: Decisions},
+        {path: '/decisions/:address', component: DecisionSummary}
+      ],
+      party: [
+        {path: '/', component: Home},
+        {path: '/contracts', component: ContractsTable},
+        {path: '/contracts/new', component: Contracts},
+        {path: '/contract-summary/:address', component: ContractSummary},
+        {path: '/settings', component: Settings},
+        {path: '/decisions', component: Decisions},
+        {path: '/decisions/:address', component: DecisionSummary}
+      ]
+    }
+
     let routes
     if (appView === APP_VIEWS.JUROR) {
-      routes = (
-        <Layout address={this.props.address} view={appView}>
-          <Route
-            exact
-            path='/'
-            component={Home}
-          />
-          <Route
-            exact
-            path='/disputes'
-            component={Disputes}
-          />
-          <Route
-            exact
-            path='/disputes/:address'
-            component={DisputeResolution}
-          />
-          <Route
-            exact
-            path='/settings'
-            component={Settings}
-          />
-          <Route
-            exact
-            path='/jury'
-            component={Jury}
-          />
-          <Route
-            exact
-            path='/decisions'
-            component={Decisions}
-          />
-          <Route
-            exact
-            path='/decisions/:address'
-            component={DecisionSummary}
-          />
-        </Layout>
-      )
+      routes = routesData.juror
     } else if (appView === APP_VIEWS.PARTY) {
-      routes = (
-        <Layout address={this.props.address} view={appView}>
-          <Route
-            exact
-            path='/'
-            component={Home}
-          />
-          <Route
-            exact
-            path='/contracts'
-            component={ContractsTable}
-          />
-          <Route
-            exact
-            path='/contracts/new'
-            component={Contracts}
-          />
-          <Route
-            exact
-            path='/contract-summary/:address'
-            component={ContractSummary}
-          />
-          <Route
-            exact
-            path='/settings'
-            component={Settings}
-          />
-          <Route
-            exact
-            path='/decisions'
-            component={Decisions}
-          />
-          <Route
-            exact
-            path='/decisions/:address'
-            component={DecisionSummary}
-          />
-        </Layout>
-      )
+      routes = routesData.party
     }
+
+    let layout = (
+      <Layout address={this.props.address} view={appView}>
+        {routes.map((item, i) =>
+          <Route
+            key={i}
+            exact
+            path={item.path}
+            component={item.component}
+          />
+        )}
+      </Layout>
+    )
+
     return (
       <Provider store={this.props.store}>
         <Router>
           <Switch>
-            {routes}
+            {layout}
           </Switch>
         </Router>
       </Provider>
