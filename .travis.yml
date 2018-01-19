@@ -9,3 +9,5 @@ script:
   - yarn run test:coverage
   - yarn run test:coveralls
   - yarn build
+notifications:
+  slack: kleros:Ub8n81EgKJ3iRrMDyWyQIVJp
