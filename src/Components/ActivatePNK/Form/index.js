@@ -7,7 +7,7 @@ import { activatePinakion } from '../../../redux/ethereum/action-creators'
 import Input from '../../Input'
 import './Form.css'
 
-const Form = props => {
+export const Form = props => {
   const {
     handleSubmit,
     submitting,

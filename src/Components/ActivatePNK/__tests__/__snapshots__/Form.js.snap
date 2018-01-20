@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form Exists should render component properly 1`] = `
+<form
+  className="Form-container"
+>
+  <div
+    className="amount-container"
+  >
+    <Field
+      component={[Function]}
+      defaultValue={0}
+      innerClassName="input-number"
+      name="amount"
+      required={true}
+      step={1e-17}
+      type="number"
+    />
+  </div>
+  <div
+    className="button-container"
+  >
+    <button
+      className="submit"
+      type="submit"
+    >
+      Activate
+    </button>
+  </div>
+</form>
+`;
