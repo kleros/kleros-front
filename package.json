@@ -18,6 +18,7 @@
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
     "redux-form": "^7.0.4",
+    "redux-mock-store": "^1.4.0",
     "redux-thunk": "^2.2.0",
     "web3": "^0.20.1"
   },

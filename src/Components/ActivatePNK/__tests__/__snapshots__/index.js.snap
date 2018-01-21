@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Activate Exist should render Activate component correctly 1`] = `
+<div
+  className="ActivatePNK-container"
+>
+  <h1>
+    Activate PNK
+  </h1>
+  <withRouter(Connect(ReduxForm)) />
+</div>
+`;
