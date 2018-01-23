@@ -15,8 +15,8 @@ import './DisputeResolution.css'
 class DisputeResolution extends Component {
   componentWillMount () {
     // fetch dispute
-    this.props.getDisputeForContract(this.props.match.params.address)
-    this.props.getRulingOptions(this.props.match.params.address)
+    this.props.getDisputeForContract(this.props.match.params.arbitratorAddress, this.props.match.params.disputeId)
+    this.props.getRulingOptions(this.props.match.params.arbitratorAddress, this.props.match.params.disputeId)
   }
 
   render () {
@@ -67,9 +67,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getDisputeForContract: contractAddress => dispatch(getDisputeForContract(contractAddress)),
-    getRulingOptions: contractAddress => dispatch(getRulingOptions(contractAddress))
-
+    getDisputeForContract: (arbitratorAddress, disputeId) => dispatch(getDisputeForContract(arbitratorAddress, disputeId)),
+    getRulingOptions: (arbitratorAddress, disputeId) => dispatch(getRulingOptions(arbitratorAddress, disputeId))
   }
 }
 

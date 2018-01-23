@@ -56,7 +56,6 @@ export const submitDisputeResolution = (
       disputeId,
       ruling,
       votes,
-      hash,
       web3.eth.accounts[account]
     )
     dispatch(rulingSubmitted(submittedRulingTx))
@@ -69,7 +68,8 @@ export const submitDisputeResolution = (
 }
 
 export const getDisputeForContract = (
-  arbitratedContractAddress,
+  arbitratorAddress,
+  disputeId,
   account = 0
 ) => async dispatch => {
   dispatch(requestCaseData(true))
@@ -83,7 +83,8 @@ export const getDisputeForContract = (
 
     // FIXME use a variable input for user to set their court contract
     const disputeData = await KlerosInstance.disputes.getDataForDispute(
-      arbitratedContractAddress,
+      arbitratorAddress,
+      disputeId,
       web3.eth.accounts[account]
     )
     // use same reducer as fetch disputes

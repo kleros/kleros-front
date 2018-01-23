@@ -335,7 +335,8 @@ export const getContracts = (
 }
 
 export const getRulingOptions = (
-  contractAddress
+  arbitratorAddress,
+  disputeId
 ) => async dispatch => {
   await dispatch(requestRulingOptions(true))
   try {
@@ -345,7 +346,7 @@ export const getRulingOptions = (
 
     let KlerosInstance = new Kleros(provider, process.env.REACT_APP_STORE_PROVIDER)
 
-    const rulingOptions = await KlerosInstance.arbitrableContract.getRulingOptions(contractAddress)
+    const rulingOptions = await KlerosInstance.disputes.getRulingOptions(arbitratorAddress, disputeId)
 
     await dispatch(receiveRulingOptions(rulingOptions))
     await dispatch(requestRulingOptions(false))

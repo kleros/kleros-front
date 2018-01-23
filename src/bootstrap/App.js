@@ -22,6 +22,7 @@ import Jury from '../Containers/Jury'
 import Decisions from '../Containers/Decisions'
 import DecisionSummary from '../Containers/Decisions/Summary'
 import Layout from '../Components/Layout'
+import { watchDisputes } from '../helpers/watchDisputes'
 import { APP_VIEWS, KLEROS_VIEW_KEY } from '../constants'
 import './index.css'
 
@@ -87,11 +88,11 @@ class App extends Component {
       juror: [
         {path: '/', component: Home},
         {path: '/disputes', component: Disputes},
-        {path: '/disputes/:address', component: DisputeResolution},
+        {path: '/disputes/:arbitratorAddress/:disputeId', component: DisputeResolution},
         {path: '/settings', component: Settings},
         {path: '/jury', component: Jury},
         {path: '/decisions', component: Decisions},
-        {path: '/decisions/:address', component: DecisionSummary}
+        {path: '/decisions/:arbitratorAddress/:disputeId', component: DecisionSummary}
       ],
       party: [
         {path: '/', component: Home},
@@ -100,7 +101,7 @@ class App extends Component {
         {path: '/contract-summary/:address', component: ContractSummary},
         {path: '/settings', component: Settings},
         {path: '/decisions', component: Decisions},
-        {path: '/decisions/:address', component: DecisionSummary}
+        {path: '/decisions/:arbitratorAddress/:disputeId', component: DecisionSummary}
       ]
     }
 
@@ -123,6 +124,9 @@ class App extends Component {
         )}
       </Layout>
     )
+
+    // start event listeners
+    watchDisputes()
 
     return (
       <Provider store={this.props.store}>

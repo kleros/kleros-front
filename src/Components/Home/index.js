@@ -5,6 +5,7 @@ import SearchBar from '../SearchBar'
 import './Home.css'
 
 const Home = () => {
+
   return (
     <div className='Home-container'>
       <SearchBar />
