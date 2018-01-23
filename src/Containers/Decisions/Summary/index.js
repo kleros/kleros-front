@@ -28,7 +28,7 @@ class DecisionSummary extends Component {
   }
 
   loadDispute = () => {
-    this.props.getDisputeForContract(this.props.match.params.address)
+    this.props.getDisputeForContract(this.props.match.params.arbitratorAddress, this.props.match.params.disputeId)
   }
 
   appealDispute = () => {
@@ -135,7 +135,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getDisputeForContract: contractAddress => dispatch(getDisputeForContract(contractAddress)),
+    getDisputeForContract: (arbitratorAddress, disputeId) => dispatch(getDisputeForContract(arbitratorAddress, disputeId)),
     getArbitratorData: disputeId => dispatch(getArbitratorData(disputeId)),
     appealDispute: (disputeId, extraData) => dispatch(appealDispute(disputeId, extraData)),
     executeRuling: disputeId => dispatch(executeRuling(disputeId)),

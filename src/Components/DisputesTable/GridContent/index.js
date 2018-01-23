@@ -49,7 +49,7 @@ class GridContent extends Component {
               return dispute.arbitratorAddress === process.env.REACT_APP_ARBITRATOR_ADDRESS
             }).map(dispute =>
               (
-                <Link key={dispute.arbitrableContractAddress} to={`${baseLink}/${dispute.arbitrableContractAddress}`}>
+                <Link key={dispute.arbitrableContractAddress} to={`${baseLink}/${process.env.REACT_APP_ARBITRATOR_ADDRESS}/${dispute.disputeId}`}>
                   <div className='items-row'>
                     <div className='item item-project'>
                       <div className='item-title'>{ truncateText(dispute.description ? dispute.description : 'unavailable', 35) }</div>

@@ -1,6 +1,6 @@
 import Web3 from 'web3'
 
-export let getWeb3 = async () => new Promise((resolve, reject) => {
+export const getWeb3 = async () => new Promise((resolve, reject) => {
   // FIXME provider depends of the env .env.local | .env.prod
   let web3
   // use web3 if injected in browser
