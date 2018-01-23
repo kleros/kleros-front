@@ -1,7 +1,6 @@
 import { Kleros } from 'kleros-api'
 import { getWeb3 } from './getWeb3'
 
-
 export const watchDisputes = async () => {
   try {
     let web3 = await getWeb3()
