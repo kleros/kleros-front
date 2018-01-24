@@ -22,6 +22,8 @@ import Banner from '../Components/Banner'
 import MetroCard from '../Components/Home/MetroCard'
 
 import '../bootstrap/index.css'
+import {GridContent} from '../Components/DisputesTable/GridContent';
+import DisputesTable from '../Components/DisputesTable';
 
 /** *************** Icon *****************/
 
@@ -139,6 +141,54 @@ storiesOf('TruncatedTextBox', module)
     />
   ))
 
+/** *************** DisputesTable ****************/
+
+storiesOf('DisputesTable', module)
+    .add('with pagination', () => {
+        let disputes = [];
+        for (let cnt = 1; cnt <= 1000; cnt += 1) {
+            disputes.push({
+                arbitratorAddress: process.env.REACT_APP_ARBITRATOR_ADDRESS,
+                arbitrableContractAddress: cnt,
+                description: 'Case ' + cnt,
+                hash: cnt + '',
+                arbitrableContractStatus: cnt % 5,
+                category: 'Freelance',
+                deadline: 'Tomorrow',
+                partyA: 'abcdefghijklm',
+                partyB: 'nopqrstuvwxyz'
+            })
+        }
+
+        let props = {
+            hasErrored: false,
+            isFetching: false,
+            disputes: disputes,
+            getDataDisputes: () => {
+
+            },
+            hasPagination: true,
+            baseLink: 'disputes',
+            filter: () => true,
+            filterFunction: (disputes) => disputes,
+            Link: (props) => (<a href="#/{props.to}">{props.children}</a>)
+        };
+        let className;
+        return (
+            <div className={`Grid-container ${className}`}>
+                <div className='grid'>
+                    <div className='header'>
+                        <div className='item header-project-item'>Project</div>
+                        <div className='item header-deadline-item'>Deadline</div>
+                        <div className='item header-case_id-item'>Case ID</div>
+                        <div className='item header-status-item'>Status</div>
+                    </div>
+                    <GridContent {...props} />
+                </div>
+            </div>
+        )
+        }
+    )
 /** *************** Grid ****************/
 
 storiesOf('Grid', module)
