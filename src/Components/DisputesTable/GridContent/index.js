@@ -94,43 +94,44 @@ export class GridContent extends Component {
           }
         </div>
         <ul className='pagination-container'>
-            <li className='first'
-                    key='first'
-                    data-page-number={1}
-                    onClick={this.paginateHandler}
-            >
-                {'First'}
-            </li>
-            <li
-                    key='previous'
-                    data-page-number={this.state.currentPage - 1}
-                    disabled={this.state.currentPage <= 1}
-                    onClick={this.state.currentPage > 1 && this.paginateHandler}
-            >
-                {'Previous'}
-            </li>
-	        <li>
-	        <span>Showing page </span>
+          <li className='first'
+            key='first'
+            data-page-number={1}
+            onClick={this.paginateHandler}
+          >
+            {'First'}
+          </li>
+          <li
+            key='previous'
+            data-page-number={this.state.currentPage - 1}
+            disabled={this.state.currentPage <= 1}
+            onClick={this.state.currentPage > 1 && this.paginateHandler}
+          >
+            {'Previous'}
+          </li>
+          <li>
+            <span>Showing page </span>
             <input type='number' min={1} max={totalPages} step={1}
-                   onChange={this.paginateInputHandler} value={this.state.currentPage} key='input'
+              onChange={this.paginateInputHandler} value={this.state.currentPage} key='input'
             />
-	        <span> of {totalPages}</span>
-	        </li>
-            <li
-                    key='next'
-                    data-page-number={this.state.currentPage + 1}
-                    disabled={this.state.currentPage >= totalPages}
-                    onClick={this.state.currentPage < totalPages && this.paginateHandler}
-            >
-                {'Next'}
-            </li>
-            <li className='last'
-                    key='last'
-                    data-page-number={totalPages}
-                    onClick={this.paginateHandler}
-            >
-                {'Last'}
-            </li>
+            <span> of </span>
+            <span className='page-count'>{totalPages}</span>
+          </li>
+          <li
+            key='next'
+            data-page-number={this.state.currentPage + 1}
+            disabled={this.state.currentPage >= totalPages}
+            onClick={this.state.currentPage < totalPages && this.paginateHandler}
+          >
+            {'Next'}
+          </li>
+          <li className='last'
+            key='last'
+            data-page-number={totalPages}
+            onClick={this.paginateHandler}
+          >
+            {'Last'}
+          </li>
         </ul>
       </div>
     )
