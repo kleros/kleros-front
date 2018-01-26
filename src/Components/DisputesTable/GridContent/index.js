@@ -21,11 +21,11 @@ export class GridContent extends Component {
     this.props.getDataDisputes()
   }
 
-  paginateHandler (event) {
-    this.setState({
+  paginateHandler = (event) =>
+    (this.setState({
       currentPage: Number(event.target.dataset.pageNumber)
-    })
-  }
+    }))
+
   paginateInputHandler (event) {
     this.setState({
       currentPage: Number(event.target.value)
@@ -93,46 +93,46 @@ export class GridContent extends Component {
             )
           }
         </div>
-        <ul className='pagination-container'>
-          <li className='first'
-            key='first'
-            data-page-number={1}
-            onClick={this.paginateHandler}
-          >
-            {'First'}
-          </li>
-          <li
-            key='previous'
-            data-page-number={this.state.currentPage - 1}
-            disabled={this.state.currentPage <= 1}
-            onClick={this.state.currentPage > 1 && this.paginateHandler}
-          >
-            {'Previous'}
-          </li>
-          <li>
-            <span>Showing page </span>
-            <input type='number' min={1} max={totalPages} step={1}
-              onChange={this.paginateInputHandler} value={this.state.currentPage} key='input'
-            />
-            <span> of </span>
-            <span className='page-count'>{totalPages}</span>
-          </li>
-          <li
-            key='next'
-            data-page-number={this.state.currentPage + 1}
-            disabled={this.state.currentPage >= totalPages}
-            onClick={this.state.currentPage < totalPages && this.paginateHandler}
-          >
-            {'Next'}
-          </li>
-          <li className='last'
-            key='last'
-            data-page-number={totalPages}
-            onClick={this.paginateHandler}
-          >
-            {'Last'}
-          </li>
-        </ul>
+
+        { totalPages > 1 && <div className='pagination-footer'>
+          <ul className='pagination-container'>
+            <li className='first'
+              key='first'
+              data-page-number={1}
+              onClick={this.paginateHandler}>
+              {'First'}
+            </li>
+            <li
+              key='previous'
+              data-page-number={this.state.currentPage - 1}
+              className={this.state.currentPage <= 1 ? 'disabled' : ''}
+              onClick={this.state.currentPage > 1 && this.paginateHandler}>
+              {'Previous'}
+            </li>
+            <li className='pagerInput'>
+              <span>Showing page </span>
+              <input type='number' min={1} max={totalPages} step={1}
+                onChange={this.paginateInputHandler} value={this.state.currentPage} key='input' />
+              <span> of </span>
+              <span className='page-count'>{totalPages}</span>
+            </li>
+            <li
+              key='next'
+              data-page-number={this.state.currentPage + 1}
+              className={this.state.currentPage >= totalPages ? 'disabled' : ''}
+              onClick={this.state.currentPage < totalPages && this.paginateHandler}
+            >
+              {'Next'}
+            </li>
+            <li className='last'
+              key='last'
+              data-page-number={totalPages}
+              onClick={this.paginateHandler}>
+              {'Last'}
+            </li>
+          </ul>
+        </div>}
+
       </div>
     )
   }

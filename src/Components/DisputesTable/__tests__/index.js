@@ -36,4 +36,16 @@ describe('Disputes Table', () => {
   test('should have the correct amount of pages', () => {
     expect(component.find('.page-count').text()).toEqual('112')
   })
+
+  let props2 = {
+    ...props,
+    disputes: props.disputes.slice(0, 8)
+  }
+  const component2 = render(
+    <GridContent {...props2} />
+  )
+  test('should hide the paginator given not enough rows to paginate', () => {
+    console.log(props2.disputes.length)
+    expect(component2.find('.pagination-footer').length).toEqual(0)
+  })
 })

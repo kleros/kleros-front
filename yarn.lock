@@ -1678,6 +1678,10 @@ blockies@^0.0.2:
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/blockies/-/blockies-0.0.2.tgz#22ad58da4f6b382bc79bf4386c5820c70047e4ed"
 
+bluebird@3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.3.1.tgz#f97ae1970f41d85177283053e9a120160e66c61d"
+
 bluebird@^3.4.7:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.1.tgz#d9551f9de98f1fcda1e683d17ee91a0602ee2eb9"
@@ -3426,6 +3430,12 @@ etag@~1.8.1:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.1.tgz#41ae2eeb65efa62268aebfea83ac7d79299b0887"
 
+eth-contract-class@0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/eth-contract-class/-/eth-contract-class-0.0.6.tgz#398b8952149cc747cb959fa8b5d480288c7a8bce"
+  dependencies:
+    web3-core-promievent "^1.0.0-beta.21"
+
 ethereumjs-testrpc@^4.1.1:
   version "4.1.3"
   resolved "https://registry.yarnpkg.com/ethereumjs-testrpc/-/ethereumjs-testrpc-4.1.3.tgz#74db90c9075fdfa3ba2513f08595baac36a86c7e"
@@ -3435,6 +3445,14 @@ ethereumjs-testrpc@^4.1.1:
 ethjs-abi@0.1.8:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/ethjs-abi/-/ethjs-abi-0.1.8.tgz#cd288583ed628cdfadaf8adefa3ba1dbcbca6c18"
+  dependencies:
+    bn.js "4.11.6"
+    js-sha3 "0.5.5"
+    number-to-bn "1.7.0"
+
+ethjs-abi@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/ethjs-abi/-/ethjs-abi-0.2.1.tgz#e0a7a93a7e81163a94477bad56ede524ab6de533"
   dependencies:
     bn.js "4.11.6"
     js-sha3 "0.5.5"
@@ -3458,6 +3476,10 @@ event-stream@~3.3.0:
     split "0.3"
     stream-combiner "~0.0.4"
     through "~2.3.1"
+
+eventemitter3@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-1.1.1.tgz#47786bdaa087caf7b1b75e73abc5c7d540158cd0"
 
 eventemitter3@1.x.x:
   version "1.2.0"
@@ -5251,10 +5273,11 @@ klaw@^1.0.0:
   optionalDependencies:
     graceful-fs "^4.1.9"
 
-kleros-api@^0.0.47:
-  version "0.0.47"
-  resolved "https://registry.yarnpkg.com/kleros-api/-/kleros-api-0.0.47.tgz#b37f0bec2e0cb0674ed3274757e8238e5ade56dc"
+kleros-api@^0.0.50:
+  version "0.0.50"
+  resolved "https://registry.yarnpkg.com/kleros-api/-/kleros-api-0.0.50.tgz#6841e7243855a4000fc5156fc3bc7068c08f38b0"
   dependencies:
+    babel-plugin-transform-runtime "^6.23.0"
     babel-preset-env "^1.6.0"
     babel-preset-react "^6.24.1"
     bignumber "^1.1.0"
@@ -5265,26 +5288,29 @@ kleros-api@^0.0.47:
     ethereumjs-testrpc "^4.1.1"
     global "^4.3.2"
     jest "^20.0.4"
-    kleros "^0.0.4"
+    kleros "^0.0.5"
     kleros-interaction "^0.0.8"
     lodash "^4.17.4"
     truffle-contract "^2.0.5"
     web3 "^0.20.1"
 
-kleros-interaction@0.0.7:
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/kleros-interaction/-/kleros-interaction-0.0.7.tgz#d588d245b99f03fc8b0d5fb57a683d0e2500efb9"
+kleros-interaction@0.0.13:
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/kleros-interaction/-/kleros-interaction-0.0.13.tgz#23eb7de02d1180bf0e212f04f048f130444c47ba"
+  dependencies:
+    minimetoken "^0.2.0"
+    zeppelin-solidity "^1.3.0"
 
 kleros-interaction@^0.0.8:
   version "0.0.8"
   resolved "https://registry.yarnpkg.com/kleros-interaction/-/kleros-interaction-0.0.8.tgz#84e6db47126b9782687ea332e4cee5120d2efa50"
 
-kleros@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/kleros/-/kleros-0.0.4.tgz#24e7481dfdc1c0adaee55e0ef6568992771e4375"
+kleros@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/kleros/-/kleros-0.0.5.tgz#4b962e8b75936a03d34a6835a47d718579e3b565"
   dependencies:
-    kleros-interaction "0.0.7"
-    zeppelin-solidity "^1.3.0"
+    kleros-interaction "0.0.13"
+    zeppelin-solidity "^1.5.0"
 
 latest-version@^2.0.0:
   version "2.0.0"
@@ -5728,6 +5754,12 @@ minimatch@3.0.3:
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.0.3.tgz#2a4e4090b96b2db06a9d7df01055a62a77c9b774"
   dependencies:
     brace-expansion "^1.0.0"
+
+minimetoken@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/minimetoken/-/minimetoken-0.2.0.tgz#c182231eae93e752e5d8801c2967e6d6ef6a0e6f"
+  dependencies:
+    eth-contract-class "0.0.6"
 
 minimist@0.0.8, minimist@~0.0.1:
   version "0.0.8"
@@ -8577,6 +8609,13 @@ wbuf@^1.1.0, wbuf@^1.7.2:
   dependencies:
     minimalistic-assert "^1.0.0"
 
+web3-core-promievent@^1.0.0-beta.21:
+  version "1.0.0-beta.28"
+  resolved "https://registry.yarnpkg.com/web3-core-promievent/-/web3-core-promievent-1.0.0-beta.28.tgz#9c61c500985123b67c786088e778bfd7ff2388e4"
+  dependencies:
+    bluebird "3.3.1"
+    eventemitter3 "1.1.1"
+
 web3@^0.20.1:
   version "0.20.2"
   resolved "https://registry.yarnpkg.com/web3/-/web3-0.20.2.tgz#c54dac5fc0e377399c04c1a6ecbb12e4513278d6"
@@ -8952,3 +8991,10 @@ yargs@~3.10.0:
 zeppelin-solidity@^1.3.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/zeppelin-solidity/-/zeppelin-solidity-1.4.0.tgz#0b8e0ef219897431a5be47004f78b20e0a2ee34a"
+
+zeppelin-solidity@^1.5.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/zeppelin-solidity/-/zeppelin-solidity-1.6.0.tgz#c1048de286124cdcdb7e2492c2890ddfde04dd84"
+  dependencies:
+    dotenv "^4.0.0"
+    ethjs-abi "^0.2.1"
