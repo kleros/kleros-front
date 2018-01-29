@@ -8,13 +8,35 @@ import { truncateText } from '../../../helpers/truncateText'
 import { STATUS_TO_STATE } from '../../../constants'
 import './GridContent.css'
 
-class GridContent extends Component {
+export class GridContent extends Component {
+  constructor () {
+    super()
+    this.state = {
+      currentPage: 1
+    }
+    this.paginateHandler = this.paginateHandler.bind(this)
+    this.paginateInputHandler = this.paginateInputHandler.bind(this)
+  }
   componentWillMount () {
     this.props.getDataDisputes()
   }
 
+  paginateHandler = (event) =>
+    (this.setState({
+      currentPage: Number(event.target.dataset.pageNumber)
+    }))
+
+  paginateInputHandler (event) {
+    this.setState({
+      currentPage: Number(event.target.value)
+    })
+  }
+
   render () {
-    const { hasErrored, isFetching, disputes, baseLink, filterFunction } = this.props
+    let CustomLink = this.props.Link || Link
+
+    const {hasErrored, isFetching, disputes, baseLink, filterFunction, rowsPerPage = 9} = this.props
+    const {currentPage = 1} = this.state
     if (hasErrored) {
       return <p>Sorry! There was an error loading the disputes</p>
     }
@@ -32,6 +54,14 @@ class GridContent extends Component {
     }
 
     const filteredDisputes = filterFunction(disputes)
+    const indexOfLastRow = currentPage * rowsPerPage
+    const indexOfFirstRow = indexOfLastRow - rowsPerPage
+    const list = filteredDisputes.filter(dispute => {
+      return dispute.arbitratorAddress === process.env.REACT_APP_ARBITRATOR_ADDRESS
+    })
+    const currentRows = list.slice(indexOfFirstRow, indexOfLastRow)
+
+    const totalPages = Math.ceil(list.length / rowsPerPage) || 1
 
     return (
       <div className='GridContent-container'>
@@ -45,11 +75,10 @@ class GridContent extends Component {
             </div>
           }
           {
-            filteredDisputes.filter(dispute => {
-              return dispute.arbitratorAddress === process.env.REACT_APP_ARBITRATOR_ADDRESS
-            }).map(dispute =>
+            currentRows.map(dispute =>
               (
-                <Link key={dispute.arbitrableContractAddress} to={`${baseLink}/${process.env.REACT_APP_ARBITRATOR_ADDRESS}/${dispute.disputeId}`}>
+                <CustomLink key={dispute.arbitrableContractAddress}
+                  to={`${baseLink}/${process.env.REACT_APP_ARBITRATOR_ADDRESS}/${dispute.disputeId}`}>
                   <div className='items-row'>
                     <div className='item item-project'>
                       <div className='item-title'>{ truncateText(dispute.description ? dispute.description : 'unavailable', 35) }</div>
@@ -59,11 +88,51 @@ class GridContent extends Component {
                     <div className='item item-case_id'>{ truncateText(dispute.hash, 10) }</div>
                     <div className='item item-status'>{ STATUS_TO_STATE[dispute.arbitrableContractStatus] }</div>
                   </div>
-                </Link>
+                </CustomLink>
               )
             )
           }
         </div>
+
+        { totalPages > 1 && <div className='pagination-footer'>
+          <ul className='pagination-container'>
+            <li className='first'
+              key='first'
+              data-page-number={1}
+              onClick={this.paginateHandler}>
+              {'First'}
+            </li>
+            <li
+              key='previous'
+              data-page-number={this.state.currentPage - 1}
+              className={this.state.currentPage <= 1 ? 'disabled' : ''}
+              onClick={this.state.currentPage > 1 && this.paginateHandler}>
+              {'Previous'}
+            </li>
+            <li className='pagerInput'>
+              <span>Showing page </span>
+              <input type='number' min={1} max={totalPages} step={1}
+                onChange={this.paginateInputHandler} value={this.state.currentPage} key='input' />
+              <span> of </span>
+              <span className='page-count'>{totalPages}</span>
+            </li>
+            <li
+              key='next'
+              data-page-number={this.state.currentPage + 1}
+              className={this.state.currentPage >= totalPages ? 'disabled' : ''}
+              onClick={this.state.currentPage < totalPages && this.paginateHandler}
+            >
+              {'Next'}
+            </li>
+            <li className='last'
+              key='last'
+              data-page-number={totalPages}
+              onClick={this.paginateHandler}>
+              {'Last'}
+            </li>
+          </ul>
+        </div>}
+
       </div>
     )
   }
